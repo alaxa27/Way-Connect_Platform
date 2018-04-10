@@ -1,5 +1,6 @@
 .input-group-prepend,
 .input-group-append {
+  min-width: 40px;
   white-space: nowrap;
   vertical-align: middle; // Match the inputs
 }
