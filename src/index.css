@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+body{
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #F2F2F2;
+}
+*{
+  outline: none;
+}
+.left-panel{
+  width: 100px;
+  padding: 29px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%; 
+  background-color: #1A1A1A;
+}
+.left-panel img{
+  width: 60px;
+}
+.dashboard-cards{
+	width: 100%;
+	height: 300px;
+	border-radius: 5px;
+	color: #fff;
+}
+.main-wrapper{
+	margin-left: 100px;
+    padding: 20px;
+}
+.panel-bg {
+    background-image: url(./panel-bg.png);
+    background-repeat: no-repeat;
+    background-position: right 6px;
+}
+
+.panel-orange {
+    background-color: #F15A24;
+}
+.panel-yellow-dark {
+    background-color: #F7931E;
+}
+.panel-yellow {
+    background-color: #FBB03B;
+}
+.panel-yellow-light {
+    background-color: #F9DA23;
+}
+.panel .panel-body {
+    position: relative;
+    padding: 20px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.info-box .info-box-stats {
+    float: left;
+    margin-top: 5px;
+}
+.info-box .info-box-stats h3 {
+    font-size: 28px;
+    margin-bottom: 14px;
+    color: #fff;
+    font-weight: bold;
+    margin: 0px;
+}
+.info-box .info-box-stats span.info-box-title {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #fff;
+}
+.panel-white {
+    background: #fff;
+}
+.panel {
+    -webkit-box-shadow: 0 5px 5px -5px rgba(0,0,0,.1);
+    -moz-box-shadow: 0 5px 5px -5px rgba(0,0,0,.1);
+    box-shadow: 0 5px 5px -5px rgba(0,0,0,.1);
+    border: 0!important;
+    margin-bottom: 25px;
+    border-radius: 0;
+}
+.dashboard-chart{
+	font-size: 12px;
+	display: inline-block;
+}
+.panel .panel-heading {
+    padding: 20px;
+    overflow: hidden;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border: 0!important;
+    font-size: 14px;
+    font-weight: 600;
+}
+.panel .panel-heading .panel-title {
+    font-size: 14px;
+    float: left;
+    margin: 0;
+    padding: 0;
+    font-weight: 600;
+}
+.btn-default {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #e5e5e5;
+    font-size: 13px;
+    font-weight: normal !important;
+}
+.btn-grey {
+    background: #B3B3B3;
+    font-weight: normal !important;
+    font-size: 13px;
+}
+.top-space {
+    margin-top: 55px;
+}
+.way-heading {
+    font-weight: bold;
+    color: #1A1A1A;
+    font-size: 14px;
+    margin: 10px 0;
+}
+.pull-left{
+	float: left;
+}
+.pull-right{
+	float: right;
+}
+.google-maps-wrapper > div{
+	height: 500px !important;
+}
+.page-footer {
+    background: #fff;
+    width: calc(100% - 100px);
+    padding: 19px 25px;
+    margin-left: 100px;
+    font-size: 13px;
+}
+.no-s {
+    margin: 0!important;
+    padding: 0!important;
+}
