@@ -3,6 +3,7 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import GoogleMapReact from 'google-map-react';
+import ViewOne from './ViewOne';
 
 const data = [
       {name: 'S', value: 90},
@@ -42,6 +43,14 @@ class App extends Component {
   render() {
   	const { selectedOption } = this.state;
     const value = selectedOption && selectedOption.value;
+    const tableArray = [1, 2, 3, 4, 5, 6];
+    const taleList = tableArray.map(( list, i) => 
+    	<tr key={i} className={ i === 0 ? 'full-opacity' : null }>
+    		<td>
+    			<label>#{i + 1} Westside Shopping Center</label>
+    		</td>
+    	</tr>
+    )
     return (
       <div>
         <div className="row">
@@ -151,8 +160,22 @@ class App extends Component {
 	            	{ value: 'Australia', label: 'Australia' },
 	            ]}/>
 
+	            <div>
+	            	<table className="locations-list">
+	            		<tbody>
+	            			{taleList}
+	            		</tbody>
+	            	</table>
+	            </div>
+
         	</div>
         	<div className="clearfix"></div>
+        </div>
+
+        <div className="row">
+        	<div className="col">
+        		<ViewOne/>
+        	</div>
         </div>
 
       </div>

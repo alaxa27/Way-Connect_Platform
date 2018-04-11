@@ -143,3 +143,138 @@ body{
     margin: 0!important;
     padding: 0!important;
 }
+.locations-list{
+	width: 100%;
+	margin-top: 15px;
+}
+.locations-list tr td label{
+	padding: 5px 20px;
+	background-color: #dbdbdb;
+	color: #000;
+	margin-bottom: 10px;
+	width: 100%;
+	font-weight: bold;
+	font-size: 14px;
+	opacity: 0.5;
+}
+.yellow-circle{
+	color: #FBB03B;
+}
+.sub-page-wrapper{
+	width: 100%;
+	margin: 15px 0;
+}
+.typology-table{
+    width: 100%;
+    margin-top: 30px;
+}
+.typology-table tr td:first-child{
+    width: auto;
+}
+.typology-table tr td{
+    padding: 0;
+    width: 100px;
+}
+.typology-table tr td label{
+    padding: 5px 20px;
+    background-color: #dbdbdb;
+    color: #000;
+    margin-bottom: 10px;
+    width: 100%;
+    font-weight: bold;
+    font-size: 14px;
+    opacity: 0.5;
+}
+.full-opacity label{
+    opacity: 1 !important;
+}
+.typology-table tr td img{
+    height: 20px;
+}
+.line-through{
+    position: relative;
+}
+.line-through:after{
+    content: '';
+    border-bottom: 3px solid;
+    position: absolute;
+    top: 6px;
+    left: 0;
+    right: 4px;
+}
+.input-label{
+    font-weight: lighter;
+}
+.gender-radio-buttons input{
+    display: none;
+}
+.gender-radio-buttons label{
+    width: 48%;
+    color: #fff;
+    font-weight: normal;
+    font-size: 14px;
+    text-transform: lowercase;
+    text-align: center;
+    padding: 5px;
+    border-radius: 10px;
+    background: #dbdbdb;
+}
+.gender-radio-buttons input:checked + label{
+    font-weight: bold;
+    background: linear-gradient(to right, #F15A24, #FBB03B);
+}
+.age-title{
+    font-size: 24px;
+    float: right;
+}
+.input-wrapper{
+    margin-top: 10px;
+}
+.custom-selectbox-main{
+    width: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+    position: relative;
+    height: 30px;
+}
+.custom-selectbox{
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    padding: 3px 10px;
+    -moz-appearance: window;
+    -webkit-appearance: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.custom-selectbox-arrow{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    color: #dbdbdb;
+    font-size: 20px;
+}
+.submit-button{
+    color: #fff;
+    border: none;
+    background-color: #333;
+    padding: 5px 0;
+    width: 250px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+.input-range__label--min, .input-range__label--max, .input-range__label--value{
+    display: none;
+}
+.input-range__track{
+    background: #999 !important;
+}
+.input-range__track--active{
+    background: linear-gradient(to right, #F15A24, #FBB03B) !important;
+}
+.input-range__slider{
+    background: #dbdbdb !important;
+    border: 1px solid #dbdbdb !important;
+}
