@@ -8,6 +8,8 @@ import Aside from '../../components/Aside/';
 import Footer from '../../components/Footer/';
 
 import Dashboard from '../../views/Dashboard/';
+import CreateCampaign from '../../views/Campaigns/CreateCampaign/';
+import Campaigns from '../../views/Campaigns/Campaigns/';
 
 class Full extends Component {
   render() {
@@ -21,6 +23,8 @@ class Full extends Component {
             <Container fluid>
               <Switch>
                 <Route path="/dashboard" name="Dashboard" component={Dashboard}/>
+                <Route path="/create_campaign" name="CreateCampaign" component={CreateCampaign}/>
+                <Route path="/campaigns" name="Campaigns" component={Campaigns}/>
                 <Redirect from="/" to="/login"/>
               </Switch>
             </Container>

@@ -1,5 +1,7 @@
 const routes = {
   '/': 'Home',
-  '/dashboard': 'Dashboard'
+  '/dashboard': 'Dashboard',
+  '/create_campaign': 'CreateCampaign',
+  '/campaigns': 'Campaigns'
 };
 export default routes;
