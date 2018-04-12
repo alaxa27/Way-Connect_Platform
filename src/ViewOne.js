@@ -5,6 +5,7 @@ import Cart from './shopping_cart_ok.png';
 import Select from 'react-select';
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
+import { Container, Row, Col, Button } from 'reactstrap';
 
 class ViewOne extends Component {
 	constructor(props) {
@@ -58,26 +59,26 @@ class ViewOne extends Component {
 	    )
 		return (
 			<div className="sub-page-wrapper">
-				<div className="row">
-		        	<div className="col">
+				<Row>
+		        	<Col>
 		        		<h2 className="way-heading" style={{fontSize: '24px'}}><FontAwesome.FaCircle className="yellow-circle" /> #1 Typologie list</h2>
-		        		<div className="col">
-		        			<div className="col">
+		        		<Col>
+		        			<Col>
 			        			<table className="typology-table">
 			        				<tbody>
 			        					{typologieList}
 			        				</tbody>
 			        			</table>
-		        			</div>
-		        		</div>
-		        	</div>
-		        </div>
+		        			</Col>
+		        		</Col>
+		        	</Col>
+		        </Row>
 		        <br/><br/>
-		        <div className="row">
-		        	<div className="col">
+		        <Row>
+		        	<Col>
 		        		<h2 className="way-heading" style={{fontSize: '24px'}}><FontAwesome.FaCircle className="yellow-circle" /> #2 Research filter</h2>
-		        		<div className="col"><br/>
-		        			<div className="col col-md-5">
+		        		<Col><br/>
+		        			<Col md="5">
 		        				<label className="input-label">Gender</label>
 		        				<div className="gender-radio-buttons">
 		        					<input type="radio" id="male" name="gender" value="male" checked={this.state.gender === 'male'} onChange={this.handleInputChange} />
@@ -93,9 +94,9 @@ class ViewOne extends Component {
 			        					<InputRange maxValue={100} minValue={0} value={this.state.value} onChange={value => this.setState({ value })} />
 			        				</div>
 		        				</div>
-		        			</div>
+		        			</Col>
 		        			<div className="clearfix"></div>
-		        			<div className="Col">
+		        			<Col>
 			        			<div className="row" style={{margin: 0}}>
 				        			<div className="col col-md-5">
 				        				<div className="input-wrapper">
@@ -132,7 +133,7 @@ class ViewOne extends Component {
 				        				</div>
 				        			</div>
 
-				        			<div className="col col-md-5 offset-md-1">
+				        			<Col md={{ siize: 5, offset: 1}}>
 				        				<div className="input-wrapper">
 				        					<label className="input-label">Hobbies</label>
 				        					<div className="custom-selectbox-main">
@@ -174,16 +175,16 @@ class ViewOne extends Component {
 					        					<FontAwesome.FaArrowCircleODown className="custom-selectbox-arrow" />
 				        					</div>
 				        				</div>
-				        			</div>
+				        			</Col>
 				        			<div className="clearfix"></div>
-				        			<div className="col">
+				        			<Col>
 				        				<button className="submit-button">Submit</button>
-				        			</div>
+				        			</Col>
 			        			</div>
-		        			</div>
-		        		</div>
-		        	</div>
-		        </div>
+		        			</Col>
+		        		</Col>
+		        	</Col>
+		        </Row>
 			</div>
 		)
 	}

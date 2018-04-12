@@ -4,6 +4,7 @@ import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import GoogleMapReact from 'google-map-react';
 import ViewOne from './ViewOne';
+import { Row, Col, Button } from 'reactstrap';
 
 const data = [
       {name: 'S', value: 90},
@@ -53,8 +54,8 @@ class App extends Component {
     )
     return (
       <div>
-        <div className="row">
-            <div className="col-lg-3 col-md-6">
+        <Row>
+            <Col md="6" lg="3">
                 <div className="panel info-box panel-orange panel-bg">
                     <div className="panel-body">
                         <div className="info-box-stats">
@@ -64,8 +65,8 @@ class App extends Component {
                         <div className="clearfix"></div>
                     </div>
                 </div>
-            </div>
-            <div className="col-lg-3 col-md-6">
+            </Col>
+            <Col md="6" lg="3">
                 <div className="panel info-box panel-yellow-dark panel-bg">
                     <div className="panel-body">
                         <div className="info-box-stats">
@@ -75,8 +76,8 @@ class App extends Component {
                         <div className="clearfix"></div>
                     </div>
                 </div>
-            </div>
-            <div className="col-lg-3 col-md-6">
+            </Col>
+            <Col md="6" lg="3">
                 <div className="panel info-box panel-yellow panel-bg">
                     <div className="panel-body">
                         <div className="info-box-stats">
@@ -86,8 +87,8 @@ class App extends Component {
                         <div className="clearfix"></div>
                     </div>
                 </div>
-            </div>
-            <div className="col-lg-3 col-md-6">
+            </Col>
+            <Col md="6" lg="3">
                 <div className="panel info-box panel-yellow-light panel-bg">
                     <div className="panel-body">
                         <div className="info-box-stats">
@@ -97,21 +98,21 @@ class App extends Component {
                         <div className="clearfix"></div>
                     </div>
                 </div>
-            </div>
+            </Col>
             <div className="clearfix"></div>
-        </div>
+        </Row>
 
-        <div className="row">
-        	<div className="col">
+        <Row>
+        	<Col>
         		<div className="panel panel-white">
         			<div className="panel-heading">
         				<div className="pull-left">
         					<h4 className="panel-title">Traffic</h4>
         				</div>
         				<div className="pull-right btn-group">
-        					<button type="button" className="btn btn-default">Day</button>
-                            <button type="button" className="btn btn-grey">Month</button>
-                            <button type="button" className="btn btn-default">Year</button>
+                            <Button className="btn-default no-border">Day</Button>
+                            <Button className="btn-grey no-border">Month</Button>
+                            <Button className="btn-default no-border">Year</Button>
         				</div>
         				<div className="clearfix"></div>
         			</div>
@@ -123,11 +124,11 @@ class App extends Component {
 					  <Tooltip dataKey="value" />
 					</AreaChart>
         		</div>
-        	</div>
-        </div>
+        	</Col>
+        </Row>
 
-        <div className="row">
-        	<div className="col-md-8">
+        <Row>
+        	<Col md="8">
         		<h2 className="way-heading" style={{fontSize: '24px'}}>Our partners</h2>
 
         		<div className="google-maps-wrapper">
@@ -142,8 +143,8 @@ class App extends Component {
 			        </GoogleMapReact>
 		        </div>
 
-        	</div>
-        	<div className="col-md-4 top-space">
+        	</Col>
+        	<Col md="4" className="top-space">
 	            <h4 className="way-heading">Select a country</h4>
 
 	            <Select name="country" value={value} onChange={this.handleChange} 
@@ -168,15 +169,15 @@ class App extends Component {
 	            	</table>
 	            </div>
 
-        	</div>
+        	</Col>
         	<div className="clearfix"></div>
-        </div>
+        </Row>
 
-        <div className="row">
-        	<div className="col">
+        <Row>
+        	<Col>
         		<ViewOne/>
-        	</div>
-        </div>
+        	</Col>
+        </Row>
 
       </div>
     );
