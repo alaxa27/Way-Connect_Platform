@@ -1,1 +1,227 @@
 // Here you can add other styles
+
+
+.panel-bg {
+    background-image: url(./panel-bg.png);
+    background-repeat: no-repeat;
+    background-position: right 6px;
+    margin-bottom: 1.5rem;
+}
+
+.panel-orange {
+    background-color: #F15A24;
+}
+.panel-yellow-dark {
+    background-color: #F7931E;
+}
+.panel-yellow {
+    background-color: #FBB03B;
+}
+.panel-yellow-light {
+    background-color: #F9DA23;
+}
+.panel .panel-body {
+    position: relative;
+    padding: 20px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.info-box .info-box-stats {
+    float: left;
+    margin-top: 5px;
+}
+.info-box .info-box-stats h3 {
+    font-size: 28px;
+    margin-bottom: 14px;
+    color: #fff;
+    font-weight: bold;
+    margin: 0px;
+}
+.info-box .info-box-stats span.info-box-title {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.way-heading {
+    font-weight: bold;
+    color: #1A1A1A;
+    font-size: 14px;
+    margin: 10px 0;
+}
+.pull-left{
+	float: left;
+}
+.pull-right{
+	float: right;
+}
+.google-maps-wrapper > div{
+	height: 500px !important;
+}
+.no-s {
+    margin: 0!important;
+    padding: 0!important;
+}
+.locations-list{
+	width: 100%;
+	margin-top: 15px;
+}
+.locations-list tr *{
+	cursor: pointer;
+}
+.locations-list tr td label{
+	padding: 5px 20px;
+	background-color: #dbdbdb;
+	color: #000;
+	margin-bottom: 10px;
+	width: 100%;
+	font-weight: bold;
+	font-size: 14px;
+	opacity: 0.5;
+}
+.custom-selectbox-main{
+    width: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+    position: relative;
+    height: 27px;
+}
+.custom-selectbox{
+    width: 100% !important;
+    border: none !important;
+    background-color: transparent !important;
+    padding: 3px 10px !important;
+    -moz-appearance: window !important;
+    -webkit-appearance: none !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: 1 !important;
+    outline: none  !important;
+    height: auto !important;
+}
+.custom-selectbox-arrow{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    color: #dbdbdb;
+    font-size: 20px;
+}
+.full-opacity label{
+    opacity: 1 !important;
+}
+.top-space {
+    margin-top: 55px;
+}
+.custom-selectbox:focus{
+	outline: none !important;
+	box-shadow: none !important;
+}
+.input-range__label--min, .input-range__label--max, .input-range__label--value{
+    display: none;
+}
+.input-range__track{
+    background: #999 !important;
+}
+.input-range__track--active{
+    background: linear-gradient(to right, #F15A24, #FBB03B) !important;
+}
+.input-range__slider{
+    background: #333 !important;
+    border: 1px solid #333 !important;
+}
+.yellow-circle{
+	color: #FBB03B;
+}
+.green-circle{
+    color: #32CD32;
+}
+.typology-table{
+    width: 100%;
+    margin-top: 30px;
+}
+.typology-table tr td:first-child{
+    width: auto;
+}
+.typology-table tr td{
+    padding: 0;
+    width: 100px;
+}
+.typology-table tr td label{
+    padding: 5px 20px;
+    background-color: #dbdbdb;
+    color: #000;
+    margin-bottom: 10px;
+    width: 100%;
+    font-weight: bold;
+    font-size: 14px;
+    opacity: 0.5;
+}
+.full-opacity label{
+    opacity: 1 !important;
+}
+.typology-table tr td img{
+    height: 20px;
+}
+.line-through{
+    position: relative;
+}
+.line-through:after{
+    content: '';
+    border-bottom: 3px solid;
+    position: absolute;
+    top: 6px;
+    left: 0;
+    right: 4px;
+}
+.input-label{
+    font-weight: lighter;
+    font-size: 1rem;
+}
+.gender-radio-buttons input{
+    display: none;
+}
+.gender-radio-buttons label{
+    width: 48%;
+    color: #fff;
+    font-weight: normal;
+    font-size: 14px;
+    text-transform: lowercase;
+    text-align: center;
+    padding: 5px;
+    border-radius: 10px;
+    background: #dbdbdb;
+}
+.gender-radio-buttons input:checked + label{
+    font-weight: bold;
+    background: linear-gradient(to right, #F15A24, #FBB03B);
+}
+.age-title{
+    font-size: 24px;
+    float: right;
+}
+body{
+	color: #212529;
+	font-size: 1rem;
+}
+.submit-button {
+    color: #fff;
+    border: none;
+    background-color: #333;
+    padding: 5px 0;
+    width: 250px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+.input-wrapper {
+    margin-top: 10px;
+}
+.custom-breadcrumb{
+	width: 100%;
+	border-bottom: 1px solid #a4b7c1;
+	display: flex;
+    flex-wrap: wrap;
+    padding: 0.75rem 1rem;
+    background-color: #fff;
+}
