@@ -14,6 +14,11 @@ export default {
       name: 'My Campaigns',
       url: '/campaigns',
       icon: 'icon-layers',
+    },
+    {
+      name: 'Upload',
+      url: '/upload',
+      icon: 'fa fa-upload'
     }
   ]
 };

@@ -2,6 +2,7 @@ const routes = {
   '/': 'Home',
   '/dashboard': 'Dashboard',
   '/create_campaign': 'CreateCampaign',
-  '/campaigns': 'Campaigns'
+  '/campaigns': 'Campaigns',
+  '/upload': 'Upload'
 };
 export default routes;
