@@ -29,6 +29,13 @@ class Campaigns extends Component {
       this.toggleBid = this.toggleBid.bind(this);
       this.handleChange = this.handleChange.bind(this);
       this.handleInputChange = this.handleInputChange.bind(this);
+      this.hit = this.hit.bind(this);
+  }
+
+  hit(){
+    this.setState({
+      bidWrap: false
+    })
   }
 
   showFilter(){
@@ -355,22 +362,28 @@ class Campaigns extends Component {
                 <div className="bidding-panel">
                   <div className="quote-detail">
                     <label>Repetition</label>
-                    <InputRange maxValue={1000} minValue={0} value={this.state.value} onChange={value => this.setState({ value })} />
+                    <div onClick={this.hit}>
+                      <InputRange maxValue={1000} minValue={0} value={this.state.value} onChange={value => this.setState({ value })} />
+                    </div>
                     <span className="pull-right right-slider-label">{this.state.value}</span>
                     <div className="clearfix"></div>
                     <br/><br/>
                     <label>Period</label>
-                    <InputRange maxValue={12} minValue={0} value={this.state.period} onChange={period => this.setState({ period })} />
+                    <div onClick={this.hit}>
+                      <InputRange maxValue={12} minValue={0} value={this.state.period} onChange={period => this.setState({ period })} />
+                    </div>
                     <span className="pull-left right-slider-label">0</span>
                     <span className="pull-right right-slider-label">{this.state.period} month</span>
                     <div className="clearfix"></div>
 
-                    <Button className="get-quotations-btn" onClick={this.toggleBid}>Get quotations</Button>
+                    {this.state.bidWrap ? null :
+                      <Button className="get-quotations-btn" onClick={this.toggleBid}>Get quotations</Button>
+                    }
                   </div>
                 </div>
               </div>
               {this.state.bidWrap &&
-                <div className="bidding-area">
+                <div className="bidding-area animated fadeIn">
                   <label>Number</label>
                   <InputRange maxValue={100} minValue={0} value={this.state.number} onChange={number => this.setState({ number })} />
                   <span className="pull-left right-slider-label">0</span>
