@@ -204,6 +204,7 @@
 body{
 	color: #212529;
 	font-size: 1rem;
+    background-color: #f1f1f1;
 }
 .submit-button {
     color: #fff;
@@ -485,4 +486,83 @@ body{
     min-height: 300px;
     border: 2px dotted #666;
     background-color: #cbcbcb;
+}
+
+.partner-panel{
+    background-color: #e5e5e5;
+    border: 1px solid #c6c6c6;
+    padding: 15px;
+    margin-bottom: 1.5rem;
+}
+.partner-panel h2{
+    margin: 0;
+    line-height: normal;
+    color: #989898;
+    border-bottom: 3px solid #989898;
+    font-weight: bold;
+    float: left;
+}
+.partner-panel span{
+    color: #989898;
+    font-size: 14px;
+}
+.export-table-wrap{
+    width: 100%;
+    padding: 0 15px;
+    border: 1px solid #d3d3d3;
+    max-height: 500px;
+    overflow-y: auto;
+    margin-top: 1.5rem;
+    background-color: #fff;
+}
+.export-table{
+    width: 100%;
+}
+.export-table td{
+    padding: 15px 0;
+}
+.export-table tr{
+    border-bottom: 1px solid #d3d3d3;
+}
+.export-table tr:last-child{
+    border-bottom: none;
+}
+.export-table tr td:first-child label{
+    font-size: 40px;
+    margin-bottom: 0;
+    margin-right: 10px;
+    border-right: 1px solid #cbcbcb;
+    padding-right: 10px;
+    font-weight: bold;
+    width: calc(100% - 10px);
+}
+.export-table tr td:first-child label span{
+    font-size: 20px;
+    position: relative;
+    top: -6px;
+}
+.line-through:after{
+    top: 9px;
+}
+.export-table tr td:nth-child(2) label{
+    width: 100%;
+    margin-bottom: 0;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: normal;
+}
+.export-table tr td:nth-child(2) span{
+    font-weight: lighter;
+    font-size: 14px;
+}
+.export-table tr td:last-child label{
+    width:100%;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: normal;
+    margin-bottom: 0;
+}
+.export-table tr td:last-child span{
+    font-weight: lighter;
+    font-size: 12px;
 }

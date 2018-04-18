@@ -19,6 +19,11 @@ export default {
       name: 'Upload',
       url: '/upload',
       icon: 'fa fa-upload'
-    }
+    },
+    {
+      name: 'Partner',
+      url: '/partner',
+      icon: 'fa fa-upload'
+    },
   ]
 };
