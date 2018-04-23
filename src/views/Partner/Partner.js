@@ -538,7 +538,7 @@ class Partner extends Component {
             <Col>
 
               <h2 className="way-heading" style={{fontSize: '24px'}}>Promotions</h2>
-              <Button className="bid-btn" style={{width: '250px', fontSize: '18px', marginTop: 15}}>Export Excel</Button>
+              <Button className="bid-btn button-radius" style={{width: '250px', fontSize: '18px', marginTop: 15}}>Export Excel</Button>
 
             </Col>
           </Row>

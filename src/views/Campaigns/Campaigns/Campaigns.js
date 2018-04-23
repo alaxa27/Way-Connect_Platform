@@ -367,7 +367,7 @@ class Campaigns extends Component {
                     <div className="clearfix"></div>
 
                     {this.state.bidWrap ? null :
-                      <Button className="get-quotations-btn" onClick={this.toggleBid}>Get quotations</Button>
+                      <Button className="get-quotations-btn button-radius" onClick={this.toggleBid}>Get quotations</Button>
                     }
                   </div>
                 </div>
@@ -386,7 +386,7 @@ class Campaigns extends Component {
                       <label className="ready-status"><FontAwesome.FaCircle /> Ready for biding</label>
                     </Col>
                     <Col>
-                      <Button className="bid-btn">Bid</Button>
+                      <Button className="bid-btn button-radius">Bid</Button>
                     </Col>
                   </Row>
 

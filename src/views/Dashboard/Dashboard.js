@@ -603,7 +603,7 @@ class Dashboard extends Component {
         </Row>
 
         <Row>
-          <Col md="8">
+          <Col xs="12" md="8">
             <h2 className="way-heading" style={{fontSize: '24px'}}>Our partners</h2>
 
             <div className="google-maps-wrapper">
@@ -611,7 +611,7 @@ class Dashboard extends Component {
             </div>
 
           </Col>
-          <Col md="4" className="top-space">
+          <Col xs="12" md="4" className="top-space">
               <h4 className="way-heading">Select a country</h4>
 
               <div className="custom-selectbox-main">
