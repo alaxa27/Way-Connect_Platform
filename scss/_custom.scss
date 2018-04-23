@@ -473,7 +473,7 @@ body{
     border: 0;
     background-color: #f1f1f1;
 }
-.formulary-input-wrap .add-btn{
+.add-btn{
     border: none;
     background-color: transparent;
     color: $blue;
@@ -482,7 +482,7 @@ body{
     font-size: 16px;
     margin-top: 10px;
 }
-.formulary-input-wrap .add-btn svg{
+.add-btn svg{
     margin-right: 5px;
     font-size: 18px;
     position: relative;
@@ -579,4 +579,52 @@ body{
 
 .button-radius{
     border-radius: 10px !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.mybids-table{
+    width: 100%;
+    margin-top: 30px;
+}
+.mybids-table tr td:first-child{
+    width: auto;
+}
+.mybids-table tr td{
+    padding: 0;
+}
+.mybids-table tr td label{
+    padding: 5px 20px;
+    background-color: #dbdbdb;
+    color: #000;
+    margin-bottom: 10px;
+    width: 100%;
+    font-weight: bold;
+    font-size: 14px;
+}
+.mybids-table tr td img{
+    height: 20px;
+}
+.mybids-table tr td label{
+    opacity: 0.5;
+    border-top: 1px solid #a4b7c1;
+    border-bottom: 1px solid #a4b7c1;
+}
+.mybids-table tr td:first-child label{
+    border-left: 1px solid #a4b7c1;   
+}
+.mybids-table tr td:last-child label{
+    border-right: 1px solid #a4b7c1;   
 }

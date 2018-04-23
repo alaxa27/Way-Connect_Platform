@@ -14,7 +14,8 @@ class Upload extends Component {
       super(props)
       this.state = {
         filter: false,
-        activeTab: '1'
+        activeTab: '1',
+        age: { min: 18, max: 24}
       }
 
       this.showFilter = this.showFilter.bind(this);
@@ -265,6 +266,10 @@ class Upload extends Component {
 
                         <Col className="formulary-input-wrap">
                           <Button className="add-btn"><MdIconPack.MdAddCircleOutline /> add an question</Button>
+                        </Col>
+
+                        <Col>
+                          <Button className="bid-btn button-radius" style={{maxWidth: 200}}>Submit</Button>
                         </Col>
 
                       </Col>

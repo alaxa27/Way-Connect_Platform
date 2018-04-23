@@ -12,6 +12,7 @@ import CreateCampaign from '../../views/Campaigns/CreateCampaign/';
 import Campaigns from '../../views/Campaigns/Campaigns/';
 import Upload from '../../views/Upload/';
 import Partner from '../../views/Partner/';
+import MyBids from '../../views/MyBids/';
 
 class Full extends Component {
   render() {
@@ -29,6 +30,7 @@ class Full extends Component {
                 <Route path="/campaigns" name="Campaigns" component={Campaigns}/>
                 <Route path="/upload" name="Upload" component={Upload} />
                 <Route path="/partner" name="Partner" component={Partner} />
+                <Route path="/my_bids" name="My Bids" component={MyBids} />
                 <Redirect from="/" to="/login"/>
 
               </Switch>

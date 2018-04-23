@@ -4,6 +4,7 @@ const routes = {
   '/create_campaign': 'CreateCampaign',
   '/campaigns': 'Campaigns',
   '/upload': 'Upload',
-  '/partner': 'Partner'
+  '/partner': 'Partner',
+  '/my_bids': 'MyBids'
 };
 export default routes;

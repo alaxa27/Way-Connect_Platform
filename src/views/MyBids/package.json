@@ -1,0 +1,6 @@
+{
+  "name": "MyBids",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./MyBids.js"
+}

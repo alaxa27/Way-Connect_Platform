@@ -25,5 +25,10 @@ export default {
       url: '/partner',
       icon: 'fa fa-upload'
     },
+    {
+      name: 'My Bids',
+      url: '/my_bids',
+      icon: 'fa fa-upload'
+    }
   ]
 };
