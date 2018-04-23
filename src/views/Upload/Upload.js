@@ -15,7 +15,7 @@ class Upload extends Component {
       this.state = {
         filter: false,
         activeTab: '1',
-        age: { min: 18, max: 24}
+        age: { min: 18, max: 24},
       }
 
       this.showFilter = this.showFilter.bind(this);
