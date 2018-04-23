@@ -52,7 +52,7 @@ class MyBids extends Component {
             <span style={{position: 'relative', left: -5, backgroundColor: '#dbdbdb'}}>$</span>
             &nbsp;
             5
-            <span className="line-through">WC</span>
+            <span className="line-through line-through-bids">WC</span>
           </label>
         </td>
         <td>
@@ -76,7 +76,7 @@ class MyBids extends Component {
             <span style={{position: 'relative', left: -5, backgroundColor: '#dbdbdb'}}>$</span>
             &nbsp;
             5
-            <span className="line-through">WC</span>
+            <span className="line-through line-through-bids">WC</span>
           </label>
         </td>
         <td>

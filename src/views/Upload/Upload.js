@@ -268,7 +268,7 @@ class Upload extends Component {
                           <Button className="add-btn"><MdIconPack.MdAddCircleOutline /> add an question</Button>
                         </Col>
 
-                        <Col>
+                        <Col className="text-right">
                           <Button className="bid-btn button-radius" style={{maxWidth: 200}}>Submit</Button>
                         </Col>
 

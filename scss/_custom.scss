@@ -580,21 +580,6 @@ body{
 .button-radius{
     border-radius: 10px !important;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .mybids-table{
     width: 100%;
     margin-top: 30px;
@@ -627,4 +612,7 @@ body{
 }
 .mybids-table tr td:last-child label{
     border-right: 1px solid #a4b7c1;   
+}
+.line-through-bids:after{
+    top: 7px !important;
 }
