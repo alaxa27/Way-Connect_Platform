@@ -147,20 +147,11 @@ class Campaigns extends Component {
         bid: 6,
         cart: 200,
         status: 'Progress'      
-      },
-      {
-        rank: 10,
-        name: 'Teads.tv',
-        lastBid: '18:22',
-        view: 600,
-        bid: 6,
-        cart: 200,
-        status: 'Progress'      
-      },
+      }
     ];
     const showData = data.map((list, i) => 
         <tr key={list.rank}>
-          <td><h3>#{list.rank}{i === 0 ? <FontAwesome.FaStar /> : null }</h3></td>
+          <td><h3><span>#{list.rank}</span>{i === 0 ? <FontAwesome.FaStar /> : null }</h3></td>
           <td>
             <label>{list.name}</label>
             <span>last bid at {list.lastBid}</span>

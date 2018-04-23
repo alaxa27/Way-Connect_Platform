@@ -284,9 +284,19 @@ body{
 .search-table h3{
     font-size: 40px;
 }
+.search-table h3 span{
+    background-color: #000;
+    color: #fff;
+    font-size: 26px;
+    border-radius: 50%;
+    padding: 8px;
+}
 .search-table h3 svg{
     font-size: 20px;
     color: transparent;
+    position: absolute;
+    margin-top: 20px;
+    margin-left: -4px;
 }
 .search-table tr h3 svg{
     color: #F15A24;
