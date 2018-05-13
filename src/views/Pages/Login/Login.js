@@ -13,6 +13,7 @@ import {
   InputGroupText,
   Form
 } from 'reactstrap';
+import {Link} from 'react-router-dom';
 
 class Login extends Component {
   constructor(props) {
@@ -43,56 +44,36 @@ class Login extends Component {
   }
 
   render() {
-    return (<div className="app flex-row align-items-center">
+    return (<div className="app app--dark flex-row align-items-center">
       <Container>
         <Row className="justify-content-center">
-          <Col md="8">
-            <CardGroup>
-              <Card className="p-4">
-                <CardBody>
-                  <h1>Login</h1>
-                  <p className="text-muted">Sign In to your account</p>
-                  <InputGroup className="mb-3">
-                    <InputGroupAddon addonType="prepend">
-                      <InputGroupText>
-                        <i className="icon-user"></i>
-                      </InputGroupText>
-                    </InputGroupAddon>
-                    <Input type="text" placeholder="Username" onChange={this.handleChangeUsername}/>
-
-                  </InputGroup>
-                  <InputGroup className="mb-4">
-                    <InputGroupAddon addonType="prepend">
-                      <InputGroupText>
-                        <i className="icon-lock"></i>
-                      </InputGroupText>
-                    </InputGroupAddon>
-                    <Input type="password" placeholder="Password" onChange={this.handleChangePassword}/>
-
-                  </InputGroup>
-                  <Row>
-                    <Col xs="6">
-                      <Button color="primary" className="px-4" type="submit" value="submit" onClick={this.handleLogin}>Login</Button>
-
-                    </Col>
-                    <Col xs="6" className="text-right">
-                      <Button color="link" className="px-0">Forgot password?</Button>
-                    </Col>
-                  </Row>
-                </CardBody>
-              </Card>
-              <Card className="text-white bg-primary py-5 d-md-down-none" style={{
-                  width: 44 + '%'
-                }}>
-                <CardBody className="text-center">
-                  <div>
-                    <h2>Sign up</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <Button color="primary" className="mt-3" active>Register Now!</Button>
+          <Col md="6">
+            <div className="login d-flex align-items-center justify-content-center flex-column">
+              <img src="../img/login_logo.png" alt="Logo" className="login__logo-img mb-4" />
+              <h1 className="font-weight-bold">Way-connect</h1>
+              <form onSubmit={this.handleLogin}>
+                <div className="login__input-box my-5">
+                  <input type="text" className="login__input w-100 py-1 px-3 mb-3" name="username" placeholder="Username or email" onChange={this.handleChangeUsername} />
+                  <input type="password" className="login__input w-100 py-1 px-3 mb-4" name="password" placeholder="Password" onChange={this.handleChangePassword} />
+                  <div className="d-flex align-items-center checkbox-wrapper">
+                    <input type="checkbox" className="checkbox"/>
+                    <span className="checkmark"></span>
+                    <label className="ml-5">Remember me</label>
                   </div>
-                </CardBody>
-              </Card>
-            </CardGroup>
+                </div>
+                <button type="submit" className="btn-login btn-app-login text-uppercase w-100 mb-3">
+                  Login
+                </button>
+                <button className="btn-login btn-fb-login text-uppercase w-100 mb-2">
+                  Login with facebook
+                </button>
+                <div className="d-flex justify-content-between">
+                  <Link className="login__link" to="register" >Register</Link>
+                  <Link className="login__link" to="forgot-password" >Forgot your password?</Link>
+                </div>
+                <a href="https://way-connect.com/" className="login__link mt-4 d-block">Go back to the website</a>
+              </form>
+            </div>
           </Col>
         </Row>
       </Container>
