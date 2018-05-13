@@ -15,15 +15,20 @@ import {
   CardBody,
   CardFooter,
   CardTitle,
+  CardSubtitle,
+  CardImg,
+  CardText,
   Button,
   ButtonToolbar,
   ButtonGroup,
   ButtonDropdown,
   Label,
   Input,
-  Table
+  Table,
+  Media
 } from 'reactstrap';
 import {Bar, Line} from 'react-chartjs-2';
+import TypicalClient from "./TypicalClient";
 
 const brandPrimary = '#20a8d8';
 const brandSuccess = '#4dbd74';
@@ -432,8 +437,9 @@ class Partner extends Component {
       super(props)
       this.state = {
       }
-
   }
+
+
 
   render() {
 
@@ -536,10 +542,7 @@ class Partner extends Component {
 
           <Row>
             <Col>
-
               <h2 className="way-heading" style={{fontSize: '24px'}}>Promotions</h2>
-              <Button className="bid-btn button-radius" style={{width: '250px', fontSize: '18px', marginTop: 15}}>Export Excel</Button>
-
             </Col>
           </Row>
           <Row>
@@ -581,6 +584,15 @@ class Partner extends Component {
                 </CardBody>
               </Card>
 
+              <TypicalClient />
+
+            </Col>
+          </Row>
+
+
+          <Row>
+            <Col>
+              <Button className="bid-btn button-radius" style={{width: '250px', fontSize: '18px', marginTop: 15}}>Export Excel</Button>
             </Col>
           </Row>
 
