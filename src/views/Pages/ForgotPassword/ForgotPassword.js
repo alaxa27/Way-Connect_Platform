@@ -29,13 +29,15 @@ class ForgotPassword extends Component {
     return (<div className="app app--dark flex-row align-items-center">
       <Container>
         <Row className="justify-content-center">
-          <Col md="6">
+          <Col md="5">
             <div className="login d-flex align-items-center justify-content-center flex-column">
-              <img src="../img/login_logo.png" alt="Logo" className="login__logo-img mb-4" />
               <h1 className="font-weight-bold m-0">Way-connect</h1>
-              <div className="login__form w-100">
+              <p className="mt-5 mb-0">
+                Enter your email address below and we'll send you a link to reset your password.
+              </p>
+              <div className="login__form w-100 mt-5">
                 <form onSubmit={this.handleReset}>
-                  <div className="login__input-box mt-5 mb-3">
+                  <div className="login__input-box mb-4">
                     <input type="email" className="login__input w-100 py-1 px-3" name="email" placeholder="Email" onChange={this.handleChangeEmail} />
                   </div>
                   <button type="submit" className="btn-login btn-fb-login text-uppercase w-100 mb-2">
