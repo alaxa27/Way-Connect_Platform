@@ -35,13 +35,13 @@ class ResetPassword extends Component {
     return (<div className="app app--dark flex-row align-items-center">
       <Container>
         <Row className="justify-content-center">
-          <Col md="5">
+          <Col md="6" lg="5">
             <div className="login d-flex align-items-center justify-content-center flex-column">
-              <h1 className="font-weight-bold m-0">Way-connect</h1>
-              <div className="login__form w-100 mt-5">
+              <h1 className="font-weight-bold m-0 text-center">Way-connect</h1>
+              <div className="login__form w-100 mt-4">
                 <form onSubmit={this.handleReset}>
                   <div className="login__input-box mb-4">
-                    <input type="password" className="login__input w-100 py-1 px-3 mb-3" name="email" placeholder="Password" onChange={this.handleChangePassword} />
+                    <input type="password" className="login__input w-100 py-1 px-3 mb-2" name="email" placeholder="Password" onChange={this.handleChangePassword} />
                     <input type="password" className="login__input w-100 py-1 px-3" name="email" placeholder="Repeat password" onChange={this.handleChangePasswordConfirmation} />
                   </div>
                   <button type="submit" className="btn-login btn-fb-login text-uppercase w-100 mb-2">

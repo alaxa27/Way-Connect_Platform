@@ -679,8 +679,12 @@ body{
     .btn-login {
         border-radius: 12px;
         color: #fff;
-        height: 45px;
+        height: 35px;
         border: 0;
+
+        &:focus {
+            outline: none;
+        }
     }
 
     .btn-app-login {
@@ -696,7 +700,11 @@ body{
         border: 3px solid #fff;
         color: #fff;
         background: transparent;
-        height: 45px;
+        height: 35px;
+
+        &:focus {
+            outline: none;
+        }
     }
 
     &__link {

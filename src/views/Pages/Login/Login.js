@@ -47,10 +47,10 @@ class Login extends Component {
     return (<div className="app app--dark flex-row align-items-center">
       <Container>
         <Row className="justify-content-center">
-          <Col md="5">
+          <Col md="6" lg="5">
             <div className="login d-flex align-items-center justify-content-center flex-column">
               <img src="../img/login_logo.png" alt="Logo" className="login__logo-img mb-3" />
-              <h1 className="font-weight-bold">Way-connect</h1>
+              <h1 className="font-weight-bold text-center m-0">Way-connect</h1>
               <form onSubmit={this.handleLogin}>
                 <div className="login__input-box my-4">
                   <input type="text" className="login__input w-100 py-1 px-3 mb-2" name="username" placeholder="Username or email" onChange={this.handleChangeUsername} />
