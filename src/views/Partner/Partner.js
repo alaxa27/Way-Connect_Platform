@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import * as FontAwesome from 'react-icons/lib/fa';
 import * as MdIconPack from 'react-icons/lib/md';
 import {
   Badge,
@@ -28,7 +27,10 @@ import {
   Media
 } from 'reactstrap';
 import {Bar, Line} from 'react-chartjs-2';
-import TypicalClient from "./TypicalClient";
+import TypicalClient from "./TypicalClient/TypicalClient";
+import Affluence from "./Affluence/Affluence";
+import PromotionsList from "./Promotions/PromotionsList";
+import ExportExcelButton from "./ExportExcel/ExportExcelButton";
 
 const brandPrimary = '#20a8d8';
 const brandSuccess = '#4dbd74';
@@ -417,21 +419,6 @@ const mainChartOpts = {
   }
 }
 
-const barData = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-  datasets: [
-    {
-      label: 'My First dataset',
-      backgroundColor: 'rgba(255,99,132,0.2)',
-      borderColor: 'rgba(255,99,132,1)',
-      borderWidth: 1,
-      hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-      hoverBorderColor: 'rgba(255,99,132,1)',
-      data: [65, 59, 80, 81, 56, 55, 40]
-    }
-  ]
-};
-
 class Partner extends Component {
   constructor(props) {
       super(props)
@@ -547,52 +534,18 @@ class Partner extends Component {
           </Row>
           <Row>
             <Col md="6">
-              <div className="export-table-wrap">
-                <table className="export-table">
-                  <tbody>
-                    <tr>
-                      <td>
-                        <label>19 <span className="line-through">WC</span></label>
-                      </td>
-                      <td>
-                        <label>#WFCD423</label>
-                        <span>18/04/2018 18:22</span>
-                      </td>
-                      <td align="right">
-                        <label>18<sup>th</sup></label>
-                        <span>visit</span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
+              <PromotionsList />
             </Col>
             <Col md="6">
-
-              <Card style={{marginTop: '1.5rem'}}>
-                <CardBody>
-                  <Row>
-                    <Col>
-                      <CardTitle className="mb-0">Traffic</CardTitle>
-                      <div className="small text-muted">November 2015</div>
-                    </Col>
-                  </Row>
-                  <div className="chart-wrapper" style={{height: 200 + 'px', marginTop: 40 + 'px'}}>
-                    <Bar data={barData} height={200} options={{maintainAspectRatio: false}} />
-                  </div>
-                </CardBody>
-              </Card>
-
+              <Affluence />
               <TypicalClient />
-
             </Col>
           </Row>
 
 
           <Row>
             <Col>
-              <Button className="bid-btn button-radius" style={{width: '250px', fontSize: '18px', marginTop: 15}}>Export Excel</Button>
+              <ExportExcelButton />
             </Col>
           </Row>
 
