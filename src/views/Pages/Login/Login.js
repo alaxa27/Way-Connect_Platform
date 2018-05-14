@@ -47,24 +47,24 @@ class Login extends Component {
     return (<div className="app app--dark flex-row align-items-center">
       <Container>
         <Row className="justify-content-center">
-          <Col md="6">
+          <Col md="5">
             <div className="login d-flex align-items-center justify-content-center flex-column">
-              <img src="../img/login_logo.png" alt="Logo" className="login__logo-img mb-4" />
+              <img src="../img/login_logo.png" alt="Logo" className="login__logo-img mb-3" />
               <h1 className="font-weight-bold">Way-connect</h1>
               <form onSubmit={this.handleLogin}>
-                <div className="login__input-box my-5">
-                  <input type="text" className="login__input w-100 py-1 px-3 mb-3" name="username" placeholder="Username or email" onChange={this.handleChangeUsername} />
-                  <input type="password" className="login__input w-100 py-1 px-3 mb-4" name="password" placeholder="Password" onChange={this.handleChangePassword} />
+                <div className="login__input-box my-4">
+                  <input type="text" className="login__input w-100 py-1 px-3 mb-2" name="username" placeholder="Username or email" onChange={this.handleChangeUsername} />
+                  <input type="password" className="login__input w-100 py-1 px-3 mb-3" name="password" placeholder="Password" onChange={this.handleChangePassword} />
                   <div className="d-flex align-items-center checkbox-wrapper">
                     <input type="checkbox" className="checkbox"/>
                     <span className="checkmark"></span>
                     <label className="ml-5">Remember me</label>
                   </div>
                 </div>
-                <button type="submit" className="btn-login btn-app-login text-uppercase w-100 mb-3">
+                <button type="submit" className="btn-login btn-app-login text-uppercase w-100 mb-2">
                   Login
                 </button>
-                <button className="btn-login btn-fb-login text-uppercase w-100 mb-2">
+                <button className="btn-login btn-fb-login text-uppercase w-100 mb-1">
                   Login with facebook
                 </button>
                 <div className="d-flex justify-content-between">
