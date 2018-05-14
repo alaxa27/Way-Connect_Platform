@@ -13,16 +13,27 @@ import {
   InputGroupText,
   Form
 } from 'reactstrap';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import {
+  LOGIN
+} from '../../../constants/ActionTypes';
+import * as actions from '../../../actions/loginActions';
 
+@connect((store) => {
+    let loginStore = store.login;
+    return {
+      fetching: loginStore.fetching,
+      user: loginStore.user
+    };
+})
 class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {
       username: "",
       password: ""
-    }
-
+    };
     this.handleChangeUsername = this.handleChangeUsername.bind(this)
     this.handleChangePassword = this.handleChangePassword.bind(this)
     this.handleLogin = this.handleLogin.bind(this)
@@ -38,9 +49,11 @@ class Login extends Component {
 
   handleLogin(e) {
     e.preventDefault();
-    if (this.state.username === "demo" && this.state.password === "demo") {
-      this.props.history.push("/dashboard")
-    }
+    this.props.dispatch(actions.login({
+        username: this.state.username,
+        password: this.state.password
+    }));
+    console.log('handleLogin');
   }
 
   render() {

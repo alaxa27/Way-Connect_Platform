@@ -15,9 +15,7 @@ console.log('SRC_DIR', SRC_DIR);
 
 module.exports = (env = {}) => {
   return {
-    entry: {
-      index: [SRC_DIR + '/index.js']
-    },
+    entry: ['babel-polyfill', SRC_DIR + '/index.js'],
     output: {
       path: BUILD_DIR,
       filename: '[name].bundle.js'
@@ -40,7 +38,8 @@ module.exports = (env = {}) => {
             loader: 'babel-loader',
             options: {
               cacheDirectory: true,
-              presets: ['react', 'env']
+              presets: ["react", "stage-0", "es2015"],
+              plugins: ["transform-class-properties", "transform-decorators-legacy"]
             }
           }
         },

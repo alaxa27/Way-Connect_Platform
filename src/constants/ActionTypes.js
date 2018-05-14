@@ -12,4 +12,8 @@ export const POST_CONNECT = "POST_CONNECT";
 export const POST_CONNECT_FULFILLED = "POST_CONNECT_FULFILLED";
 export const POST_CONNECT_REJECTED = "POST_CONNECT_REJECTED";
 
+export const LOGIN = "LOGIN";
+export const LOGIN_FULFILLED = "LOGIN_FULFILLED";
+export const LOGIN_REJECTED = "LOGIN_REJECTED";
+
 /* eslint-enable */

@@ -2,8 +2,9 @@
 import { combineReducers } from "redux";
 
 import example from "./example";
+import login from './login';
 
-export default combineReducers({ example });
+export default combineReducers({ example, login });
 
 // Example for combining multiple reducers:
 // export default combineReducers({ count, secondCounter });
