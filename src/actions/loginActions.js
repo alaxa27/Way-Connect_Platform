@@ -1,5 +1,4 @@
 import axios from "axios";
-
 import {
   LOGIN,
   LOGIN_FULFILLED,
@@ -7,7 +6,7 @@ import {
 } from "../constants/ActionTypes";
 
 export function login(payload) {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     dispatch({
       type: LOGIN
     });
@@ -22,8 +21,11 @@ export function login(payload) {
       });
       dispatch({
         type: LOGIN_FULFILLED,
-        payload: response.data
-      })
+        payload: {
+          token: response.data.key,
+          remember: payload.remember
+        }
+      });
     } catch (error) {
       dispatch({
         type: LOGIN_REJECTED,

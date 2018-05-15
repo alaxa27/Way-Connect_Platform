@@ -7,14 +7,14 @@ import {
 } from "../constants/ActionTypes";
 
 export function requestForgotPasswordLink(payload) {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     dispatch({
       type: FORGOT_PASSWORD
     });
     try {
       const response = await axios({
         method: "POST",
-        url: "https://wayconnect.herokuapp.com/auth/password/reset/",
+        url: "http://wayconnect.herokuapp.com/auth/password/reset/",
         data: {
           email: payload.email,
         }

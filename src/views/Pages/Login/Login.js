@@ -15,13 +15,14 @@ import {
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import * as actions from '../../../actions/loginActions';
 
 @connect((store) => {
     let loginStore = store.login;
     return {
       fetching: loginStore.fetching,
-      user: loginStore.user,
+      isAuthenticated: loginStore.isAuthenticated,
       error: loginStore.error
     };
 })
@@ -30,27 +31,42 @@ class Login extends Component {
     super(props);
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      remember: false
     };
-    this.handleChangeUsername = this.handleChangeUsername.bind(this)
-    this.handleChangePassword = this.handleChangePassword.bind(this)
-    this.handleLogin = this.handleLogin.bind(this)
+    this.handleChangeUsername = this.handleChangeUsername.bind(this);
+    this.handleChangePassword = this.handleChangePassword.bind(this);
+    this.handleRemember = this.handleRemember.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
   }
 
   handleChangeUsername(e) {
-    this.setState({username: e.target.value})
+    this.setState({username: e.target.value});
   }
 
   handleChangePassword(e) {
-    this.setState({password: e.target.value})
+    this.setState({password: e.target.value});
+  }
+
+  handleRemember() {
+    this.setState({remember: !this.state.remember});
   }
 
   handleLogin(e) {
     e.preventDefault();
     this.props.dispatch(actions.login({
         username: this.state.username,
-        password: this.state.password
+        password: this.state.password,
+        remember: this.state.remember
     }));
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { isAuthenticated, history } = nextProps;
+    if(isAuthenticated) {
+      const redirectTo = history.location.state ? history.location.state.from.pathname : '/dashboard';
+      history.push(redirectTo);
+    }
   }
 
   render() {
@@ -66,7 +82,7 @@ class Login extends Component {
                 <div className="login__input-box my-4">
                   {error ?
                       <div className="alert alert-danger">
-                          You can't log in with provided credentials.
+                          You can't log in with provided credentials
                       </div>
                   :
                     null
@@ -74,7 +90,7 @@ class Login extends Component {
                   <input type="text" className="login__input w-100 py-1 px-3 mb-2" name="username" placeholder="Username or email" onChange={this.handleChangeUsername} />
                   <input type="password" className="login__input w-100 py-1 px-3 mb-3" name="password" placeholder="Password" onChange={this.handleChangePassword} />
                   <div className="d-flex align-items-center checkbox-wrapper">
-                    <input type="checkbox" className="checkbox"/>
+                    <input type="checkbox" className="checkbox" onChange={this.handleRemember} />
                     <span className="checkmark"></span>
                     <label className="ml-5">Remember me</label>
                   </div>
@@ -104,4 +120,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);
