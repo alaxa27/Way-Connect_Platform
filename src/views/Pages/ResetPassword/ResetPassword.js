@@ -4,19 +4,35 @@ import {
   Row,
   Col,
 } from 'reactstrap';
-import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from '../../../actions/resetPasswordActions';
+import { withRouter } from 'react-router';
 
+@connect((store) => {
+    let resetPasswordStore = store.resetPassword;
+    return {
+        fetching: resetPasswordStore.fetching,
+        success: resetPasswordStore.success,
+        error: resetPasswordStore.error
+    };
+})
 class ResetPassword extends Component {
   constructor(props) {
-      super(props)
+      super(props);
       this.state = {
           password: "",
           passwordConfirmation: "",
-      }
+          uid: null,
+          token: null
+      };
+      this.handleChangePassword = this.handleChangePassword.bind(this);
+      this.handleChangePasswordConfirmation = this.handleChangePasswordConfirmation.bind(this);
+      this.handleReset = this.handleReset.bind(this);
+  }
 
-      this.handleChangePassword = this.handleChangePassword.bind(this)
-      this.handleChangePasswordConfirmation = this.handleChangePasswordConfirmation.bind(this)
-      this.handleReset = this.handleReset.bind(this)
+  componentWillMount() {
+      const params = this.props.match.params;
+      this.setState({uid: params.uid, token: params.token});
   }
 
   handleChangePassword(e) {
@@ -28,10 +44,24 @@ class ResetPassword extends Component {
   }
 
   handleReset(e) {
-      console.log('handleReset');
+      e.preventDefault();
+      this.props.dispatch(actions.resetPassword({
+          password: this.state.password,
+          passwordConfirmation: this.state.passwordConfirmation,
+          uid: this.state.uid,
+          token: this.state.token
+      }));
+  }
+
+  componentWillReceiveProps(nextProps) {
+      const { success, history } = nextProps;
+      if(success) {
+          history.push('/login');
+      }
   }
 
   render() {
+    const { error } = this.props;
     return (<div className="app app--dark flex-row align-items-center">
       <Container>
         <Row className="justify-content-center">
@@ -41,6 +71,13 @@ class ResetPassword extends Component {
               <div className="login__form w-100 mt-4">
                 <form onSubmit={this.handleReset}>
                   <div className="login__input-box mb-4">
+                      {error ?
+                          <div className="alert alert-danger">
+                              Something went wrong
+                          </div>
+                      :
+                          null
+                      }
                     <input type="password" className="login__input w-100 py-1 px-3 mb-2" name="email" placeholder="Password" onChange={this.handleChangePassword} />
                     <input type="password" className="login__input w-100 py-1 px-3" name="email" placeholder="Repeat password" onChange={this.handleChangePasswordConfirmation} />
                   </div>
@@ -58,4 +95,4 @@ class ResetPassword extends Component {
   }
 }
 
-export default ResetPassword;
+export default withRouter(ResetPassword);
