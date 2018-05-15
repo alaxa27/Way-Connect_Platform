@@ -15,21 +15,19 @@ import {
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {
-  LOGIN
-} from '../../../constants/ActionTypes';
 import * as actions from '../../../actions/loginActions';
 
 @connect((store) => {
     let loginStore = store.login;
     return {
       fetching: loginStore.fetching,
-      user: loginStore.user
+      user: loginStore.user,
+      error: loginStore.error
     };
 })
 class Login extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       username: "",
       password: ""
@@ -53,10 +51,10 @@ class Login extends Component {
         username: this.state.username,
         password: this.state.password
     }));
-    console.log('handleLogin');
   }
 
   render() {
+    const { error, fetching } = this.props;
     return (<div className="app app--dark flex-row align-items-center">
       <Container>
         <Row className="justify-content-center">
@@ -66,6 +64,13 @@ class Login extends Component {
               <h1 className="font-weight-bold text-center m-0">Way-connect</h1>
               <form onSubmit={this.handleLogin}>
                 <div className="login__input-box my-4">
+                  {error ?
+                      <div className="alert alert-danger">
+                          You can't log in with provided credentials.
+                      </div>
+                  :
+                    null
+                  }
                   <input type="text" className="login__input w-100 py-1 px-3 mb-2" name="username" placeholder="Username or email" onChange={this.handleChangeUsername} />
                   <input type="password" className="login__input w-100 py-1 px-3 mb-3" name="password" placeholder="Password" onChange={this.handleChangePassword} />
                   <div className="d-flex align-items-center checkbox-wrapper">
@@ -76,6 +81,11 @@ class Login extends Component {
                 </div>
                 <button type="submit" className="btn-login btn-app-login text-uppercase w-100 mb-2">
                   Login
+                  {fetching ?
+                    <span className="pl-2">...</span>
+                  :
+                    null
+                  }
                 </button>
                 <button className="btn-login btn-fb-login text-uppercase w-100 mb-1">
                   Login with facebook

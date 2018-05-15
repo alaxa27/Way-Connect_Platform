@@ -1,32 +1,31 @@
 import axios from "axios";
 
 import {
-  LOGIN,
-  LOGIN_FULFILLED,
-  LOGIN_REJECTED
+  FORGOT_PASSWORD,
+  FORGOT_PASSWORD_FULFILLED,
+  FORGOT_PASSWORD_REJECTED
 } from "../constants/ActionTypes";
 
-export function login(payload) {
+export function requestForgotPasswordLink(payload) {
   return async (dispatch, getState) => {
     dispatch({
-      type: LOGIN
+      type: FORGOT_PASSWORD
     });
     try {
       const response = await axios({
         method: "POST",
-        url: "https://wayconnect.herokuapp.com/auth/login/",
+        url: "https://wayconnect.herokuapp.com/auth/password/reset/",
         data: {
-          username: payload.username,
-          password: payload.password
+          email: payload.email,
         }
       });
       dispatch({
-        type: LOGIN_FULFILLED,
+        type: FORGOT_PASSWORD_FULFILLED,
         payload: response.data
       })
     } catch (error) {
       dispatch({
-        type: LOGIN_REJECTED,
+        type: FORGOT_PASSWORD_REJECTED,
         payload: error
       });
     }

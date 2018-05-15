@@ -3,8 +3,9 @@ import { combineReducers } from "redux";
 
 import example from "./example";
 import login from './login';
+import forgotPassword from './forgotPassword';
 
-export default combineReducers({ example, login });
+export default combineReducers({ example, login, forgotPassword });
 
 // Example for combining multiple reducers:
 // export default combineReducers({ count, secondCounter });

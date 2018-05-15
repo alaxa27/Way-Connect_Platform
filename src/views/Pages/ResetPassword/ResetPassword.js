@@ -44,7 +44,7 @@ class ResetPassword extends Component {
                     <input type="password" className="login__input w-100 py-1 px-3 mb-2" name="email" placeholder="Password" onChange={this.handleChangePassword} />
                     <input type="password" className="login__input w-100 py-1 px-3" name="email" placeholder="Repeat password" onChange={this.handleChangePasswordConfirmation} />
                   </div>
-                  <button type="submit" className="btn-login btn-fb-login text-uppercase w-100 mb-2">
+                  <button type="submit" className="btn-login btn-app-login text-uppercase w-100 mb-2">
                     Reset Password
                   </button>
                   <a href="https://way-connect.com/" className="login__link mt-4 d-block">Go back to the website</a>
