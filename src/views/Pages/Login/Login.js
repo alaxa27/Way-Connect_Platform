@@ -17,6 +17,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import * as actions from '../../../actions/loginActions';
+import CookieService from "../../../services/CookieService";
 
 @connect((store) => {
     let loginStore = store.login;
@@ -38,6 +39,13 @@ class Login extends Component {
     this.handleChangePassword = this.handleChangePassword.bind(this);
     this.handleRemember = this.handleRemember.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
+  }
+
+  componentWillMount() {
+    const { history } = this.props;
+      if(new CookieService().getJwt()) {
+        history.push('/dashboard');
+      }
   }
 
   handleChangeUsername(e) {

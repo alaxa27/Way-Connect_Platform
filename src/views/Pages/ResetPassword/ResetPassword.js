@@ -78,8 +78,8 @@ class ResetPassword extends Component {
                       :
                           null
                       }
-                    <input type="password" className="login__input w-100 py-1 px-3 mb-2" name="email" placeholder="Password" onChange={this.handleChangePassword} />
-                    <input type="password" className="login__input w-100 py-1 px-3" name="email" placeholder="Repeat password" onChange={this.handleChangePasswordConfirmation} />
+                    <input type="password" className="login__input w-100 py-1 px-3 mb-2" name="password" placeholder="Password" onChange={this.handleChangePassword} />
+                    <input type="password" className="login__input w-100 py-1 px-3" name="passwordConfirmation" placeholder="Repeat password" onChange={this.handleChangePasswordConfirmation} />
                   </div>
                   <button type="submit" className="btn-login btn-app-login text-uppercase w-100 mb-2">
                     Reset Password
