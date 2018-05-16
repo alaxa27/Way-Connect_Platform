@@ -26,6 +26,11 @@ export default {
       icon: 'fa fa-upload'
     },
     {
+      name: 'AnalyticsCampaign',
+      url: '/campaigns/12/analytics',
+      icon: 'fa fa-upload'
+    },
+    {
       name: 'Partner',
       url: '/partner',
       icon: 'fa fa-upload'

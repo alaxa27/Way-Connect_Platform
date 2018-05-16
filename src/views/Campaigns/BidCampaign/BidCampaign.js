@@ -16,7 +16,6 @@ class BidCampaign extends Component {
         number: 78,
         bidWrap: false,
       }
-      this.showFilter = this.showFilter.bind(this);
       this.toggleBid = this.toggleBid.bind(this);
       this.handleChange = this.handleChange.bind(this);
       this.handleInputChange = this.handleInputChange.bind(this);
@@ -26,12 +25,6 @@ class BidCampaign extends Component {
   hit(){
     this.setState({
       bidWrap: false
-    })
-  }
-
-  showFilter(){
-    this.setState({
-      filter: !this.state.filter
     })
   }
 

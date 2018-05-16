@@ -5,8 +5,9 @@ import { Container, Row, Col, Button, Input } from 'reactstrap';
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
 
-import BidCampaign from '../../views/Campaigns/BidCampaign/';
 import ConfigCampaign from '../../views/Campaigns/ConfigCampaign/';
+import BidCampaign from '../../views/Campaigns/BidCampaign/';
+import AnalyticsCampaign from '../../views/Campaigns/AnalyticsCampaign/';
 
 
 
@@ -220,6 +221,7 @@ class Campaigns extends Component {
 
         <Route path="/campaigns/:id/config" name="ConfigCampaign" component={ConfigCampaign} />
         <Route path="/campaigns/:id/bid" name="BidCampaign" component={BidCampaign}/>
+        <Route path="/campaigns/:id/analytics" name="AnalyticsCampaign" component={AnalyticsCampaign}/>
       </div>
     )
   }
