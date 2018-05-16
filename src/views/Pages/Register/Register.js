@@ -4,12 +4,11 @@ import {
   Row,
   Col
 } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import ErrorMessageService from "../../../services/ErrorMessageService";
 import ValidatorService from "../../../services/ValidatorService";
 import * as actions from '../../../actions/registerActions';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
 
 @connect((store) => {
     let registerStore = store.register;
@@ -58,15 +57,13 @@ class Register extends Component {
       });
     }
 
-    componentWillReceiveProps(nextProps) {
-        const { success, history } = nextProps;
-        if(success) {
-            history.push('/dashboard');
-        }
-    }
-
     render() {
-      const { error, fetching } = this.props;
+      const { error, fetching, success } = this.props;
+
+      if(success) {
+          return <Redirect to="/dashboard" />
+      }
+
       return (
         <div className="app app--dark flex-row align-items-center">
           <Container>
@@ -134,4 +131,4 @@ class Register extends Component {
   }
 }
 
-export default withRouter(Register);
+export default Register;
