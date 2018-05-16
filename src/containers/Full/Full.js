@@ -10,8 +10,7 @@ import Footer from '../../components/Footer/';
 import Dashboard from '../../views/Dashboard/';
 import ListCampaign from '../../views/Campaigns/ListCampaign/';
 import CreateCampaign from '../../views/Campaigns/CreateCampaign/';
-import BidCampaign from '../../views/Campaigns/BidCampaign/';
-import ConfigCampaign from '../../views/Campaigns/ConfigCampaign/';
+import Campaigns from '../../views/Campaigns';
 import Partner from '../../views/Partner/';
 
 class Full extends Component {
@@ -26,10 +25,9 @@ class Full extends Component {
             <Container fluid>
               <Switch>
                 <Route path="/dashboard" name="Dashboard" component={Dashboard}/>
-                <Route path="/campaigns/list" name="ListCampaign" component={ListCampaign} />
-                <Route path="/campaigns/create" name="CreateCampaign" component={CreateCampaign}/>
-                <Route path="/campaigns/:id/config" name="ConfigCampaign" component={ConfigCampaign} />
-                <Route path="/campaigns/:id/bid" name="BidCampaign" component={BidCampaign}/>
+                <Route exact path="/campaigns/list" name="ListCampaign" component={ListCampaign} />
+                <Route exact path="/campaigns/create" name="CreateCampaign" component={CreateCampaign}/>
+                <Route path="/campaigns/:id" name="Campaigns" component={Campaigns} />
                 <Route path="/partner" name="Partner" component={Partner} />
                 <Redirect from="/" to="/login"/>
 
