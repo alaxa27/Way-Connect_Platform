@@ -22,10 +22,49 @@ const colors = {
 class TypicalClient extends Component {
   constructor(props) {
       super(props);
+      this.state = {
+        properties: [
+            {
+                id: 1,
+                color: colors.gender,
+                prop: 'Gender',
+                value: 'Male',
+                percentage: 10,
+            },
+            {
+                id: 2,
+                color: colors.age,
+                prop: 'Age',
+                value: 22,
+                percentage: 25
+            },
+            {
+                id: 3,
+                color: colors.nationality,
+                prop: 'Nationality',
+                value: 'Tunisian',
+                percentage: 50,
+            },
+            {
+                id: 4,
+                color: colors.profStatus,
+                prop: 'Professional Status',
+                value: 'Salary',
+                percentage: 15,
+            },
+            {
+                id: 5,
+                color: colors.relStatus,
+                prop: 'Relationship Status',
+                value: 'Single',
+                percentage: 78,
+            },
+        ]
+      }
   }
   render() {
     return (
-      <Card>
+      <Card className="mb-md-0 typical-client-card">
         <CardHeader>
             {title}
         </CardHeader>
@@ -33,13 +72,13 @@ class TypicalClient extends Component {
           <Media>
             <Media left href="#">
               <TypicalClientImage
-                width={135}
-                height={135}
+                width={180}
+                height={180}
               />
             </Media>
             <Media body style={{paddingLeft: '1.25rem'}}>
               <TypicalClientList
-                colors={colors}
+                properties={this.state.properties}
               />
             </Media>
           </Media>
