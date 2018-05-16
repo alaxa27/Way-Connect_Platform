@@ -6,7 +6,7 @@ export default class CookieService {
         this.cookies = new Cookies();
     }
 
-    setJwt(token, remember) {
+    setJwt(token, remember = null) {
         let expirationTimeInDays = 1;
         if(remember) {
             expirationTimeInDays = 30;

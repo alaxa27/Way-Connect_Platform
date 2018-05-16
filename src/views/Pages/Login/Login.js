@@ -13,10 +13,10 @@ import {
   InputGroupText,
   Form
 } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
 import * as actions from '../../../actions/loginActions';
+import CookieService from "../../../services/CookieService";
 
 @connect((store) => {
     let loginStore = store.login;
@@ -32,12 +32,19 @@ class Login extends Component {
     this.state = {
       username: "",
       password: "",
-      remember: false
+      remember: false,
+      redirect: false
     };
     this.handleChangeUsername = this.handleChangeUsername.bind(this);
     this.handleChangePassword = this.handleChangePassword.bind(this);
     this.handleRemember = this.handleRemember.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
+  }
+
+  componentWillMount() {
+      if(new CookieService().getJwt()) {
+        this.setState({redirect: true});
+      }
   }
 
   handleChangeUsername(e) {
@@ -61,16 +68,14 @@ class Login extends Component {
     }));
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { isAuthenticated, history } = nextProps;
-    if(isAuthenticated) {
-      const redirectTo = history.location.state ? history.location.state.from.pathname : '/dashboard';
-      history.push(redirectTo);
-    }
-  }
-
   render() {
-    const { error, fetching } = this.props;
+    const { error, fetching, isAuthenticated, location } = this.props;
+
+    if(isAuthenticated || this.state.redirect) {
+        const redirectTo = location.state ? location.state.from.pathname : '/dashboard';
+        return <Redirect to={redirectTo} />
+    }
+
     return (<div className="app app--dark flex-row align-items-center">
       <Container>
         <Row className="justify-content-center">
@@ -120,4 +125,4 @@ class Login extends Component {
   }
 }
 
-export default withRouter(Login);
+export default Login;
