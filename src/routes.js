@@ -1,10 +1,10 @@
 const routes = {
   '/': 'Home',
   '/dashboard': 'Dashboard',
-  '/create_campaign': 'CreateCampaign',
-  '/campaigns': 'Campaigns',
-  '/upload': 'Upload',
-  '/partner': 'Partner',
-  '/my_bids': 'MyBids'
+  '/campaigns/list': 'ListCampaign',
+  '/campaigns/:id/bid': 'BidCampaign',
+  '/campaigns/create': 'CreateCampaign',
+  '/campaigns/:id/config': 'ConfigCampaign',
+  '/partner': 'Partner'
 };
 export default routes;

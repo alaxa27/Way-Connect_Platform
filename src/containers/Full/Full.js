@@ -8,11 +8,11 @@ import Aside from '../../components/Aside/';
 import Footer from '../../components/Footer/';
 
 import Dashboard from '../../views/Dashboard/';
+import ListCampaign from '../../views/Campaigns/ListCampaign/';
 import CreateCampaign from '../../views/Campaigns/CreateCampaign/';
-import Campaigns from '../../views/Campaigns/Campaigns/';
-import Upload from '../../views/Upload/';
+import BidCampaign from '../../views/Campaigns/BidCampaign/';
+import ConfigCampaign from '../../views/Campaigns/ConfigCampaign/';
 import Partner from '../../views/Partner/';
-import MyBids from '../../views/MyBids/';
 
 class Full extends Component {
   render() {
@@ -26,11 +26,11 @@ class Full extends Component {
             <Container fluid>
               <Switch>
                 <Route path="/dashboard" name="Dashboard" component={Dashboard}/>
-                <Route path="/create_campaign" name="CreateCampaign" component={CreateCampaign}/>
-                <Route path="/campaigns" name="Campaigns" component={Campaigns}/>
-                <Route path="/upload" name="Upload" component={Upload} />
+                <Route path="/campaigns/list" name="ListCampaign" component={ListCampaign} />
+                <Route path="/campaigns/create" name="CreateCampaign" component={CreateCampaign}/>
+                <Route path="/campaigns/:id/config" name="ConfigCampaign" component={ConfigCampaign} />
+                <Route path="/campaigns/:id/bid" name="BidCampaign" component={BidCampaign}/>
                 <Route path="/partner" name="Partner" component={Partner} />
-                <Route path="/my_bids" name="My Bids" component={MyBids} />
                 <Redirect from="/" to="/login"/>
 
               </Switch>

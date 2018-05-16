@@ -7,7 +7,7 @@ import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
 import { Row, Col, Button, Input } from 'reactstrap';
 
-class MyBids extends Component {
+class ListCampaign extends Component {
   constructor(props) {
       super(props)
       this.state = {
@@ -43,7 +43,7 @@ class MyBids extends Component {
   }
   render() {
     const tableArray = [1, 2, 3, 4, 5, 6];
-    const currentBids = tableArray.map(( list, i) => 
+    const currentBids = tableArray.map(( list, i) =>
       <tr key={i}>
         <td><label>Optician</label></td>
         <td>
@@ -67,7 +67,7 @@ class MyBids extends Component {
       </tr>
     )
 
-    const oldBids = tableArray.map(( list, i) => 
+    const oldBids = tableArray.map(( list, i) =>
       <tr key={i}>
         <td><label>Optician</label></td>
         <td>
@@ -147,7 +147,4 @@ class MyBids extends Component {
     )
   }
 }
-export default MyBids;
-
-
-
+export default ListCampaign;

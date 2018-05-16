@@ -1,0 +1,6 @@
+{
+  "name": "ListCampaign",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./ListCampaign.js"
+}

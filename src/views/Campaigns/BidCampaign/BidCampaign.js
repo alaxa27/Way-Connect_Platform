@@ -1,25 +1,40 @@
 import React, { Component } from 'react';
 import * as FontAwesome from 'react-icons/lib/fa';
-import * as MdIconPack from 'react-icons/lib/md';
-import { Container, Row, Col, Button, Input, TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
+import { Container, Row, Col, Button, Input } from 'reactstrap';
 import Eye from './view.png';
 import Cart from './shopping_cart_ok.png';
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
-import classnames from 'classnames';
-import DropzoneComponent from 'react-dropzone-component';                                                                                                                                                                                                                         
 
-class Upload extends Component {
+class BidCampaign extends Component {
   constructor(props) {
       super(props)
       this.state = {
         filter: false,
-        activeTab: '1',
+        value: 30,
+        period: 1,
+        number: 78,
+        bidWrap: false,
+        gender: 'male',
+        proStatus: 'salary',
+        nationality: 'indian',
+        relationaship: 'married',
+        additional: '',
+        location: 'chandigarh',
+        hobbies: 'traveling',
         age: { min: 18, max: 24},
       }
-
       this.showFilter = this.showFilter.bind(this);
-      this.toggle = this.toggle.bind(this);
+      this.toggleBid = this.toggleBid.bind(this);
+      this.handleChange = this.handleChange.bind(this);
+      this.handleInputChange = this.handleInputChange.bind(this);
+      this.hit = this.hit.bind(this);
+  }
+
+  hit(){
+    this.setState({
+      bidWrap: false
+    })
   }
 
   showFilter(){
@@ -28,24 +43,146 @@ class Upload extends Component {
     })
   }
 
-  toggle(tab) {
-    if (this.state.activeTab !== tab) {
+  handleInputChange(event) {
       this.setState({
-        activeTab: tab
+        gender: event.target.value
       });
-    }
+  }
+
+  handleChange(event) {
+    const data = event.target;
+    const value = data.value;
+    const name = data.name;
+    this.setState({
+      [name]: value
+    });
+  }
+
+  toggleBid(){
+    this.setState({
+      bidWrap: !this.state.bidWrap
+    })
   }
 
 
   render() {
-    const componentConfig = {
-        iconFiletypes: ['.mp4', '.m4v', '.avi', '.flv'],
-        showFiletypeIcon: true,
-        postUrl: '/uploadHandler'
-    };
-    var djsConfig = { autoProcessQueue: false }
-    var eventHandlers = { addedfile: (file) => console.log(file) }                                                                                                            
-    
+    const data = [
+      {
+        rank: 1,
+        name: 'Teads.tv',
+        lastBid: '18:22',
+        view: 600,
+        bid: 6,
+        cart: 200,
+        status: 'Delivered'
+      },
+      {
+        rank: 2,
+        name: 'Teads.tv',
+        lastBid: '18:22',
+        view: 600,
+        bid: 6,
+        cart: 200,
+        status: 'Bidding'
+      },
+      {
+        rank: 3,
+        name: 'Teads.tv',
+        lastBid: '18:22',
+        view: 600,
+        bid: 6,
+        cart: 200,
+        status: 'Bidding'
+      },
+      {
+        rank: 4,
+        name: 'Teads.tv',
+        lastBid: '18:22',
+        view: 600,
+        bid: 6,
+        cart: 200,
+        status: 'Progress'
+      },
+      {
+        rank: 5,
+        name: 'Teads.tv',
+        lastBid: '18:22',
+        view: 600,
+        bid: 6,
+        cart: 200,
+        status: 'Progress'
+      },
+      {
+        rank: 6,
+        name: 'Teads.tv',
+        lastBid: '18:22',
+        view: 600,
+        bid: 6,
+        cart: 200,
+        status: 'Bidding'
+      },
+      {
+        rank: 7,
+        name: 'Teads.tv',
+        lastBid: '18:22',
+        view: 600,
+        bid: 6,
+        cart: 200,
+        status: 'Progress'
+      },
+      {
+        rank: 8,
+        name: 'Teads.tv',
+        lastBid: '18:22',
+        view: 600,
+        bid: 6,
+        cart: 200,
+        status: 'Progress'
+      },
+      {
+        rank: 9,
+        name: 'Teads.tv',
+        lastBid: '18:22',
+        view: 600,
+        bid: 6,
+        cart: 200,
+        status: 'Progress'
+      }
+    ];
+    const showData = data.map((list, i) =>
+        <tr key={list.rank}>
+          <td><h3><span>#{list.rank}</span>{i === 0 ? <FontAwesome.FaStar /> : null }</h3></td>
+          <td>
+            <label>{list.name}</label>
+            <span>last bid at {list.lastBid}</span>
+          </td>
+          <td>
+            <p>
+              <label className="pull-left">
+                <img src={Eye} alt="View" />
+                {i === 0 || i === 1 || i === 2 ?
+                  <span style={{position: 'relative', left: -5, backgroundColor: '#fff'}}>$</span>
+                :
+                  <span style={{position: 'relative', left: -5, backgroundColor: '#cbcbcb'}}>$</span>
+                }
+              </label>
+              <label className="pull-left">{list.bid} <span className="line-through">WC</span></label>
+            </p>
+          </td>
+          <td>
+            <p>
+              <label className="pull-left"><img src={Eye} alt="View" /></label>
+              <label className="pull-left">{list.view}</label>
+            </p>
+          </td>
+          <td>
+            <p>
+              <label className="pull-left"><img src={Cart} alt="Cart" /></label>
+              <label className="pull-left">{list.cart}</label>
+            </p>
+          </td>
+        </tr>
+      )
     return (
       <div className="sub-page-wrapper animated fadeIn">
 
@@ -83,7 +220,7 @@ class Upload extends Component {
               </Col>
             </Row>
 
-            {this.state.filter ? 
+            {this.state.filter ?
               <Row style={{width: '100%'}} className="animated fadeIn fadeOut">
                 <Col><br/>
                   <Col>
@@ -194,91 +331,68 @@ class Upload extends Component {
           </div>
         </div>
 
-        <div style={{marginTop: 20}}>
+        <div>
           <Row>
-            
-            <Col>
-              <div className="video-uploading-tabs">
-                <Nav tabs>
-                  <NavItem>
-                    <NavLink
-                      className={classnames({ active: this.state.activeTab === '1' })}
-                      onClick={() => { this.toggle('1'); }}
-                    >
-                      Video
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink
-                      className={classnames({ active: this.state.activeTab === '2' })}
-                      onClick={() => { this.toggle('2'); }}
-                    >
-                      Survey
-                    </NavLink>
-                  </NavItem>
-                </Nav>
-                <TabContent activeTab={this.state.activeTab}>
-                  <TabPane tabId="1">
-                    <Row>
-                      <Col>
-                        {/*<DropzoneComponent config={componentConfig}
-                                               eventHandlers={eventHandlers}
-                                               djsConfig={djsConfig} />*/}
-                      </Col>
-                    </Row>
-                  </TabPane>
-                  <TabPane tabId="2">
-                    <Row>
-                      <Col>
-                        <Col>
-                          <h2 className="way-heading" style={{fontSize: '24px', marginBottom: 0}}>Define a formulary</h2>
-                          <div className="sep">&nbsp;</div>
-                        </Col>
-
-                        <Col className="formulary-input-wrap">
-                          <label>Name your formulary</label>
-                          <Input type="text" name="formularyName" />
-                        </Col>
-
-                        <Col className="formulary-input-wrap">
-                          <label>Question 1</label>
-                          <Input type="text" name="question1" />
-                        </Col>
-
-                        <Col xs="12" md={{size: 6, offset: 6}} className="formulary-input-wrap">
-                          <Input type="text" name="answer1" />
-                          <Button className="add-btn"><MdIconPack.MdAddCircleOutline /> add an answer</Button>
-                        </Col>
-
-                        <Col><div className="sep">&nbsp;</div></Col>
-
-                        <Col className="formulary-input-wrap">
-                          <label>Question 1</label>
-                          <Input type="text" name="question1" />
-                        </Col>
-
-                        <Col xs="12" md={{size: 6, offset: 6}} className="formulary-input-wrap">
-                          <Input type="text" name="answer1" />
-                          <Button className="add-btn"><MdIconPack.MdAddCircleOutline /> add an answer</Button>
-                        </Col>
-
-                        <Col><div className="sep">&nbsp;</div></Col>
-
-                        <Col className="formulary-input-wrap">
-                          <Button className="add-btn"><MdIconPack.MdAddCircleOutline /> add an question</Button>
-                        </Col>
-
-                        <Col className="text-right">
-                          <Button className="bid-btn button-radius" style={{maxWidth: 200}}>Submit</Button>
-                        </Col>
-
-                      </Col>
-                    </Row>
-                  </TabPane>
-                </TabContent>
+            <Col md="6">
+              <div className="search-list-wrap">
+                <table className="search-table">
+                  <tbody>
+                    {showData}
+                  </tbody>
+                </table>
               </div>
             </Col>
+            <Col md="6">
+              <div className="search-detail-wrap">
+                <div className="search-detail-head">
+                  <h1>Bakery</h1>
+                  <label>1950/4000 views available</label>
+                  <span>9 peoples are interested about this product</span>
+                </div>
+                <div className="bidding-panel">
+                  <div className="quote-detail">
+                    <label>Repetition</label>
+                    <div onClick={this.hit}>
+                      <InputRange maxValue={1000} minValue={0} value={this.state.value} onChange={value => this.setState({ value })} />
+                    </div>
+                    <span className="pull-right right-slider-label">{this.state.value}</span>
+                    <div className="clearfix"></div>
+                    <br/><br/>
+                    <label>Period</label>
+                    <div onClick={this.hit}>
+                      <InputRange maxValue={12} minValue={0} value={this.state.period} onChange={period => this.setState({ period })} />
+                    </div>
+                    <span className="pull-left right-slider-label">0</span>
+                    <span className="pull-right right-slider-label">{this.state.period} month</span>
+                    <div className="clearfix"></div>
 
+                    {this.state.bidWrap ? null :
+                      <Button className="get-quotations-btn button-radius" onClick={this.toggleBid}>Get quotations</Button>
+                    }
+                  </div>
+                </div>
+              </div>
+              {this.state.bidWrap &&
+                <div className="bidding-area animated fadeIn">
+                  <label>Number</label>
+                  <InputRange maxValue={100} minValue={0} value={this.state.number} onChange={number => this.setState({ number })} />
+                  <span className="pull-left right-slider-label">0</span>
+                  <span className="pull-right right-slider-label">100</span>
+                  <div className="clearfix"></div>
+
+                  <Row>
+                    <Col>
+                      <label className="total-cost-label">Total 250 <span className="line-through">WC</span></label>
+                      <label className="ready-status"><FontAwesome.FaCircle /> Ready for biding</label>
+                    </Col>
+                    <Col>
+                      <Button className="bid-btn button-radius">Bid</Button>
+                    </Col>
+                  </Row>
+
+                </div>
+              }
+            </Col>
           </Row>
         </div>
         <br/>
@@ -286,4 +400,4 @@ class Upload extends Component {
     )
   }
 }
-export default Upload;
+export default BidCampaign;

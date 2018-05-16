@@ -6,28 +6,28 @@ export default {
       icon: 'icon-speedometer',
     },
     {
+      name: 'ListCampaign',
+      url: '/campaigns/list',
+      icon: 'fa fa-upload'
+    },
+    {
       name: 'Create a Campaign',
-      url: '/create_campaign',
+      url: '/campaigns/create',
       icon: 'icon-plus',
     },
     {
-      name: 'My Campaigns',
-      url: '/campaigns',
+      name: 'BidCampaign',
+      url: '/campaigns/12/bid',
       icon: 'icon-layers',
     },
     {
-      name: 'Upload',
-      url: '/upload',
+      name: 'ConfigCampaign',
+      url: '/campaigns/12/config',
       icon: 'fa fa-upload'
     },
     {
       name: 'Partner',
       url: '/partner',
-      icon: 'fa fa-upload'
-    },
-    {
-      name: 'My Bids',
-      url: '/my_bids',
       icon: 'fa fa-upload'
     }
   ]

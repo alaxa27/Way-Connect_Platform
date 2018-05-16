@@ -27,9 +27,9 @@ import {
   Media
 } from 'reactstrap';
 import {Bar, Line} from 'react-chartjs-2';
-import TypicalClient from "./TypicalClient/TypicalClient";
-import Affluence from "./Affluence/Affluence";
-import PromotionsList from "./Promotions/PromotionsList";
+import TypicalClient from "../../components/TypicalClient/TypicalClient";
+import Affluence from "../../components/Affluence/Affluence";
+import PromotionsList from "../../components/Promotions/PromotionsList";
 import ExportExcelButton from "./ExportExcel/ExportExcelButton";
 
 const brandPrimary = '#20a8d8';
@@ -435,7 +435,7 @@ class Partner extends Component {
 
         <div style={{marginTop: 20}}>
           <Row>
-            
+
             <Col xs="12" sm="6" lg="3">
               <div className="partner-panel">
                 <h2>82%</h2>
