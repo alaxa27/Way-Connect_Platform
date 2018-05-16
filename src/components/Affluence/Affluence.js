@@ -29,16 +29,16 @@ const barData = {
 class Affluence extends Component {
   render() {
     return (
-      <Card style={{marginTop: '1.5rem'}}>
+      <Card className="affluence-card">
         <CardBody>
           <Row>
             <Col>
-              <CardTitle className="mb-0">Traffic</CardTitle>
+              <CardTitle className="mb-0">Affluence</CardTitle>
               <div className="small text-muted">November 2017</div>
             </Col>
           </Row>
-          <div className="chart-wrapper" style={{height: 200 + 'px', marginTop: 40 + 'px'}}>
-            <Bar data={barData} height={200} options={{maintainAspectRatio: false}} />
+          <div className="chart-wrapper" style={{height: '380px', marginTop: '40px'}}>
+            <Bar data={barData} height={380} options={{maintainAspectRatio: false}} />
           </div>
         </CardBody>
       </Card>

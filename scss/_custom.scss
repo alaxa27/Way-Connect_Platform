@@ -499,30 +499,43 @@ body{
 }
 
 .partner-panel{
-    background-color: #e5e5e5;
-    border: 1px solid #c6c6c6;
-    padding: 15px;
+    padding: 15px 15px 50px 15px;
     margin-bottom: 1.5rem;
-}
-.partner-panel h2{
-    margin: 0;
-    line-height: normal;
-    color: #989898;
-    border-bottom: 3px solid #989898;
-    font-weight: bold;
-    float: left;
-}
-.partner-panel span{
-    color: #989898;
-    font-size: 14px;
+    border-radius: 5px;
+    color: #fff;
+
+    &--1 {
+        background: #F15A24 url('../img/login_bg.png') no-repeat bottom right;
+        background-size: 100px;
+    }
+
+    &--2 {
+        background: #F7931E url('../img/login_bg.png') no-repeat bottom right;
+        background-size: 100px;
+    }
+
+    &--3 {
+        background: #FBB03B url('../img/login_bg.png') no-repeat bottom right;
+        background-size: 100px;
+    }
+
+    &--4 {
+        background: #F9DA23 url('../img/login_bg.png') no-repeat bottom right;
+        background-size: 100px;
+    }
+
+    h2 {
+        margin: 0;
+    }
+
+    span {
+        font-size: 14px;
+    }
 }
 .export-table-wrap{
     width: 100%;
-    padding: 0 15px;
+    padding: 0 30px;
     border: 1px solid #d3d3d3;
-    max-height: 800px;
-    overflow-y: auto;
-    margin-top: 1.5rem;
     background-color: #fff;
 }
 .export-table{
@@ -617,6 +630,20 @@ body{
     top: 7px !important;
 }
 
+.right-box {
+    height: 100%;
+
+    .typical-client-card {
+        height: 35%;
+        margin-bottom: 0;
+    }
+
+    .affluence-card {
+        margin-top: 1.5rem;
+        height: 65%;
+    }
+}
+
 .typical-client {
 
     &__item {
@@ -653,7 +680,7 @@ body{
     &__circle {
         width: 70px;
         height: 70px;
-        background: black;
+        background: #363636;
         color: white;
         display: flex;
         align-items: center;
@@ -803,5 +830,12 @@ body{
             -ms-transform: rotate(45deg);
             transform: rotate(45deg);
         }
+    }
+}
+
+.main-chart-legend {
+
+    &__item {
+        padding: 0 5rem!important;
     }
 }
