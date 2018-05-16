@@ -341,20 +341,10 @@ class Partner extends Component {
 
         <div style={{marginTop: 20}}>
           <Row>
-            
-            <Col xs="12" sm="6" lg="3">
-              <div className="partner-panel">
-                <h2>82%</h2>
-                <div className="clearfix"></div>
-                <span>Confirmed targeting</span>
-              </div>
-            </Col>
-
             <PartnerPanel index={1} />
             <PartnerPanel index={2} />
             <PartnerPanel index={3} />
             <PartnerPanel index={4} />
-
           </Row>
 
           <Row>
