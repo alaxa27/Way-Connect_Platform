@@ -2,7 +2,7 @@
 
 
 .panel-bg {
-    background-image: url(./panel-bg.png);
+    background-image: url(../img/panel-bg.png);
     background-repeat: no-repeat;
     background-position: right 6px;
     margin-bottom: 1.5rem;
@@ -328,7 +328,7 @@ body{
 .search-table tr td:last-child{
     padding-right: 10px;
 }
-.search-table tr td:nth-child(3) p label:first-child, 
+.search-table tr td:nth-child(3) p label:first-child,
 .search-table tr td:nth-child(4) p label:first-child,
 .search-table tr td:nth-child(5) p label:first-child{
     width: 32px;
@@ -621,10 +621,10 @@ body{
     border-bottom: 1px solid #a4b7c1;
 }
 .mybids-table tr td:first-child label{
-    border-left: 1px solid #a4b7c1;   
+    border-left: 1px solid #a4b7c1;
 }
 .mybids-table tr td:last-child label{
-    border-right: 1px solid #a4b7c1;   
+    border-right: 1px solid #a4b7c1;
 }
 .line-through-bids:after{
     top: 7px !important;
