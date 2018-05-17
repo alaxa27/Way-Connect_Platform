@@ -5,5 +5,6 @@ import login from './login';
 import forgotPassword from './forgotPassword';
 import resetPassword from './resetPassword';
 import register from './register';
+import promotion from './promotion';
 
-export default combineReducers({ example, login, forgotPassword, resetPassword, register });
+export default combineReducers({ example, login, forgotPassword, resetPassword, register, promotion });
