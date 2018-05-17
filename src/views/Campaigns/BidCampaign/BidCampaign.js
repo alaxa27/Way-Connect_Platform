@@ -10,7 +10,6 @@ class BidCampaign extends Component {
   constructor(props) {
       super(props)
       this.state = {
-        filter: false,
         value: 30,
         period: 1,
         number: 78,

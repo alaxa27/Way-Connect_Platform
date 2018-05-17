@@ -13,7 +13,6 @@ class ConfigCampaign extends Component {
   constructor(props) {
       super(props)
       this.state = {
-        filter: false,
         activeTab: '1',
       }
 
