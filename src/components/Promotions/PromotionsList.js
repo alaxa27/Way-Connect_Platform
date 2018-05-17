@@ -9,7 +9,7 @@ class PromotionsList extends Component {
     this.state = {
         promotions: [],
         totalCount: 0,
-        limit: 10
+        limit: 25
     };
     this.fillPromotions = this.fillPromotions.bind(this);
     this.loadMorePromotions = this.loadMorePromotions.bind(this);
@@ -57,7 +57,7 @@ class PromotionsList extends Component {
 
   render() {
     return (
-        <div className="promotion pl-2 pr-4">
+        <div className="promotion pl-2 pr-4 mt-4">
             <InfiniteScroll
                 pageStart={0}
                 loadMore={() => { this.loadMorePromotions() }}
