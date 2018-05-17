@@ -60,7 +60,7 @@ class TypicalClient extends Component {
                 percentage: 78,
             },
         ]
-      }
+      };
   }
   render() {
     return (
