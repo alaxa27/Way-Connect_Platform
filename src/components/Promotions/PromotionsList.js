@@ -3,7 +3,7 @@ import PromotionsListItem from "./PromotionsListItem";
 import InfiniteScroll from 'react-infinite-scroller';
 import _ from 'underscore';
 import { connect } from 'react-redux';
-import * as actions from '../../../actions/promotionActions';
+import * as actions from '../../actions/promotionActions';
 
 @connect((store) => {
     let promotionStore = store.promotion;
