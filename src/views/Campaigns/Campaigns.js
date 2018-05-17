@@ -18,6 +18,7 @@ class Campaigns extends Component {
       super(props)
       this.state = {
         filter: false,
+        fixed: true,
         gender: 'male',
         proStatus: 'salary',
         nationality: 'indian',

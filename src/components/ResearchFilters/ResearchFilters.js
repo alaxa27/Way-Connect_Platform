@@ -8,14 +8,24 @@ class ResearchFilters extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      ...this.props
     }
     this.handleChange = this.handleChange.bind(this);
+    this.handleRangeChange = this.handleRangeChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
 
   }
 
   handleInputChange(event) {
-    this.setState({gender: event.target.value});
+    if (!this.state.fixed) {
+      this.setState({gender: event.target.value});
+    }
+  }
+
+  handleRangeChange(age) {
+    if (!this.state.fixed) {
+      this.setState({age})
+    }
   }
 
   handleChange(event) {
@@ -35,19 +45,19 @@ class ResearchFilters extends Component {
             <Col md="5">
               <label className="input-label">Gender</label>
               <div className="gender-radio-buttons">
-                <Input type="radio" id="male" name="gender" value="male" checked={this.props.gender === 'male'} onChange={this.handleInputChange}/>
+                <Input type="radio" id="male" name="gender" value="male" checked={this.state.gender === 'male'} onChange={this.handleInputChange}/>
                 <label htmlFor="male" className="pull-left">Male</label>
-                <Input type="radio" id="female" name="gender" value="female" checked={this.props.gender === 'female'} onChange={this.handleInputChange}/>
+                <Input type="radio" id="female" name="gender" value="female" checked={this.state.gender === 'female'} onChange={this.handleInputChange}/>
                 <label htmlFor="female" className="pull-right">Female</label>
                 <div className="clearfix"></div>
               </div>
               <div className="input-wrapper">
                 <label className="input-label pull-left">Age</label>
-                <label className="age-title">{this.props.age.min}-{this.props.age.max}yo</label>
+                <label className="age-title">{this.state.age.min}-{this.state.age.max}yo</label>
                 <div style={{
                     paddingTop: 40
                   }}>
-                  <InputRange maxValue={100} minValue={0} value={this.props.age} onChange={age => this.setState({age})}/>
+                  <InputRange maxValue={100} minValue={0} value={this.state.age} onChange={this.handleRangeChange}/>
                 </div>
               </div>
             </Col>
@@ -60,7 +70,7 @@ class ResearchFilters extends Component {
                   <div className="input-wrapper">
                     <label className="input-label">Professional status</label>
                     <div className="custom-selectbox-main">
-                      <Input type="select" className="custom-selectbox" name="proStatus" value={this.props.proStatus} onChange={this.handleChange}>
+                      <Input type="select" className="custom-selectbox" name="proStatus" value={this.state.proStatus} onChange={this.handleChange}>
                         <option value="salary">Salary</option>
                         <option value="self_employed">Self Employed</option>
                       </Input>
@@ -71,7 +81,7 @@ class ResearchFilters extends Component {
                   <div className="input-wrapper">
                     <label className="input-label">Relationship status</label>
                     <div className="custom-selectbox-main">
-                      <Input type="select" className="custom-selectbox" name="relationaship" value={this.props.relationaship} onChange={this.handleChange}>
+                      <Input type="select" className="custom-selectbox" name="relationaship" value={this.state.relationaship} onChange={this.handleChange}>
                         <option value="single">Single</option>
                         <option value="married">Married</option>
                       </Input>
@@ -82,7 +92,7 @@ class ResearchFilters extends Component {
                   <div className="input-wrapper">
                     <label className="input-label">Nationality</label>
                     <div className="custom-selectbox-main">
-                      <Input type="select" className="custom-selectbox" name="nationality" value={this.props.nationality} onChange={this.handleChange}>
+                      <Input type="select" className="custom-selectbox" name="nationality" value={this.state.nationality} onChange={this.handleChange}>
                         <option value="indian">Indian</option>
                         <option value="australian">Australian</option>
                       </Input>
@@ -98,7 +108,7 @@ class ResearchFilters extends Component {
                   <div className="input-wrapper">
                     <label className="input-label">Hobbies</label>
                     <div className="custom-selectbox-main">
-                      <Input type="select" className="custom-selectbox" name="hobbies" value={this.props.hobbies} onChange={this.handleChange}>
+                      <Input type="select" className="custom-selectbox" name="hobbies" value={this.state.hobbies} onChange={this.handleChange}>
                         <option value="technologies">Technologies</option>
                         <option value="fishing">Fishing</option>
                         <option value="cooking">Cooking</option>
@@ -111,7 +121,7 @@ class ResearchFilters extends Component {
                   <div className="input-wrapper">
                     <label className="input-label">Location</label>
                     <div className="custom-selectbox-main">
-                      <Input type="select" className="custom-selectbox" name="location" value={this.props.location} onChange={this.handleChange}>
+                      <Input type="select" className="custom-selectbox" name="location" value={this.state.location} onChange={this.handleChange}>
                         <option value="delhi">Delhi</option>
                         <option value="chandigarh">Chandigarh</option>
                       </Input>
@@ -122,7 +132,7 @@ class ResearchFilters extends Component {
                   <div className="input-wrapper">
                     <label className="input-label">Additional Content</label>
                     <div className="custom-selectbox-main">
-                      <Input type="select" className="custom-selectbox" name="additional" value={this.props.additional} onChange={this.handleChange}>
+                      <Input type="select" className="custom-selectbox" name="additional" value={this.state.additional} onChange={this.handleChange}>
                         <option value="additional">Additional</option>
                       </Input>
                       <FontAwesome.FaArrowCircleODown className="custom-selectbox-arrow"/>
