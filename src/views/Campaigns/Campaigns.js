@@ -17,7 +17,18 @@ class Campaigns extends Component {
   constructor(props) {
       super(props)
       this.state = {
-        filter: false
+        filter: false,
+        gender: 'male',
+        proStatus: 'salary',
+        nationality: 'indian',
+        relationaship: 'married',
+        additional: '',
+        location: 'chandigarh',
+        hobbies: 'traveling',
+        age: {
+          min: 18,
+          max: 24
+        }
       }
       this.showFilter = this.showFilter.bind(this);
   }
@@ -65,7 +76,7 @@ class Campaigns extends Component {
                 </label>
               </Col>
             </Row>
-            <ResearchFilters filter={this.state.filter} />
+            <ResearchFilters {...this.state} />
           </div>
         </div>
 
