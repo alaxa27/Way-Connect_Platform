@@ -4,24 +4,24 @@ class PromotionsListItem extends Component {
   render() {
     const { promotion } = this.props;
     return (
-        <tr>
-            <td>
-                <div className="promotion pr-3">
+        <div className="promotion__item d-flex align-items-center py-3">
+            <div>
+                <div className="promotion__circle-container px-4">
                     <div className="promotion__circle">
                         <span>{promotion.wc}</span>
                         <span>wc</span>
                     </div>
                 </div>
-            </td>
-            <td className="pl-4">
-                <label>{promotion.title}</label>
-                <span>{promotion.createdAt}</span>
-            </td>
-            <td align="right">
-                <label>{promotion.visit}<sup>th</sup></label>
-                <span>visit</span>
-            </td>
-        </tr>
+            </div>
+            <div className="pl-4" style={{flex: 1}}>
+                <label className="promotion__label-middle">{promotion.title}</label>
+                <span className="promotion__span-middle">{promotion.createdAt}</span>
+            </div>
+            <div className="text-right">
+                <label className="promotion__label-right">{promotion.visit}<sup>th</sup></label>
+                <span className="promotion__span-right">visit</span>
+            </div>
+        </div>
     )
   }
 }

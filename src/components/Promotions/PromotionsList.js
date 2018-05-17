@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PromotionsListItem from "./PromotionsListItem";
-import ScrollArea from "react-scrollbar";
 import InfiniteScroll from 'react-infinite-scroller';
 import _ from 'underscore';
 
@@ -41,7 +40,6 @@ class PromotionsList extends Component {
   }
 
   loadMorePromotions() {
-      console.log('m m');
       let promotions = [];
       for(let i = 1; i <= this.state.limit; i++) {
           promotions.push({
@@ -59,45 +57,24 @@ class PromotionsList extends Component {
 
   render() {
     return (
-        <ScrollArea
-            speed={1}
-            className="promotions-scroll-area"
-            contentClassName="content"
-            horizontal={false}
-            style={{
-                marginTop: '1.5rem',
-                maxHeight: '800px'
-            }}
-            verticalContainerStyle={{
-                opacity: 1,
-                background: '#B3B3B3',
-                zIndex: '1'
-            }}
-            verticalScrollbarStyle={{
-                background: '#808080'
-            }}
-        >
-            <div className="export-table-wrap">
-                <table className="export-table">
-                    <InfiniteScroll
-                        pageStart={0}
-                        loadMore={() => { this.loadMorePromotions() }}
-                        hasMore={this.state.promotions.length < this.state.totalCount}
-                        loader={<tr className="loader" key={0}><td>Loading ...</td></tr>}
-                        element="tbody"
-                    >
-                        {_.map(this.state.promotions, (promotion, key) => {
-                            return (
-                                <PromotionsListItem
-                                    key={key}
-                                    promotion={promotion}
-                                />
-                            );
-                        })}
-                    </InfiniteScroll>
-                </table>
-            </div>
-        </ScrollArea>
+        <div className="promotion pl-2 pr-4">
+            <InfiniteScroll
+                pageStart={0}
+                loadMore={() => { this.loadMorePromotions() }}
+                hasMore={this.state.promotions.length < this.state.totalCount}
+                loader={<div className="loader" key={0}>Loading ...</div>}
+                useWindow={false}
+            >
+                {_.map(this.state.promotions, (promotion, key) => {
+                    return (
+                        <PromotionsListItem
+                            key={key}
+                            promotion={promotion}
+                        />
+                    );
+                })}
+            </InfiniteScroll>
+        </div>
     )
   }
 }
