@@ -1,10 +1,10 @@
 {
-  "name": "@coreui/react",
-  "version": "1.0.10",
-  "description": "Open Source Bootstrap Admin Template",
-  "author": "Łukasz Holeczek",
-  "homepage": "http://coreui.io",
-  "copyright": "Copyright 2018 creativeLabs Łukasz Holeczek",
+  "name": "wayconnect-platform",
+  "version": "1.0",
+  "description": "Way-Connect Platform front-end code",
+  "author": "Taqiyeddine Sakmeche",
+  "homepage": "http://taqiyeddine.sakme.ch",
+  "copyright": "Copyright 2018 Taqiyeddine Sakmeche",
   "license": "MIT",
   "private": true,
   "devDependencies": {
