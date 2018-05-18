@@ -536,6 +536,45 @@ const sparklineChartOpts = {
   }
 };
 
+const trafficChartOptions = {
+    maintainAspectRatio: false,
+    legend: {
+        display: false
+    },
+    scales: {
+        xAxes: [{
+            gridLines: {
+                drawOnChartArea: false,
+            }
+        }],
+        yAxes: [{
+            ticks: {
+                beginAtZero: true,
+                maxTicksLimit: 5,
+                stepSize: Math.ceil(250 / 5),
+                max: 250
+            }
+        }]
+    },
+    elements: {
+        point: {
+            radius: 0,
+            hitRadius: 10,
+            hoverRadius: 4,
+            hoverBorderWidth: 3,
+        }
+    }
+};
+
+function convertHex(hex, opacity) {
+    hex = hex.replace('#', '');
+    let r = parseInt(hex.substring(0, 2), 16);
+    let g = parseInt(hex.substring(2, 4), 16);
+    let b = parseInt(hex.substring(4, 6), 16);
+
+    return 'rgba(' + r + ',' + g + ',' + b + ',' + opacity / 100 + ')';
+}
+
 class Partner extends Component {
   constructor(props) {
     super(props);
@@ -576,7 +615,23 @@ class Partner extends Component {
                   value: 'Single',
                   percentage: 78,
               },
-          ]
+          ],
+          trafficChartData: {
+              labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W', 'T', 'F',
+                  'S', 'S', 'M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W', 'T', 'F',
+                  'S', 'S'],
+              datasets: [
+                  {
+                      label: 'My First dataset',
+                      backgroundColor: convertHex(brandInfo, 10),
+                      borderColor: brandInfo,
+                      colorName: 'info',
+                      pointHoverBackgroundColor: '#fff',
+                      borderWidth: 3,
+                      data: [10, 123, 11, 123, 32, 55, 66, 32, 12, 1, 1, 11, 22, 55, 14, 56, 66, 56, 44, 21, 22, 12, 12, 1, 1, 1, 88, 105]
+                  },
+              ],
+          }
       };
   }
   render() {
@@ -594,7 +649,10 @@ class Partner extends Component {
 
         <Row>
           <Col>
-            <TrafficChart/>
+            <TrafficChart
+                chartData={this.state.trafficChartData}
+                options={trafficChartOptions}
+            />
           </Col>
         </Row>
 

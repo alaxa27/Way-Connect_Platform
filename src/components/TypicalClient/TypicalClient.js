@@ -10,14 +10,6 @@ import TypicalClientList from "./TypicalClientList";
 
 const title = "Client Type";
 
-const colors = {
-  gender: '',
-  age: '',
-  nationality: '',
-  profStatus: '',
-  relStatus: ''
-};
-
 class TypicalClient extends Component {
   constructor(props) {
       super(props);
@@ -25,7 +17,7 @@ class TypicalClient extends Component {
   render() {
     const { data } = this.props;
     return (
-      <Card className="mb-md-0 typical-client-card">
+      <Card className="typical-client-card">
         <CardHeader>
             {title}
         </CardHeader>
