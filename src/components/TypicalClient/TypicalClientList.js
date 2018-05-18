@@ -7,15 +7,15 @@ class TypicalClientList extends Component {
       super(props);
   }
   render() {
-    const { properties } = this.props;
+    const { data } = this.props;
     return (
       <ul className="typical-client p-0 m-0 list-unstyled">
-          {_.map(properties, (prop, key) => {
+          {_.map(data, (prop, key) => {
               return (
                   <TypicalClientItem
                       key={prop.id}
                       prop={prop}
-                      last={key === properties.length - 1}
+                      last={key === data.length - 1}
                   />
               );
           })}
