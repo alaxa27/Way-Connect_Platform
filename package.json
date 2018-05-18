@@ -60,8 +60,8 @@
     "redux-promise-middleware": "^5.1.1",
     "redux-thunk": "^2.2.0",
     "simple-line-icons": "2.4.1",
-    "underscore": "^1.9.0",
     "simple-react-validator": "0.0.7",
+    "underscore": "^1.9.0",
     "universal-cookie": "^2.1.2"
   },
   "scripts": {
