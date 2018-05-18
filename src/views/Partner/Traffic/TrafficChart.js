@@ -28,12 +28,10 @@ function random(min, max) {
 }
 
 let elements = 27;
-let data1 = [];
-let data2 = [];
+let data = [];
 
 for (let i = 0; i <= elements; i++) {
-    data1.push(random(50, 200));
-    data2.push(random(80, 100));
+    data.push(random(50, 200));
 }
 
 const brandSuccess = '#F7931E';
@@ -93,15 +91,7 @@ class TrafficChart extends Component {
                       borderColor: brandInfo,
                       pointHoverBackgroundColor: '#fff',
                       borderWidth: 3,
-                      data: data1
-                  },
-                  {
-                      label: 'My Second dataset',
-                      backgroundColor: convertHex(brandSuccess, 10),
-                      borderColor: brandSuccess,
-                      pointHoverBackgroundColor: '#fff',
-                      borderWidth: 3,
-                      data: data2
+                      data: data
                   },
               ]
           }
@@ -113,15 +103,12 @@ class TrafficChart extends Component {
           this.setState({
               period: period
           });
-          let newData1 = [];
-          let newData2 = [];
+          let newData = [];
           for (let i = 0; i <= elements; i++) {
-              newData1.push(random(50, 200));
-              newData2.push(random(80, 100));
+              newData.push(random(50, 200));
           }
           let datasets = {...this.state.chart.datasets};
-          datasets[0].data = newData1;
-          datasets[1].data = newData2;
+          datasets[0].data = newData;
       }
   }
 
@@ -152,10 +139,6 @@ class TrafficChart extends Component {
                     <li className="main-chart-legend__item">
                         <div className="text-muted">Views</div>
                         <Progress className="progress-xs mt-2" color={brandInfo} value="100"/>
-                    </li>
-                    <li className="d-none d-md-table-cell main-chart-legend__item">
-                        <div className="text-muted">Bounce Rate</div>
-                        <Progress className="progress-xs mt-2" color={brandSuccess} value="100"/>
                     </li>
                 </ul>
             </CardFooter>

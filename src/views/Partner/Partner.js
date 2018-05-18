@@ -538,8 +538,46 @@ const sparklineChartOpts = {
 
 class Partner extends Component {
   constructor(props) {
-    super(props)
-    this.state = {}
+    super(props);
+      this.state = {
+          data: [
+              {
+                  id: 1,
+                  color: '#FC6600',
+                  prop: 'Gender',
+                  value: 'Male',
+                  percentage: 10,
+              },
+              {
+                  id: 2,
+                  color: '#FC6600',
+                  prop: 'Age',
+                  value: 22,
+                  percentage: 25
+              },
+              {
+                  id: 3,
+                  color: '#F9812A',
+                  prop: 'Nationality',
+                  value: 'Tunisian',
+                  percentage: 50,
+              },
+              {
+                  id: 4,
+                  color: '#F9A602',
+                  prop: 'Professional Status',
+                  value: 'Salary',
+                  percentage: 15,
+              },
+              {
+                  id: 5,
+                  color: '#FFBF00',
+                  prop: 'Relationship Status',
+                  value: 'Single',
+                  percentage: 78,
+              },
+          ]
+      };
   }
   render() {
     return (<div className="sub-page-wrapper animated fadeIn">
@@ -574,7 +612,9 @@ class Partner extends Component {
           <Col md="6">
             <div className="d-flex flex-column right-box">
               <Affluence/>
-              <TypicalClient/>
+              <TypicalClient
+                data={this.state.data}
+              />
             </div>
           </Col>
         </Row>
