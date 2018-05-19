@@ -9,9 +9,9 @@ class DashboardPanel extends Component {
   render() {
     const { color, displayData, chartData, options, type } = this.props;
     return (
-        <Card className={"text-white dashboard-plot " + color}>
+        <Card className="text-white dashboard-plot" style={{backgroundColor: color}}>
             <CardBody className="pb-0">
-                <h4 className="mb-0">{displayData.value}</h4>
+                <h1 className="mb-0">{displayData.value}</h1>
                 <p>{displayData.title}</p>
             </CardBody>
             <div className="chart-wrapper px-3" style={{height:'120px'}}>
@@ -22,7 +22,6 @@ class DashboardPanel extends Component {
                 :
                     null
                 }
-
             </div>
         </Card>
     )

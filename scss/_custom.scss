@@ -71,12 +71,13 @@
 	cursor: pointer;
 }
 .locations-list tr td label{
-	padding: 5px 20px;
+	padding: 0 20px;
+    height: 40px;
+    display: flex;
+    align-items: center;
 	background-color: #dbdbdb;
 	color: #000;
-	margin-bottom: 10px;
-	width: 100%;
-	font-weight: bold;
+	margin-bottom: 5px;
 	font-size: 14px;
 	opacity: 0.5;
 }
@@ -112,7 +113,7 @@
     opacity: 1 !important;
 }
 .top-space {
-    margin-top: 55px;
+    margin-top: 60px;
 }
 .custom-selectbox:focus{
 	outline: none !important;
@@ -886,4 +887,6 @@ body{
 
 .dashboard-plot {
     height: 220px;
+    border: 0;
+    border-radius: 5px;
 }

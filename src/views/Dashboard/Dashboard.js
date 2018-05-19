@@ -70,7 +70,7 @@ const cardChartData1 = {
     {
       label: 'My First dataset',
       backgroundColor: 'transparent',
-      borderColor: 'rgba(255,255,255,.55)',
+      borderColor: '#fff',
       data: [65, 59, 84, 84, 51, 55, 40]
     }
   ],
@@ -120,8 +120,8 @@ const cardChartData2 = {
   datasets: [
     {
       label: 'My First dataset',
-      backgroundColor: brandInfo,
-      borderColor: 'rgba(255,255,255,.55)',
+      backgroundColor: 'transparent',
+      borderColor: '#fff',
       data: [1, 18, 9, 17, 34, 22, 11]
     }
   ],
@@ -172,8 +172,8 @@ const cardChartData3 = {
   datasets: [
     {
       label: 'My First dataset',
-      backgroundColor: 'rgba(255,255,255,.2)',
-      borderColor: 'rgba(255,255,255,.55)',
+      backgroundColor: 'transparent',
+      borderColor: '#fff',
       data: [78, 81, 80, 45, 34, 12, 40]
     }
   ],
@@ -497,11 +497,11 @@ class Dashboard extends Component {
         <Row>
           <Col xs="12" lg="6">
             <DashboardPanel
-              color="bg-primary"
+              color="#F15A24"
               chartData={cardChartData1}
               displayData={{
-                title: 'Members',
-                value: 9538.2
+                title: 'Partners',
+                value: '243'
               }}
               options={cardChartOpts1}
               type="line"
@@ -509,11 +509,11 @@ class Dashboard extends Component {
           </Col>
           <Col xs="12" lg="6">
             <DashboardPanel
-                color="bg-info"
+                color="#F7931E"
                 chartData={cardChartData2}
                 displayData={{
-                    title: 'Members',
-                    value: 9538.2
+                    title: 'Communication Diffusion',
+                    value: '142k'
                 }}
                 options={cardChartOpts2}
                 type="line"
@@ -521,11 +521,11 @@ class Dashboard extends Component {
           </Col>
           <Col xs="12" lg="6">
             <DashboardPanel
-                color="bg-warning"
+                color="#FBB03B"
                 chartData={cardChartData3}
                 displayData={{
-                    title: 'Members',
-                    value: 9538.2
+                    title: 'Campaigns',
+                    value: 623
                 }}
                 options={cardChartOpts3}
                 type="line"
@@ -533,11 +533,11 @@ class Dashboard extends Component {
           </Col>
           <Col xs="12" lg="6">
             <DashboardPanel
-                color="bg-danger"
+                color="#F9DA23"
                 chartData={cardChartData4}
                 displayData={{
-                    title: 'Members',
-                    value: 9538.2
+                    title: 'Clients',
+                    value: 356
                 }}
                 options={cardChartOpts4}
                 type="bar"
@@ -547,12 +547,18 @@ class Dashboard extends Component {
 
         <Row>
           <Col xs="12" md="6">
-            <h2 className="way-heading" style={{fontSize: '24px'}}>Our partners</h2>
-
-            <div className="google-maps-wrapper">
-              <MyMapComponent isMarkerShown />
-            </div>
-
+            <Row>
+              <Col>
+                <h2 className="way-heading" style={{fontSize: '24px'}}>Our partners</h2>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <div className="google-maps-wrapper mt-4">
+                  <MyMapComponent isMarkerShown />
+                </div>
+              </Col>
+            </Row>
           </Col>
           <Col xs="12" md="6" className="top-space">
               <h4 className="way-heading">Select a country</h4>
