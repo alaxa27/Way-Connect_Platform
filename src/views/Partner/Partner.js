@@ -125,10 +125,9 @@ class Partner extends Component {
       };
   }
   componentWillMount() {
-      this.props.dispatch(actions.fechPartnerPageData());
+      this.props.dispatch(actions.fetchPartnerPageData());
   }
   render() {
-    const { traffic, affluence, typicalCustomer } = this.props;
     return (
       <div className="sub-page-wrapper animated fadeIn">
         <div style={{
