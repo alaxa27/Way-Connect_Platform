@@ -625,7 +625,7 @@ class Partner extends Component {
                       label: 'My First dataset',
                       backgroundColor: convertHex(brandInfo, 10),
                       borderColor: brandInfo,
-                      colorName: 'info',
+                      colorName: 'primary',
                       pointHoverBackgroundColor: '#fff',
                       borderWidth: 3,
                       data: [10, 123, 11, 123, 32, 55, 66, 32, 12, 1, 1, 11, 22, 55, 14, 56, 66, 56, 44, 21, 22, 12, 12, 1, 1, 1, 88, 105]
@@ -652,6 +652,8 @@ class Partner extends Component {
             <TrafficChart
                 chartData={this.state.trafficChartData}
                 options={trafficChartOptions}
+                title="Traffic"
+                defaultPeriod="month"
             />
           </Col>
         </Row>

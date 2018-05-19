@@ -20,22 +20,29 @@ function random(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+function randomizeData() {
+    let newData = [];
+    for (let i = 0; i <= 27; i++) {
+        newData.push(random(1, 100));
+    }
+    return newData;
+}
+
 class TrafficChart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        period: 'month',
+        period: null,
         chartData: null,
-        options: null
     };
     this.handleChangePeriod = this.handleChangePeriod.bind(this);
   }
 
   componentWillMount() {
-      const { chartData, options } = this.props;
+      const { chartData, defaultPeriod } = this.props;
       this.setState({
+          period: defaultPeriod,
           chartData: chartData,
-          options: options
       });
   }
 
@@ -44,27 +51,21 @@ class TrafficChart extends Component {
           this.setState({
               period: period
           });
-          let newData = [];
-          let newData1 = [];
-          for (let i = 0; i <= 27; i++) {
-              newData.push(random(1, 100));
-          }
-          for (let i = 0; i <= 27; i++) {
-              newData1.push(random(1, 100));
-          }
           let datasets = {...this.state.chartData.datasets};
-          datasets[0].data = newData;
-          datasets[1].data = newData1;
+          _.each(datasets, item => {
+              item.data = randomizeData()
+          });
       }
   }
 
   render() {
+    const { options, title } = this.props;
     return (
         <Card>
             <CardBody>
                 <Row>
                     <Col sm="5">
-                        <CardTitle className="mb-0">Traffic</CardTitle>
+                        <CardTitle className="mb-0">{title}</CardTitle>
                         <div className="small text-muted">November 2017</div>
                     </Col>
                     <Col sm="7" className="d-none d-sm-inline-block">
@@ -77,7 +78,7 @@ class TrafficChart extends Component {
                     </Col>
                 </Row>
                 <div className="chart-wrapper" style={{height: 300 + 'px', marginTop: 40 + 'px'}}>
-                    <Line data={this.state.chartData} options={this.state.options} height={300}/>
+                    <Line data={this.state.chartData} options={options} height={300}/>
                 </div>
             </CardBody>
             <CardFooter>

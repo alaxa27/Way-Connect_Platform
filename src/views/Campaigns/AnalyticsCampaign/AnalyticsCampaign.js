@@ -140,6 +140,8 @@ class AnalyticsCampaign extends Component {
                       <TrafficChart
                         chartData={this.state.trafficChartData}
                         options={trafficChartOptions}
+                        title="Traffic"
+                        defaultPeriod="year"
                       />
                   </Col>
               </Row>
