@@ -13,8 +13,7 @@ import {
 } from 'reactstrap';
 import { Line } from 'react-chartjs-2';
 import _ from 'underscore';
-
-const brandInfo = '#F15A24';
+import ReduxBlockUi from 'react-block-ui/redux';
 
 function random(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -61,39 +60,41 @@ class TrafficChart extends Component {
   render() {
     const { options, title } = this.props;
     return (
-        <Card>
-            <CardBody>
-                <Row>
-                    <Col sm="5">
-                        <CardTitle className="mb-0">{title}</CardTitle>
-                        <div className="small text-muted">November 2017</div>
-                    </Col>
-                    <Col sm="7" className="d-none d-sm-inline-block">
-                        <ButtonToolbar className="float-right" aria-label="Toolbar with button groups">
-                            <ButtonGroup className="mr-3" aria-label="First group">
-                                <Button color="outline-secondary" onClick={() => this.handleChangePeriod('month')} active={this.state.period === 'month'}>Month</Button>
-                                <Button color="outline-secondary" onClick={() => this.handleChangePeriod('year')} active={this.state.period === 'year'}>Year</Button>
-                            </ButtonGroup>
-                        </ButtonToolbar>
-                    </Col>
-                </Row>
-                <div className="chart-wrapper" style={{height: 300 + 'px', marginTop: 40 + 'px'}}>
-                    <Line data={this.state.chartData} options={options} height={300}/>
-                </div>
-            </CardBody>
-            <CardFooter>
-                <ul className="d-flex justify-content-center main-chart-legend">
-                    {_.map(this.state.chartData.datasets, item => {
-                        return (
-                            <li className="main-chart-legend__item" key={item.label}>
-                                <div className="text-muted">{item.label}</div>
-                                <Progress className="progress-xs mt-2" color={item.colorName} value="100"/>
-                            </li>
-                        );
-                    })}
-                </ul>
-            </CardFooter>
-        </Card>
+        <ReduxBlockUi tag="div" block="TRAFFIC" unblock={["TRAFFIC_FULFILLED", "TRAFFIC_REJECTED"]}>
+            <Card>
+                <CardBody>
+                    <Row>
+                        <Col sm="5">
+                            <CardTitle className="mb-0">{title}</CardTitle>
+                            <div className="small text-muted">November 2017</div>
+                        </Col>
+                        <Col sm="7" className="d-none d-sm-inline-block">
+                            <ButtonToolbar className="float-right" aria-label="Toolbar with button groups">
+                                <ButtonGroup className="mr-3" aria-label="First group">
+                                    <Button color="outline-secondary" onClick={() => this.handleChangePeriod('month')} active={this.state.period === 'month'}>Month</Button>
+                                    <Button color="outline-secondary" onClick={() => this.handleChangePeriod('year')} active={this.state.period === 'year'}>Year</Button>
+                                </ButtonGroup>
+                            </ButtonToolbar>
+                        </Col>
+                    </Row>
+                    <div className="chart-wrapper" style={{height: 300 + 'px', marginTop: 40 + 'px'}}>
+                        <Line data={this.state.chartData} options={options} height={300}/>
+                    </div>
+                </CardBody>
+                <CardFooter>
+                    <ul className="d-flex justify-content-center main-chart-legend">
+                        {_.map(this.state.chartData.datasets, item => {
+                            return (
+                                <li className="main-chart-legend__item" key={item.label}>
+                                    <div className="text-muted">{item.label}</div>
+                                    <Progress className="progress-xs mt-2" color={item.colorName} value="100"/>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </CardFooter>
+            </Card>
+        </ReduxBlockUi>
     );
   }
 }

@@ -4,6 +4,7 @@ import InfiniteScroll from 'react-infinite-scroller';
 import _ from 'underscore';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/promotionActions';
+import ReduxBlockUi from 'react-block-ui/redux';
 
 @connect((store) => {
     let promotionStore = store.promotion;
@@ -34,24 +35,26 @@ class PromotionsList extends Component {
   render() {
     const { promotions, totalCount } = this.props;
     return (
-        <div className="promotion px-4 mt-4">
-            <InfiniteScroll
-                pageStart={0}
-                loadMore={() => { this.loadMorePromotions() }}
-                hasMore={promotions.length < totalCount}
-                loader={<div className="loader" key={0}>Loading ...</div>}
-                useWindow={false}
-            >
-                {_.map(promotions, (promotion, key) => {
-                    return (
-                        <PromotionsListItem
-                            key={key}
-                            promotion={promotion}
-                        />
-                    );
-                })}
-            </InfiniteScroll>
-        </div>
+        <ReduxBlockUi tag="div" block="PROMOTIONS" unblock={["PROMOTIONS_FULFILLED", "PROMOTIONS_REJECTED"]}>
+            <div className="promotion px-4 mt-4">
+                <InfiniteScroll
+                    pageStart={0}
+                    loadMore={() => { this.loadMorePromotions() }}
+                    hasMore={promotions.length < totalCount}
+                    loader={<div className="loader" key={0}>Loading ...</div>}
+                    useWindow={false}
+                >
+                    {_.map(promotions, (promotion, key) => {
+                        return (
+                            <PromotionsListItem
+                                key={key}
+                                promotion={promotion}
+                            />
+                        );
+                    })}
+                </InfiniteScroll>
+            </div>
+        </ReduxBlockUi>
     )
   }
 }
