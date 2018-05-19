@@ -101,7 +101,7 @@ class AnalyticsCampaign extends Component {
                   'S', 'S'],
               datasets: [
                   {
-                      label: 'My First dataset',
+                      label: 'Views',
                       backgroundColor: convertHex(brandInfo, 10),
                       borderColor: brandInfo,
                       colorName: 'info',
@@ -110,7 +110,7 @@ class AnalyticsCampaign extends Component {
                       data: [10, 123, 11, 123, 32, 55, 66, 32, 12, 1, 1, 11, 22, 55, 14, 56, 66, 56, 44, 21, 22, 12, 12, 1, 1, 1, 88, 105]
                   },
                   {
-                      label: 'My Second dataset',
+                      label: 'Bounce ate',
                       backgroundColor: convertHex(brandPrimary, 10),
                       borderColor: brandPrimary,
                       colorName: 'primary',

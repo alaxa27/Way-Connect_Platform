@@ -622,7 +622,7 @@ class Partner extends Component {
                   'S', 'S'],
               datasets: [
                   {
-                      label: 'My First dataset',
+                      label: 'Views',
                       backgroundColor: convertHex(brandInfo, 10),
                       borderColor: brandInfo,
                       colorName: 'primary',
