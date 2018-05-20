@@ -34,6 +34,14 @@ export default {
       name: 'Partner',
       url: '/partner',
       icon: 'fa fa-upload'
+    },
+    {
+      name: 'Log Out',
+      url: '/logout',
+      class: 'mt-auto',
+      icon: 'fa fa-sign-out',
+      variant: 'danger'
     }
+
   ]
 };

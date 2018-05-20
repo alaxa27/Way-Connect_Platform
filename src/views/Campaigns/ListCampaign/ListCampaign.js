@@ -11,36 +11,9 @@ class ListCampaign extends Component {
   constructor(props) {
       super(props)
       this.state = {
-        gender: 'male',
-        proStatus: 'salary',
-        nationality: 'indian',
-        relationaship: 'married',
-        additional: '',
-        location: 'chandigarh',
-        hobbies: 'traveling',
-        value: { min: 18, max: 24},
       }
-      this.handleInputChange = this.handleInputChange.bind(this);
-      this.handleChange = this.handleChange.bind(this);
-      this.handleMultiSelect = this.handleMultiSelect.bind(this);
   }
 
-  handleInputChange(event) {
-      this.setState({
-        gender: event.target.value
-      });
-  }
-  handleMultiSelect(selectedOption) {
-      this.setState({ selectedOption });
-  }
-  handleChange(event) {
-    const data = event.target;
-    const value = data.value;
-    const name = data.name;
-    this.setState({
-      [name]: value
-    });
-  }
   render() {
     const tableArray = [1, 2, 3, 4, 5, 6];
     const currentBids = tableArray.map(( list, i) =>
