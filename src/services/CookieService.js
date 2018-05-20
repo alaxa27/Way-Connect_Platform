@@ -21,8 +21,10 @@ export default class CookieService {
     const token = sessionStorage.getItem("jwt") || localStorage.getItem("jwt");
     if (token !== null) {
       axiosInstance.defaults.headers.common["Authorization"] = `Token ${token}`;
+      return token;
+    } else {
+      return false;
     }
-    return token;
   }
 
   removeJwt() {

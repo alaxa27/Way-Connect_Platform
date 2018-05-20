@@ -60,12 +60,12 @@ export function logout(payload) {
       //   url: "/auth/logout/",
       // });
 
-      const cookieService = new CookieService();
-      cookieService.removeJwt();
 
       dispatch({
         type: LOGOUT_FULFILLED
       });
+      const cookieService = new CookieService();
+      cookieService.removeJwt();
     } catch (error) {
       dispatch({
         type: LOGOUT_REJECTED,

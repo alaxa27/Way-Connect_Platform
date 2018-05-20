@@ -43,6 +43,7 @@ class Login extends Component {
 
   componentWillMount() {
       if(new CookieService().getJwt()) {
+        console.log("GETJWT");
         this.setState({redirect: true});
       }
   }
