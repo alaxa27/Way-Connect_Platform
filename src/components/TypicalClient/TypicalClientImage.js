@@ -7,8 +7,18 @@ class TypicalClientImage extends Component {
   render() {
     const { width, height } = this.props;
     return (
-      <Media style={{width: width, height: height}} object src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Generic placeholder image" />
-    );
+      <Media
+          style={{
+            width: width,
+            height: height,
+            background: '#f0f3f5'
+          }}
+          className="p-3"
+          object
+          src="img/user-portrait.png"
+          alt="Generic placeholder image"
+      />
+    )
   }
 }
 

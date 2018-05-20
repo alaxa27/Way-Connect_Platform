@@ -7,16 +7,9 @@ import {
 } from "reactstrap";
 import TypicalClientImage from "./TypicalClientImage";
 import TypicalClientList from "./TypicalClientList";
+import ReduxBlockUi from 'react-block-ui/redux';
 
 const title = "Client Type";
-
-const colors = {
-  gender: "",
-  age: "",
-  nationality: "",
-  profStatus: "",
-  relStatus: ""
-};
 
 class TypicalClient extends Component {
   constructor(props) {
@@ -25,27 +18,29 @@ class TypicalClient extends Component {
   render() {
     const { data } = this.props;
     return (
-      <Card className="mb-md-0 typical-client-card">
-        <CardHeader>
-          {title}
-        </CardHeader>
-        <CardBody>
-          <Media>
-            <Media left href="#">
-              <TypicalClientImage
-                width={180}
-                height={180}
-              />
+      <ReduxBlockUi tag="div" block="TYPICAL_CUSTOMER" unblock={["TYPICAL_CUSTOMER_FULFILLED", "TYPICAL_CUSTOMER_REJECTED"]}>
+        <Card className="typical-client-card">
+          <CardHeader>
+              {title}
+          </CardHeader>
+          <CardBody>
+            <Media>
+              <Media left href="#">
+                <TypicalClientImage
+                  width={180}
+                  height={180}
+                />
+              </Media>
+              <Media body style={{paddingLeft: '1.25rem'}}>
+                <TypicalClientList
+                  data={data}
+                />
+              </Media>
             </Media>
-            <Media body style={{paddingLeft: "1.25rem"}}>
-              <TypicalClientList
-                data={data}
-              />
-            </Media>
-          </Media>
-        </CardBody>
-      </Card>
-    );
+          </CardBody>
+        </Card>
+      </ReduxBlockUi>
+    )
   }
 }
 
