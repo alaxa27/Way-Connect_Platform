@@ -1,22 +1,30 @@
-import Cookies from "universal-cookie";
+import { axiosInstance } from "../constants/ApiConfig";
 
 export default class CookieService {
 
-    constructor() {
-        this.cookies = new Cookies();
-    }
+  constructor() {
+  }
 
-    setJwt(token, remember = null) {
-        let expirationTimeInDays = 1;
-        if(remember) {
-            expirationTimeInDays = 30;
-        }
-        const expires = new Date();
-        expires.setDate(expires.getDate() + expirationTimeInDays);
-        this.cookies.set('jwt', token, { path: '/', expires: expires });
-    }
+  setJwt(token, remember = null) {
+    const savedToken = localStorage.getItem("jwt")
 
-    getJwt() {
-        return this.cookies.get('jwt');
+    if (savedToken !== token) {
+      if (remember) {
+        localStorage.setItem("jwt", token)
+      } else {
+        sessionStorage.setItem("jwt", token)
+      }
     }
+  }
+
+  getJwt() {
+    const token = sessionStorage.getItem("jwt") || localStorage.getItem("jwt");
+    axiosInstance.defaults.headers.common["Authorization"] = `Token ${token}`;
+    return token;
+  }
+
+  removeJwt() {
+    localStorage.removeItem("jwt")
+    sessionStorage.removeItem("jwt")
+  }
 }
