@@ -3,7 +3,6 @@ import {
   REGISTER_FULFILLED,
   REGISTER_REJECTED
 } from "../constants/ActionTypes";
-import CookieService from "../services/CookieService";
 
 const initialState = {
     fetching: false,
@@ -21,9 +20,6 @@ export default function reducer(state = initialState, action) {
               error: null
           };
       case REGISTER_FULFILLED:
-          const token = action.payload.token;
-          const cookieService = new CookieService();
-          cookieService.setJwt(token);
           return {
               ...state,
               fetching: false,

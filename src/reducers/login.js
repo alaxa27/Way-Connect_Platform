@@ -3,7 +3,6 @@ import {
   LOGIN_REJECTED,
   LOGIN_FULFILLED
 } from "../constants/ActionTypes";
-import CookieService from "../services/CookieService";
 
 const initialState = {
     fetching: false,
@@ -21,10 +20,6 @@ export default function reducer(state = initialState, action) {
               error: null
           };
       case LOGIN_FULFILLED:
-          const token = action.payload.token;
-          const remember = action.payload.remember;
-          const cookieService = new CookieService();
-          cookieService.setJwt(token, remember);
           return {
               ...state,
               fetching: false,

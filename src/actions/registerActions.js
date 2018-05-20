@@ -1,4 +1,6 @@
-import axios from "axios";
+import { axiosInstance } from "../constants/ApiConfig";
+
+import CookieService from "../services/CookieService";
 import {
   REGISTER,
   REGISTER_FULFILLED,
@@ -11,9 +13,9 @@ export function register(payload) {
       type: REGISTER
     });
     try {
-      const response = await axios({
+      const response = await axiosInstance({
         method: "POST",
-        url: "https://wayconnect.herokuapp.com/auth/registration/",
+        url: "/auth/registration/",
         data: {
           email: payload.email,
           password1: payload.password,
@@ -21,12 +23,14 @@ export function register(payload) {
           username: payload.username
         }
       });
+      const token = response.data.key;
+      const cookieService = new CookieService();
+      cookieService.setJwt(token);
+
       dispatch({
         type: REGISTER_FULFILLED,
-        payload: {
-          token: response.data.key,
-        }
       });
+
     } catch (error) {
       dispatch({
         type: REGISTER_REJECTED,

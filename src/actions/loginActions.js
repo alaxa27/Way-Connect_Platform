@@ -1,4 +1,6 @@
-import axios from "axios";
+import { axiosInstance } from "../constants/ApiConfig";
+
+import CookieService from "../services/CookieService";
 import {
   LOGIN,
   LOGIN_FULFILLED,
@@ -11,20 +13,23 @@ export function login(payload) {
       type: LOGIN
     });
     try {
-      const response = await axios({
+      const response = await axiosInstance({
         method: "POST",
-        url: "https://wayconnect.herokuapp.com/auth/login/",
+        url: "/auth/login/",
         data: {
           username: payload.username,
           password: payload.password
         }
       });
+
+      const token = response.data.key;
+      const remember = payload.remember;
+
+      const cookieService = new CookieService();
+      cookieService.setJwt(token, remember);
+
       dispatch({
-        type: LOGIN_FULFILLED,
-        payload: {
-          token: response.data.key,
-          remember: payload.remember
-        }
+        type: LOGIN_FULFILLED
       });
     } catch (error) {
       dispatch({
