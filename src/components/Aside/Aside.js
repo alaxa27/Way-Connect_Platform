@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 
 class Aside extends Component {
@@ -7,7 +7,7 @@ class Aside extends Component {
       <aside className="aside-menu">
         {/*Aside Menu*/}
       </aside>
-    )
+    );
   }
 }
 

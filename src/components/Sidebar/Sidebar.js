@@ -1,12 +1,12 @@
-import React, {Component} from 'react';
-import {NavLink} from 'react-router-dom';
-import {Badge, Nav, NavItem, NavLink as RsNavLink} from 'reactstrap';
-import classNames from 'classnames';
-import nav from './_nav';
-import SidebarFooter from './../SidebarFooter';
-import SidebarForm from './../SidebarForm';
-import SidebarHeader from './../SidebarHeader';
-import SidebarMinimizer from './../SidebarMinimizer';
+import React, {Component} from "react";
+import {NavLink} from "react-router-dom";
+import {Badge, Nav, NavItem, NavLink as RsNavLink} from "reactstrap";
+import classNames from "classnames";
+import nav from "./_nav";
+import SidebarFooter from "./../SidebarFooter";
+import SidebarForm from "./../SidebarForm";
+import SidebarHeader from "./../SidebarHeader";
+import SidebarMinimizer from "./../SidebarMinimizer";
 
 class Sidebar extends Component {
 
@@ -21,18 +21,18 @@ class Sidebar extends Component {
 
   handleClick(e) {
     e.preventDefault();
-    e.target.parentElement.classList.toggle('open');
+    e.target.parentElement.classList.toggle("open");
   }
 
   activeRoute(routeName, props) {
     // return this.props.location.pathname.indexOf(routeName) > -1 ? 'nav-item nav-dropdown open' : 'nav-item nav-dropdown';
-    return props.location.pathname.indexOf(routeName) > -1 ? 'nav-item nav-dropdown open' : 'nav-item nav-dropdown';
+    return props.location.pathname.indexOf(routeName) > -1 ? "nav-item nav-dropdown open" : "nav-item nav-dropdown";
 
   }
 
   hideMobile() {
-    if (document.body.classList.contains('sidebar-mobile-show')) {
-      document.body.classList.toggle('sidebar-mobile-show')
+    if (document.body.classList.contains("sidebar-mobile-show")) {
+      document.body.classList.toggle("sidebar-mobile-show");
     }
   }
 
@@ -50,34 +50,34 @@ class Sidebar extends Component {
     const badge = (badge) => {
       if (badge) {
         const classes = classNames( badge.class );
-        return (<Badge className={ classes } color={ badge.variant }>{ badge.text }</Badge>)
+        return (<Badge className={ classes } color={ badge.variant }>{ badge.text }</Badge>);
       }
     };
 
     // simple wrapper for nav-title item
-    const wrapper = item => { return (item.wrapper && item.wrapper.element ? (React.createElement(item.wrapper.element, item.wrapper.attributes, item.name)): item.name ) };
+    const wrapper = item => { return (item.wrapper && item.wrapper.element ? (React.createElement(item.wrapper.element, item.wrapper.attributes, item.name)): item.name ); };
 
     // nav list section title
     const title =  (title, key) => {
-      const classes = classNames( 'nav-title', title.class);
+      const classes = classNames( "nav-title", title.class);
       return (<li key={key} className={ classes }>{wrapper(title)} </li>);
     };
 
     // nav list divider
     const divider = (divider, key) => {
-      const classes = classNames( 'divider', divider.class);
+      const classes = classNames( "divider", divider.class);
       return (<li key={key} className={ classes }></li>);
     };
 
     // nav label with nav link
     const navLabel = (item, key) => {
       const classes = {
-        item: classNames( 'hidden-cn', item.class ),
-        link: classNames( 'nav-label', item.class ? item.class : ''),
+        item: classNames( "hidden-cn", item.class ),
+        link: classNames( "nav-label", item.class ? item.class : ""),
         icon: classNames(
-          !item.icon ? 'fa fa-circle' : item.icon ,
-          item.label.variant ? `text-${item.label.variant}` : '',
-          item.label.class ?  item.label.class : ''
+          !item.icon ? "fa fa-circle" : item.icon ,
+          item.label.variant ? `text-${item.label.variant}` : "",
+          item.label.class ?  item.label.class : ""
         )
       };
       return (
@@ -89,17 +89,17 @@ class Sidebar extends Component {
     const navItem = (item, key) => {
       const classes = {
         item: classNames( item.class) ,
-        link: classNames( 'nav-link', item.variant ? `nav-link-${item.variant}` : ''),
+        link: classNames( "nav-link", item.variant ? `nav-link-${item.variant}` : ""),
         icon: classNames( item.icon )
       };
       return (
         navLink(item, key, classes)
-      )
+      );
     };
 
     // nav link
     const navLink = (item, key, classes) => {
-      const url = item.url ? item.url : '';
+      const url = item.url ? item.url : "";
       return (
         <NavItem key={key} className={classes.item}>
           { isExternal(url) ?
@@ -112,7 +112,7 @@ class Sidebar extends Component {
             </NavLink>
           }
         </NavItem>
-      )
+      );
     };
 
     // nav dropdown
@@ -123,7 +123,7 @@ class Sidebar extends Component {
           <ul className="nav-dropdown-items">
             {navList(item.children)}
           </ul>
-        </li>)
+        </li>);
     };
 
     // nav type
@@ -140,8 +140,8 @@ class Sidebar extends Component {
     };
 
     const isExternal = (url) => {
-      const link = url ? url.substring(0, 4) : '';
-      return link === 'http';
+      const link = url ? url.substring(0, 4) : "";
+      return link === "http";
     };
 
     // sidebar-nav root
@@ -157,7 +157,7 @@ class Sidebar extends Component {
         <SidebarFooter/>
         <SidebarMinimizer/>
       </div>
-    )
+    );
   }
 }
 

@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import * as MdIconPack from 'react-icons/lib/md';
+import React, {Component} from "react";
+import * as MdIconPack from "react-icons/lib/md";
 import {
   Badge,
   Row,
@@ -25,8 +25,8 @@ import {
   Input,
   Table,
   Media
-} from 'reactstrap';
-import {Bar, Line} from 'react-chartjs-2';
+} from "reactstrap";
+import {Bar, Line} from "react-chartjs-2";
 import TypicalClient from "../../components/TypicalClient/TypicalClient";
 import Affluence from "../../components/Affluence/Affluence";
 import PromotionsList from "../../components/Promotions/PromotionsList";
@@ -34,25 +34,25 @@ import Panel from "../../components/Panel/Panel";
 import ExportExcelButton from "./ExportExcel/ExportExcelButton";
 import TrafficChart from "./Traffic/TrafficChart";
 
-const brandPrimary = '#20a8d8';
-const brandInfo = '#F15A24';
+const brandPrimary = "#20a8d8";
+const brandInfo = "#F15A24";
 
 // Card Chart 1
 const cardChartData1 = {
   labels: [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July'
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July"
   ],
   datasets: [
     {
-      label: 'My First dataset',
+      label: "My First dataset",
       backgroundColor: brandPrimary,
-      borderColor: 'rgba(255,255,255,.55)',
+      borderColor: "rgba(255,255,255,.55)",
       data: [
         65,
         59,
@@ -75,12 +75,12 @@ const cardChartOpts1 = {
     xAxes: [
       {
         gridLines: {
-          color: 'transparent',
-          zeroLineColor: 'transparent'
+          color: "transparent",
+          zeroLineColor: "transparent"
         },
         ticks: {
           fontSize: 2,
-          fontColor: 'transparent'
+          fontColor: "transparent"
         }
 
       }
@@ -106,24 +106,24 @@ const cardChartOpts1 = {
       hoverRadius: 4
     }
   }
-}
+};
 
 // Card Chart 2
 const cardChartData2 = {
   labels: [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July'
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July"
   ],
   datasets: [
     {
-      label: 'My First dataset',
+      label: "My First dataset",
       backgroundColor: brandInfo,
-      borderColor: 'rgba(255,255,255,.55)',
+      borderColor: "rgba(255,255,255,.55)",
       data: [
         1,
         18,
@@ -146,12 +146,12 @@ const cardChartOpts2 = {
     xAxes: [
       {
         gridLines: {
-          color: 'transparent',
-          zeroLineColor: 'transparent'
+          color: "transparent",
+          zeroLineColor: "transparent"
         },
         ticks: {
           fontSize: 2,
-          fontColor: 'transparent'
+          fontColor: "transparent"
         }
 
       }
@@ -178,24 +178,24 @@ const cardChartOpts2 = {
       hoverRadius: 4
     }
   }
-}
+};
 
 // Card Chart 3
 const cardChartData3 = {
   labels: [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July'
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July"
   ],
   datasets: [
     {
-      label: 'My First dataset',
-      backgroundColor: 'rgba(255,255,255,.2)',
-      borderColor: 'rgba(255,255,255,.55)',
+      label: "My First dataset",
+      backgroundColor: "rgba(255,255,255,.2)",
+      borderColor: "rgba(255,255,255,.55)",
       data: [
         78,
         81,
@@ -236,33 +236,33 @@ const cardChartOpts3 = {
       hoverRadius: 4
     }
   }
-}
+};
 
 // Card Chart 4
 const cardChartData4 = {
   labels: [
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ''
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
   ],
   datasets: [
     {
-      label: 'My First dataset',
-      backgroundColor: 'rgba(255,255,255,.3)',
-      borderColor: 'transparent',
+      label: "My First dataset",
+      backgroundColor: "rgba(255,255,255,.3)",
+      borderColor: "transparent",
       data: [
         78,
         81,
@@ -303,7 +303,7 @@ const cardChartOpts4 = {
       }
     ]
   }
-}
+};
 
 // Social Box Chart
 const socialBoxData = [
@@ -317,7 +317,7 @@ const socialBoxData = [
       55,
       40
     ],
-    label: 'facebook'
+    label: "facebook"
   }, {
     data: [
       1,
@@ -328,7 +328,7 @@ const socialBoxData = [
       41,
       38
     ],
-    label: 'twitter'
+    label: "twitter"
   }, {
     data: [
       78,
@@ -339,7 +339,7 @@ const socialBoxData = [
       12,
       40
     ],
-    label: 'linkedin'
+    label: "linkedin"
   }, {
     data: [
       35,
@@ -350,7 +350,7 @@ const socialBoxData = [
       23,
       64
     ],
-    label: 'google'
+    label: "google"
   }
 ];
 
@@ -358,19 +358,19 @@ const makeSocialBoxData = (dataSetNo) => {
   const dataset = socialBoxData[dataSetNo];
   const data = {
     labels: [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July'
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July"
     ],
     datasets: [
       {
-        backgroundColor: 'rgba(255,255,255,.1)',
-        borderColor: 'rgba(255,255,255,.55)',
-        pointHoverBackgroundColor: '#fff',
+        backgroundColor: "rgba(255,255,255,.1)",
+        borderColor: "rgba(255,255,255,.55)",
+        pointHoverBackgroundColor: "#fff",
         borderWidth: 2,
         data: dataset.data,
         label: dataset.label
@@ -420,7 +420,7 @@ const sparkLineChartData = [
       23,
       64
     ],
-    label: 'New Clients'
+    label: "New Clients"
   }, {
     data: [
       65,
@@ -431,7 +431,7 @@ const sparkLineChartData = [
       55,
       40
     ],
-    label: 'Recurring Clients'
+    label: "Recurring Clients"
   }, {
     data: [
       35,
@@ -442,7 +442,7 @@ const sparkLineChartData = [
       23,
       64
     ],
-    label: 'Pageviews'
+    label: "Pageviews"
   }, {
     data: [
       65,
@@ -453,7 +453,7 @@ const sparkLineChartData = [
       55,
       40
     ],
-    label: 'Organic'
+    label: "Organic"
   }, {
     data: [
       78,
@@ -464,7 +464,7 @@ const sparkLineChartData = [
       12,
       40
     ],
-    label: 'CTR'
+    label: "CTR"
   }, {
     data: [
       1,
@@ -475,7 +475,7 @@ const sparkLineChartData = [
       41,
       38
     ],
-    label: 'Bounce Rate'
+    label: "Bounce Rate"
   }
 ];
 
@@ -483,20 +483,20 @@ const makeSparkLineData = (dataSetNo, variant) => {
   const dataset = sparkLineChartData[dataSetNo];
   const data = {
     labels: [
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday',
-      'Sunday'
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
     ],
     datasets: [
       {
-        backgroundColor: 'transparent',
+        backgroundColor: "transparent",
         borderColor: variant
           ? variant
-          : '#c2cfd6',
+          : "#c2cfd6",
         data: dataset.data,
         label: dataset.label
       }
@@ -543,37 +543,37 @@ class Partner extends Component {
           data: [
               {
                   id: 1,
-                  color: '#FC6600',
-                  prop: 'Gender',
-                  value: 'Male',
+                  color: "#FC6600",
+                  prop: "Gender",
+                  value: "Male",
                   percentage: 10,
               },
               {
                   id: 2,
-                  color: '#FC6600',
-                  prop: 'Age',
+                  color: "#FC6600",
+                  prop: "Age",
                   value: 22,
                   percentage: 25
               },
               {
                   id: 3,
-                  color: '#F9812A',
-                  prop: 'Nationality',
-                  value: 'Tunisian',
+                  color: "#F9812A",
+                  prop: "Nationality",
+                  value: "Tunisian",
                   percentage: 50,
               },
               {
                   id: 4,
-                  color: '#F9A602',
-                  prop: 'Professional Status',
-                  value: 'Salary',
+                  color: "#F9A602",
+                  prop: "Professional Status",
+                  value: "Salary",
                   percentage: 15,
               },
               {
                   id: 5,
-                  color: '#FFBF00',
-                  prop: 'Relationship Status',
-                  value: 'Single',
+                  color: "#FFBF00",
+                  prop: "Relationship Status",
+                  value: "Single",
                   percentage: 78,
               },
           ]
@@ -601,7 +601,7 @@ class Partner extends Component {
         <Row>
           <Col>
             <h2 className="way-heading" style={{
-                fontSize: '24px'
+                fontSize: "24px"
               }}>Promotions</h2>
           </Col>
         </Row>
@@ -627,7 +627,7 @@ class Partner extends Component {
 
       </div>
       <br/>
-    </div>)
+    </div>);
   }
 }
 export default Partner;

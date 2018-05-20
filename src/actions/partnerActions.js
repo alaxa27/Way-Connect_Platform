@@ -41,7 +41,7 @@ export function fetchPartnerPageData(payload) {
         type: PARTNER_PAGE_REJECTED,
       });
     }
-  }
+  };
 }
 
 function fetchTraffic(payload) {
@@ -61,7 +61,7 @@ function fetchTraffic(payload) {
     } catch (error) {
       throw new Error();
     }
-  }
+  };
 }
 
 function fetchAffluence(payload) {
@@ -81,7 +81,7 @@ function fetchAffluence(payload) {
     } catch (error) {
       throw new Error();
     }
-  }
+  };
 }
 
 function fetchPromotions(payload) {
@@ -101,7 +101,7 @@ function fetchPromotions(payload) {
     } catch (error) {
       throw new Error();
     }
-  }
+  };
 }
 
 function fetchTypicalCustomer(payload) {
@@ -121,5 +121,5 @@ function fetchTypicalCustomer(payload) {
     } catch (error) {
       throw new Error();
     }
-  }
+  };
 }

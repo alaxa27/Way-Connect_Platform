@@ -1,4 +1,4 @@
-import SimpleReactValidator from 'simple-react-validator';
+import SimpleReactValidator from "simple-react-validator";
 
 export default class ValidatorService {
 

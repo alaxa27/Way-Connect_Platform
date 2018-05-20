@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
-import * as FontAwesome from 'react-icons/lib/fa';
-import { Container, Row, Col, Button, Input } from 'reactstrap';
-import Eye from './view.png';
-import Cart from './shopping_cart_ok.png';
-import InputRange from 'react-input-range';
-import 'react-input-range/lib/css/index.css';
+import React, { Component } from "react";
+import * as FontAwesome from "react-icons/lib/fa";
+import { Container, Row, Col, Button, Input } from "reactstrap";
+import Eye from "./view.png";
+import Cart from "./shopping_cart_ok.png";
+import InputRange from "react-input-range";
+import "react-input-range/lib/css/index.css";
 
 class BidCampaign extends Component {
   constructor(props) {
-      super(props)
+      super(props);
       this.state = {
         value: 30,
         period: 1,
         number: 78,
         bidWrap: false,
-      }
+      };
       this.toggleBid = this.toggleBid.bind(this);
       this.handleChange = this.handleChange.bind(this);
       this.handleInputChange = this.handleInputChange.bind(this);
@@ -24,7 +24,7 @@ class BidCampaign extends Component {
   hit(){
     this.setState({
       bidWrap: false
-    })
+    });
   }
 
   handleInputChange(event) {
@@ -45,7 +45,7 @@ class BidCampaign extends Component {
   toggleBid(){
     this.setState({
       bidWrap: !this.state.bidWrap
-    })
+    });
   }
 
 
@@ -53,120 +53,120 @@ class BidCampaign extends Component {
     const data = [
       {
         rank: 1,
-        name: 'Teads.tv',
-        lastBid: '18:22',
+        name: "Teads.tv",
+        lastBid: "18:22",
         view: 600,
         bid: 6,
         cart: 200,
-        status: 'Delivered'
+        status: "Delivered"
       },
       {
         rank: 2,
-        name: 'Teads.tv',
-        lastBid: '18:22',
+        name: "Teads.tv",
+        lastBid: "18:22",
         view: 600,
         bid: 6,
         cart: 200,
-        status: 'Bidding'
+        status: "Bidding"
       },
       {
         rank: 3,
-        name: 'Teads.tv',
-        lastBid: '18:22',
+        name: "Teads.tv",
+        lastBid: "18:22",
         view: 600,
         bid: 6,
         cart: 200,
-        status: 'Bidding'
+        status: "Bidding"
       },
       {
         rank: 4,
-        name: 'Teads.tv',
-        lastBid: '18:22',
+        name: "Teads.tv",
+        lastBid: "18:22",
         view: 600,
         bid: 6,
         cart: 200,
-        status: 'Progress'
+        status: "Progress"
       },
       {
         rank: 5,
-        name: 'Teads.tv',
-        lastBid: '18:22',
+        name: "Teads.tv",
+        lastBid: "18:22",
         view: 600,
         bid: 6,
         cart: 200,
-        status: 'Progress'
+        status: "Progress"
       },
       {
         rank: 6,
-        name: 'Teads.tv',
-        lastBid: '18:22',
+        name: "Teads.tv",
+        lastBid: "18:22",
         view: 600,
         bid: 6,
         cart: 200,
-        status: 'Bidding'
+        status: "Bidding"
       },
       {
         rank: 7,
-        name: 'Teads.tv',
-        lastBid: '18:22',
+        name: "Teads.tv",
+        lastBid: "18:22",
         view: 600,
         bid: 6,
         cart: 200,
-        status: 'Progress'
+        status: "Progress"
       },
       {
         rank: 8,
-        name: 'Teads.tv',
-        lastBid: '18:22',
+        name: "Teads.tv",
+        lastBid: "18:22",
         view: 600,
         bid: 6,
         cart: 200,
-        status: 'Progress'
+        status: "Progress"
       },
       {
         rank: 9,
-        name: 'Teads.tv',
-        lastBid: '18:22',
+        name: "Teads.tv",
+        lastBid: "18:22",
         view: 600,
         bid: 6,
         cart: 200,
-        status: 'Progress'
+        status: "Progress"
       }
     ];
     const showData = data.map((list, i) =>
-        <tr key={list.rank}>
-          <td><h3><span>#{list.rank}</span>{i === 0 ? <FontAwesome.FaStar /> : null }</h3></td>
-          <td>
-            <label>{list.name}</label>
-            <span>last bid at {list.lastBid}</span>
-          </td>
-          <td>
-            <p>
-              <label className="pull-left">
-                <img src={Eye} alt="View" />
-                {i === 0 || i === 1 || i === 2 ?
-                  <span style={{position: 'relative', left: -5, backgroundColor: '#fff'}}>$</span>
+      <tr key={list.rank}>
+        <td><h3><span>#{list.rank}</span>{i === 0 ? <FontAwesome.FaStar /> : null }</h3></td>
+        <td>
+          <label>{list.name}</label>
+          <span>last bid at {list.lastBid}</span>
+        </td>
+        <td>
+          <p>
+            <label className="pull-left">
+              <img src={Eye} alt="View" />
+              {i === 0 || i === 1 || i === 2 ?
+                <span style={{position: "relative", left: -5, backgroundColor: "#fff"}}>$</span>
                 :
-                  <span style={{position: 'relative', left: -5, backgroundColor: '#cbcbcb'}}>$</span>
+                <span style={{position: "relative", left: -5, backgroundColor: "#cbcbcb"}}>$</span>
                 }
-              </label>
-              <label className="pull-left">{list.bid} <span className="line-through">WC</span></label>
-            </p>
-          </td>
-          <td>
-            <p>
-              <label className="pull-left"><img src={Eye} alt="View" /></label>
-              <label className="pull-left">{list.view}</label>
-            </p>
-          </td>
-          <td>
-            <p>
-              <label className="pull-left"><img src={Cart} alt="Cart" /></label>
-              <label className="pull-left">{list.cart}</label>
-            </p>
-          </td>
-        </tr>
-      )
+            </label>
+            <label className="pull-left">{list.bid} <span className="line-through">WC</span></label>
+          </p>
+        </td>
+        <td>
+          <p>
+            <label className="pull-left"><img src={Eye} alt="View" /></label>
+            <label className="pull-left">{list.view}</label>
+          </p>
+        </td>
+        <td>
+          <p>
+            <label className="pull-left"><img src={Cart} alt="Cart" /></label>
+            <label className="pull-left">{list.cart}</label>
+          </p>
+        </td>
+      </tr>
+      );
     return (
       <div className="sub-page-wrapper animated fadeIn">
 
@@ -206,7 +206,7 @@ class BidCampaign extends Component {
                     <div className="clearfix"></div>
 
                     {this.state.bidWrap ? null :
-                      <Button className="get-quotations-btn button-radius" onClick={this.toggleBid}>Get quotations</Button>
+                    <Button className="get-quotations-btn button-radius" onClick={this.toggleBid}>Get quotations</Button>
                     }
                   </div>
                 </div>
@@ -236,7 +236,7 @@ class BidCampaign extends Component {
         </div>
         <br/>
       </div>
-    )
+    );
   }
 }
 export default BidCampaign;

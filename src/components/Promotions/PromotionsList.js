@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import PromotionsListItem from "./PromotionsListItem";
-import InfiniteScroll from 'react-infinite-scroller';
-import _ from 'underscore';
-import { connect } from 'react-redux';
-import * as actions from '../../actions/promotionActions';
+import InfiniteScroll from "react-infinite-scroller";
+import _ from "underscore";
+import { connect } from "react-redux";
+import * as actions from "../../actions/promotionActions";
 
 @connect((store) => {
     let promotionStore = store.promotion;
@@ -28,31 +28,31 @@ class PromotionsList extends Component {
   }
 
   loadMorePromotions() {
-      this.props.dispatch(actions.loadMore())
+      this.props.dispatch(actions.loadMore());
   }
 
   render() {
     const { promotions, totalCount } = this.props;
     return (
-        <div className="promotion px-4 mt-4">
-            <InfiniteScroll
+      <div className="promotion px-4 mt-4">
+        <InfiniteScroll
                 pageStart={0}
-                loadMore={() => { this.loadMorePromotions() }}
+                loadMore={() => { this.loadMorePromotions(); }}
                 hasMore={promotions.length < totalCount}
                 loader={<div className="loader" key={0}>Loading ...</div>}
                 useWindow={false}
             >
-                {_.map(promotions, (promotion, key) => {
+          {_.map(promotions, (promotion, key) => {
                     return (
-                        <PromotionsListItem
+                      <PromotionsListItem
                             key={key}
                             promotion={promotion}
                         />
                     );
                 })}
-            </InfiniteScroll>
-        </div>
-    )
+        </InfiniteScroll>
+      </div>
+    );
   }
 }
 

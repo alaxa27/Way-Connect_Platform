@@ -1,15 +1,15 @@
-import React, {Component} from 'react';
-import {Row, Col, Input} from 'reactstrap';
-import InputRange from 'react-input-range';
-import 'react-input-range/lib/css/index.css';
-import * as FontAwesome from 'react-icons/lib/fa';
+import React, {Component} from "react";
+import {Row, Col, Input} from "reactstrap";
+import InputRange from "react-input-range";
+import "react-input-range/lib/css/index.css";
+import * as FontAwesome from "react-icons/lib/fa";
 
 class ResearchFilters extends Component {
   constructor(props) {
     super(props);
     this.state = {
       ...this.props
-    }
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleRangeChange = this.handleRangeChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -24,7 +24,7 @@ class ResearchFilters extends Component {
 
   handleRangeChange(age) {
     if (!this.state.fixed) {
-      this.setState({age})
+      this.setState({age});
     }
   }
 
@@ -38,16 +38,16 @@ class ResearchFilters extends Component {
   renderResearchFilters(show) {
     if (show) {
       return (<Row style={{
-          width: '100%'
+          width: "100%"
         }} className="animated fadeIn fadeOut">
         <Col><br/>
           <Col>
             <Col md="5">
               <label className="input-label">Gender</label>
               <div className="gender-radio-buttons">
-                <Input type="radio" id="male" name="gender" value="male" checked={this.state.gender === 'male'} onChange={this.handleInputChange}/>
+                <Input type="radio" id="male" name="gender" value="male" checked={this.state.gender === "male"} onChange={this.handleInputChange}/>
                 <label htmlFor="male" className="pull-left">Male</label>
-                <Input type="radio" id="female" name="gender" value="female" checked={this.state.gender === 'female'} onChange={this.handleInputChange}/>
+                <Input type="radio" id="female" name="gender" value="female" checked={this.state.gender === "female"} onChange={this.handleInputChange}/>
                 <label htmlFor="female" className="pull-right">Female</label>
                 <div className="clearfix"></div>
               </div>
@@ -148,14 +148,14 @@ class ResearchFilters extends Component {
             </Col>
           </Col>
         </Col>
-      </Row>)
+      </Row>);
     } else {
       return null;
     }
   }
 
   render() {
-    return this.renderResearchFilters(this.props.filter)
+    return this.renderResearchFilters(this.props.filter);
   }
 }
 

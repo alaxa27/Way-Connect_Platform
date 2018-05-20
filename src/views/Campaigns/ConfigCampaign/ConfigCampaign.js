@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
-import * as FontAwesome from 'react-icons/lib/fa';
-import * as MdIconPack from 'react-icons/lib/md';
-import { Container, Row, Col, Button, Input, TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
-import Eye from './view.png';
-import Cart from './shopping_cart_ok.png';
-import InputRange from 'react-input-range';
-import 'react-input-range/lib/css/index.css';
-import classnames from 'classnames';
-import DropzoneComponent from 'react-dropzone-component';
+import React, { Component } from "react";
+import * as FontAwesome from "react-icons/lib/fa";
+import * as MdIconPack from "react-icons/lib/md";
+import { Container, Row, Col, Button, Input, TabContent, TabPane, Nav, NavItem, NavLink } from "reactstrap";
+import Eye from "./view.png";
+import Cart from "./shopping_cart_ok.png";
+import InputRange from "react-input-range";
+import "react-input-range/lib/css/index.css";
+import classnames from "classnames";
+import DropzoneComponent from "react-dropzone-component";
 
 class ConfigCampaign extends Component {
   constructor(props) {
-      super(props)
+      super(props);
       this.state = {
-        activeTab: '1',
-      }
+        activeTab: "1",
+      };
 
       this.toggle = this.toggle.bind(this);
   }
@@ -31,12 +31,12 @@ class ConfigCampaign extends Component {
 
   render() {
     const componentConfig = {
-        iconFiletypes: ['.mp4', '.m4v', '.avi', '.flv'],
+        iconFiletypes: [".mp4", ".m4v", ".avi", ".flv"],
         showFiletypeIcon: true,
-        postUrl: '/uploadHandler'
+        postUrl: "/uploadHandler"
     };
-    var djsConfig = { autoProcessQueue: false }
-    var eventHandlers = { addedfile: (file) => console.log(file) }
+    var djsConfig = { autoProcessQueue: false };
+    var eventHandlers = { addedfile: (file) => console.log(file) };
 
     return (
       <div className="sub-page-wrapper animated fadeIn">
@@ -49,16 +49,16 @@ class ConfigCampaign extends Component {
                 <Nav tabs>
                   <NavItem>
                     <NavLink
-                      className={classnames({ active: this.state.activeTab === '1' })}
-                      onClick={() => { this.toggle('1'); }}
+                      className={classnames({ active: this.state.activeTab === "1" })}
+                      onClick={() => { this.toggle("1"); }}
                     >
                       Video
                     </NavLink>
                   </NavItem>
                   <NavItem>
                     <NavLink
-                      className={classnames({ active: this.state.activeTab === '2' })}
-                      onClick={() => { this.toggle('2'); }}
+                      className={classnames({ active: this.state.activeTab === "2" })}
+                      onClick={() => { this.toggle("2"); }}
                     >
                       Survey
                     </NavLink>
@@ -78,7 +78,7 @@ class ConfigCampaign extends Component {
                     <Row>
                       <Col>
                         <Col>
-                          <h2 className="way-heading" style={{fontSize: '24px', marginBottom: 0}}>Define a formulary</h2>
+                          <h2 className="way-heading" style={{fontSize: "24px", marginBottom: 0}}>Define a formulary</h2>
                           <div className="sep">&nbsp;</div>
                         </Col>
 
@@ -130,7 +130,7 @@ class ConfigCampaign extends Component {
         </div>
         <br/>
       </div>
-    )
+    );
   }
 }
 export default ConfigCampaign;

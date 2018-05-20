@@ -25,12 +25,12 @@ export function resetPassword(payload) {
       dispatch({
         type: RESET_PASSWORD_FULFILLED,
         payload: response.data
-      })
+      });
     } catch (error) {
       dispatch({
         type: RESET_PASSWORD_REJECTED,
         payload: error
       });
     }
-  }
+  };
 }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
     Row,
     Col,
@@ -10,17 +10,17 @@ import {
     Button,
     ButtonToolbar,
     ButtonGroup,
-} from 'reactstrap';
-import { Line } from 'react-chartjs-2';
+} from "reactstrap";
+import { Line } from "react-chartjs-2";
 
 // convert Hex to RGBA
 function convertHex(hex, opacity) {
-    hex = hex.replace('#', '');
+    hex = hex.replace("#", "");
     let r = parseInt(hex.substring(0, 2), 16);
     let g = parseInt(hex.substring(2, 4), 16);
     let b = parseInt(hex.substring(4, 6), 16);
 
-    return 'rgba(' + r + ',' + g + ',' + b + ',' + opacity / 100 + ')';
+    return "rgba(" + r + "," + g + "," + b + "," + opacity / 100 + ")";
 }
 
 function random(min, max) {
@@ -34,8 +34,8 @@ for (let i = 0; i <= elements; i++) {
     data.push(random(50, 200));
 }
 
-const brandSuccess = '#F7931E';
-const brandInfo = '#F15A24';
+const brandSuccess = "#F7931E";
+const brandInfo = "#F15A24";
 
 const mainChartOpts = {
     maintainAspectRatio: false,
@@ -71,7 +71,7 @@ class TrafficChart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        period: 'month',
+        period: "month",
         chart: null,
         chartOptions: null
     };
@@ -81,21 +81,21 @@ class TrafficChart extends Component {
   componentWillMount() {
       this.setState({
           chart: {
-              labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W', 'T', 'F',
-                  'S', 'S', 'M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W', 'T', 'F',
-                  'S', 'S'],
+              labels: ["M", "T", "W", "T", "F", "S", "S", "M", "T", "W", "T", "F",
+                  "S", "S", "M", "T", "W", "T", "F", "S", "S", "M", "T", "W", "T", "F",
+                  "S", "S"],
               datasets: [
                   {
-                      label: 'My First dataset',
+                      label: "My First dataset",
                       backgroundColor: convertHex(brandInfo, 10),
                       borderColor: brandInfo,
-                      pointHoverBackgroundColor: '#fff',
+                      pointHoverBackgroundColor: "#fff",
                       borderWidth: 3,
                       data: data
                   },
               ]
           }
-      })
+      });
   }
 
   handleChangePeriod(period) {
@@ -114,35 +114,35 @@ class TrafficChart extends Component {
 
   render() {
     return (
-        <Card>
-            <CardBody>
-                <Row>
-                    <Col sm="5">
-                        <CardTitle className="mb-0">Traffic</CardTitle>
-                        <div className="small text-muted">November 2017</div>
-                    </Col>
-                    <Col sm="7" className="d-none d-sm-inline-block">
-                        <ButtonToolbar className="float-right" aria-label="Toolbar with button groups">
-                            <ButtonGroup className="mr-3" aria-label="First group">
-                                <Button color="outline-secondary" onClick={() => this.handleChangePeriod('month')} active={this.state.period === 'month'}>Month</Button>
-                                <Button color="outline-secondary" onClick={() => this.handleChangePeriod('year')} active={this.state.period === 'year'}>Year</Button>
-                            </ButtonGroup>
-                        </ButtonToolbar>
-                    </Col>
-                </Row>
-                <div className="chart-wrapper" style={{height: 300 + 'px', marginTop: 40 + 'px'}}>
-                    <Line data={this.state.chart} options={mainChartOpts} height={300}/>
-                </div>
-            </CardBody>
-            <CardFooter>
-                <ul className="d-flex justify-content-center main-chart-legend">
-                    <li className="main-chart-legend__item">
-                        <div className="text-muted">Views</div>
-                        <Progress className="progress-xs mt-2" color={brandInfo} value="100"/>
-                    </li>
-                </ul>
-            </CardFooter>
-        </Card>
+      <Card>
+        <CardBody>
+          <Row>
+            <Col sm="5">
+              <CardTitle className="mb-0">Traffic</CardTitle>
+              <div className="small text-muted">November 2017</div>
+            </Col>
+            <Col sm="7" className="d-none d-sm-inline-block">
+              <ButtonToolbar className="float-right" aria-label="Toolbar with button groups">
+                <ButtonGroup className="mr-3" aria-label="First group">
+                  <Button color="outline-secondary" onClick={() => this.handleChangePeriod("month")} active={this.state.period === "month"}>Month</Button>
+                  <Button color="outline-secondary" onClick={() => this.handleChangePeriod("year")} active={this.state.period === "year"}>Year</Button>
+                </ButtonGroup>
+              </ButtonToolbar>
+            </Col>
+          </Row>
+          <div className="chart-wrapper" style={{height: 300 + "px", marginTop: 40 + "px"}}>
+            <Line data={this.state.chart} options={mainChartOpts} height={300}/>
+          </div>
+        </CardBody>
+        <CardFooter>
+          <ul className="d-flex justify-content-center main-chart-legend">
+            <li className="main-chart-legend__item">
+              <div className="text-muted">Views</div>
+              <Progress className="progress-xs mt-2" color={brandInfo} value="100"/>
+            </li>
+          </ul>
+        </CardFooter>
+      </Card>
     );
   }
 }

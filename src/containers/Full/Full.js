@@ -1,17 +1,17 @@
-import React, {Component} from 'react';
-import {Link, Switch, Route, Redirect} from 'react-router-dom';
-import {Container} from 'reactstrap';
-import Header from '../../components/Header/';
-import Sidebar from '../../components/Sidebar/';
-import Breadcrumb from '../../components/Breadcrumb/';
-import Aside from '../../components/Aside/';
-import Footer from '../../components/Footer/';
+import React, {Component} from "react";
+import {Link, Switch, Route, Redirect} from "react-router-dom";
+import {Container} from "reactstrap";
+import Header from "../../components/Header/";
+import Sidebar from "../../components/Sidebar/";
+import Breadcrumb from "../../components/Breadcrumb/";
+import Aside from "../../components/Aside/";
+import Footer from "../../components/Footer/";
 
-import Dashboard from '../../views/Dashboard/';
-import ListCampaign from '../../views/Campaigns/ListCampaign/';
-import CreateCampaign from '../../views/Campaigns/CreateCampaign/';
-import Campaigns from '../../views/Campaigns';
-import Partner from '../../views/Partner/';
+import Dashboard from "../../views/Dashboard/";
+import ListCampaign from "../../views/Campaigns/ListCampaign/";
+import CreateCampaign from "../../views/Campaigns/CreateCampaign/";
+import Campaigns from "../../views/Campaigns";
+import Partner from "../../views/Partner/";
 
 class Full extends Component {
   render() {

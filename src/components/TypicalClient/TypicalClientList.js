@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import TypicalClientItem from "./TypicalClientItem";
 import _ from "underscore";
 
@@ -10,9 +10,9 @@ class TypicalClientList extends Component {
     const { data } = this.props;
     return (
       <ul className="typical-client p-0 m-0 list-unstyled">
-          {_.map(data, (prop, key) => {
+        {_.map(data, (prop, key) => {
               return (
-                  <TypicalClientItem
+                <TypicalClientItem
                       key={prop.id}
                       prop={prop}
                       last={key === data.length - 1}
@@ -20,7 +20,7 @@ class TypicalClientList extends Component {
               );
           })}
       </ul>
-    )
+    );
   }
 }
 

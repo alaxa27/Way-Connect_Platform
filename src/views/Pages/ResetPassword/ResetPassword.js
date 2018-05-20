@@ -1,12 +1,12 @@
-import React, {Component} from 'react';
+import React, {Component} from "react";
 import {
   Container,
   Row,
   Col,
-} from 'reactstrap';
-import { connect } from 'react-redux';
-import * as actions from '../../../actions/resetPasswordActions';
-import { withRouter } from 'react-router';
+} from "reactstrap";
+import { connect } from "react-redux";
+import * as actions from "../../../actions/resetPasswordActions";
+import { withRouter } from "react-router";
 
 @connect((store) => {
     let resetPasswordStore = store.resetPassword;
@@ -36,11 +36,11 @@ class ResetPassword extends Component {
   }
 
   handleChangePassword(e) {
-      this.setState({password: e.target.value})
+      this.setState({password: e.target.value});
   }
 
   handleChangePasswordConfirmation(e) {
-      this.setState({passwordConfirmation: e.target.value})
+      this.setState({passwordConfirmation: e.target.value});
   }
 
   handleReset(e) {
@@ -56,7 +56,7 @@ class ResetPassword extends Component {
   componentWillReceiveProps(nextProps) {
       const { success, history } = nextProps;
       if(success) {
-          history.push('/login');
+          history.push("/login");
       }
   }
 
@@ -71,10 +71,10 @@ class ResetPassword extends Component {
               <div className="login__form w-100 mt-4">
                 <form onSubmit={this.handleReset}>
                   <div className="login__input-box mb-4">
-                      {error ?
-                          <div className="alert alert-danger">
+                    {error ?
+                      <div className="alert alert-danger">
                               Something went wrong
-                          </div>
+                      </div>
                       :
                           null
                       }

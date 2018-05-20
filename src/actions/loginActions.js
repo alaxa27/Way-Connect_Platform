@@ -1,10 +1,16 @@
-import { axiosInstance } from "../constants/ApiConfig";
+import {
+  axiosInstance
+} from "../constants/ApiConfig";
 
 import CookieService from "../services/CookieService";
 import {
   LOGIN,
   LOGIN_FULFILLED,
-  LOGIN_REJECTED
+  LOGIN_REJECTED,
+
+  LOGOUT,
+  LOGOUT_FULFILLED,
+  LOGOUT_REJECTED
 } from "../constants/ActionTypes";
 
 export function login(payload) {
@@ -37,5 +43,34 @@ export function login(payload) {
         payload: error
       });
     }
-  }
+  };
+}
+
+
+export function logout(payload) {
+  return async (dispatch) => {
+    dispatch({
+      type: LOGOUT
+    });
+    try {
+
+      //Back doesn't allow logout atm.
+      // const response = await axiosInstance({
+      //   method: "GET",
+      //   url: "/auth/logout/",
+      // });
+
+      const cookieService = new CookieService();
+      cookieService.removeJwt();
+
+      dispatch({
+        type: LOGOUT_FULFILLED
+      });
+    } catch (error) {
+      dispatch({
+        type: LOGOUT_REJECTED,
+        payload: error
+      });
+    }
+  };
 }

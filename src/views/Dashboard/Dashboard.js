@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import {Bar, Line} from 'react-chartjs-2';
+import React, { Component } from "react";
+import {Bar, Line} from "react-chartjs-2";
 import {
   Badge,
   Row,
@@ -21,8 +21,8 @@ import {
   Label,
   Input,
   Table
-} from 'reactstrap';
-import * as FontAwesome from 'react-icons/lib/fa';
+} from "reactstrap";
+import * as FontAwesome from "react-icons/lib/fa";
 import {
   withScriptjs,
   withGoogleMap,
@@ -31,11 +31,11 @@ import {
 } from "react-google-maps";
 import { compose, withProps } from "recompose";
 
-const brandPrimary = '#20a8d8';
-const brandSuccess = '#4dbd74';
-const brandInfo = '#63c2de';
-const brandWarning = '#f8cb00';
-const brandDanger = '#f86c6b';
+const brandPrimary = "#20a8d8";
+const brandSuccess = "#4dbd74";
+const brandInfo = "#63c2de";
+const brandWarning = "#f8cb00";
+const brandDanger = "#f86c6b";
 
 
 const MyMapComponent = compose(
@@ -47,9 +47,9 @@ const MyMapComponent = compose(
      */
     googleMapURL:
       "https://maps.googleapis.com/maps/api/js?key=AIzaSyDZiM1T9KvOHGALHu2EERTKsrgTC4Dp0iQ&v=3.exp&libraries=geometry,drawing,places",
-    loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `400px` }} />,
-    mapElement: <div style={{ height: `100%` }} />
+    loadingElement: <div style={{ height: "100%" }} />,
+    containerElement: <div style={{ height: "400px" }} />,
+    mapElement: <div style={{ height: "100%" }} />
   }),
   withScriptjs,
   withGoogleMap
@@ -64,12 +64,12 @@ const MyMapComponent = compose(
 
 // Card Chart 1
 const cardChartData1 = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  labels: ["January", "February", "March", "April", "May", "June", "July"],
   datasets: [
     {
-      label: 'My First dataset',
+      label: "My First dataset",
       backgroundColor: brandPrimary,
-      borderColor: 'rgba(255,255,255,.55)',
+      borderColor: "rgba(255,255,255,.55)",
       data: [65, 59, 84, 84, 51, 55, 40]
     }
   ],
@@ -83,12 +83,12 @@ const cardChartOpts1 = {
   scales: {
     xAxes: [{
       gridLines: {
-        color: 'transparent',
-        zeroLineColor: 'transparent'
+        color: "transparent",
+        zeroLineColor: "transparent"
       },
       ticks: {
         fontSize: 2,
-        fontColor: 'transparent',
+        fontColor: "transparent",
       }
 
     }],
@@ -111,16 +111,16 @@ const cardChartOpts1 = {
       hoverRadius: 4,
     },
   }
-}
+};
 
 // Card Chart 2
 const cardChartData2 = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  labels: ["January", "February", "March", "April", "May", "June", "July"],
   datasets: [
     {
-      label: 'My First dataset',
+      label: "My First dataset",
       backgroundColor: brandInfo,
-      borderColor: 'rgba(255,255,255,.55)',
+      borderColor: "rgba(255,255,255,.55)",
       data: [1, 18, 9, 17, 34, 22, 11]
     }
   ],
@@ -134,12 +134,12 @@ const cardChartOpts2 = {
   scales: {
     xAxes: [{
       gridLines: {
-        color: 'transparent',
-        zeroLineColor: 'transparent'
+        color: "transparent",
+        zeroLineColor: "transparent"
       },
       ticks: {
         fontSize: 2,
-        fontColor: 'transparent',
+        fontColor: "transparent",
       }
 
     }],
@@ -163,16 +163,16 @@ const cardChartOpts2 = {
       hoverRadius: 4,
     },
   }
-}
+};
 
 // Card Chart 3
 const cardChartData3 = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  labels: ["January", "February", "March", "April", "May", "June", "July"],
   datasets: [
     {
-      label: 'My First dataset',
-      backgroundColor: 'rgba(255,255,255,.2)',
-      borderColor: 'rgba(255,255,255,.55)',
+      label: "My First dataset",
+      backgroundColor: "rgba(255,255,255,.2)",
+      borderColor: "rgba(255,255,255,.55)",
       data: [78, 81, 80, 45, 34, 12, 40]
     }
   ],
@@ -201,16 +201,16 @@ const cardChartOpts3 = {
       hoverRadius: 4,
     },
   }
-}
+};
 
 // Card Chart 4
 const cardChartData4 = {
-  labels: ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+  labels: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
   datasets: [
     {
-      label: 'My First dataset',
-      backgroundColor: 'rgba(255,255,255,.3)',
-      borderColor: 'transparent',
+      label: "My First dataset",
+      backgroundColor: "rgba(255,255,255,.3)",
+      borderColor: "transparent",
       data: [78, 81, 80, 45, 34, 12, 40, 75, 34, 89, 32, 68, 54, 72, 18, 98]
     }
   ],
@@ -230,25 +230,25 @@ const cardChartOpts4 = {
       display: false,
     }]
   }
-}
+};
 
 // Social Box Chart
 const socialBoxData = [
-  {data: [65, 59, 84, 84, 51, 55, 40], label: 'facebook'},
-  {data: [1, 13, 9, 17, 34, 41, 38], label: 'twitter'},
-  {data: [78, 81, 80, 45, 34, 12, 40], label: 'linkedin'},
-  {data: [35, 23, 56, 22, 97, 23, 64], label: 'google'}
+  {data: [65, 59, 84, 84, 51, 55, 40], label: "facebook"},
+  {data: [1, 13, 9, 17, 34, 41, 38], label: "twitter"},
+  {data: [78, 81, 80, 45, 34, 12, 40], label: "linkedin"},
+  {data: [35, 23, 56, 22, 97, 23, 64], label: "google"}
 ];
 
 const makeSocialBoxData = (dataSetNo) => {
   const dataset = socialBoxData[dataSetNo];
   const data = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    labels: ["January", "February", "March", "April", "May", "June", "July"],
     datasets: [
       {
-        backgroundColor: 'rgba(255,255,255,.1)',
-        borderColor: 'rgba(255,255,255,.55)',
-        pointHoverBackgroundColor: '#fff',
+        backgroundColor: "rgba(255,255,255,.1)",
+        borderColor: "rgba(255,255,255,.55)",
+        pointHoverBackgroundColor: "#fff",
         borderWidth: 2,
         data: dataset.data,
         label: dataset.label,
@@ -286,38 +286,38 @@ const socialChartOpts = {
 const sparkLineChartData = [
   {
     data: [35, 23, 56, 22, 97, 23, 64],
-    label: 'New Clients'
+    label: "New Clients"
   },
   {
     data: [65, 59, 84, 84, 51, 55, 40],
-    label: 'Recurring Clients'
+    label: "Recurring Clients"
   },
   {
     data: [35, 23, 56, 22, 97, 23, 64],
-    label: 'Pageviews'
+    label: "Pageviews"
   },
   {
     data: [65, 59, 84, 84, 51, 55, 40],
-    label: 'Organic'
+    label: "Organic"
   },
   {
     data: [78, 81, 80, 45, 34, 12, 40],
-    label: 'CTR'
+    label: "CTR"
   },
   {
     data: [1, 13, 9, 17, 34, 41, 38],
-    label: 'Bounce Rate'
+    label: "Bounce Rate"
   }
 ];
 
 const makeSparkLineData = (dataSetNo, variant) => {
   const dataset = sparkLineChartData[dataSetNo];
   const data = {
-    labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
     datasets: [
       {
-        backgroundColor: 'transparent',
-        borderColor: variant ? variant : '#c2cfd6',
+        backgroundColor: "transparent",
+        borderColor: variant ? variant : "#c2cfd6",
         data: dataset.data,
         label: dataset.label
       }
@@ -357,12 +357,12 @@ const sparklineChartOpts = {
 
 // convert Hex to RGBA
 function convertHex(hex, opacity) {
-  hex = hex.replace('#', '');
+  hex = hex.replace("#", "");
   var r = parseInt(hex.substring(0, 2), 16);
   var g = parseInt(hex.substring(2, 4), 16);
   var b = parseInt(hex.substring(4, 6), 16);
 
-  var result = 'rgba(' + r + ',' + g + ',' + b + ',' + opacity / 100 + ')';
+  var result = "rgba(" + r + "," + g + "," + b + "," + opacity / 100 + ")";
   return result;
 }
 
@@ -383,35 +383,35 @@ for (var i = 0; i <= elements; i++) {
 }
 
 const mainChart = {
-  labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W', 'T', 'F', 'S', 'S'],
+  labels: ["M", "T", "W", "T", "F", "S", "S", "M", "T", "W", "T", "F", "S", "S", "M", "T", "W", "T", "F", "S", "S", "M", "T", "W", "T", "F", "S", "S"],
   datasets: [
     {
-      label: 'My First dataset',
+      label: "My First dataset",
       backgroundColor: convertHex(brandInfo, 10),
       borderColor: brandInfo,
-      pointHoverBackgroundColor: '#fff',
+      pointHoverBackgroundColor: "#fff",
       borderWidth: 2,
       data: data1
     },
     {
-      label: 'My Second dataset',
-      backgroundColor: 'transparent',
+      label: "My Second dataset",
+      backgroundColor: "transparent",
       borderColor: brandSuccess,
-      pointHoverBackgroundColor: '#fff',
+      pointHoverBackgroundColor: "#fff",
       borderWidth: 2,
       data: data2
     },
     {
-      label: 'My Third dataset',
-      backgroundColor: 'transparent',
+      label: "My Third dataset",
+      backgroundColor: "transparent",
       borderColor: brandDanger,
-      pointHoverBackgroundColor: '#fff',
+      pointHoverBackgroundColor: "#fff",
       borderWidth: 1,
       borderDash: [8, 5],
       data: data3
     }
   ]
-}
+};
 
 const mainChartOpts = {
   maintainAspectRatio: false,
@@ -441,7 +441,7 @@ const mainChartOpts = {
       hoverBorderWidth: 3,
     }
   }
-}
+};
 
 
 class Dashboard extends Component {
@@ -454,8 +454,8 @@ class Dashboard extends Component {
     this.state = {
       dropdownOpen: false,
       radioSelected: 2,
-      country: 'india',
-      city: 'chandigarh'
+      country: "india",
+      city: "chandigarh"
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -485,62 +485,62 @@ class Dashboard extends Component {
   render() {
     const tableArray = [1, 2, 3, 4, 5, 6];
     const taleList = tableArray.map(( list, i) => 
-      <tr key={i} className={ i === 0 ? 'full-opacity' : null }>
+      <tr key={i} className={ i === 0 ? "full-opacity" : null }>
         <td>
           <label>#{i + 1} Westside Shopping Center</label>
         </td>
       </tr>
-    )
+    );
 
     return (
       <div className="animated fadeIn">
         <Row>
           <Col xs="12" sm="6" lg="3">
             <div className="panel info-box panel-orange panel-bg">
-                <div className="panel-body">
-                    <div className="info-box-stats">
-                        <h3 className="counter">9.823</h3>
-                        <span className="info-box-title">users online</span>
-                    </div>
-                    <div className="clearfix"></div>
+              <div className="panel-body">
+                <div className="info-box-stats">
+                  <h3 className="counter">9.823</h3>
+                  <span className="info-box-title">users online</span>
                 </div>
+                <div className="clearfix"></div>
+              </div>
             </div>
 
           </Col>
 
           <Col xs="12" sm="6" lg="3">
             <div className="panel info-box panel-yellow-dark panel-bg">
-                <div className="panel-body">
-                    <div className="info-box-stats">
-                        <h3 className="counter">678</h3>
-                        <span className="info-box-title">views per hours</span>
-                    </div>
-                    <div className="clearfix"></div>
+              <div className="panel-body">
+                <div className="info-box-stats">
+                  <h3 className="counter">678</h3>
+                  <span className="info-box-title">views per hours</span>
                 </div>
+                <div className="clearfix"></div>
+              </div>
             </div>
           </Col>
 
           <Col xs="12" sm="6" lg="3">
             <div className="panel info-box panel-yellow panel-bg">
-                <div className="panel-body">
-                    <div className="info-box-stats">
-                        <h3><span className="counter">15</span>MB/s</h3>
-                        <span className="info-box-title">average data speed</span>
-                    </div>
-                    <div className="clearfix"></div>
+              <div className="panel-body">
+                <div className="info-box-stats">
+                  <h3><span className="counter">15</span>MB/s</h3>
+                  <span className="info-box-title">average data speed</span>
                 </div>
+                <div className="clearfix"></div>
+              </div>
             </div>
           </Col>
 
           <Col xs="12" sm="6" lg="3">
             <div className="panel info-box panel-yellow-light panel-bg">
-                <div className="panel-body">
-                    <div className="info-box-stats">
-                        <h3><span className="counter">82</span>%</h3>
-                        <span className="info-box-title">confirmed targeting</span>
-                    </div>
-                    <div className="clearfix"></div>
+              <div className="panel-body">
+                <div className="info-box-stats">
+                  <h3><span className="counter">82</span>%</h3>
+                  <span className="info-box-title">confirmed targeting</span>
                 </div>
+                <div className="clearfix"></div>
+              </div>
             </div>
           </Col>
           <div className="clearfix"></div>
@@ -565,7 +565,7 @@ class Dashboard extends Component {
                     </ButtonToolbar>
                   </Col>
                 </Row>
-                <div className="chart-wrapper" style={{height: 300 + 'px', marginTop: 40 + 'px'}}>
+                <div className="chart-wrapper" style={{height: 300 + "px", marginTop: 40 + "px"}}>
                   <Line data={mainChart} options={mainChartOpts} height={300}/>
                 </div>
               </CardBody>
@@ -604,7 +604,7 @@ class Dashboard extends Component {
 
         <Row>
           <Col xs="12" md="8">
-            <h2 className="way-heading" style={{fontSize: '24px'}}>Our partners</h2>
+            <h2 className="way-heading" style={{fontSize: "24px"}}>Our partners</h2>
 
             <div className="google-maps-wrapper">
               <MyMapComponent isMarkerShown />
@@ -612,33 +612,33 @@ class Dashboard extends Component {
 
           </Col>
           <Col xs="12" md="4" className="top-space">
-              <h4 className="way-heading">Select a country</h4>
+            <h4 className="way-heading">Select a country</h4>
 
-              <div className="custom-selectbox-main">
-                <Input type="select" className="custom-selectbox" name="country" value={this.state.country} onChange={this.handleChange}>
-                  <option value="India">India</option>
-                  <option value="australia">Australia</option>
-                </Input>
-                <FontAwesome.FaArrowCircleODown className="custom-selectbox-arrow" />
-              </div>
+            <div className="custom-selectbox-main">
+              <Input type="select" className="custom-selectbox" name="country" value={this.state.country} onChange={this.handleChange}>
+                <option value="India">India</option>
+                <option value="australia">Australia</option>
+              </Input>
+              <FontAwesome.FaArrowCircleODown className="custom-selectbox-arrow" />
+            </div>
 
-              <h4 className="way-heading">Select a city</h4>
+            <h4 className="way-heading">Select a city</h4>
 
-              <div className="custom-selectbox-main">
-                <Input type="select" className="custom-selectbox" name="city" value={this.state.city} onChange={this.handleChange}>
-                  <option value="chandigarh">Chandigarh</option>
-                  <option value="delhi">Delhi</option>
-                </Input>
-                <FontAwesome.FaArrowCircleODown className="custom-selectbox-arrow" />
-              </div>
+            <div className="custom-selectbox-main">
+              <Input type="select" className="custom-selectbox" name="city" value={this.state.city} onChange={this.handleChange}>
+                <option value="chandigarh">Chandigarh</option>
+                <option value="delhi">Delhi</option>
+              </Input>
+              <FontAwesome.FaArrowCircleODown className="custom-selectbox-arrow" />
+            </div>
 
-              <div>
-                <table className="locations-list">
-                  <tbody>
-                    {taleList}
-                  </tbody>
-                </table>
-              </div>
+            <div>
+              <table className="locations-list">
+                <tbody>
+                  {taleList}
+                </tbody>
+              </table>
+            </div>
 
           </Col>
           <div className="clearfix"></div>
@@ -647,7 +647,7 @@ class Dashboard extends Component {
 
         
       </div>
-    )
+    );
   }
 }
 

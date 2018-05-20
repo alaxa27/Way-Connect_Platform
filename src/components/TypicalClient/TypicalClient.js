@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   Card,
   CardHeader,
   CardBody,
   Media
-} from 'reactstrap';
+} from "reactstrap";
 import TypicalClientImage from "./TypicalClientImage";
 import TypicalClientList from "./TypicalClientList";
 
 const title = "Client Type";
 
 const colors = {
-  gender: '',
-  age: '',
-  nationality: '',
-  profStatus: '',
-  relStatus: ''
+  gender: "",
+  age: "",
+  nationality: "",
+  profStatus: "",
+  relStatus: ""
 };
 
 class TypicalClient extends Component {
@@ -27,7 +27,7 @@ class TypicalClient extends Component {
     return (
       <Card className="mb-md-0 typical-client-card">
         <CardHeader>
-            {title}
+          {title}
         </CardHeader>
         <CardBody>
           <Media>
@@ -37,7 +37,7 @@ class TypicalClient extends Component {
                 height={180}
               />
             </Media>
-            <Media body style={{paddingLeft: '1.25rem'}}>
+            <Media body style={{paddingLeft: "1.25rem"}}>
               <TypicalClientList
                 data={data}
               />
@@ -45,7 +45,7 @@ class TypicalClient extends Component {
           </Media>
         </CardBody>
       </Card>
-    )
+    );
   }
 }
 

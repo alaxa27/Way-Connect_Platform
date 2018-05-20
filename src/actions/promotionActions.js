@@ -18,10 +18,10 @@ export function fetch() {
           response.push({
               id: i,
               wc: 20,
-              title: '#WFCD423',
-              createdAt: '18/04/2018 18:22',
+              title: "#WFCD423",
+              createdAt: "18/04/2018 18:22",
               visit: 18,
-          })
+          });
       }
       dispatch({
         type: PROMOTIONS_FULFILLED,
@@ -36,7 +36,7 @@ export function fetch() {
         payload: error
       });
     }
-  }
+  };
 }
 
 export function loadMore() {
@@ -47,10 +47,10 @@ export function loadMore() {
                 response.push({
                     id: i + 100,
                     wc: 25,
-                    title: '#WFCD4234',
-                    createdAt: '18/04/2018 18:22:22',
+                    title: "#WFCD4234",
+                    createdAt: "18/04/2018 18:22:22",
                     visit: 19,
-                })
+                });
             }
             dispatch({
                 type: PROMOTIONS_LOAD_MORE,
@@ -64,5 +64,5 @@ export function loadMore() {
                 payload: error
             });
         }
-    }
+    };
 }

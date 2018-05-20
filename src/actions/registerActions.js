@@ -37,5 +37,5 @@ export function register(payload) {
         payload: error
       });
     }
-  }
+  };
 }

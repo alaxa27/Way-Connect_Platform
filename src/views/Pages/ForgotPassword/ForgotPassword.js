@@ -1,12 +1,12 @@
-import React, {Component} from 'react';
+import React, {Component} from "react";
 import {
   Container,
   Row,
   Col,
-} from 'reactstrap';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import * as actions from '../../../actions/forgotPasswordActions';
+} from "reactstrap";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import * as actions from "../../../actions/forgotPasswordActions";
 
 @connect((store) => {
     let forgotPasswordStore = store.forgotPassword;
@@ -18,16 +18,16 @@ import * as actions from '../../../actions/forgotPasswordActions';
 })
 class ForgotPassword extends Component {
   constructor(props) {
-      super(props)
+      super(props);
       this.state = {
           email: "",
       };
-      this.handleChangeEmail = this.handleChangeEmail.bind(this)
-      this.handleReset = this.handleReset.bind(this)
+      this.handleChangeEmail = this.handleChangeEmail.bind(this);
+      this.handleReset = this.handleReset.bind(this);
   }
 
   handleChangeEmail(e) {
-      this.setState({email: e.target.value})
+      this.setState({email: e.target.value});
   }
 
   handleReset(e) {
@@ -53,13 +53,13 @@ class ForgotPassword extends Component {
                   <form onSubmit={this.handleReset}>
                     <div className="login__input-box mb-4">
                       {error ?
-                          <div className="alert alert-danger">
+                        <div className="alert alert-danger">
                             An error occurred.
-                          </div>
+                        </div>
                       : success ?
-                          <div className="alert alert-success">
+                        <div className="alert alert-success">
                             The link to reset password has been sent to your email address.
-                          </div>
+                        </div>
                       :
                           null
                       }
@@ -68,7 +68,7 @@ class ForgotPassword extends Component {
                     <button type="submit" className="btn-login btn-app-login text-uppercase w-100 mb-1">
                       Send Link
                       {fetching ?
-                          <span className="pl-2">...</span>
+                        <span className="pl-2">...</span>
                       :
                           null
                       }

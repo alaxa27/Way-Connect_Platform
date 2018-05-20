@@ -22,12 +22,12 @@ export function requestForgotPasswordLink(payload) {
       dispatch({
         type: FORGOT_PASSWORD_FULFILLED,
         payload: response.data
-      })
+      });
     } catch (error) {
       dispatch({
         type: FORGOT_PASSWORD_REJECTED,
         payload: error
       });
     }
-  }
+  };
 }

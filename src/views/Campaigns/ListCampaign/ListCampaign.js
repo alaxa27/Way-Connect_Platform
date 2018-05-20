@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import * as FontAwesome from 'react-icons/lib/fa';
-import * as MdIconPack from 'react-icons/lib/md';
-import Eye from './view.png';
-import Cart from './shopping_cart_ok.png';
-import InputRange from 'react-input-range';
-import 'react-input-range/lib/css/index.css';
-import { Row, Col, Button, Input } from 'reactstrap';
+import React, { Component } from "react";
+import * as FontAwesome from "react-icons/lib/fa";
+import * as MdIconPack from "react-icons/lib/md";
+import Eye from "./view.png";
+import Cart from "./shopping_cart_ok.png";
+import InputRange from "react-input-range";
+import "react-input-range/lib/css/index.css";
+import { Row, Col, Button, Input } from "reactstrap";
 
 class ListCampaign extends Component {
   constructor(props) {
-      super(props)
+      super(props);
       this.state = {
-      }
+      };
   }
 
   render() {
@@ -22,7 +22,7 @@ class ListCampaign extends Component {
         <td>
           <label>
             <img src={Eye} alt="View" />
-            <span style={{position: 'relative', left: -5, backgroundColor: '#dbdbdb'}}>$</span>
+            <span style={{position: "relative", left: -5, backgroundColor: "#dbdbdb"}}>$</span>
             &nbsp;
             5
             <span className="line-through line-through-bids">WC</span>
@@ -38,7 +38,7 @@ class ListCampaign extends Component {
         <td><label><FontAwesome.FaUser /> &nbsp; 12</label></td>
         <td><label><img src={Cart} alt="Cart" /> &nbsp; 500</label></td>
       </tr>
-    )
+    );
 
     const oldBids = tableArray.map(( list, i) =>
       <tr key={i}>
@@ -46,7 +46,7 @@ class ListCampaign extends Component {
         <td>
           <label>
             <img src={Eye} alt="View" />
-            <span style={{position: 'relative', left: -5, backgroundColor: '#dbdbdb'}}>$</span>
+            <span style={{position: "relative", left: -5, backgroundColor: "#dbdbdb"}}>$</span>
             &nbsp;
             5
             <span className="line-through line-through-bids">WC</span>
@@ -62,15 +62,15 @@ class ListCampaign extends Component {
         <td><label><FontAwesome.FaUser /> &nbsp; 12</label></td>
         <td><label><img src={Cart} alt="Cart" /> &nbsp; 500</label></td>
       </tr>
-    )
+    );
 
     return (
       <div className="sub-page-wrapper animated fadeIn">
         <div className="custom-breadcrumb-wrapper">
           <div className="custom-breadcrumb">
-            <Row style={{width: '100%'}}>
+            <Row style={{width: "100%"}}>
               <Col>
-                <label className="bidding-status-label" style={{color: '#cbcbcb'}}>
+                <label className="bidding-status-label" style={{color: "#cbcbcb"}}>
                   <FontAwesome.FaCircle />
                   Current Bids
                 </label>
@@ -93,11 +93,11 @@ class ListCampaign extends Component {
         </Row>
         <br/><br/>
 
-        <div className="custom-breadcrumb-wrapper" style={{marginTop: 0, borderTop: '1px solid #a4b7c1'}}>
+        <div className="custom-breadcrumb-wrapper" style={{marginTop: 0, borderTop: "1px solid #a4b7c1"}}>
           <div className="custom-breadcrumb">
-            <Row style={{width: '100%'}}>
+            <Row style={{width: "100%"}}>
               <Col>
-                <label className="bidding-status-label" style={{color: '#989898'}}>
+                <label className="bidding-status-label" style={{color: "#989898"}}>
                   <FontAwesome.FaCircle />
                   Old Bids
                 </label>
@@ -117,7 +117,7 @@ class ListCampaign extends Component {
         </Row>
         <br/><br/>
       </div>
-    )
+    );
   }
 }
 export default ListCampaign;

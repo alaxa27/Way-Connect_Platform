@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component} from "react";
 import {
   Container,
   Row,
@@ -12,10 +12,10 @@ import {
   InputGroupAddon,
   InputGroupText,
   Form
-} from 'reactstrap';
-import { Link, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-import * as actions from '../../../actions/loginActions';
+} from "reactstrap";
+import { Link, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import * as actions from "../../../actions/loginActions";
 import CookieService from "../../../services/CookieService";
 
 @connect((store) => {
@@ -72,8 +72,8 @@ class Login extends Component {
     const { error, fetching, isAuthenticated, location } = this.props;
 
     if(isAuthenticated || this.state.redirect) {
-        const redirectTo = location.state ? location.state.from.pathname : '/dashboard';
-        return <Redirect to={redirectTo} />
+        const redirectTo = location.state ? location.state.from.pathname : "/dashboard";
+        return <Redirect to={redirectTo} />;
     }
 
     return (<div className="app app--dark flex-row align-items-center">
@@ -86,9 +86,9 @@ class Login extends Component {
               <form onSubmit={this.handleLogin}>
                 <div className="login__input-box my-4">
                   {error ?
-                      <div className="alert alert-danger">
+                    <div className="alert alert-danger">
                           You can't log in with provided credentials
-                      </div>
+                    </div>
                   :
                     null
                   }
