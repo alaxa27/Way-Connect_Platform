@@ -27,12 +27,12 @@ class TypicalClientItem extends Component {
           <div className="typical-client__value text-right">
             {prop.value}
           </div>
-          <a href="#" className="typical-client__settings text-right pl-2" id={"Tooltip-" + prop.id}>
+          <div className="typical-client__settings text-right pl-2" id={"Tooltip-" + prop.id}>
             <FontAwesome.FaCog />
             <Tooltip placement="top" isOpen={this.state.tooltipShown} target={"Tooltip-" + prop.id} toggle={this.toggleTooltip}>
               {prop.percentage}%
             </Tooltip>
-          </a>
+          </div>
         </div>
       </li>
     );
