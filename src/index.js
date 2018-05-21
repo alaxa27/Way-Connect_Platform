@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import {HashRouter, Route, Switch, Redirect} from "react-router-dom";
 import {Provider} from "react-redux";
@@ -40,6 +41,10 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
             }} />
     )} />
 );
+PrivateRoute.propTypes = {
+  component: PropTypes.func,
+  location: PropTypes.object
+};
 
 ReactDOM.render((<Provider store={store}>
   <HashRouter>

@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import PropTypes from "prop-types";
 import {
   Container,
   Row,
@@ -19,6 +20,12 @@ import { connect } from "react-redux";
     };
 })
 class Register extends Component {
+  static propTypes = {
+    dispatch: PropTypes.func,
+    success: PropTypes.bool,
+    error: PropTypes.bool,
+    fetching: PropTypes.bool
+  }
     constructor(props) {
         super(props);
         this.state = {
@@ -76,7 +83,7 @@ class Register extends Component {
                     <div className="login__input-box my-4">
                       {error ?
                         <div className="alert alert-danger">
-                            You can't register with provided credentials
+                          {"You can't register with provided credentials"}
                         </div>
                       :
                           null

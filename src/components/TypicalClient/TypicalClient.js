@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import {
   Card,
   CardHeader,
@@ -7,11 +8,14 @@ import {
 } from "reactstrap";
 import TypicalClientImage from "./TypicalClientImage";
 import TypicalClientList from "./TypicalClientList";
-import ReduxBlockUi from 'react-block-ui/redux';
+import ReduxBlockUi from "react-block-ui/redux";
 
 const title = "Client Type";
 
 class TypicalClient extends Component {
+  static propTypes = {
+    data: PropTypes.array
+  }
   constructor(props) {
       super(props);
   }
@@ -21,17 +25,17 @@ class TypicalClient extends Component {
       <ReduxBlockUi tag="div" block="TYPICAL_CUSTOMER" unblock={["TYPICAL_CUSTOMER_FULFILLED", "TYPICAL_CUSTOMER_REJECTED"]}>
         <Card className="typical-client-card">
           <CardHeader>
-              {title}
+            {title}
           </CardHeader>
           <CardBody>
             <Media>
-              <Media left href="#">
+              <Media left>
                 <TypicalClientImage
                   width={180}
                   height={180}
                 />
               </Media>
-              <Media body style={{paddingLeft: '1.25rem'}}>
+              <Media body style={{paddingLeft: "1.25rem"}}>
                 <TypicalClientList
                   data={data}
                 />
@@ -40,7 +44,7 @@ class TypicalClient extends Component {
           </CardBody>
         </Card>
       </ReduxBlockUi>
-    )
+    );
   }
 }
 

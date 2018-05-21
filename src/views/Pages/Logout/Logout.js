@@ -10,7 +10,10 @@ import {logout} from "../../../actions/loginActions";
   return {redirect: loginStore.isLoggedOut};
 })
 class Logout extends Component {
-
+  static propTypes = {
+    dispatch: PropTypes.func,
+    redirect: PropTypes.bool
+  }
   constructor(props) {
     super(props);
 

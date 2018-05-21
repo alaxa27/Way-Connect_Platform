@@ -1,8 +1,12 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import TypicalClientItem from "./TypicalClientItem";
 import _ from "underscore";
 
 class TypicalClientList extends Component {
+  static propTypes = {
+    data: PropTypes.array
+  }
   constructor(props) {
       super(props);
   }

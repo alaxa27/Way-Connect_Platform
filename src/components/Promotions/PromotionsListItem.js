@@ -1,6 +1,10 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class PromotionsListItem extends Component {
+  static propTypes = {
+    promotion: PropTypes.object
+  }
   render() {
     const { promotion } = this.props;
     return (

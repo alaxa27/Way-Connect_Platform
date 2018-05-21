@@ -1,10 +1,14 @@
 import React, {Component} from "react";
+import PropTypes from "prop-types";
 import {Row, Col, Input} from "reactstrap";
 import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
 import * as FontAwesome from "react-icons/lib/fa";
 
 class ResearchFilters extends Component {
+  static propTypes = {
+    filter: PropTypes.bool
+  }
   constructor(props) {
     super(props);
     this.state = {

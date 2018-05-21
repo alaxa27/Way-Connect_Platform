@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import PropTypes from "prop-types";
 import {
   Container,
   Row,
@@ -17,6 +18,12 @@ import * as actions from "../../../actions/forgotPasswordActions";
     };
 })
 class ForgotPassword extends Component {
+  static propTypes = {
+    dispatch: PropTypes.func,
+    error: PropTypes.bool,
+    success: PropTypes.bool,
+    fetching: PropTypes.bool
+  }
   constructor(props) {
       super(props);
       this.state = {
@@ -47,7 +54,7 @@ class ForgotPassword extends Component {
               <div className="login d-flex align-items-center justify-content-center flex-column">
                 <h1 className="font-weight-bold m-0 text-center">Way-connect</h1>
                 <p className="mt-4 mb-0">
-                  Enter your email address below and we'll send you a link to reset your password.
+                  {"Enter your email address below and we'll send you a link to reset your password."}
                 </p>
                 <div className="login__form w-100 mt-4">
                   <form onSubmit={this.handleReset}>

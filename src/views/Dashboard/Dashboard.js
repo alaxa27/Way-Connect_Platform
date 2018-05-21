@@ -68,9 +68,9 @@ const cardChartData1 = {
   labels: ["January", "February", "March", "April", "May", "June", "July"],
   datasets: [
     {
-      label: 'My First dataset',
-      backgroundColor: 'transparent',
-      borderColor: '#fff',
+      label: "My First dataset",
+      backgroundColor: "transparent",
+      borderColor: "#fff",
       data: [65, 59, 84, 84, 51, 55, 40]
     }
   ],
@@ -119,9 +119,9 @@ const cardChartData2 = {
   labels: ["January", "February", "March", "April", "May", "June", "July"],
   datasets: [
     {
-      label: 'My First dataset',
-      backgroundColor: 'transparent',
-      borderColor: '#fff',
+      label: "My First dataset",
+      backgroundColor: "transparent",
+      borderColor: "#fff",
       data: [1, 18, 9, 17, 34, 22, 11]
     }
   ],
@@ -171,9 +171,9 @@ const cardChartData3 = {
   labels: ["January", "February", "March", "April", "May", "June", "July"],
   datasets: [
     {
-      label: 'My First dataset',
-      backgroundColor: 'transparent',
-      borderColor: '#fff',
+      label: "My First dataset",
+      backgroundColor: "transparent",
+      borderColor: "#fff",
       data: [78, 81, 80, 45, 34, 12, 40]
     }
   ],
@@ -500,8 +500,8 @@ class Dashboard extends Component {
               color="#F15A24"
               chartData={cardChartData1}
               displayData={{
-                title: 'Partners',
-                value: '243'
+                title: "Partners",
+                value: "243"
               }}
               options={cardChartOpts1}
               type="line"
@@ -512,8 +512,8 @@ class Dashboard extends Component {
                 color="#F7931E"
                 chartData={cardChartData2}
                 displayData={{
-                    title: 'Communication Diffusion',
-                    value: '142k'
+                    title: "Communication Diffusion",
+                    value: "142k"
                 }}
                 options={cardChartOpts2}
                 type="line"
@@ -524,7 +524,7 @@ class Dashboard extends Component {
                 color="#FBB03B"
                 chartData={cardChartData3}
                 displayData={{
-                    title: 'Campaigns',
+                    title: "Campaigns",
                     value: 623
                 }}
                 options={cardChartOpts3}
@@ -536,7 +536,7 @@ class Dashboard extends Component {
                 color="#F9DA23"
                 chartData={cardChartData4}
                 displayData={{
-                    title: 'Clients',
+                    title: "Clients",
                     value: 356
                 }}
                 options={cardChartOpts4}
@@ -549,7 +549,7 @@ class Dashboard extends Component {
           <Col xs="12" md="6">
             <Row>
               <Col>
-                <h2 className="way-heading" style={{fontSize: '24px'}}>Our partners</h2>
+                <h2 className="way-heading" style={{fontSize: "24px"}}>Our partners</h2>
               </Col>
             </Row>
             <Row>
@@ -561,7 +561,7 @@ class Dashboard extends Component {
             </Row>
           </Col>
           <Col xs="12" md="6" className="top-space">
-              <h4 className="way-heading">Select a country</h4>
+            <h4 className="way-heading">Select a country</h4>
 
             <div className="custom-selectbox-main">
               <Input type="select" className="custom-selectbox" name="country" value={this.state.country} onChange={this.handleChange}>

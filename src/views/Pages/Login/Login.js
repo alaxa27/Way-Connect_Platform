@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import PropTypes from "prop-types";
 import {
   Container,
   Row,
@@ -27,25 +28,26 @@ import CookieService from "../../../services/CookieService";
     };
 })
 class Login extends Component {
+  static propTypes = {
+    dispatch: PropTypes.func,
+    error: PropTypes.bool,
+    fetching: PropTypes.bool,
+    isAuthenticated: PropTypes.bool,
+    location: PropTypes.object
+  }
   constructor(props) {
     super(props);
+    const redirect = (new CookieService().getJwt() ? true : false);
     this.state = {
       username: "",
       password: "",
       remember: false,
-      redirect: false
+      redirect: redirect
     };
     this.handleChangeUsername = this.handleChangeUsername.bind(this);
     this.handleChangePassword = this.handleChangePassword.bind(this);
     this.handleRemember = this.handleRemember.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
-  }
-
-  componentWillMount() {
-      if(new CookieService().getJwt()) {
-        console.log("GETJWT");
-        this.setState({redirect: true});
-      }
   }
 
   handleChangeUsername(e) {
@@ -88,7 +90,7 @@ class Login extends Component {
                 <div className="login__input-box my-4">
                   {error ?
                     <div className="alert alert-danger">
-                          You can't log in with provided credentials
+                      {"You can't log in with provided credentials"}
                     </div>
                   :
                     null

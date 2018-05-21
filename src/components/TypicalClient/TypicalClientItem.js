@@ -1,8 +1,13 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import * as FontAwesome from "react-icons/lib/fa";
 import { Tooltip } from "reactstrap";
 
 class TypicalClientItem extends Component {
+  static propTypes = {
+    prop: PropTypes.object,
+    last: PropTypes.bool
+  }
   constructor(props) {
       super(props);
       this.state = {
