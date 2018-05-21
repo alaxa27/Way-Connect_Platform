@@ -14,12 +14,12 @@ class TypicalClientList extends Component {
     const { data } = this.props;
     return (
       <ul className="typical-client p-0 m-0 list-unstyled">
-        {_.map(data, (prop, key) => {
+        {_.map(data, (value, prop) => {
               return (
                 <TypicalClientItem
-                      key={prop.id}
-                      prop={prop}
-                      last={key === data.length - 1}
+                      key={prop}
+                      title={prop}
+                      value={value}
                   />
               );
           })}
