@@ -61,7 +61,7 @@ Breadcrumbs.propTypes = {
 
 class BreadcrumbComponent extends Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
   render() {
     return (<div>

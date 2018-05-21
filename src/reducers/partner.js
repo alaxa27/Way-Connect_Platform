@@ -19,7 +19,7 @@ import {
     PROMOTIONS,
     PROMOTIONS_FULFILLED
 } from "../constants/ActionTypes";
-import _ from 'underscore';
+import _ from "underscore";
 
 const initialState = {
     fetching: false,
@@ -28,8 +28,8 @@ const initialState = {
 
     monthlyData: null,
     traffic: {
-        period: 'month',
-        labels: ['M', 'T', 'W', 'Th', 'F', 'Sa', 'Su'],
+        period: "month",
+        labels: ["M", "T", "W", "Th", "F", "Sa", "Su"],
         datasets: []
     },
     trafficRaw: null,
@@ -49,11 +49,11 @@ const initialState = {
 
 let trafficDatasets = [
     {
-        label: 'Views',
-        backgroundColor: 'transparent',
-        borderColor: '#F15A24',
-        colorName: 'primary',
-        pointHoverBackgroundColor: '#fff',
+        label: "Views",
+        backgroundColor: "transparent",
+        borderColor: "#F15A24",
+        colorName: "primary",
+        pointHoverBackgroundColor: "#fff",
         borderWidth: 3,
         data: [],
     }

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import * as FontAwesome from "react-icons/lib/fa";
 import { Tooltip } from "reactstrap";
-import _ from 'underscore';
+import _ from "underscore";
 
 const colors = {
     age: "#FC6600",
@@ -15,7 +15,9 @@ const colors = {
 class TypicalClientItem extends Component {
   static propTypes = {
     prop: PropTypes.object,
-    last: PropTypes.bool
+    last: PropTypes.bool,
+    title: PropTypes.string,
+    value: PropTypes.number
   }
   constructor(props) {
       super(props);
@@ -30,11 +32,11 @@ class TypicalClientItem extends Component {
     });
   }
   unslugify(word) {
-      const splits = word.split('_');
+      const splits = word.split("_");
       const capitalized = _.map(splits, split => {
-         return split.charAt(0).toUpperCase() + split.slice(1)
+         return split.charAt(0).toUpperCase() + split.slice(1);
       });
-      return capitalized.join(' ');
+      return capitalized.join(" ");
   }
   render() {
     const { title, value, last } = this.props;
@@ -48,10 +50,10 @@ class TypicalClientItem extends Component {
           <div className="typical-client__value text-right">
             {_.isObject(value) ? value.label : Math.floor(value)}
           </div>
-          <a href="#" className="typical-client__settings text-right pl-2" id={"Tooltip-" + title}>
+          <div href="#" className="typical-client__settings text-right pl-2" id={"Tooltip-" + title}>
             <FontAwesome.FaCog />
             <Tooltip placement="top" isOpen={this.state.tooltipShown} target={"Tooltip-" + title} toggle={this.toggleTooltip}>
-               {_.isObject(value) ? Math.round(value.value * 100) : 100}%
+              {_.isObject(value) ? Math.round(value.value * 100) : 100}%
             </Tooltip>
           </div>
         </div>
