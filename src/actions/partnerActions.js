@@ -9,6 +9,7 @@ import {
 
   TRAFFIC,
   TRAFFIC_FULFILLED,
+  TRAFFIC_PERIOD_CHANGE,
 
   AFFLUENCE,
   AFFLUENCE_FULFILLED,
@@ -31,7 +32,7 @@ export function fetchPartnerPageData(payload) {
     try {
       await dispatch(fetchTraffic());
       await dispatch(fetchAffluence());
-      // await dispatch(fetchPromotions());
+      await dispatch(fetchPromotions());
       await dispatch(fetchTypicalCustomer());
       dispatch({
         type: PARTNER_PAGE_FULFILLED,
@@ -39,6 +40,7 @@ export function fetchPartnerPageData(payload) {
     } catch (error) {
       dispatch({
         type: PARTNER_PAGE_REJECTED,
+        payload: error
       });
     }
   };
@@ -52,7 +54,7 @@ function fetchTraffic(payload) {
     try {
       const response = await axiosInstance({
         method: "get",
-        url: "/establishments/1/traffic",
+        url: "/establishments/29/traffic",
       });
       dispatch({
         type: TRAFFIC_FULFILLED,
@@ -64,6 +66,15 @@ function fetchTraffic(payload) {
   };
 }
 
+export function trafficPeriodChange(payload) {
+    return async (dispatch, getState) => {
+        dispatch({
+            type: TRAFFIC_PERIOD_CHANGE,
+            payload: payload
+        });
+    };
+}
+
 function fetchAffluence(payload) {
   return async (dispatch, getState) => {
     dispatch({
@@ -72,7 +83,7 @@ function fetchAffluence(payload) {
     try {
       const response = await axiosInstance({
         method: "get",
-        url: "/establishments/1/affluence",
+        url: "/establishments/29/affluence",
       });
       dispatch({
         type: AFFLUENCE_FULFILLED,
@@ -92,7 +103,7 @@ function fetchPromotions(payload) {
     try {
       const response = await axiosInstance({
         method: "get",
-        url: "/establishments/1/discount_activations",
+        url: "/establishments/29/discount_activations",
       });
       dispatch({
         type: PROMOTIONS_FULFILLED,
@@ -112,7 +123,7 @@ function fetchTypicalCustomer(payload) {
     try {
       const response = await axiosInstance({
         method: "get",
-        url: "/establishments/1/typical_customer",
+        url: "/establishments/29/typical_customer",
       });
       dispatch({
         type: TYPICAL_CUSTOMER_FULFILLED,

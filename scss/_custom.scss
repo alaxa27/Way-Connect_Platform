@@ -716,8 +716,8 @@ body{
     }
 
     &__circle {
-        width: 70px;
-        height: 70px;
+        width: 100px;
+        height: 100px;
         background: #363636;
         color: white;
         display: flex;
@@ -729,12 +729,13 @@ body{
 
             &:first-child {
                 font-weight: bold;
-                font-size: 30px;
+                font-size: 25px;
             }
 
             &:last-child {
                 position: relative;
                 bottom: -4px;
+                font-size: 12px;
             }
         }
     }

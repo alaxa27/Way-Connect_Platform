@@ -11,6 +11,7 @@ import ExportExcelButton from "./ExportExcel/ExportExcelButton";
 import TrafficChart from "./Traffic/TrafficChart";
 import { connect } from 'react-redux';
 import * as actions from '../../actions/partnerActions';
+import ReduxBlockUi from 'react-block-ui/redux';
 
 const brandInfo = '#F15A24';
 
@@ -62,125 +63,83 @@ function convertHex(hex, opacity) {
 
         traffic: partnerStore.traffic,
         affluence: partnerStore.affluence,
-        typicalCustomer: partnerStore.typicalCustomer
+        typicalCustomer: partnerStore.typicalCustomer,
+        promotions: partnerStore.promotions,
     };
 })
 class Partner extends Component {
   constructor(props) {
     super(props);
-      this.state = {
-          data: [
-              {
-                  id: 1,
-                  color: "#FC6600",
-                  prop: "Gender",
-                  value: "Male",
-                  percentage: 10,
-              },
-              {
-                  id: 2,
-                  color: "#FC6600",
-                  prop: "Age",
-                  value: 22,
-                  percentage: 25
-              },
-              {
-                  id: 3,
-                  color: "#F9812A",
-                  prop: "Nationality",
-                  value: "Tunisian",
-                  percentage: 50,
-              },
-              {
-                  id: 4,
-                  color: "#F9A602",
-                  prop: "Professional Status",
-                  value: "Salary",
-                  percentage: 15,
-              },
-              {
-                  id: 5,
-                  color: "#FFBF00",
-                  prop: "Relationship Status",
-                  value: "Single",
-                  percentage: 78,
-              },
-          ],
-          trafficChartData: {
-              labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W', 'T', 'F',
-                  'S', 'S', 'M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W', 'T', 'F',
-                  'S', 'S'],
-              datasets: [
-                  {
-                      label: 'Views',
-                      backgroundColor: convertHex(brandInfo, 10),
-                      borderColor: brandInfo,
-                      colorName: 'primary',
-                      pointHoverBackgroundColor: '#fff',
-                      borderWidth: 3,
-                      data: [10, 123, 11, 123, 32, 55, 66, 32, 12, 1, 1, 11, 22, 55, 14, 56, 66, 56, 44, 21, 22, 12, 12, 1, 1, 1, 88, 105]
-                  },
-              ],
-          },
-      };
+      this.handleTrafficChangePeriod = this.handleTrafficChangePeriod.bind(this);
   }
   componentWillMount() {
       this.props.dispatch(actions.fetchPartnerPageData());
   }
+  handleTrafficChangePeriod(period) {
+      this.props.dispatch(actions.trafficPeriodChange(period));
+  }
   render() {
+    const { traffic, typicalCustomer, affluence, promotions } = this.props;
     return (
-      <div className="sub-page-wrapper animated fadeIn">
-        <div style={{
-            marginTop: 20
-          }}>
-          <Row>
-            <Panel index={1} value="12.5k" title="Visits"/>
-            <Panel index={2} value="200" title="Amount of Promotions"/>
-            <Panel index={3} value="3.2" title="Average of Revisit"/>
-            <Panel index={4} value="+12.5%" title="Visit Fluctuation"/>
-          </Row>
+      <ReduxBlockUi tag="div" block={["PARTNER_PAGE", "PARTNER_PAGE_REJECTED"]} unblock={["PARTNER_PAGE_FULFILLED"]}>
+          <div className="sub-page-wrapper animated fadeIn">
+            <div style={{
+                marginTop: 20
+              }}>
+              <Row>
+                <Panel index={1} value="12.5k" title="Visits"/>
+                <Panel index={2} value="200" title="Amount of Promotions"/>
+                <Panel index={3} value="3.2" title="Average of Revisit"/>
+                <Panel index={4} value="+12.5%" title="Visit Fluctuation"/>
+              </Row>
 
-          <Row>
-            <Col>
-              <TrafficChart
-                  chartData={this.state.trafficChartData}
-                  options={trafficChartOptions}
-                  title="Traffic"
-                  defaultPeriod="month"
-              />
-            </Col>
-          </Row>
+              <Row>
+                <Col>
+                  <TrafficChart
+                      traffic={traffic}
+                      options={trafficChartOptions}
+                      handleChangePeriod={this.handleTrafficChangePeriod}
+                      title="Traffic"
+                  />
+                </Col>
+              </Row>
 
-          <Row>
-            <Col>
-              <h2 className="way-heading" style={{
-                  fontSize: '24px'
-                }}>Promotions</h2>
-            </Col>
-          </Row>
-          <Row>
-            <Col md="6">
-              <PromotionsList/>
-            </Col>
-            <Col md="6">
-              <div className="d-flex flex-column right-box">
-                <Affluence/>
-                <TypicalClient
-                  data={this.state.data}
-                />
-              </div>
-            </Col>
-          </Row>
+              <Row>
+                <Col>
+                  <h2 className="way-heading" style={{
+                      fontSize: '24px'
+                    }}>Promotions</h2>
+                </Col>
+              </Row>
+              <Row>
+                <Col md="6">
+                  <PromotionsList
+                      data={promotions}
+                      totalCount={0}
+                  />
+                </Col>
+                <Col md="6">
+                  <div className="d-flex flex-column right-box">
+                    <Affluence
+                        data={affluence}
+                    />
+                    <TypicalClient
+                      data={typicalCustomer}
+                    />
+                  </div>
+                </Col>
+              </Row>
 
-          <Row>
-            <Col>
-              <ExportExcelButton/>
-            </Col>
-          </Row>
+              <Row>
+                <Col>
+                  <ExportExcelButton/>
+                </Col>
+              </Row>
 
-        </div>
-        <br/>
-      </div>
+            </div>
+            <br/>
+          </div>
+      </ReduxBlockUi>
     )
   }
 }
