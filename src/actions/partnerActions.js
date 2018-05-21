@@ -7,6 +7,9 @@ import {
   PARTNER_PAGE_FULFILLED,
   PARTNER_PAGE_REJECTED,
 
+  MONTHLY_DATA,
+  MONTHLY_DATA_FULFILLED,
+
   TRAFFIC,
   TRAFFIC_FULFILLED,
   TRAFFIC_PERIOD_CHANGE,
@@ -20,9 +23,6 @@ import {
   TYPICAL_CUSTOMER,
   TYPICAL_CUSTOMER_FULFILLED,
 } from "../constants/ActionTypes";
-import CookieService from "../services/CookieService";
-
-const token = new CookieService().getJwt();
 
 export function fetchPartnerPageData(payload) {
   return async (dispatch, getState) => {
@@ -30,9 +30,10 @@ export function fetchPartnerPageData(payload) {
       type: PARTNER_PAGE,
     });
     try {
+      await dispatch(fetchMonthlyData());
       await dispatch(fetchTraffic());
       await dispatch(fetchAffluence());
-      await dispatch(fetchPromotions());
+      await dispatch(fetchPromotions(payload));
       await dispatch(fetchTypicalCustomer());
       dispatch({
         type: PARTNER_PAGE_FULFILLED,
@@ -44,6 +45,26 @@ export function fetchPartnerPageData(payload) {
       });
     }
   };
+}
+
+function fetchMonthlyData(payload) {
+    return async (dispatch, getState) => {
+        dispatch({
+            type: MONTHLY_DATA,
+        });
+        try {
+            const response = await axiosInstance({
+                method: "get",
+                url: "/establishments/29/monthly_data",
+            });
+            dispatch({
+                type: MONTHLY_DATA_FULFILLED,
+                payload: response.data
+            });
+        } catch (error) {
+            throw new Error();
+        }
+    };
 }
 
 function fetchTraffic(payload) {
@@ -95,7 +116,7 @@ function fetchAffluence(payload) {
   };
 }
 
-function fetchPromotions(payload) {
+export function fetchPromotions(payload) {
   return async (dispatch, getState) => {
     dispatch({
       type: PROMOTIONS,
@@ -103,11 +124,14 @@ function fetchPromotions(payload) {
     try {
       const response = await axiosInstance({
         method: "get",
-        url: "/establishments/29/discount_activations",
+        url: `/establishments/29/discount_activations/?limit=${payload.limit}&offset=${payload.offset}`,
       });
       dispatch({
         type: PROMOTIONS_FULFILLED,
-        payload: response.data
+        payload: {
+          promotions: response.data,
+          offset: payload.offset
+        }
       });
     } catch (error) {
       throw new Error();

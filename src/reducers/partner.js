@@ -3,6 +3,9 @@ import {
     PARTNER_PAGE_FULFILLED,
     PARTNER_PAGE_REJECTED,
 
+    MONTHLY_DATA,
+    MONTHLY_DATA_FULFILLED,
+
     TRAFFIC,
     TRAFFIC_FULFILLED,
     TRAFFIC_PERIOD_CHANGE,
@@ -23,6 +26,7 @@ const initialState = {
     success: false,
     error: null,
 
+    monthlyData: null,
     traffic: {
         period: 'month',
         labels: ['M', 'T', 'W', 'Th', 'F', 'Sa', 'Su'],
@@ -37,7 +41,10 @@ const initialState = {
         datasets: []
     },
     typicalCustomer: null,
-    promotions: []
+    promotions: [],
+    promotionsLimit: 10,
+    promotionsOffset: 0,
+    promotionsTotalCount: 0
 };
 
 let trafficDatasets = [
@@ -86,6 +93,15 @@ export default function reducer(state = initialState, action) {
               fetching: false,
               success: false,
               error: action.payload
+          };
+      case MONTHLY_DATA:
+          return {
+              ...state,
+          };
+      case MONTHLY_DATA_FULFILLED:
+          return {
+              ...state,
+              monthlyData: action.payload
           };
       case TRAFFIC:
           return {
@@ -146,7 +162,9 @@ export default function reducer(state = initialState, action) {
       case PROMOTIONS_FULFILLED:
           return {
               ...state,
-              promotions: action.payload
+              promotions: action.payload.promotions.results,
+              promotionsOffset: action.payload.offset,
+              promotionsTotalCount: action.payload.promotions.count
           };
       default:
           return {...state};

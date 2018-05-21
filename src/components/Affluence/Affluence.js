@@ -14,7 +14,6 @@ const title = "Affluence";
 class Affluence extends Component {
   render() {
     const { data } = this.props;
-    console.log(data);
     return (
       <ReduxBlockUi tag="div" block="AFFLUENCE" unblock={["AFFLUENCE_FULFILLED", "AFFLUENCE_REJECTED"]}>
           <Card className="affluence-card">

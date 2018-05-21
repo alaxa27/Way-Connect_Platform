@@ -65,21 +65,37 @@ function convertHex(hex, opacity) {
         affluence: partnerStore.affluence,
         typicalCustomer: partnerStore.typicalCustomer,
         promotions: partnerStore.promotions,
+        promotionsLimit: partnerStore.promotionsLimit,
+        promotionsOffset: partnerStore.promotionsOffset,
+        promotionsTotalCount: partnerStore.promotionsTotalCount,
     };
 })
 class Partner extends Component {
   constructor(props) {
     super(props);
       this.handleTrafficChangePeriod = this.handleTrafficChangePeriod.bind(this);
+      this.loadMorePromotions = this.loadMorePromotions.bind(this);
   }
   componentWillMount() {
-      this.props.dispatch(actions.fetchPartnerPageData());
+      const { promotionsLimit, promotionsOffset } = this.props;
+      this.props.dispatch(actions.fetchPartnerPageData({
+          limit: promotionsLimit,
+          offset: promotionsOffset
+      }));
   }
   handleTrafficChangePeriod(period) {
       this.props.dispatch(actions.trafficPeriodChange(period));
   }
+  loadMorePromotions() {
+      console.log('LOAD MORE');
+      // const { promotionsLimit, promotionsOffset } = this.props;
+      // this.props.dispatch(actions.fetchPromotions({
+      //     limit: promotionsLimit,
+      //     offset: promotionsOffset + promotionsLimit
+      // }));
+  }
   render() {
-    const { traffic, typicalCustomer, affluence, promotions } = this.props;
+    const { traffic, typicalCustomer, affluence, promotions, promotionsLimit, promotionsOffset, promotionsTotalCount } = this.props;
     return (
       <ReduxBlockUi tag="div" block={["PARTNER_PAGE", "PARTNER_PAGE_REJECTED"]} unblock={["PARTNER_PAGE_FULFILLED"]}>
           <div className="sub-page-wrapper animated fadeIn">
@@ -115,7 +131,10 @@ class Partner extends Component {
                 <Col md="6">
                   <PromotionsList
                       data={promotions}
-                      totalCount={0}
+                      promotionsLimit={promotionsLimit}
+                      promotionsOffset={promotionsOffset}
+                      promotionsTotalCount={promotionsTotalCount}
+                      loadMore={this.loadMorePromotions}
                   />
                 </Col>
                 <Col md="6">
