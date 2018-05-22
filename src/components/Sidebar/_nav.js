@@ -31,8 +31,8 @@ export default {
       icon: "fa fa-upload"
     },
     {
-      name: "Partner",
-      url: "/partner",
+      name: "Establishment",
+      url: "/establishment",
       icon: "fa fa-upload"
     },
     {

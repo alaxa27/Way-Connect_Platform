@@ -11,7 +11,7 @@ import Dashboard from "../../views/Dashboard/";
 import ListCampaign from "../../views/Campaigns/ListCampaign/";
 import CreateCampaign from "../../views/Campaigns/CreateCampaign/";
 import Campaigns from "../../views/Campaigns";
-import Partner from "../../views/Partner/";
+import Establishment from "../../views/Establishment/";
 
 class Full extends Component {
   render() {
@@ -28,7 +28,7 @@ class Full extends Component {
                 <Route exact path="/campaigns/list" name="ListCampaign" component={ListCampaign} />
                 <Route exact path="/campaigns/create" name="CreateCampaign" component={CreateCampaign}/>
                 <Route path="/campaigns/:id" name="Campaigns" component={Campaigns} />
-                <Route path="/partner" name="Partner" component={Partner} />
+                <Route path="/establishment" name="Establishment" component={Establishment} />
                 <Redirect from="/" to="/login"/>
 
               </Switch>

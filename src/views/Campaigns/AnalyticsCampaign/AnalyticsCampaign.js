@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import TrafficChart from "../../Partner/Traffic/TrafficChart";
 import Panel from "../../../components/Panel/Panel";
 import {
     Row,
@@ -9,6 +8,7 @@ import {
     CardHeader,
     CardBody,
 } from "reactstrap";
+import TrafficChart from "../../../components/Traffic/TrafficChart";
 import TypicalClient from "../../../components/TypicalClient/TypicalClient";
 import TrafficSales from "./TrafficSales/TrafficSales";
 

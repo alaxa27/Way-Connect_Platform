@@ -3,9 +3,9 @@ import {
 } from "../constants/ApiConfig";
 
 import {
-  PARTNER_PAGE,
-  PARTNER_PAGE_FULFILLED,
-  PARTNER_PAGE_REJECTED,
+  ESTABLISHMENT_PAGE,
+  ESTABLISHMENT_PAGE_FULFILLED,
+  ESTABLISHMENT_PAGE_REJECTED,
 
   MONTHLY_DATA,
   MONTHLY_DATA_FULFILLED,
@@ -24,10 +24,10 @@ import {
   TYPICAL_CUSTOMER_FULFILLED,
 } from "../constants/ActionTypes";
 
-export function fetchPartnerPageData(payload) {
+export function fetchEstablishmentPageData(payload) {
   return async (dispatch, getState) => {
     dispatch({
-      type: PARTNER_PAGE,
+      type: ESTABLISHMENT_PAGE,
     });
     try {
       await dispatch(fetchMonthlyData());
@@ -36,11 +36,11 @@ export function fetchPartnerPageData(payload) {
       await dispatch(fetchPromotions(payload));
       await dispatch(fetchTypicalCustomer());
       dispatch({
-        type: PARTNER_PAGE_FULFILLED,
+        type: ESTABLISHMENT_PAGE_FULFILLED,
       });
     } catch (error) {
       dispatch({
-        type: PARTNER_PAGE_REJECTED,
+        type: ESTABLISHMENT_PAGE_REJECTED,
         payload: error
       });
     }

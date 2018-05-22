@@ -5,10 +5,10 @@ import TypicalClient from "../../components/TypicalClient/TypicalClient";
 import Affluence from "../../components/Affluence/Affluence";
 import PromotionsList from "../../components/Promotions/PromotionsList";
 import Panel from "../../components/Panel/Panel";
+import TrafficChart from "../../components/Traffic/TrafficChart";
 import ExportExcelButton from "./ExportExcel/ExportExcelButton";
-import TrafficChart from "./Traffic/TrafficChart";
 import { connect } from "react-redux";
-import * as actions from "../../actions/partnerActions";
+import * as actions from "../../actions/establishmentActions";
 import ReduxBlockUi from "react-block-ui/redux";
 
 const brandInfo = "#F15A24";
@@ -57,22 +57,22 @@ function convertHex(hex, opacity) {
 }
 
 @connect((store) => {
-  let partnerStore = store.partner;
+  let establishmentStore = store.establishment;
   return {
-    fetching: partnerStore.fetching,
-    success: partnerStore.success,
-    error: partnerStore.error,
+    fetching: establishmentStore.fetching,
+    success: establishmentStore.success,
+    error: establishmentStore.error,
 
-        traffic: partnerStore.traffic,
-        affluence: partnerStore.affluence,
-        typicalCustomer: partnerStore.typicalCustomer,
-        promotions: partnerStore.promotions,
-        promotionsLimit: partnerStore.promotionsLimit,
-        promotionsOffset: partnerStore.promotionsOffset,
-        promotionsTotalCount: partnerStore.promotionsTotalCount,
+        traffic: establishmentStore.traffic,
+        affluence: establishmentStore.affluence,
+        typicalCustomer: establishmentStore.typicalCustomer,
+        promotions: establishmentStore.promotions,
+        promotionsLimit: establishmentStore.promotionsLimit,
+        promotionsOffset: establishmentStore.promotionsOffset,
+        promotionsTotalCount: establishmentStore.promotionsTotalCount,
     };
 })
-class Partner extends Component {
+class Establishment extends Component {
 
   static propTypes = {
     dispatch: PropTypes.func,
@@ -91,12 +91,12 @@ class Partner extends Component {
       this.loadMorePromotions = this.loadMorePromotions.bind(this);
 
       const { promotionsLimit, promotionsOffset } = this.props;
-      this.props.dispatch(actions.fetchPartnerPageData({
+      this.props.dispatch(actions.fetchEstablishmentPageData({
         limit: promotionsLimit,
         offset: promotionsOffset
       }));
   }
-  
+
   handleTrafficChangePeriod(period) {
       this.props.dispatch(actions.trafficPeriodChange(period));
   }
@@ -111,7 +111,7 @@ class Partner extends Component {
   render() {
     const { traffic, typicalCustomer, affluence, promotions, promotionsLimit, promotionsOffset, promotionsTotalCount } = this.props;
     return (
-      <ReduxBlockUi tag="div" block={["PARTNER_PAGE", "PARTNER_PAGE_REJECTED"]} unblock={["PARTNER_PAGE_FULFILLED"]}>
+      <ReduxBlockUi tag="div" block={["ESTABLISHMENT_PAGE", "ESTABLISHMENT_PAGE_REJECTED"]} unblock={["ESTABLISHMENT_PAGE_FULFILLED"]}>
         <div className="sub-page-wrapper animated fadeIn">
           <div style={{
                 marginTop: 20
@@ -177,4 +177,4 @@ class Partner extends Component {
   }
 }
 
-export default Partner;
+export default Establishment;

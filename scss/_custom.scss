@@ -594,7 +594,7 @@ body {
   background-color: #cbcbcb;
 }
 
-.partner-panel {
+.establishment-panel {
   padding: 15px 15px 50px;
   margin-bottom: 1.5rem;
   border-radius: 5px;
@@ -859,7 +859,6 @@ body {
             }
         }
     }
-  }
 }
 /* TODO extract to file with mixins */
 @mixin placeholder {

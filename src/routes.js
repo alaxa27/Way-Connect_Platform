@@ -6,6 +6,6 @@ const routes = {
   "/campaigns/:id/bid": "BidCampaign",
   "/campaigns/:id/config": "ConfigCampaign",
   "/campaigns/:id/analytics": "AnalyticsCampaign",
-  "/partner": "Partner"
+  "/establishment": "Establishment"
 };
 export default routes;

@@ -1,7 +1,7 @@
 import {
-    PARTNER_PAGE,
-    PARTNER_PAGE_FULFILLED,
-    PARTNER_PAGE_REJECTED,
+    ESTABLISHMENT_PAGE,
+    ESTABLISHMENT_PAGE_FULFILLED,
+    ESTABLISHMENT_PAGE_REJECTED,
 
     MONTHLY_DATA,
     MONTHLY_DATA_FULFILLED,
@@ -73,21 +73,21 @@ let affluenceDatasets = [
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-      case PARTNER_PAGE:
+      case ESTABLISHMENT_PAGE:
           return {
               ...state,
               fetching: true,
               success: false,
               error: null,
           };
-      case PARTNER_PAGE_FULFILLED:
+      case ESTABLISHMENT_PAGE_FULFILLED:
           return {
               ...state,
               fetching: false,
               success: true,
               error: null,
           };
-      case PARTNER_PAGE_REJECTED:
+      case ESTABLISHMENT_PAGE_REJECTED:
           return {
               ...state,
               fetching: false,

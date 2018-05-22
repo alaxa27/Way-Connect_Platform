@@ -9,7 +9,7 @@ class PromotionsList extends Component {
   static propTypes = {
     dispatch: PropTypes.func,
     promotions: PropTypes.array,
-    data: PropTypes.object,
+    data: PropTypes.array,
     promotionsLimit: PropTypes.number,
     promotionsOffset: PropTypes.number,
     promotionsTotalCount: PropTypes.number,
