@@ -68,7 +68,7 @@ function fetchMonthlyData(payload) {
       });
 
       const monthlyData = { ...response.data
-      }
+      };
 
       console.log("DFGHJKL1", monthlyData);
       monthlyData.customer_average_visits *= 100;
@@ -81,7 +81,7 @@ function fetchMonthlyData(payload) {
       }
 
       console.log("DFGHJKL3", monthlyData);
-      monthlyData.total_rewards = `${monthlyData.total_rewards} ${currency}`
+      monthlyData.total_rewards = `${monthlyData.total_rewards} ${currency}`;
 
       dispatch({
         type: MONTHLY_DATA_FULFILLED,

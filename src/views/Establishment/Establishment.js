@@ -5,7 +5,7 @@ import TypicalClient from "../../components/TypicalClient/TypicalClient";
 import Affluence from "../../components/Affluence/Affluence";
 import PromotionsList from "../../components/Promotions/PromotionsList";
 import Panel from "../../components/Panel/Panel";
-import TrafficChart from "../../components/Traffic/TrafficChart";
+import TrafficChart from ".././components/Traffic/TrafficChart";
 import ExportExcelButton from "./ExportExcel/ExportExcelButton";
 import {connect} from "react-redux";
 import * as actions from "../../actions/establishmentActions";
