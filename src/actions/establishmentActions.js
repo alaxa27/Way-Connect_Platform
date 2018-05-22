@@ -31,11 +31,19 @@ export function fetchEstablishmentPageData(payload) {
     });
     try {
       const establishmentID = payload.establishmentID;
-      await dispatch(fetchMonthlyData({establishmentID}));
-      await dispatch(fetchTraffic({establishmentID}));
-      await dispatch(fetchAffluence({establishmentID}));
+      await dispatch(fetchMonthlyData({
+        establishmentID
+      }));
+      await dispatch(fetchTraffic({
+        establishmentID
+      }));
+      await dispatch(fetchAffluence({
+        establishmentID
+      }));
       await dispatch(fetchPromotions(payload));
-      await dispatch(fetchTypicalCustomer({establishmentID}));
+      await dispatch(fetchTypicalCustomer({
+        establishmentID
+      }));
       dispatch({
         type: ESTABLISHMENT_PAGE_FULFILLED,
       });
@@ -49,23 +57,40 @@ export function fetchEstablishmentPageData(payload) {
 }
 
 function fetchMonthlyData(payload) {
-    return async (dispatch, getState) => {
-        dispatch({
-            type: MONTHLY_DATA,
-        });
-        try {
-            const response = await axiosInstance({
-                method: "get",
-                url: `/establishments/${payload.establishmentID}/monthly_data`,
-            });
-            dispatch({
-                type: MONTHLY_DATA_FULFILLED,
-                payload: response.data
-            });
-        } catch (error) {
-            throw new Error();
-        }
-    };
+  return async (dispatch, getState) => {
+    dispatch({
+      type: MONTHLY_DATA,
+    });
+    try {
+      const response = await axiosInstance({
+        method: "get",
+        url: `/establishments/${payload.establishmentID}/monthly_data`,
+      });
+
+      const monthlyData = { ...response.data
+      }
+
+      console.log("DFGHJKL1", monthlyData);
+      monthlyData.customer_average_visits *= 100;
+      const currency = Object.keys(monthlyData.total_rewards)[0];
+      monthlyData.total_rewards = monthlyData.total_rewards[currency];
+      console.log("DFGHJKL2", monthlyData);
+
+      for (let key in monthlyData) {
+        monthlyData[key] = monthlyData[key].toFixed(2).toString();
+      }
+
+      console.log("DFGHJKL3", monthlyData);
+      monthlyData.total_rewards = `${monthlyData.total_rewards} ${currency}`
+
+      dispatch({
+        type: MONTHLY_DATA_FULFILLED,
+        payload: monthlyData
+      });
+    } catch (error) {
+      throw new Error();
+    }
+  };
 }
 
 function fetchTraffic(payload) {
@@ -89,12 +114,12 @@ function fetchTraffic(payload) {
 }
 
 export function trafficPeriodChange(payload) {
-    return async (dispatch, getState) => {
-        dispatch({
-            type: TRAFFIC_PERIOD_CHANGE,
-            payload: payload
-        });
-    };
+  return async (dispatch, getState) => {
+    dispatch({
+      type: TRAFFIC_PERIOD_CHANGE,
+      payload: payload
+    });
+  };
 }
 
 function fetchAffluence(payload) {

@@ -7,7 +7,7 @@ import PromotionsList from "../../components/Promotions/PromotionsList";
 import Panel from "../../components/Panel/Panel";
 import TrafficChart from "../../components/Traffic/TrafficChart";
 import ExportExcelButton from "./ExportExcel/ExportExcelButton";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 import * as actions from "../../actions/establishmentActions";
 import ReduxBlockUi from "react-block-ui/redux";
 
@@ -62,15 +62,15 @@ function convertHex(hex, opacity) {
     fetching: establishmentStore.fetching,
     success: establishmentStore.success,
     error: establishmentStore.error,
-
-        traffic: establishmentStore.traffic,
-        affluence: establishmentStore.affluence,
-        typicalCustomer: establishmentStore.typicalCustomer,
-        promotions: establishmentStore.promotions,
-        promotionsLimit: establishmentStore.promotionsLimit,
-        promotionsOffset: establishmentStore.promotionsOffset,
-        promotionsTotalCount: establishmentStore.promotionsTotalCount,
-    };
+    monthlyData: establishmentStore.monthlyData,
+    traffic: establishmentStore.traffic,
+    affluence: establishmentStore.affluence,
+    typicalCustomer: establishmentStore.typicalCustomer,
+    promotions: establishmentStore.promotions,
+    promotionsLimit: establishmentStore.promotionsLimit,
+    promotionsOffset: establishmentStore.promotionsOffset,
+    promotionsTotalCount: establishmentStore.promotionsTotalCount
+  };
 })
 class Establishment extends Component {
 
@@ -79,102 +79,94 @@ class Establishment extends Component {
     traffic: PropTypes.object,
     affluence: PropTypes.object,
     typicalCustomer: PropTypes.object,
+    monthlyData: PropTypes.object,
     promotions: PropTypes.array,
     promotionsLimit: PropTypes.number,
     promotionsOffset: PropTypes.number,
     promotionsTotalCount: PropTypes.number,
+    match: PropTypes.shape({
+      params: PropTypes.shape({id: PropTypes.string})
+    })
   }
 
   constructor(props) {
     super(props);
-      this.handleTrafficChangePeriod = this.handleTrafficChangePeriod.bind(this);
-      this.loadMorePromotions = this.loadMorePromotions.bind(this);
+    this.handleTrafficChangePeriod = this.handleTrafficChangePeriod.bind(this);
+    this.loadMorePromotions = this.loadMorePromotions.bind(this);
 
-      const { promotionsLimit, promotionsOffset } = this.props;
-      this.props.dispatch(actions.fetchEstablishmentPageData({
-        establishmentID: this.props.match.params.id,
-        limit: promotionsLimit,
-        offset: promotionsOffset
-      }));
+    const {promotionsLimit, promotionsOffset} = this.props;
+    this.props.dispatch(actions.fetchEstablishmentPageData({establishmentID: this.props.match.params.id, limit: promotionsLimit, offset: promotionsOffset}));
   }
 
   handleTrafficChangePeriod(period) {
-      this.props.dispatch(actions.trafficPeriodChange(period));
+    this.props.dispatch(actions.trafficPeriodChange(period));
   }
   loadMorePromotions() {
-      console.log("LOAD MORE");
-      // const { promotionsLimit, promotionsOffset } = this.props;
-      // this.props.dispatch(actions.fetchPromotions({
-      //     limit: promotionsLimit,
-      //     offset: promotionsOffset + promotionsLimit
-      // }));
+    console.log("LOAD MORE");
+    // const { promotionsLimit, promotionsOffset } = this.props;
+    // this.props.dispatch(actions.fetchPromotions({
+    //     limit: promotionsLimit,
+    //     offset: promotionsOffset + promotionsLimit
+    // }));
   }
   render() {
-    const { traffic, typicalCustomer, affluence, promotions, promotionsLimit, promotionsOffset, promotionsTotalCount } = this.props;
-    return (
-      <ReduxBlockUi tag="div" block={["ESTABLISHMENT_PAGE", "ESTABLISHMENT_PAGE_REJECTED"]} unblock={["ESTABLISHMENT_PAGE_FULFILLED"]}>
-        <div className="sub-page-wrapper animated fadeIn">
-          <div style={{
-                marginTop: 20
-              }}>
-            <Row>
-              <Panel index={1} value="12.5k" title="Visits"/>
-              <Panel index={2} value="200" title="Amount of Promotions"/>
-              <Panel index={3} value="3.2" title="Average of Revisit"/>
-              <Panel index={4} value="+12.5%" title="Visit Fluctuation"/>
-            </Row>
+    const {
+      traffic,
+      typicalCustomer,
+      affluence,
+      promotions,
+      promotionsLimit,
+      promotionsOffset,
+      promotionsTotalCount,
+      monthlyData
+    } = this.props;
+    return (<ReduxBlockUi tag="div" block={["ESTABLISHMENT_PAGE", "ESTABLISHMENT_PAGE_REJECTED"]} unblock={["ESTABLISHMENT_PAGE_FULFILLED"]}>
+      <div className="sub-page-wrapper animated fadeIn">
+        <div style={{
+            marginTop: 20
+          }}>
+          <Row>
+            <Panel index={1} value={monthlyData.visits} title="Visits"/>
+            <Panel index={2} value={monthlyData.total_rewards} title="Total of Promotions"/>
+            <Panel index={3} value={monthlyData.customer_average_visits} title="Average of Revisit"/>
+            <Panel index={4} value={monthlyData.visits_change} title="Visit Fluctuation"/>
+          </Row>
 
-            <Row>
-              <Col>
-                <TrafficChart
-                      traffic={traffic}
-                      options={trafficChartOptions}
-                      handleChangePeriod={this.handleTrafficChangePeriod}
-                      title="Traffic"
-                  />
-              </Col>
-            </Row>
+          <Row>
+            <Col>
+              <TrafficChart traffic={traffic} options={trafficChartOptions} handleChangePeriod={this.handleTrafficChangePeriod} title="Traffic"/>
+            </Col>
+          </Row>
 
-            <Row>
-              <Col>
-                <h2 className="way-heading" style={{
-                      fontSize: "24px"
-                    }}>Promotions</h2>
-              </Col>
-            </Row>
-            <Row>
-              <Col md="6">
-                <PromotionsList
-                      data={promotions}
-                      promotionsLimit={promotionsLimit}
-                      promotionsOffset={promotionsOffset}
-                      promotionsTotalCount={promotionsTotalCount}
-                      loadMore={this.loadMorePromotions}
-                  />
-              </Col>
-              <Col md="6">
-                <div className="d-flex flex-column right-box">
-                  <Affluence
-                        data={affluence}
-                    />
-                  <TypicalClient
-                      data={typicalCustomer}
-                    />
-                </div>
-              </Col>
-            </Row>
+          <Row>
+            <Col>
+              <h2 className="way-heading" style={{
+                  fontSize: "24px"
+                }}>Promotions</h2>
+            </Col>
+          </Row>
+          <Row>
+            <Col md="6">
+              <PromotionsList data={promotions} promotionsLimit={promotionsLimit} promotionsOffset={promotionsOffset} promotionsTotalCount={promotionsTotalCount} loadMore={this.loadMorePromotions}/>
+            </Col>
+            <Col md="6">
+              <div className="d-flex flex-column right-box">
+                <Affluence data={affluence}/>
+                <TypicalClient data={typicalCustomer}/>
+              </div>
+            </Col>
+          </Row>
 
-            <Row>
-              <Col>
-                <ExportExcelButton/>
-              </Col>
-            </Row>
+          <Row>
+            <Col>
+              <ExportExcelButton/>
+            </Col>
+          </Row>
 
-          </div>
-          <br/>
         </div>
-      </ReduxBlockUi>
-    );
+        <br/>
+      </div>
+    </ReduxBlockUi>);
   }
 }
 

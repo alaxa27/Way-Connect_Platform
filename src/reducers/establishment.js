@@ -21,12 +21,19 @@ import {
 } from "../constants/ActionTypes";
 import _ from "underscore";
 
+const monthlyData = {
+  visits: "0",
+  visits_change: "0",
+  customer_average_visits: "0",
+  total_rewards: "0"
+}
+
 const initialState = {
     fetching: false,
     success: false,
     error: null,
 
-    monthlyData: null,
+    monthlyData: monthlyData,
     traffic: {
         period: "month",
         labels: ["M", "T", "W", "Th", "F", "Sa", "Su"],
