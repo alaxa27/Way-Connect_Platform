@@ -32,7 +32,7 @@ export default {
     },
     {
       name: "Establishment",
-      url: "/establishment",
+      url: "/establishment/12",
       icon: "fa fa-upload"
     },
     {

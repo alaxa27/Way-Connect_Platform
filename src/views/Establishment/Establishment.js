@@ -92,6 +92,7 @@ class Establishment extends Component {
 
       const { promotionsLimit, promotionsOffset } = this.props;
       this.props.dispatch(actions.fetchEstablishmentPageData({
+        establishmentID: this.props.match.params.id,
         limit: promotionsLimit,
         offset: promotionsOffset
       }));

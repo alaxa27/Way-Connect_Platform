@@ -14,7 +14,7 @@ const title = "Client Type";
 
 class TypicalClient extends Component {
   static propTypes = {
-    data: PropTypes.array
+    data: PropTypes.object
   }
   constructor(props) {
       super(props);

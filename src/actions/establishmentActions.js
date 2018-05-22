@@ -30,11 +30,12 @@ export function fetchEstablishmentPageData(payload) {
       type: ESTABLISHMENT_PAGE,
     });
     try {
-      await dispatch(fetchMonthlyData());
-      await dispatch(fetchTraffic());
-      await dispatch(fetchAffluence());
+      const establishmentID = payload.establishmentID;
+      await dispatch(fetchMonthlyData({establishmentID}));
+      await dispatch(fetchTraffic({establishmentID}));
+      await dispatch(fetchAffluence({establishmentID}));
       await dispatch(fetchPromotions(payload));
-      await dispatch(fetchTypicalCustomer());
+      await dispatch(fetchTypicalCustomer({establishmentID}));
       dispatch({
         type: ESTABLISHMENT_PAGE_FULFILLED,
       });
@@ -55,7 +56,7 @@ function fetchMonthlyData(payload) {
         try {
             const response = await axiosInstance({
                 method: "get",
-                url: "/establishments/29/monthly_data",
+                url: `/establishments/${payload.establishmentID}/monthly_data`,
             });
             dispatch({
                 type: MONTHLY_DATA_FULFILLED,
@@ -75,7 +76,7 @@ function fetchTraffic(payload) {
     try {
       const response = await axiosInstance({
         method: "get",
-        url: "/establishments/29/traffic",
+        url: `/establishments/${payload.establishmentID}/traffic`,
       });
       dispatch({
         type: TRAFFIC_FULFILLED,
@@ -104,7 +105,7 @@ function fetchAffluence(payload) {
     try {
       const response = await axiosInstance({
         method: "get",
-        url: "/establishments/29/affluence",
+        url: `/establishments/${payload.establishmentID}/affluence`,
       });
       dispatch({
         type: AFFLUENCE_FULFILLED,
@@ -124,7 +125,7 @@ export function fetchPromotions(payload) {
     try {
       const response = await axiosInstance({
         method: "get",
-        url: `/establishments/29/discount_activations/?limit=${payload.limit}&offset=${payload.offset}`,
+        url: `/establishments/${payload.establishmentID}/discount_activations/?limit=${payload.limit}&offset=${payload.offset}`,
       });
       dispatch({
         type: PROMOTIONS_FULFILLED,
@@ -147,7 +148,7 @@ function fetchTypicalCustomer(payload) {
     try {
       const response = await axiosInstance({
         method: "get",
-        url: "/establishments/29/typical_customer",
+        url: `/establishments/${payload.establishmentID}/typical_customer`,
       });
       dispatch({
         type: TYPICAL_CUSTOMER_FULFILLED,

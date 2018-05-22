@@ -5,7 +5,7 @@ import _ from "underscore";
 
 class TypicalClientList extends Component {
   static propTypes = {
-    data: PropTypes.array
+    data: PropTypes.object
   }
   constructor(props) {
       super(props);

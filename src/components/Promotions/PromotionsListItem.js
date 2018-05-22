@@ -16,8 +16,8 @@ class PromotionsListItem extends Component {
           </div>
         </div>
         <div className="pl-4" style={{flex: 1}}>
-          <label className="promotion__label-middle">{promotion.code}</label>
-          <span className="promotion__span-middle">{promotion.date}</span>
+          <label className="promotion__label-middle">{promotion.code.toUpperCase()}</label>
+          <span className="promotion__span-middle">{new Date(promotion.date).toString()}</span>
         </div>
         <div className="text-right">
           <label className="promotion__label-right">{promotion.views}<sup>th</sup></label>
