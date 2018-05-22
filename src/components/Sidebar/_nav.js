@@ -27,7 +27,7 @@ export default {
     },
     {
       name: "AnalyticsCampaign",
-      url: "/campaigns/12/analytics",
+      url: "/campaigns/46/analytics",
       icon: "fa fa-upload"
     },
     {

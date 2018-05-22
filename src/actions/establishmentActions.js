@@ -40,7 +40,11 @@ export function fetchEstablishmentPageData(payload) {
       await dispatch(fetchAffluence({
         establishmentID
       }));
-      await dispatch(fetchPromotions(payload));
+      await dispatch(fetchPromotions({
+          limit: payload.limit,
+          offset: payload.offset,
+          establishmentID
+      }));
       await dispatch(fetchTypicalCustomer({
         establishmentID
       }));
@@ -67,20 +71,15 @@ function fetchMonthlyData(payload) {
         url: `/establishments/${payload.establishmentID}/monthly_data`,
       });
 
-      const monthlyData = { ...response.data
-      };
-
-      console.log("DFGHJKL1", monthlyData);
+      const monthlyData = { ...response.data };
       monthlyData.customer_average_visits *= 100;
       const currency = Object.keys(monthlyData.total_rewards)[0];
       monthlyData.total_rewards = monthlyData.total_rewards[currency];
-      console.log("DFGHJKL2", monthlyData);
 
       for (let key in monthlyData) {
         monthlyData[key] = monthlyData[key].toFixed(2).toString();
       }
 
-      console.log("DFGHJKL3", monthlyData);
       monthlyData.total_rewards = `${monthlyData.total_rewards} ${currency}`;
 
       dispatch({

@@ -148,10 +148,6 @@ export default function reducer(state = initialState, action) {
                   datasets: affluenceDatasets
               },
           };
-          return {
-              ...state,
-              affluence: action.payload
-          };
       case TYPICAL_CUSTOMER:
           return {
               ...state,

@@ -11,6 +11,9 @@ import {
 import TrafficChart from "../../../components/Traffic/TrafficChart";
 import TypicalClient from "../../../components/TypicalClient/TypicalClient";
 import TrafficSales from "./TrafficSales/TrafficSales";
+import { connect } from "react-redux";
+import * as actions from "../../../actions/campaignActions";
+import ReduxBlockUi from "react-block-ui/redux";
 
 const brandPrimary = "#20a8d8";
 const brandInfo = "#F15A24";
@@ -54,6 +57,16 @@ function convertHex(hex, opacity) {
     return "rgba(" + r + "," + g + "," + b + "," + opacity / 100 + ")";
 }
 
+@connect((store) => {
+    let campaignStore = store.campaign;
+    return {
+        fetching: campaignStore.fetching,
+        success: campaignStore.success,
+        error: campaignStore.error,
+        traffic: campaignStore.traffic,
+        keyData: campaignStore.keyData,
+    };
+})
 class AnalyticsCampaign extends Component {
   constructor(props) {
       super(props);
@@ -95,69 +108,59 @@ class AnalyticsCampaign extends Component {
                   percentage: 78,
               },
           ],
-          trafficChartData: {
-              labels: ["M", "T", "W", "T", "F", "S", "S", "M", "T", "W", "T", "F",
-                  "S", "S", "M", "T", "W", "T", "F", "S", "S", "M", "T", "W", "T", "F",
-                  "S", "S"],
-              datasets: [
-                  {
-                      label: "Views",
-                      backgroundColor: convertHex(brandInfo, 10),
-                      borderColor: brandInfo,
-                      colorName: "info",
-                      pointHoverBackgroundColor: "#fff",
-                      borderWidth: 3,
-                      data: [10, 123, 11, 123, 32, 55, 66, 32, 12, 1, 1, 11, 22, 55, 14, 56, 66, 56, 44, 21, 22, 12, 12, 1, 1, 1, 88, 105]
-                  },
-                  {
-                      label: "Bounce Rate",
-                      backgroundColor: convertHex(brandPrimary, 10),
-                      borderColor: brandPrimary,
-                      colorName: "primary",
-                      pointHoverBackgroundColor: "#fff",
-                      borderWidth: 3,
-                      data: [55, 44, 1, 2, 3, 1, 1, 1, 1, 1, 1, 22, 22, 65, 77, 87, 200, 11, 44, 21, 22, 12, 12, 1, 1, 1, 88, 105]
-                  },
-              ],
-          }
+
       };
+      this.props.dispatch(
+          actions.fetchCampaignAnalyticsPageData({
+              campaignId: this.props.match.params.id,
+          })
+      );
   }
   render() {
+    const { traffic, keyData } = this.props;
     return (
-      <div className="sub-page-wrapper animated fadeIn">
-        <div style={{
-              marginTop: 20
-          }}>
-          <Row>
-            <Panel index={1} value="12.5k" title="Visits"/>
-            <Panel index={2} value="200" title="Amount of Promotions"/>
-            <Panel index={3} value="3.2" title="Average of Revisit"/>
-            <Panel index={4} value="+12.5%" title="Visit Fluctuation"/>
-          </Row>
+      <ReduxBlockUi tag="div" block={["CAMPAIGN_ANALYTICS", "CAMPAIGN_ANALYTICS_REJECTED"]} unblock={["CAMPAIGN_ANALYTICS_FULFILLED"]}>
+          <div className="sub-page-wrapper animated fadeIn">
+            <div style={{
+                  marginTop: 20
+              }}>
+              <Row>
+                  <Col xs="12" md="6" lg="3">
+                      <Panel index={1} value={keyData.views} title="Visits"/>
+                  </Col>
+                  <Col xs="12" md="6" lg="3">
+                      <Panel index={2} value={keyData.customers} title="Customers"/>
+                  </Col>
+                  <Col xs="12" md="6" lg="3">
+                      <Panel index={3} value={keyData.money + ' ' + keyData.money_currency} title="Money"/>
+                  </Col>
+                  <Col xs="12" md="6" lg="3">
+                      <Panel index={4} value={keyData.clicks} title="Clicks"/>
+                  </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <TrafficChart
+                    traffic={traffic}
+                    options={trafficChartOptions}
+                    title="Traffic"
+                  />
+                </Col>
+              </Row>
 
-          <Row>
-            <Col>
-              <TrafficChart
-                        chartData={this.state.trafficChartData}
-                        options={trafficChartOptions}
-                        title="Traffic"
-                        defaultPeriod="year"
-                      />
-            </Col>
-          </Row>
-
-          <Row>
-            <Col xs="12" lg="6">
-              <TrafficSales />
-            </Col>
-            <Col xs="12" lg="6">
-              <TypicalClient
-                        data={this.state.data}
-                      />
-            </Col>
-          </Row>
-        </div>
-      </div>
+              {/*<Row>*/}
+                {/*<Col xs="12" lg="6">*/}
+                  {/*<TrafficSales />*/}
+                {/*</Col>*/}
+                {/*<Col xs="12" lg="6">*/}
+                  {/*<TypicalClient*/}
+                            {/*data={this.state.data}*/}
+                          {/*/>*/}
+                {/*</Col>*/}
+              {/*</Row>*/}
+            </div>
+          </div>
+      </ReduxBlockUi>
     );
   }
 }
