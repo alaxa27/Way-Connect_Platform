@@ -46,8 +46,8 @@ class ResetPassword extends Component {
   }
 
   componentDidUpdate(nextProps) {
-    if (this.prop.success) {
-      history.push("/login");
+    if (this.props.success) {
+      this.props.history.push("/login");
     }
   }
 

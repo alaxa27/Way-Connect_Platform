@@ -1,15 +1,16 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 import {Row, Col} from "reactstrap";
+import ReduxBlockUi from "react-block-ui/redux";
+
 import TypicalClient from "../../components/TypicalClient/TypicalClient";
 import Affluence from "../../components/Affluence/Affluence";
 import PromotionsList from "../../components/Promotions/PromotionsList";
 import Panel from "../../components/Panel/Panel";
 import TrafficChart from "../../components/Traffic/TrafficChart";
 import ExportExcelButton from "./ExportExcel/ExportExcelButton";
-import {connect} from "react-redux";
 import * as actions from "../../actions/establishmentActions";
-import ReduxBlockUi from "react-block-ui/redux";
 
 const brandInfo = "#F15A24";
 
