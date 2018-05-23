@@ -22,28 +22,28 @@ class TypicalClient extends Component {
   render() {
     const { data } = this.props;
     return (
-      <ReduxBlockUi tag="div" block="TYPICAL_CUSTOMER" unblock={["TYPICAL_CUSTOMER_FULFILLED", "TYPICAL_CUSTOMER_REJECTED"]}>
-        <Card className="typical-client-card">
-          <CardHeader>
-            {title}
-          </CardHeader>
-          <CardBody>
-            <Media>
-              <Media left>
-                <TypicalClientImage
-                  width={180}
-                  height={180}
-                />
+        <ReduxBlockUi tag="div" block="TYPICAL_CUSTOMER" unblock={["TYPICAL_CUSTOMER_FULFILLED", "TYPICAL_CUSTOMER_REJECTED"]}>
+          <Card className="typical-client-card">
+            <CardHeader>
+              {title}
+            </CardHeader>
+            <CardBody>
+              <Media>
+                <Media left>
+                  <TypicalClientImage
+                    width={180}
+                    height={180}
+                  />
+                </Media>
+                <Media body style={{paddingLeft: "1.25rem"}}>
+                  <TypicalClientList
+                    data={data}
+                  />
+                </Media>
               </Media>
-              <Media body style={{paddingLeft: "1.25rem"}}>
-                <TypicalClientList
-                  data={data}
-                />
-              </Media>
-            </Media>
-          </CardBody>
-        </Card>
-      </ReduxBlockUi>
+            </CardBody>
+          </Card>
+        </ReduxBlockUi>
     );
   }
 }

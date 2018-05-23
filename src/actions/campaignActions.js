@@ -3,21 +3,22 @@ import {
 } from "../constants/ApiConfig";
 
 import {
-  CAMPAIGN_ANALYTICS,
-  CAMPAIGN_ANALYTICS_FULFILLED,
-  CAMPAIGN_ANALYTICS_REJECTED,
+    CAMPAIGN_ANALYTICS,
+    CAMPAIGN_ANALYTICS_FULFILLED,
+    CAMPAIGN_ANALYTICS_REJECTED,
 
-  CAMPAIGN_ANALYTICS_AFFLUENCE,
-  CAMPAIGN_ANALYTICS_AFFLUENCE_FULFILLED,
+    CAMPAIGN_ANALYTICS_AFFLUENCE,
+    CAMPAIGN_ANALYTICS_AFFLUENCE_FULFILLED,
 
-  CAMPAIGN_ANALYTICS_TRAFFIC,
-  CAMPAIGN_ANALYTICS_TRAFFIC_FULFILLED,
+    CAMPAIGN_ANALYTICS_TRAFFIC,
+    CAMPAIGN_ANALYTICS_TRAFFIC_FULFILLED,
 
-  CAMPAIGN_ANALYTICS_TYPICAL_CUSTOMER,
-  CAMPAIGN_ANALYTICS_TYPICAL_CUSTOMER_FULFILLED,
+    CAMPAIGN_ANALYTICS_TYPICAL_CUSTOMER,
+    CAMPAIGN_ANALYTICS_TYPICAL_CUSTOMER_FULFILLED,
+    CAMPAIGN_ANALYTICS_TYPICAL_CUSTOMER_REJECTED,
 
-  CAMPAIGN_ANALYTICS_KEY_DATA,
-  CAMPAIGN_ANALYTICS_KEY_DATA_FULFILLED
+    CAMPAIGN_ANALYTICS_KEY_DATA,
+    CAMPAIGN_ANALYTICS_KEY_DATA_FULFILLED,
 } from "../constants/ActionTypes";
 
 export function fetchCampaignAnalyticsPageData(payload) {
@@ -36,9 +37,9 @@ export function fetchCampaignAnalyticsPageData(payload) {
             await dispatch(fetchTraffic({
                 campaignId
             }));
-            // await dispatch(fetchTypicalCustomer({
-            //     campaignId
-            // }));
+            await dispatch(fetchTypicalCustomer({
+                campaignId
+            }));
             dispatch({
                 type: CAMPAIGN_ANALYTICS_FULFILLED,
             });
@@ -126,7 +127,10 @@ function fetchTypicalCustomer(payload) {
                 payload: response.data
             });
         } catch (error) {
-            throw new Error();
+            dispatch({
+                type: CAMPAIGN_ANALYTICS_TYPICAL_CUSTOMER_REJECTED,
+                payload: error
+            });
         }
     };
 }

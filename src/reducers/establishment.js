@@ -56,7 +56,7 @@ const initialState = {
 
 let trafficDatasets = [
     {
-        label: "Views",
+        label: "Visits",
         backgroundColor: "transparent",
         borderColor: "#F15A24",
         colorName: "primary",

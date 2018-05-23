@@ -11,6 +11,7 @@ import {
 
     CAMPAIGN_ANALYTICS_TYPICAL_CUSTOMER,
     CAMPAIGN_ANALYTICS_TYPICAL_CUSTOMER_FULFILLED,
+    CAMPAIGN_ANALYTICS_TYPICAL_CUSTOMER_REJECTED,
 
     CAMPAIGN_ANALYTICS_KEY_DATA,
     CAMPAIGN_ANALYTICS_KEY_DATA_FULFILLED
@@ -34,7 +35,8 @@ const initialState = {
         labels: ["M", "T", "W", "Th", "F", "Sa", "Su"],
         datasets: []
     },
-    keyData: keyData
+    keyData: keyData,
+    typicalCustomer: null,
 };
 
 let trafficDatasets = [
@@ -106,8 +108,14 @@ export default function reducer(state = initialState, action) {
       case CAMPAIGN_ANALYTICS_TYPICAL_CUSTOMER:
           return {
               ...state,
+              typicalCustomer: null,
           };
       case CAMPAIGN_ANALYTICS_TYPICAL_CUSTOMER_FULFILLED:
+          return {
+              ...state,
+              typicalCustomer: action.payload
+          };
+      case CAMPAIGN_ANALYTICS_TYPICAL_CUSTOMER_REJECTED:
           return {
               ...state,
           };

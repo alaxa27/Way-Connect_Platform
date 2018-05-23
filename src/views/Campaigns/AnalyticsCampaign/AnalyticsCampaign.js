@@ -66,6 +66,7 @@ function convertHex(hex, opacity) {
         error: campaignStore.error,
         traffic: campaignStore.traffic,
         keyData: campaignStore.keyData,
+        typicalCustomer: campaignStore.typicalCustomer,
     };
 })
 class AnalyticsCampaign extends Component {
@@ -77,7 +78,10 @@ class AnalyticsCampaign extends Component {
       })
     }),
     traffic: PropTypes.object,
-    keyData: PropTypes.object
+    keyData: PropTypes.object,
+    typicalCustomer: PropTypes.oneOfType([
+        PropTypes.object,
+    ])
   }
   constructor(props) {
       super(props);
@@ -128,7 +132,7 @@ class AnalyticsCampaign extends Component {
       );
   }
   render() {
-    const { traffic, keyData } = this.props;
+    const { traffic, keyData, typicalCustomer } = this.props;
     return (
       <ReduxBlockUi tag="div" block={["CAMPAIGN_ANALYTICS", "CAMPAIGN_ANALYTICS_REJECTED"]} unblock={["CAMPAIGN_ANALYTICS_FULFILLED"]}>
         <div className="sub-page-wrapper animated fadeIn">
@@ -159,16 +163,20 @@ class AnalyticsCampaign extends Component {
               </Col>
             </Row>
 
-            {/*<Row>*/}
-            {/*<Col xs="12" lg="6">*/}
-            {/*<TrafficSales />*/}
-            {/*</Col>*/}
-            {/*<Col xs="12" lg="6">*/}
-            {/*<TypicalClient*/}
-            {/*data={this.state.data}*/}
-            {/*/>*/}
-            {/*</Col>*/}
-            {/*</Row>*/}
+            <Row>
+                {/*<Col xs="12" lg="6">*/}
+                    {/*<TrafficSales />*/}
+                {/*</Col>*/}
+                {typicalCustomer ?
+                    <Col xs="12" lg="6">
+                        <TypicalClient
+                            data={typicalCustomer}
+                        />
+                    </Col>
+                :
+                    null
+                }
+            </Row>
           </div>
         </div>
       </ReduxBlockUi>
