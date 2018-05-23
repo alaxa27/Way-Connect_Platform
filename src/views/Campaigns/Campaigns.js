@@ -66,6 +66,14 @@ class Campaigns extends Component {
     });
   }
 
+  renderStatusCircle(status) {
+    if (status === this.props.campaign.status) {
+      return "mark-" + status;
+    } else {
+      return null;
+    }
+  }
+
   renderRedirect() {
     let target = "";
 
@@ -95,26 +103,20 @@ class Campaigns extends Component {
               width: "100%"
             }}>
             <Col xs="4" md="3">
-              <label className="bidding-status-label" style={{
-                  color: "#cbcbcb"
-                }}>
-                <FontAwesome.FaCircle/>
+              <label className="bidding-status-label">
+                <FontAwesome.FaCircle className={this.renderStatusCircle("bidding")}/>
                 Bidding
               </label>
             </Col>
             <Col xs="4" md="3">
-              <label className="bidding-status-label" style={{
-                  color: "#989898"
-                }}>
-                <FontAwesome.FaCircle/>
+              <label className="bidding-status-label">
+                <FontAwesome.FaCircle className={this.renderStatusCircle("progress")}/>
                 In Progress
               </label>
             </Col>
             <Col xs="4" md="3">
-              <label className="bidding-status-label" style={{
-                  color: "#cbcbcb"
-                }}>
-                <FontAwesome.FaCircle/>
+              <label className="bidding-status-label">
+                <FontAwesome.FaCircle className={this.renderStatusCircle("delivered")}/>
                 Delivered
               </label>
             </Col>

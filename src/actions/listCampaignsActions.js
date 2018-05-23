@@ -19,13 +19,25 @@ export function fetchCampaigns(payload) {
         url: "/campaigns",
       });
       const campaigns = response.data.map((item, key) => {
+        // DEMO PURPOSES
+        switch (item.id) {
+          case 43:
+            item.status = "bidding";
+            break;
+          case 20:
+            item.status = "delivered";
+            break;
+          default:
+            item.status = "progress";
+            break;
+        }
+        ////////////////
         return { ...item,
           name: "Optician",
           view_price: "5",
           viewed: "3500",
           viewers: "12",
           bought: "500",
-          status: "progress"
         };
       });
       dispatch({

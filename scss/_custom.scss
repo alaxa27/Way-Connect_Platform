@@ -264,6 +264,10 @@ body {
   margin-top: 10px;
 }
 
+.breadcrumb {
+  margin-bottom: 0;
+}
+
 .custom-breadcrumb {
   width: 100%;
   border-bottom: 1px solid #a4b7c1;
@@ -525,10 +529,6 @@ body {
 .search-table h3 {
   border-right: 1px solid #cbcbcb;
   margin-right: 5px;
-}
-
-.campaign-types-container {
-  margin-top: -1.5em;
 }
 
 .custom-breadcrumb-wrapper {

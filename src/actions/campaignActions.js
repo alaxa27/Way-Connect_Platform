@@ -36,13 +36,25 @@ export function fetchCampaign(payload) {
         url: "/campaigns/"
         // url: `/campaigns/${payload.campaignId}/`,
       });
-      ///////This block will disappear when backend /campaign/:id/ will be working
+      // DEMO PURPOSES
+      //This block will disappear when backend /campaign/:id/ will be working
       let campaign = response.data.filter(function(campaign) {
         return campaign.id.toString() === payload.campaignId;
       });
 
       campaign = campaign[0];
-      campaign.status = "progress";
+
+      switch (campaign.id) {
+        case 43:
+          campaign.status = "bidding";
+          break;
+        case 20:
+          campaign.status = "delivered";
+          break;
+        default:
+          campaign.status = "progress";
+          break;
+      }
       ////////////////
       dispatch({
         type: FETCH_CAMPAIGN_FULFILLED,
