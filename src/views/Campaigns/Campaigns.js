@@ -85,7 +85,7 @@ class Campaigns extends Component {
                 </label>
               </Col>
             </Row>
-            <Collapse  isOpen={this.state.filter} style={{
+            <Collapse isOpen={this.state.filter} style={{
                   width: "100%"
                 }}>
               <ResearchFilters {...this.state} />
