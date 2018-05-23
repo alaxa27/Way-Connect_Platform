@@ -15,7 +15,7 @@ import {
     CAMPAIGN_ANALYTICS_KEY_DATA,
     CAMPAIGN_ANALYTICS_KEY_DATA_FULFILLED
 } from "../constants/ActionTypes";
-import _ from 'underscore';
+import _ from "underscore";
 
 const keyData = {
     views: "0",
@@ -86,8 +86,8 @@ export default function reducer(state = initialState, action) {
               ...state,
           };
       case CAMPAIGN_ANALYTICS_TRAFFIC_FULFILLED:
-          _.first(trafficDatasets).data = action.payload['views'].traffic;
-          _.last(trafficDatasets).data = action.payload['clicks'].traffic;
+          _.first(trafficDatasets).data = action.payload["views"].traffic;
+          _.last(trafficDatasets).data = action.payload["clicks"].traffic;
           return {
               ...state,
               traffic: {

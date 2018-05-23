@@ -20,11 +20,11 @@ class Panel extends Component {
       <ReduxBlockUi tag="div" block="CAMPAIGN_ANALYTICS_KEY_DATA" unblock={["CAMPAIGN_ANALYTICS_KEY_DATA_FULFILLED", "CAMPAIGN_ANALYTICS_KEY_DATA_REJECTED"]}>
         <div className={"establishment-panel establishment-panel--" + index}>
           <h2>
-              {value}
+            {value}
           </h2>
           <div className="clearfix"></div>
           <span>
-              {title}
+            {title}
           </span>
         </div>
       </ReduxBlockUi>

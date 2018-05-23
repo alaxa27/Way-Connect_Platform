@@ -43,12 +43,12 @@ class TrafficChart extends Component {
               </Col>
               {handleChangePeriod ?
                 <Col sm="7" className="d-none d-sm-inline-block">
-                    <ButtonToolbar className="float-right" aria-label="Toolbar with button groups">
-                        <ButtonGroup className="mr-3" aria-label="First group">
-                            <Button color="outline-secondary" onClick={() => handleChangePeriod("month")} active={traffic.period === "month"}>Month</Button>
-                            <Button color="outline-secondary" onClick={() => handleChangePeriod("year")} active={traffic.period === "year"}>Year</Button>
-                        </ButtonGroup>
-                    </ButtonToolbar>
+                  <ButtonToolbar className="float-right" aria-label="Toolbar with button groups">
+                    <ButtonGroup className="mr-3" aria-label="First group">
+                      <Button color="outline-secondary" onClick={() => handleChangePeriod("month")} active={traffic.period === "month"}>Month</Button>
+                      <Button color="outline-secondary" onClick={() => handleChangePeriod("year")} active={traffic.period === "year"}>Year</Button>
+                    </ButtonGroup>
+                  </ButtonToolbar>
                 </Col>
               :
                 null

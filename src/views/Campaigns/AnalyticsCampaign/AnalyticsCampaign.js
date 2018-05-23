@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Panel from "../../../components/Panel/Panel";
 import {
     Row,
@@ -68,6 +69,16 @@ function convertHex(hex, opacity) {
     };
 })
 class AnalyticsCampaign extends Component {
+  static propTypes = {
+    dispatch: PropTypes.func,
+    match: PropTypes.shape({
+      params: PropTypes.shape({
+        id: PropTypes.string
+      })
+    }),
+    traffic: PropTypes.object,
+    keyData: PropTypes.object
+  }
   constructor(props) {
       super(props);
       this.state = {
@@ -120,46 +131,46 @@ class AnalyticsCampaign extends Component {
     const { traffic, keyData } = this.props;
     return (
       <ReduxBlockUi tag="div" block={["CAMPAIGN_ANALYTICS", "CAMPAIGN_ANALYTICS_REJECTED"]} unblock={["CAMPAIGN_ANALYTICS_FULFILLED"]}>
-          <div className="sub-page-wrapper animated fadeIn">
-            <div style={{
+        <div className="sub-page-wrapper animated fadeIn">
+          <div style={{
                   marginTop: 20
               }}>
-              <Row>
-                  <Col xs="12" md="6" lg="3">
-                      <Panel index={1} value={keyData.views} title="Visits"/>
-                  </Col>
-                  <Col xs="12" md="6" lg="3">
-                      <Panel index={2} value={keyData.customers} title="Customers"/>
-                  </Col>
-                  <Col xs="12" md="6" lg="3">
-                      <Panel index={3} value={keyData.money + ' ' + keyData.money_currency} title="Money"/>
-                  </Col>
-                  <Col xs="12" md="6" lg="3">
-                      <Panel index={4} value={keyData.clicks} title="Clicks"/>
-                  </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <TrafficChart
+            <Row>
+              <Col xs="12" md="6" lg="3">
+                <Panel index={1} value={keyData.views} title="Visits"/>
+              </Col>
+              <Col xs="12" md="6" lg="3">
+                <Panel index={2} value={keyData.customers} title="Customers"/>
+              </Col>
+              <Col xs="12" md="6" lg="3">
+                <Panel index={3} value={keyData.money + " " + keyData.money_currency} title="Money"/>
+              </Col>
+              <Col xs="12" md="6" lg="3">
+                <Panel index={4} value={keyData.clicks} title="Clicks"/>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <TrafficChart
                     traffic={traffic}
                     options={trafficChartOptions}
                     title="Traffic"
                   />
-                </Col>
-              </Row>
+              </Col>
+            </Row>
 
-              {/*<Row>*/}
-                {/*<Col xs="12" lg="6">*/}
-                  {/*<TrafficSales />*/}
-                {/*</Col>*/}
-                {/*<Col xs="12" lg="6">*/}
-                  {/*<TypicalClient*/}
-                            {/*data={this.state.data}*/}
-                          {/*/>*/}
-                {/*</Col>*/}
-              {/*</Row>*/}
-            </div>
+            {/*<Row>*/}
+            {/*<Col xs="12" lg="6">*/}
+            {/*<TrafficSales />*/}
+            {/*</Col>*/}
+            {/*<Col xs="12" lg="6">*/}
+            {/*<TypicalClient*/}
+            {/*data={this.state.data}*/}
+            {/*/>*/}
+            {/*</Col>*/}
+            {/*</Row>*/}
           </div>
+        </div>
       </ReduxBlockUi>
     );
   }
