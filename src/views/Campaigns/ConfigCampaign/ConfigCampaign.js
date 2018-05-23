@@ -99,7 +99,7 @@ class ConfigCampaign extends Component {
                     <Row>
                       <Col>
                         <Col>
-                          <h2 className="way-heading" style={{fontSize: "24px", marginBottom: 0}}>Define a formulary</h2>
+                          <h2 className="way-heading" style={{fontSize: "24px", marginBottom: 0, marginTop: '25px'}}>Define a formulary</h2>
                           <div className="sep">&nbsp;</div>
                         </Col>
 
