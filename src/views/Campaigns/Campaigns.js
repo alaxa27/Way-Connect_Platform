@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Switch, Route, Redirect } from "react-router-dom";
 import * as FontAwesome from "react-icons/lib/fa";
-import { Container, Row, Col, Button, Input } from "reactstrap";
+import { Container, Row, Col, Button, Input, Collapse } from "reactstrap";
 import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
 
@@ -85,7 +85,11 @@ class Campaigns extends Component {
                 </label>
               </Col>
             </Row>
-            <ResearchFilters {...this.state} />
+            <Collapse  isOpen={this.state.filter} style={{
+                  width: "100%"
+                }}>
+              <ResearchFilters {...this.state} />
+            </Collapse>
           </div>
         </div>
 
