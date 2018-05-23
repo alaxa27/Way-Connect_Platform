@@ -36,19 +36,21 @@ export function fetchCampaign(payload) {
         url: "/campaigns/"
         // url: `/campaigns/${payload.campaignId}/`,
       });
+      ///////This block will disappear when backend /campaign/:id/ will be working
       let campaign = response.data.filter(function(campaign) {
         return campaign.id.toString() === payload.campaignId;
       });
 
       campaign = campaign[0];
-
       campaign.status = "progress";
+      ////////////////
       dispatch({
         type: FETCH_CAMPAIGN_FULFILLED,
         payload: campaign
       });
 
     } catch (error) {
+      // If error 404 should go back to /campaign/list
       dispatch({
         type: FETCH_CAMPAIGN_REJECTED,
         payload: error
