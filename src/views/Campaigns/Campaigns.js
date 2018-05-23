@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Switch, Route } from "react-router-dom";
+import PropTypes from "prop-types";
+import { Switch, Route, Redirect } from "react-router-dom";
 import * as FontAwesome from "react-icons/lib/fa";
 import { Container, Row, Col, Button, Input } from "reactstrap";
 import InputRange from "react-input-range";
@@ -14,6 +15,13 @@ import ResearchFilters from "../../components/ResearchFilters/ResearchFilters.js
 
 
 class Campaigns extends Component {
+  static propTypes = {
+    match: PropTypes.shape({
+      params: PropTypes.shape({
+        id: PropTypes.string
+      })
+    })
+  }
   constructor(props) {
       super(props);
       this.state = {
@@ -84,6 +92,7 @@ class Campaigns extends Component {
         <Route path="/campaigns/:id/config" name="ConfigCampaign" component={ConfigCampaign} />
         <Route path="/campaigns/:id/bid" name="BidCampaign" component={BidCampaign}/>
         <Route path="/campaigns/:id/analytics" name="AnalyticsCampaign" component={AnalyticsCampaign}/>
+        <Redirect to={`/campaigns/${this.props.match.params.id}/analytics`} />
       </div>
     );
   }

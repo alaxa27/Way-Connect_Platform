@@ -509,11 +509,11 @@ body {
   position: relative;
   top: -2px;
 
-  &.mark-1 {
+  &.mark-bidding {
     color: #FFBE05;
   }
 
-  &.mark-2 {
+  &.mark-progress {
     color: #15CC35;
   }
 }
@@ -724,6 +724,7 @@ body {
   margin: 30px 0;
 }
 
+
 .mybids-table tr td:first-child {
   width: auto;
 }
@@ -751,6 +752,7 @@ body {
 .mybids-table tr td label {
   border-top: 1px solid #a4b7c1;
   border-bottom: 1px solid #a4b7c1;
+  cursor: pointer;
 }
 
 .mybids-table tr td:first-child label {
