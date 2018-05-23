@@ -164,15 +164,15 @@ class AnalyticsCampaign extends Component {
             </Row>
 
             <Row>
-                {/*<Col xs="12" lg="6">*/}
-                    {/*<TrafficSales />*/}
-                {/*</Col>*/}
-                {typicalCustomer ?
-                    <Col xs="12" lg="6">
-                        <TypicalClient
+              {/*<Col xs="12" lg="6">*/}
+              {/*<TrafficSales />*/}
+              {/*</Col>*/}
+              {typicalCustomer ?
+                <Col xs="12" lg="6">
+                  <TypicalClient
                             data={typicalCustomer}
                         />
-                    </Col>
+                </Col>
                 :
                     null
                 }
