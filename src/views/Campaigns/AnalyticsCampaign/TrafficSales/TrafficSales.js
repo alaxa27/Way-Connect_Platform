@@ -25,30 +25,6 @@ class TrafficSales extends Component {
             <Col>
               <ul className="horizontal-bars traffic-bars">
                 <li>
-                  <div className="d-flex justify-content-between">
-                    <div>
-                      <i className="icon-user mr-3"></i>
-                      <span className="title">Male</span>
-                    </div>
-                    <span className="traffic-bars__legend-title">43%</span>
-                  </div>
-                  <div className="bars p-0 mt-3">
-                    <Progress className="progress-xs" color="warning" value="43"/>
-                  </div>
-                </li>
-                <li>
-                  <div className="d-flex justify-content-between">
-                    <div>
-                      <i className="icon-user-female mr-3"></i>
-                      <span className="title">Female</span>
-                    </div>
-                    <span className="traffic-bars__legend-title">37%</span>
-                  </div>
-                  <div className="bars p-0 mt-3">
-                    <Progress className="progress-xs" color="warning" value="37"/>
-                  </div>
-                </li>
-                <li>
                   <div className="title">
                                   Monday
                   </div>
