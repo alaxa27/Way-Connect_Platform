@@ -22,7 +22,6 @@ class TypicalClient extends Component {
   render() {
     const { data } = this.props;
     return (
-      data ?
         <ReduxBlockUi tag="div" block="TYPICAL_CUSTOMER" unblock={["TYPICAL_CUSTOMER_FULFILLED", "TYPICAL_CUSTOMER_REJECTED"]}>
           <Card className="typical-client-card">
             <CardHeader>
@@ -45,8 +44,6 @@ class TypicalClient extends Component {
             </CardBody>
           </Card>
         </ReduxBlockUi>
-      :
-        null
     );
   }
 }
