@@ -93,9 +93,9 @@ class Campaigns extends Component {
           </div>
         </div>
 
-        <Route path="/campaigns/:id/config" name="ConfigCampaign" component={ConfigCampaign} />
-        <Route path="/campaigns/:id/bid" name="BidCampaign" component={BidCampaign}/>
-        <Route path="/campaigns/:id/analytics" name="AnalyticsCampaign" component={AnalyticsCampaign}/>
+        <Route exact path="/campaigns/:id/config" name="ConfigCampaign" component={ConfigCampaign} />
+        <Route exact path="/campaigns/:id/bid" name="BidCampaign" component={BidCampaign}/>
+        <Route exact path="/campaigns/:id/analytics" name="AnalyticsCampaign" component={AnalyticsCampaign}/>
         <Redirect to={`/campaigns/${this.props.match.params.id}/analytics`} />
       </div>
     );

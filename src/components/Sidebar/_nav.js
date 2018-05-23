@@ -17,12 +17,12 @@ export default {
     },
     {
       name: "BidCampaign",
-      url: "/campaigns/12/bid",
+      url: "/campaigns/46/bid",
       icon: "icon-layers",
     },
     {
       name: "ConfigCampaign",
-      url: "/campaigns/12/config",
+      url: "/campaigns/46/config",
       icon: "fa fa-upload"
     },
     {
