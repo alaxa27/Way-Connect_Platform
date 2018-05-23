@@ -65,16 +65,37 @@ class ConfigCampaign extends Component {
                   </NavItem>
                 </Nav>
                 <TabContent activeTab={this.state.activeTab}>
-                  <TabPane tabId="1">
-                    <Row>
-                      <Col>
-                        {/*<DropzoneComponent config={componentConfig}
-                                               eventHandlers={eventHandlers}
-                                               djsConfig={djsConfig} />*/}
-                      </Col>
-                    </Row>
+                  <TabPane tabId="1" style={{padding: 0}}>
+                    {/*<DropzoneComponent config={componentConfig}
+                                             eventHandlers={eventHandlers}
+                                             djsConfig={djsConfig} />*/}
+                    <div className="video text-center">
+                      <div className="container-fluid">
+                        <Row>
+                          <Col>
+                            <img src="../img/video-size-01.png" alt="Image" className="video__image" />
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col lg={{size: 8, offset: 2}}>
+                            <div className="video__teaser">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
+                            </div>
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col lg={{size: 4, offset: 4}}>
+                            <div className="video__file-upload">
+                              <button className="bid-btn bid-btn-dark">
+                                  Upload a file (mp4, m4v, avi, flv)
+                              </button>
+                            </div>
+                          </Col>
+                        </Row>
+                      </div>
+                    </div>
                   </TabPane>
-                  <TabPane tabId="2">
+                  <TabPane tabId="2" style={{padding: 0}}>
                     <Row>
                       <Col>
                         <Col>
@@ -112,16 +133,17 @@ class ConfigCampaign extends Component {
                         <Col><div className="sep">&nbsp;</div></Col>
 
                         <Col className="formulary-input-wrap">
-                          <Button className="add-btn"><MdIconPack.MdAddCircleOutline /> add an question</Button>
-                        </Col>
-
-                        <Col className="text-right">
-                          <Button className="bid-btn button-radius" style={{maxWidth: 200}}>Submit</Button>
+                          <Button className="add-btn"><MdIconPack.MdAddCircleOutline /> add a question</Button>
                         </Col>
 
                       </Col>
                     </Row>
                   </TabPane>
+
+                  <Col className="text-right border-top">
+                    <Button className="bid-btn" style={{maxWidth: 200}}>Submit</Button>
+                  </Col>
+
                 </TabContent>
               </div>
             </Col>

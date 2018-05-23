@@ -468,6 +468,10 @@ body {
   margin-top: 50px;
 }
 
+.bid-btn-dark {
+  background-color: #333333;
+}
+
 .total-cost-label {
   font-size: 24px;
   font-weight: bold;
@@ -529,6 +533,10 @@ body {
 
 .campaign-types-container {
   margin-top: -1.5em;
+
+  .add-btn {
+    margin-bottom: 30px;
+  }
 }
 
 .custom-breadcrumb-wrapper {
@@ -565,6 +573,10 @@ body {
   color: #989898;
 }
 
+.video-uploading-tabs .bid-btn {
+  margin: 15px 0;
+}
+
 .sep {
   height: 1px;
   width: 100%;
@@ -574,16 +586,21 @@ body {
 
 .formulary-input-wrap {
   margin-bottom: 15px;
+
+  .add-btn {
+    margin-top: 15px;
+  }
 }
 
 .formulary-input-wrap label {
   font-weight: normal;
-  margin: 0;
+  margin-bottom: 8px;
   line-height: normal;
 }
 
 .formulary-input-wrap input[type="text"] {
   border: 0;
+  border-radius: 12px;
   background-color: #f1f1f1;
 }
 
@@ -594,7 +611,6 @@ body {
   padding: 0;
   font-weight: bold;
   font-size: 16px;
-  margin-bottom: 30px;
 }
 
 .add-btn svg {
@@ -1032,4 +1048,22 @@ body {
   height: 220px;
   border: 0;
   border-radius: 5px;
+}
+
+.video {
+  padding-bottom: 75px;
+
+  &__image {
+    max-width: 100%;
+    margin: 50px 0 75px 0;
+  }
+
+  &__file-upload {
+    margin-top: 75px;
+  }
+
+}
+
+.border-top {
+  border-top: 1px solid #B3B3B3;
 }
