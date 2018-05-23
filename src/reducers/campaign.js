@@ -1,4 +1,8 @@
 import {
+    FETCH_CAMPAIGN,
+    FETCH_CAMPAIGN_FULFILLED,
+    FETCH_CAMPAIGN_REJECTED,
+
     CAMPAIGN_ANALYTICS,
     CAMPAIGN_ANALYTICS_FULFILLED,
     CAMPAIGN_ANALYTICS_REJECTED,
@@ -17,6 +21,13 @@ import {
     CAMPAIGN_ANALYTICS_KEY_DATA_FULFILLED
 } from "../constants/ActionTypes";
 import _ from "underscore";
+
+const campaignDefaults = {
+  id: null,
+  filters: "",
+  owner: "",
+  status: ""
+};
 
 const keyDataDefaults = {
     views: "0",
@@ -75,6 +86,7 @@ const initialState = {
     success: false,
     error: null,
 
+    campaign: campaignDefaults,
     traffic: trafficDefaults,
     keyData: keyDataDefaults,
     typicalCustomer: typicalCustomerDefaults,
@@ -82,6 +94,36 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
+      case FETCH_CAMPAIGN:
+        return {
+          ...state,
+          campaign: {
+            ...action.payload,
+            fetching: true,
+            success: false,
+            error: null
+          }
+        };
+      case FETCH_CAMPAIGN_FULFILLED:
+        return {
+          ...state,
+          campaign: {
+            ...action.payload,
+            fetching: false,
+            success: true,
+            error: null
+          }
+        };
+      case FETCH_CAMPAIGN_REJECTED:
+        return {
+          ...state,
+          campaign: {
+            ...state.campaign,
+            fetching: false,
+            success: false,
+            error: action.payload
+          }
+        };
       case CAMPAIGN_ANALYTICS:
           return {
               ...state,
