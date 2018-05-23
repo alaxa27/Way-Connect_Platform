@@ -18,7 +18,7 @@ import {
 } from "../constants/ActionTypes";
 import _ from "underscore";
 
-const keyData = {
+const keyDataDefaults = {
     views: "0",
     customers: "0",
     clicks: "0",
@@ -26,39 +26,59 @@ const keyData = {
     money_currency: ""
 };
 
+const typicalCustomerDefaults = {
+    age: 0,
+    country: {
+        label: "Unknown",
+        value: 0
+    },
+    gender: {
+        label: "Unknown",
+        value: 0
+    },
+    relationship_status: {
+        label: "Unknown",
+        value: 0
+    },
+    work_status: {
+        label: "Unknown",
+        value: 0
+    },
+};
+
+const trafficDefaults = {
+    labels: ["M", "T", "W", "Th", "F", "Sa", "Su"],
+    datasets: [
+        {
+            label: "Views",
+            backgroundColor: "transparent",
+            borderColor: "#F15A24",
+            colorName: "primary",
+            pointHoverBackgroundColor: "#fff",
+            borderWidth: 3,
+            data: [],
+        },
+        {
+            label: "Clicks",
+            backgroundColor: "transparent",
+            borderColor: "#20a8d8",
+            colorName: "info",
+            pointHoverBackgroundColor: "#fff",
+            borderWidth: 3,
+            data: [],
+        },
+    ]
+};
+
 const initialState = {
     fetching: false,
     success: false,
     error: null,
 
-    traffic: {
-        labels: ["M", "T", "W", "Th", "F", "Sa", "Su"],
-        datasets: []
-    },
-    keyData: keyData,
-    typicalCustomer: null,
+    traffic: trafficDefaults,
+    keyData: keyDataDefaults,
+    typicalCustomer: typicalCustomerDefaults,
 };
-
-let trafficDatasets = [
-    {
-        label: "Views",
-        backgroundColor: "transparent",
-        borderColor: "#F15A24",
-        colorName: "primary",
-        pointHoverBackgroundColor: "#fff",
-        borderWidth: 3,
-        data: [],
-    },
-    {
-        label: "Clicks",
-        backgroundColor: "transparent",
-        borderColor: "#20a8d8",
-        colorName: "info",
-        pointHoverBackgroundColor: "#fff",
-        borderWidth: 3,
-        data: [],
-    },
-];
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -88,14 +108,10 @@ export default function reducer(state = initialState, action) {
               ...state,
           };
       case CAMPAIGN_ANALYTICS_TRAFFIC_FULFILLED:
-          _.first(trafficDatasets).data = action.payload["views"].traffic;
-          _.last(trafficDatasets).data = action.payload["clicks"].traffic;
+
           return {
               ...state,
-              traffic: {
-                  ...state.traffic,
-                  datasets: trafficDatasets
-              },
+              traffic: action.payload,
           };
       case CAMPAIGN_ANALYTICS_AFFLUENCE:
           return {
@@ -108,7 +124,6 @@ export default function reducer(state = initialState, action) {
       case CAMPAIGN_ANALYTICS_TYPICAL_CUSTOMER:
           return {
               ...state,
-              typicalCustomer: null,
           };
       case CAMPAIGN_ANALYTICS_TYPICAL_CUSTOMER_FULFILLED:
           return {

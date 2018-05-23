@@ -102,9 +102,32 @@ function fetchTraffic(payload) {
                 method: "get",
                 url: `/campaigns/${payload.campaignId}/traffic`,
             });
+            let traffic = {
+                labels: ["M", "T", "W", "Th", "F", "Sa", "Su"],
+                datasets: [
+                    {
+                        label: "Views",
+                        backgroundColor: "transparent",
+                        borderColor: "#F15A24",
+                        colorName: "primary",
+                        pointHoverBackgroundColor: "#fff",
+                        borderWidth: 3,
+                        data: response.data.views.traffic,
+                    },
+                    {
+                        label: "Clicks",
+                        backgroundColor: "transparent",
+                        borderColor: "#20a8d8",
+                        colorName: "info",
+                        pointHoverBackgroundColor: "#fff",
+                        borderWidth: 3,
+                        data: response.data.clicks.traffic,
+                    },
+                ],
+            };
             dispatch({
                 type: CAMPAIGN_ANALYTICS_TRAFFIC_FULFILLED,
-                payload: response.data
+                payload: traffic
             });
         } catch (error) {
             throw new Error();
