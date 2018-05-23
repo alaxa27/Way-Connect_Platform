@@ -94,8 +94,14 @@ class Establishment extends Component {
     this.handleTrafficChangePeriod = this.handleTrafficChangePeriod.bind(this);
     this.loadMorePromotions = this.loadMorePromotions.bind(this);
 
-    const {promotionsLimit, promotionsOffset} = this.props;
-    this.props.dispatch(actions.fetchEstablishmentPageData({establishmentID: this.props.match.params.id, limit: promotionsLimit, offset: promotionsOffset}));
+    const { promotionsLimit, promotionsOffset } = props;
+    this.props.dispatch(
+        actions.fetchEstablishmentPageData({
+            establishmentID: this.props.match.params.id,
+            limit: promotionsLimit,
+            offset: promotionsOffset
+        })
+    );
   }
 
   handleTrafficChangePeriod(period) {
@@ -126,10 +132,18 @@ class Establishment extends Component {
             marginTop: 20
           }}>
           <Row>
-            <Panel index={1} value={monthlyData.visits} title="Visits"/>
-            <Panel index={2} value={monthlyData.total_rewards} title="Total of Promotions"/>
-            <Panel index={3} value={monthlyData.customer_average_visits} title="Average of Revisit"/>
-            <Panel index={4} value={monthlyData.visits_change} title="Visit Fluctuation"/>
+            <Col xs="12" md="6" lg="3">
+              <Panel index={1} value={monthlyData.visits} title="Visits"/>
+            </Col>
+            <Col xs="12" md="6" lg="3">
+              <Panel index={2} value={monthlyData.total_rewards} title="Total of Promotions"/>
+            </Col>
+            <Col xs="12" md="6" lg="3">
+              <Panel index={3} value={monthlyData.customer_average_visits} title="Average of Revisit"/>
+            </Col>
+            <Col xs="12" md="6" lg="3">
+              <Panel index={4} value={monthlyData.visits_change} title="Visit Fluctuation"/>
+            </Col>
           </Row>
 
           <Row>

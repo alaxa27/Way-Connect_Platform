@@ -7,5 +7,14 @@ import resetPassword from "./resetPassword";
 import register from "./register";
 import promotion from "./promotion";
 import establishment from "./establishment";
+import campaign from "./campaign";
 
-export default combineReducers({ example, login, forgotPassword, resetPassword, register, promotion, establishment });
+export default combineReducers({
+    login,
+    forgotPassword,
+    resetPassword,
+    register,
+    promotion,
+    establishment,
+    campaign
+});

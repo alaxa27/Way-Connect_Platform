@@ -41,14 +41,18 @@ class TrafficChart extends Component {
                 <CardTitle className="mb-0">{title}</CardTitle>
                 <div className="small text-muted">November 2017</div>
               </Col>
-              <Col sm="7" className="d-none d-sm-inline-block">
-                <ButtonToolbar className="float-right" aria-label="Toolbar with button groups">
-                  <ButtonGroup className="mr-3" aria-label="First group">
-                    <Button color="outline-secondary" onClick={() => handleChangePeriod("month")} active={traffic.period === "month"}>Month</Button>
-                    <Button color="outline-secondary" onClick={() => handleChangePeriod("year")} active={traffic.period === "year"}>Year</Button>
-                  </ButtonGroup>
-                </ButtonToolbar>
-              </Col>
+              {handleChangePeriod ?
+                <Col sm="7" className="d-none d-sm-inline-block">
+                    <ButtonToolbar className="float-right" aria-label="Toolbar with button groups">
+                        <ButtonGroup className="mr-3" aria-label="First group">
+                            <Button color="outline-secondary" onClick={() => handleChangePeriod("month")} active={traffic.period === "month"}>Month</Button>
+                            <Button color="outline-secondary" onClick={() => handleChangePeriod("year")} active={traffic.period === "year"}>Year</Button>
+                        </ButtonGroup>
+                    </ButtonToolbar>
+                </Col>
+              :
+                null
+              }
             </Row>
             <div className="chart-wrapper" style={{height: 300 + "px", marginTop: 40 + "px"}}>
               <Line data={traffic} options={options} height={300}/>
@@ -57,13 +61,13 @@ class TrafficChart extends Component {
           <CardFooter>
             <ul className="d-flex justify-content-center main-chart-legend">
               {_.map(traffic.datasets, item => {
-                            return (
-                              <li className="main-chart-legend__item" key={item.label}>
-                                <div className="text-muted">{item.label}</div>
-                                <Progress className="progress-xs mt-2" color={item.colorName} value="100"/>
-                              </li>
-                            );
-                        })}
+                return (
+                  <li className="main-chart-legend__item" key={item.label}>
+                    <div className="text-muted">{item.label}</div>
+                    <Progress className="progress-xs mt-2" color={item.colorName} value="100"/>
+                  </li>
+                );
+              })}
             </ul>
           </CardFooter>
         </Card>

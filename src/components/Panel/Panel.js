@@ -3,22 +3,31 @@ import PropTypes from "prop-types";
 import {
     Col,
 } from "reactstrap";
+import ReduxBlockUi from "react-block-ui/redux";
 
 class Panel extends Component {
   static propTypes = {
     index: PropTypes.number,
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]),
     title: PropTypes.string,
-  }
+  };
   render() {
+    const { index, title, value } = this.props;
     return (
-      <Col xs="12" md="6" lg="3">
-        <div className={"establishment-panel establishment-panel--" + this.props.index}>
-          <h2>{this.props.value}</h2>
+      <ReduxBlockUi tag="div" block="CAMPAIGN_ANALYTICS_KEY_DATA" unblock={["CAMPAIGN_ANALYTICS_KEY_DATA_FULFILLED", "CAMPAIGN_ANALYTICS_KEY_DATA_REJECTED"]}>
+        <div className={"establishment-panel establishment-panel--" + index}>
+          <h2>
+              {value}
+          </h2>
           <div className="clearfix"></div>
-          <span>{this.props.title}</span>
+          <span>
+              {title}
+          </span>
         </div>
-      </Col>
+      </ReduxBlockUi>
     );
   }
 }

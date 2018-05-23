@@ -17,7 +17,10 @@ class TypicalClientItem extends Component {
     prop: PropTypes.object,
     last: PropTypes.bool,
     title: PropTypes.string,
-    value: PropTypes.number
+    value: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.object
+    ])
   }
   constructor(props) {
       super(props);
