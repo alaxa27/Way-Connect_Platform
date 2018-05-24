@@ -34,8 +34,13 @@ class ResearchFilters extends Component {
   }
 
   handleInputChange(event) {
+    const val = event.target.value;
+    let gender = this.state.gender;
+    gender[val] = !gender[val];
     if (!this.state.fixed) {
-      this.setState({gender: event.target.value});
+      this.setState({
+        gender: gender
+      });
     }
   }
 
@@ -61,9 +66,9 @@ class ResearchFilters extends Component {
           <Col md="5">
             <label className="input-label">Gender</label>
             <div className="gender-radio-buttons">
-              <Input type="radio" id="male" name="gender" value="male" checked={this.state.gender === "male"} onChange={this.handleInputChange}/>
+              <Input type="radio" id="male" name="gender_male" value="male" checked={this.state.gender.male} onClick={this.handleInputChange}/>
               <label htmlFor="male" className="pull-left">Male</label>
-              <Input type="radio" id="female" name="gender" value="female" checked={this.state.gender === "female"} onChange={this.handleInputChange}/>
+              <Input type="radio" id="female" name="gender_female" value="female" checked={this.state.gender.female} onClick={this.handleInputChange}/>
               <label htmlFor="female" className="pull-right">Female</label>
               <div className="clearfix"></div>
             </div>
