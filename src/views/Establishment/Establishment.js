@@ -95,14 +95,8 @@ class Establishment extends Component {
     this.handleTrafficChangePeriod = this.handleTrafficChangePeriod.bind(this);
     this.loadMorePromotions = this.loadMorePromotions.bind(this);
 
-    const { promotionsLimit, promotionsOffset } = props;
-    this.props.dispatch(
-        actions.fetchEstablishmentPageData({
-            establishmentID: this.props.match.params.id,
-            limit: promotionsLimit,
-            offset: promotionsOffset
-        })
-    );
+    const {promotionsLimit, promotionsOffset} = props;
+    this.props.dispatch(actions.fetchEstablishmentPageData({establishmentID: this.props.match.params.id, limit: promotionsLimit, offset: promotionsOffset}));
   }
 
   handleTrafficChangePeriod(period) {
