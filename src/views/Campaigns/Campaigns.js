@@ -42,7 +42,10 @@ class Campaigns extends Component {
     this.state = {
       filter: false,
       fixed: true,
-      gender: "male",
+      gender: {
+        male: true,
+        female: false
+      },
       proStatus: "salary",
       nationality: "indian",
       relationaship: "married",

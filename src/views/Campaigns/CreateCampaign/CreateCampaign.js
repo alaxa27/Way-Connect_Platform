@@ -14,7 +14,10 @@ class CreateCampaign extends Component {
       this.state = {
         fixed: false,
         filter: true,
-        gender: "male",
+        gender: {
+          male: false,
+          female: false
+        },
         proStatus: "salary",
         nationality: "indian",
         relationaship: "married",
