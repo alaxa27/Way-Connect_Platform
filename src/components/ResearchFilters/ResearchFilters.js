@@ -1,31 +1,14 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {Row, Col, Input} from "reactstrap";
-import Select, {components} from "react-select";
 import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
-import * as FontAwesome from "react-icons/lib/fa";
 
-const DropdownIndicator = (props) => {
-  return (<components.DropdownIndicator {...props}>
-    <FontAwesome.FaArrowCircleODown/>
-  </components.DropdownIndicator>);
-};
-
-const selectStyles = {
-  control: (base, state) => ({
-    ...base,
-    border: "none",
-    backgroundColor: "white",
-    borderRadius: "1.5rem",
-    minHeight: "27px",
-    height: "27px"
-  })
-};
+import SelectBox from "../SelectBox/SelectBox";
 
 class ResearchFilters extends Component {
   static propTypes = {
-    filter: PropTypes.bool
+    fixed: PropTypes.bool
   }
   constructor(props) {
     super(props);
@@ -109,9 +92,7 @@ class ResearchFilters extends Component {
                       </div>
                     </Input>*/
                   }
-                  <Select isMulti="isMulti" name="colors" options={this.state.workStatus} classNamePrefix="select" components={{
-                      DropdownIndicator
-                    }} styles={selectStyles}/>
+                  <SelectBox options={this.state.workStatus} fixed={this.props.fixed}/>
                 </div>
 
                 <div className="input-wrapper">
@@ -122,9 +103,7 @@ class ResearchFilters extends Component {
                       <option value="married">Married</option>
                     </Input>*/
                     }
-                    <Select isMulti="isMulti" name="colors" options={this.state.workStatus} classNamePrefix="select" components={{
-                        DropdownIndicator
-                      }} styles={selectStyles}/>
+                    <SelectBox options={this.state.workStatus} fixed={this.props.fixed}/>
                   </div>
                 </div>
 
@@ -136,9 +115,7 @@ class ResearchFilters extends Component {
                       <option value="australian">Australian</option>
                     </Input>*/
                     }
-                    <Select isMulti="isMulti" name="colors" options={this.state.workStatus} classNamePrefix="select" components={{
-                        DropdownIndicator
-                      }} styles={selectStyles}/>
+                    <SelectBox options={this.state.workStatus} fixed={this.props.fixed}/>
                   </div>
                 </div>
               </div>
@@ -157,9 +134,7 @@ class ResearchFilters extends Component {
                       <option value="traveling">Traveling</option>
                     </Input>*/
                     }
-                    <Select isMulti="isMulti" name="colors" options={this.state.workStatus} classNamePrefix="select" components={{
-                        DropdownIndicator
-                      }} styles={selectStyles}/>
+                    <SelectBox options={this.state.workStatus} fixed={this.props.fixed}/>
                   </div>
                 </div>
 
@@ -171,9 +146,7 @@ class ResearchFilters extends Component {
                       <option value="chandigarh">Chandigarh</option>
                     </Input>*/
                     }
-                    <Select isMulti="isMulti" name="colors" options={this.state.workStatus} classNamePrefix="select" components={{
-                        DropdownIndicator
-                      }} styles={selectStyles}/>
+                    <SelectBox options={this.state.workStatus} fixed={this.props.fixed}/>
                   </div>
                 </div>
 
@@ -184,9 +157,7 @@ class ResearchFilters extends Component {
                       <option value="additional">Additional</option>
                     </Input>*/
                     }
-                    <Select isMulti="isMulti" name="colors" options={this.state.workStatus} classNamePrefix="select" components={{
-                        DropdownIndicator
-                      }} styles={selectStyles}/>
+                    <SelectBox options={this.state.workStatus} fixed={this.props.fixed}/>
                   </div>
                 </div>
               </Col>
