@@ -132,7 +132,8 @@ Login.propTypes = {
     error: PropTypes.object,
     fetching: PropTypes.bool,
     isAuthenticated: PropTypes.bool,
-    location: PropTypes.object
+    location: PropTypes.object,
+    login: PropTypes.func
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
