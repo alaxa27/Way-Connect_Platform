@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {Row, Col, Input} from "reactstrap";
+import Select, {components} from "react-select";
 import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
 
