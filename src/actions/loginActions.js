@@ -2,7 +2,7 @@ import {
   axiosInstance
 } from "../constants/ApiConfig";
 
-import CookieService from "../services/CookieService";
+import { setJwt, removeJwt } from "../services/CookieService";
 import {
   LOGIN,
   LOGIN_FULFILLED,
@@ -31,8 +31,7 @@ export function login(payload) {
       const token = response.data.key;
       const remember = payload.remember;
 
-      const cookieService = new CookieService();
-      cookieService.setJwt(token, remember);
+      setJwt(token, remember);
 
       dispatch({
         type: LOGIN_FULFILLED
@@ -64,8 +63,7 @@ export function logout(payload) {
       dispatch({
         type: LOGOUT_FULFILLED
       });
-      const cookieService = new CookieService();
-      cookieService.removeJwt();
+      removeJwt();
     } catch (error) {
       dispatch({
         type: LOGOUT_REJECTED,

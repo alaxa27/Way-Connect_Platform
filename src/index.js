@@ -29,11 +29,11 @@ import ForgotPassword from "./views/Pages/ForgotPassword/";
 import ResetPassword from "./views/Pages/ResetPassword/ResetPassword";
 import Page404 from "./views/Pages/Page404/";
 import Page500 from "./views/Pages/Page500/";
-import CookieService from "./services/CookieService";
+import { getJwt } from "./services/CookieService";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
-        new CookieService().getJwt()
+        getJwt()
             ? <Component {...props} />
             : <Redirect to={{
                 pathname: "/login",

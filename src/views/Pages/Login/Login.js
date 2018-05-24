@@ -14,34 +14,29 @@ import {
   InputGroupText,
   Form
 } from "reactstrap";
-import {Link, Redirect} from "react-router-dom";
-import {connect} from "react-redux";
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 import * as actions from "../../../actions/loginActions";
-import CookieService from "../../../services/CookieService";
+import { getJwt } from "../../../services/CookieService";
 
-@connect((store) => {
-  let loginStore = store.login;
-  return {fetching: loginStore.fetching, isAuthenticated: loginStore.isAuthenticated, error: loginStore.error};
-})
-class Login extends Component {
-  static propTypes = {
-    dispatch: PropTypes.func,
-    error: PropTypes.bool,
-    fetching: PropTypes.bool,
-    isAuthenticated: PropTypes.bool,
-    location: PropTypes.object
-  }
+const mapStateToProps = state => ({
+    fetching: state.login.fetching,
+    isAuthenticated: state.login.isAuthenticated,
+    error: state.login.error
+});
+
+const mapDispatchToProps = dispatch => ({
+    login: credentials => dispatch(actions.login(credentials))
+});
+
+export class Login extends Component {
   constructor(props) {
     super(props);
-    const redirect = (
-      new CookieService().getJwt()
-      ? true
-      : false);
     this.state = {
       username: "",
       password: "",
       remember: false,
-      redirect: redirect
+      redirect: getJwt()
     };
     this.handleChangeUsername = this.handleChangeUsername.bind(this);
     this.handleChangePassword = this.handleChangePassword.bind(this);
@@ -65,7 +60,12 @@ class Login extends Component {
 
   handleLogin(e) {
     e.preventDefault();
-    this.props.dispatch(actions.login({username: this.state.username, password: this.state.password, remember: this.state.remember}));
+    const { login } = this.props;
+    login({
+        username: this.state.username,
+        password: this.state.password,
+        remember: this.state.remember
+    });
   }
 
   render() {
@@ -85,7 +85,7 @@ class Login extends Component {
             <div className="login d-flex align-items-center justify-content-center flex-column">
               <img src="../img/login_logo.png" alt="Logo" className="login__logo-img mb-3"/>
               <h1 className="font-weight-bold text-center m-0">Way-connect</h1>
-              <form onSubmit={this.handleLogin}>
+              <form id="login-form" onSubmit={this.handleLogin}>
                 <div className="login__input-box my-4">
                   {
                     error
@@ -97,26 +97,27 @@ class Login extends Component {
                   <input type="text" className="login__input w-100 py-1 px-3 mb-2" name="username" placeholder="Username or email" onChange={this.handleChangeUsername}/>
                   <input type="password" className="login__input w-100 py-1 px-3 mb-3" name="password" placeholder="Password" onChange={this.handleChangePassword}/>
                   <div className="d-flex align-items-center checkbox-wrapper">
-                    <input type="checkbox" className="checkbox" onChange={this.handleRemember}/>
+                    <input type="checkbox" name="remember" className="checkbox" onChange={this.handleRemember} />
                     <span className="checkmark"></span>
                     <label className="ml-5">Remember me</label>
                   </div>
                 </div>
                 <button type="submit" className="btn-login btn-app-login text-uppercase w-100 mb-2">
-                  Login {
-                    fetching
-                      ? <span className="pl-2">...</span>
-                      : null
+                  Login
+                  {fetching ?
+                    <span className="pl-2 loader">...</span>
+                  :
+                    null
                   }
                 </button>
                 <button className="btn-login btn-fb-login text-uppercase w-100 mb-1">
                   Login with facebook
                 </button>
                 <div className="d-flex justify-content-between">
-                  <Link className="login__link" to="register">Register</Link>
-                  <Link className="login__link" to="forgot-password">Forgot your password?</Link>
+                  <a id="link-register" className="login__link" href="#/register" >Register</a>
+                  <a id="link-forgot-password" className="login__link" href="#/forgot-password" >Forgot your password?</a>
                 </div>
-                <a href="https://way-connect.com/" className="login__link mt-4 d-block">Go back to the website</a>
+                <a id="link-go-back" href="https://way-connect.com/" className="login__link mt-4 d-block">Go back to the website</a>
               </form>
             </div>
           </Col>
@@ -126,4 +127,12 @@ class Login extends Component {
   }
 }
 
-export default Login;
+Login.propTypes = {
+    dispatch: PropTypes.func,
+    error: PropTypes.object,
+    fetching: PropTypes.bool,
+    isAuthenticated: PropTypes.bool,
+    location: PropTypes.object
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

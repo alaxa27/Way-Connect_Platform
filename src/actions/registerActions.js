@@ -1,6 +1,6 @@
 import { axiosInstance } from "../constants/ApiConfig";
 
-import CookieService from "../services/CookieService";
+import { setJwt } from "../services/CookieService";
 import {
   REGISTER,
   REGISTER_FULFILLED,
@@ -24,9 +24,7 @@ export function register(payload) {
         }
       });
       const token = response.data.key;
-      const cookieService = new CookieService();
-      cookieService.setJwt(token);
-
+      setJwt(token);
       dispatch({
         type: REGISTER_FULFILLED,
       });

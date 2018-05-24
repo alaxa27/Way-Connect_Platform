@@ -1,36 +1,29 @@
 import { axiosInstance } from "../constants/ApiConfig";
 
-export default class CookieService {
+export function setJwt(token, remember = null) {
+  const savedToken = localStorage.getItem("jwt");
 
-  constructor() {
-  }
-
-  setJwt(token, remember = null) {
-    const savedToken = localStorage.getItem("jwt");
-
-    if (savedToken !== token) {
-      if (remember) {
-        localStorage.setItem("jwt", token);
-      } else {
-        sessionStorage.setItem("jwt", token);
-      }
-    }
-  }
-
-  getJwt() {
-    const token = sessionStorage.getItem("jwt") || localStorage.getItem("jwt");
-    if (token !== null) {
-      axiosInstance.defaults.headers.common["Authorization"] = `Token ${token}`;
-      return token;
+  if (savedToken !== token) {
+    if (remember) {
+      localStorage.setItem("jwt", token);
     } else {
-      return false;
+      sessionStorage.setItem("jwt", token);
     }
   }
+}
 
-  removeJwt() {
-    localStorage.removeItem("jwt");
-    sessionStorage.removeItem("jwt");
-    delete axiosInstance.defaults.headers.common["Authorization"];
-
+export function getJwt() {
+  const token = sessionStorage.getItem("jwt") || localStorage.getItem("jwt");
+  if (token !== null) {
+    axiosInstance.defaults.headers.common["Authorization"] = `Token ${token}`;
+    return token;
+  } else {
+    return false;
   }
+}
+
+export function removeJwt() {
+  localStorage.removeItem("jwt");
+  sessionStorage.removeItem("jwt");
+  delete axiosInstance.defaults.headers.common["Authorization"];
 }
