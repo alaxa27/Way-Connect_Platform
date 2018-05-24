@@ -147,7 +147,7 @@ class AnalyticsCampaign extends Component {
                 <Panel index={2} value={keyData.customers} title="Viewers"/>
               </Col>
               <Col xs="12" md="6" lg="3">
-                <Panel index={3} value={keyData.money} currency={keyData.money_currency} title="Expense Tracking"/>
+                <Panel index={3} value={keyData.expense.value} currency={keyData.expense.currency} title="Expense Tracking"/>
               </Col>
               <Col xs="12" md="6" lg="3">
                 <Panel index={4} value={keyData.clicks} title="Clicks"/>

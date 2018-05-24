@@ -110,11 +110,17 @@ function fetchKeyData(payload) {
     try {
       const response = await axiosInstance({
         method: "get",
-        url: `/campaigns/${payload.campaignId}/key_data`,
+        url: `/campaigns/${payload.campaignId}/key_data/`,
       });
+      const result = { ...response.data,
+        expense: {
+          value: response.data.money,
+          currency: response.data.money_currency
+        }
+      };
       dispatch({
         type: CAMPAIGN_ANALYTICS_KEY_DATA_FULFILLED,
-        payload: response.data
+        payload: result
       });
     } catch (error) {
       throw new Error();

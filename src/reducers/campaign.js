@@ -33,8 +33,10 @@ const keyDataDefaults = {
     views: "0",
     customers: "0",
     clicks: "0",
-    money: "0",
-    money_currency: ""
+    expense: {
+      value: "0",
+      currency: ""
+    }
 };
 
 const typicalCustomerDefaults = {
