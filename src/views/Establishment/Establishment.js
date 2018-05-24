@@ -137,7 +137,7 @@ class Establishment extends Component {
               <Panel index={1} value={monthlyData.visits} title="Visits"/>
             </Col>
             <Col xs="12" md="6" lg="3">
-              <Panel index={2} value={monthlyData.total_rewards} title="Total of Promotions"/>
+              <Panel index={2} value={monthlyData.total_rewards.value} currency={monthlyData.total_rewards.currency} title="Total of Promotions"/>
             </Col>
             <Col xs="12" md="6" lg="3">
               <Panel index={3} value={monthlyData.customer_average_visits} title="Average of Revisit"/>

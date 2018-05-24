@@ -141,13 +141,13 @@ class AnalyticsCampaign extends Component {
               }}>
             <Row>
               <Col xs="12" md="6" lg="3">
-                <Panel index={1} value={keyData.views} title="Visits"/>
+                <Panel index={1} value={keyData.views} title="Views"/>
               </Col>
               <Col xs="12" md="6" lg="3">
-                <Panel index={2} value={keyData.customers} title="Customers"/>
+                <Panel index={2} value={keyData.customers} title="Viewers"/>
               </Col>
               <Col xs="12" md="6" lg="3">
-                <Panel index={3} value={keyData.money + " " + keyData.money_currency} title="Money"/>
+                <Panel index={3} value={keyData.money} currency={keyData.money_currency} title="Expense Tracking"/>
               </Col>
               <Col xs="12" md="6" lg="3">
                 <Panel index={4} value={keyData.clicks} title="Clicks"/>

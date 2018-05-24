@@ -485,7 +485,7 @@ class Dashboard extends Component {
 
   render() {
     const tableArray = [1, 2, 3, 4, 5, 6];
-    const taleList = tableArray.map(( list, i) => 
+    const taleList = tableArray.map(( list, i) =>
       <tr key={i} className={ i === 0 ? "full-opacity" : null }>
         <td>
           <label>#{i + 1} Westside Shopping Center</label>
@@ -493,7 +493,7 @@ class Dashboard extends Component {
       </tr>
     );
     return (
-      <div className="animated fadeIn">
+      <div className="animated fadeIn" style={{marginTop: 20}}>
         <Row>
           <Col xs="12" lg="6">
             <DashboardPanel
@@ -513,7 +513,7 @@ class Dashboard extends Component {
                 chartData={cardChartData2}
                 displayData={{
                     title: "Communication Diffusion",
-                    value: "142k"
+                    value: "142000"
                 }}
                 options={cardChartOpts2}
                 type="line"
@@ -594,7 +594,7 @@ class Dashboard extends Component {
         </Row>
         <br/><br/>
 
-        
+
       </div>
     );
   }

@@ -25,7 +25,10 @@ const monthlyData = {
   visits: "0",
   visits_change: "0",
   customer_average_visits: "0",
-  total_rewards: "0"
+  total_rewards: {
+    value: "0",
+    currency: ""
+  }
 };
 
 const initialState = {

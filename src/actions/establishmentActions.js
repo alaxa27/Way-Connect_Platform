@@ -74,13 +74,11 @@ function fetchMonthlyData(payload) {
       const monthlyData = { ...response.data };
       monthlyData.customer_average_visits *= 100;
       const currency = Object.keys(monthlyData.total_rewards)[0];
-      monthlyData.total_rewards = monthlyData.total_rewards[currency];
 
-      for (let key in monthlyData) {
-        monthlyData[key] = monthlyData[key].toFixed(2).toString();
-      }
-
-      monthlyData.total_rewards = `${monthlyData.total_rewards} ${currency}`;
+      monthlyData.total_rewards = {
+        value: monthlyData.total_rewards[currency],
+        currency: currency
+      };
 
       dispatch({
         type: MONTHLY_DATA_FULFILLED,

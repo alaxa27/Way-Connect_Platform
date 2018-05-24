@@ -4,6 +4,7 @@ import {
     Card,
     CardBody,
 } from "reactstrap";
+import CountUp from "react-countup";
 import {Bar, Line} from "react-chartjs-2";
 
 class DashboardPanel extends Component {
@@ -19,7 +20,9 @@ class DashboardPanel extends Component {
     return (
       <Card className="text-white dashboard-plot" style={{backgroundColor: color}}>
         <CardBody className="pb-0">
-          <h1 className="mb-0">{displayData.value}</h1>
+          <h1 className="mb-0">
+            <CountUp start={0} end={displayData.value} duration={3} />
+          </h1>
           <p>{displayData.title}</p>
         </CardBody>
         <div className="chart-wrapper px-3" style={{height:"120px"}}>
