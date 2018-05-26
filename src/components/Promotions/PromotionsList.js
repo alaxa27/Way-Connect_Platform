@@ -6,19 +6,9 @@ import _ from "underscore";
 import ReduxBlockUi from "react-block-ui/redux";
 
 class PromotionsList extends Component {
-  static propTypes = {
-    dispatch: PropTypes.func,
-    promotions: PropTypes.array,
-    data: PropTypes.array,
-    promotionsLimit: PropTypes.number,
-    promotionsOffset: PropTypes.number,
-    promotionsTotalCount: PropTypes.number,
-    loadMore: PropTypes.func
-  }
   constructor(props) {
     super(props);
   }
-
   render() {
     const { data, promotionsTotalCount, loadMore } = this.props;
     return (
@@ -45,5 +35,15 @@ class PromotionsList extends Component {
     );
   }
 }
+
+PromotionsList.propTypes = {
+    dispatch: PropTypes.func,
+    promotions: PropTypes.array,
+    data: PropTypes.array,
+    promotionsLimit: PropTypes.number,
+    promotionsOffset: PropTypes.number,
+    promotionsTotalCount: PropTypes.number,
+    loadMore: PropTypes.func
+};
 
 export default PromotionsList;

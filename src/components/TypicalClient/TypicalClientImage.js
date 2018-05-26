@@ -5,10 +5,6 @@ import {
 } from "reactstrap";
 
 class TypicalClientImage extends Component {
-  static propTypes = {
-    width: PropTypes.number,
-    height: PropTypes.number
-  }
   render() {
     const { width, height } = this.props;
     return (
@@ -26,5 +22,10 @@ class TypicalClientImage extends Component {
     );
   }
 }
+
+TypicalClientImage.propTypes = {
+    width: PropTypes.number,
+    height: PropTypes.number
+};
 
 export default TypicalClientImage;

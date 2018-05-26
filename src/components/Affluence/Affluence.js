@@ -13,9 +13,6 @@ import ReduxBlockUi from "react-block-ui/redux";
 const title = "Affluence";
 
 class Affluence extends Component {
-  static propTypes = {
-    data: PropTypes.object
-  }
   render() {
     const { data } = this.props;
     return (
@@ -37,5 +34,9 @@ class Affluence extends Component {
     );
   }
 }
+
+Affluence.propTypes = {
+    data: PropTypes.object
+};
 
 export default Affluence;

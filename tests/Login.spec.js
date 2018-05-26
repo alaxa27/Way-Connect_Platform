@@ -10,7 +10,7 @@ import { Redirect } from "react-router-dom";
 * */
 it('Renders Login component with form', () => {
     const wrapper = shallow(<Login/>);
-    expect(wrapper.exists("#login-form")).toBe(true);
+    expect(wrapper.find("#login-form").length).toBe(1);
 });
 
 it('Renders username input', () => {

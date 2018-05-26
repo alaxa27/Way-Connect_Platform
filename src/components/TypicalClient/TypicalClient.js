@@ -13,9 +13,6 @@ import ReduxBlockUi from "react-block-ui/redux";
 const title = "Client Type";
 
 class TypicalClient extends Component {
-  static propTypes = {
-    data: PropTypes.object
-  }
   constructor(props) {
       super(props);
   }
@@ -47,5 +44,9 @@ class TypicalClient extends Component {
     );
   }
 }
+
+TypicalClient.propTypes = {
+    data: PropTypes.object
+};
 
 export default TypicalClient;

@@ -4,9 +4,6 @@ import TypicalClientItem from "./TypicalClientItem";
 import _ from "underscore";
 
 class TypicalClientList extends Component {
-  static propTypes = {
-    data: PropTypes.object
-  }
   constructor(props) {
       super(props);
   }
@@ -27,5 +24,9 @@ class TypicalClientList extends Component {
     );
   }
 }
+
+TypicalClientList.propTypes = {
+    data: PropTypes.object
+};
 
 export default TypicalClientList;

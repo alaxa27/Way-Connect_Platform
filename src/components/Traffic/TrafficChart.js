@@ -18,20 +18,11 @@ import ReduxBlockUi from "react-block-ui/redux";
 
 
 class TrafficChart extends Component {
-  static propTypes = {
-    chartData: PropTypes.object,
-    defaultPeriod: PropTypes.string,
-    options: PropTypes.object,
-    title: PropTypes.string,
-    traffic: PropTypes.object,
-    handleChangePeriod: PropTypes.func
-  }
-
   constructor(props) {
     super(props);
   }
   render() {
-    const { traffic, options, handleChangePeriod, title } = this.props;
+    const { traffic, options, title, trafficPeriodChange } = this.props;
     return (
       <ReduxBlockUi tag="div" block="TRAFFIC" unblock={["TRAFFIC_FULFILLED", "TRAFFIC_REJECTED"]}>
         <Card>
@@ -41,12 +32,12 @@ class TrafficChart extends Component {
                 <CardTitle className="mb-0">{title}</CardTitle>
                 <div className="small text-muted">November 2017</div>
               </Col>
-              {handleChangePeriod ?
+              {trafficPeriodChange ?
                 <Col sm="7" className="d-none d-sm-inline-block">
                   <ButtonToolbar className="float-right" aria-label="Toolbar with button groups">
                     <ButtonGroup className="mr-3" aria-label="First group">
-                      <Button color="outline-secondary" onClick={() => handleChangePeriod("month")} active={traffic.period === "month"}>Month</Button>
-                      <Button color="outline-secondary" onClick={() => handleChangePeriod("year")} active={traffic.period === "year"}>Year</Button>
+                      <Button color="outline-secondary" onClick={() => trafficPeriodChange("month")} active={traffic.period === "month"}>Month</Button>
+                      <Button color="outline-secondary" onClick={() => trafficPeriodChange("year")} active={traffic.period === "year"}>Year</Button>
                     </ButtonGroup>
                   </ButtonToolbar>
                 </Col>
@@ -75,5 +66,14 @@ class TrafficChart extends Component {
     );
   }
 }
+
+TrafficChart.propTypes = {
+    chartData: PropTypes.object,
+    defaultPeriod: PropTypes.string,
+    options: PropTypes.object,
+    title: PropTypes.string,
+    traffic: PropTypes.object,
+    trafficPeriodChange: PropTypes.func
+};
 
 export default TrafficChart;
