@@ -16,9 +16,6 @@ import { connect } from "react-redux";
 import * as actions from "../../../actions/campaignActions";
 import ReduxBlockUi from "react-block-ui/redux";
 
-const brandPrimary = "#20a8d8";
-const brandInfo = "#F15A24";
-
 const trafficChartOptions = {
     maintainAspectRatio: false,
     legend: {
@@ -49,87 +46,28 @@ const trafficChartOptions = {
     }
 };
 
-function convertHex(hex, opacity) {
-    hex = hex.replace("#", "");
-    let r = parseInt(hex.substring(0, 2), 16);
-    let g = parseInt(hex.substring(2, 4), 16);
-    let b = parseInt(hex.substring(4, 6), 16);
+const mapStateToProps = state => ({
+    fetching: state.campaign.fetching,
+    success: state.campaign.success,
+    error: state.campaign.error,
+    traffic: state.campaign.traffic,
+    keyData: state.campaign.keyData,
+    typicalCustomer: state.campaign.typicalCustomer,
+});
 
-    return "rgba(" + r + "," + g + "," + b + "," + opacity / 100 + ")";
-}
+const mapDispatchToProps = dispatch => ({
+    fetchCampaignAnalyticsPageData: payload => dispatch(actions.fetchCampaignAnalyticsPageData(payload))
+});
 
-@connect((store) => {
-    let campaignStore = store.campaign;
-    return {
-        fetching: campaignStore.fetching,
-        success: campaignStore.success,
-        error: campaignStore.error,
-        traffic: campaignStore.traffic,
-        keyData: campaignStore.keyData,
-        typicalCustomer: campaignStore.typicalCustomer,
-    };
-})
-class AnalyticsCampaign extends Component {
-  static propTypes = {
-    dispatch: PropTypes.func,
-    match: PropTypes.shape({
-      params: PropTypes.shape({
-        id: PropTypes.string
-      })
-    }),
-    traffic: PropTypes.object,
-    keyData: PropTypes.object,
-    typicalCustomer: PropTypes.oneOfType([
-        PropTypes.object,
-    ])
-  }
+export class AnalyticsCampaign extends Component {
   constructor(props) {
       super(props);
-      this.state = {
-          data: [
-              {
-                  id: 1,
-                  color: "#FC6600",
-                  prop: "Gender",
-                  value: "Male",
-                  percentage: 10,
-              },
-              {
-                  id: 2,
-                  color: "#FC6600",
-                  prop: "Age",
-                  value: 22,
-                  percentage: 25
-              },
-              {
-                  id: 3,
-                  color: "#F9812A",
-                  prop: "Nationality",
-                  value: "Tunisian",
-                  percentage: 50,
-              },
-              {
-                  id: 4,
-                  color: "#F9A602",
-                  prop: "Professional Status",
-                  value: "Salary",
-                  percentage: 15,
-              },
-              {
-                  id: 5,
-                  color: "#FFBF00",
-                  prop: "Relationship Status",
-                  value: "Single",
-                  percentage: 78,
-              },
-          ],
-
-      };
-      this.props.dispatch(
-          actions.fetchCampaignAnalyticsPageData({
-              campaignId: this.props.match.params.id,
-          })
-      );
+  }
+  componentDidMount() {
+      const { fetchCampaignAnalyticsPageData } = this.props;
+      fetchCampaignAnalyticsPageData({
+          campaignId: this.props.match.params.id,
+      });
   }
   render() {
     const { traffic, keyData, typicalCustomer } = this.props;
@@ -179,4 +117,20 @@ class AnalyticsCampaign extends Component {
     );
   }
 }
-export default AnalyticsCampaign;
+
+AnalyticsCampaign.propTypes = {
+    dispatch: PropTypes.func,
+    match: PropTypes.shape({
+        params: PropTypes.shape({
+            id: PropTypes.string
+        })
+    }),
+    traffic: PropTypes.object,
+    keyData: PropTypes.object,
+    typicalCustomer: PropTypes.oneOfType([
+        PropTypes.object,
+    ]),
+    fetchCampaignAnalyticsPageData: PropTypes.func
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AnalyticsCampaign);

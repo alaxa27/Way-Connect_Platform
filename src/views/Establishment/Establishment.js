@@ -12,8 +12,6 @@ import TrafficChart from "../../components/Traffic/TrafficChart";
 import ExportExcelButton from "./ExportExcel/ExportExcelButton";
 import * as actions from "../../actions/establishmentActions";
 
-const brandInfo = "#F15A24";
-
 const trafficChartOptions = {
   maintainAspectRatio: false,
   legend: {
@@ -48,60 +46,33 @@ const trafficChartOptions = {
   }
 };
 
-function convertHex(hex, opacity) {
-  hex = hex.replace("#", "");
-  let r = parseInt(hex.substring(0, 2), 16);
-  let g = parseInt(hex.substring(2, 4), 16);
-  let b = parseInt(hex.substring(4, 6), 16);
+const mapStateToProps = state => ({
+    monthlyData: state.establishment.monthlyData,
+    traffic: state.establishment.traffic,
+    affluence: state.establishment.affluence,
+    typicalCustomer: state.establishment.typicalCustomer,
+    promotions: state.establishment.promotions,
+    promotionsLimit: state.establishment.promotionsLimit,
+    promotionsOffset: state.establishment.promotionsOffset,
+    promotionsTotalCount: state.establishment.promotionsTotalCount
+});
 
-  return "rgba(" + r + "," + g + "," + b + "," + opacity / 100 + ")";
-}
+const mapDispatchToProps = dispatch => ({
+    trafficPeriodChange: payload => dispatch(actions.trafficPeriodChange(payload)),
+    fetchEstablishmentPageData: payload => dispatch(actions.fetchEstablishmentPageData(payload)),
+});
 
-@connect((store) => {
-  let establishmentStore = store.establishment;
-  return {
-    fetching: establishmentStore.fetching,
-    success: establishmentStore.success,
-    error: establishmentStore.error,
-    monthlyData: establishmentStore.monthlyData,
-    traffic: establishmentStore.traffic,
-    affluence: establishmentStore.affluence,
-    typicalCustomer: establishmentStore.typicalCustomer,
-    promotions: establishmentStore.promotions,
-    promotionsLimit: establishmentStore.promotionsLimit,
-    promotionsOffset: establishmentStore.promotionsOffset,
-    promotionsTotalCount: establishmentStore.promotionsTotalCount
-  };
-})
-class Establishment extends Component {
-
-  static propTypes = {
-    dispatch: PropTypes.func,
-    traffic: PropTypes.object,
-    affluence: PropTypes.object,
-    typicalCustomer: PropTypes.object,
-    monthlyData: PropTypes.object,
-    promotions: PropTypes.array,
-    promotionsLimit: PropTypes.number,
-    promotionsOffset: PropTypes.number,
-    promotionsTotalCount: PropTypes.number,
-    match: PropTypes.shape({
-      params: PropTypes.shape({id: PropTypes.string})
-    })
-  }
-
+export class Establishment extends Component {
   constructor(props) {
     super(props);
-    this.handleTrafficChangePeriod = this.handleTrafficChangePeriod.bind(this);
     this.loadMorePromotions = this.loadMorePromotions.bind(this);
-
-    const {promotionsLimit, promotionsOffset} = props;
-    this.props.dispatch(actions.fetchEstablishmentPageData({establishmentID: this.props.match.params.id, limit: promotionsLimit, offset: promotionsOffset}));
   }
 
-  handleTrafficChangePeriod(period) {
-    this.props.dispatch(actions.trafficPeriodChange(period));
+  componentDidMount() {
+    const { promotionsLimit, promotionsOffset, fetchEstablishmentPageData } = this.props;
+    fetchEstablishmentPageData({establishmentID: this.props.match.params.id, limit: promotionsLimit, offset: promotionsOffset});
   }
+
   loadMorePromotions() {
     console.log("LOAD MORE");
     // const { promotionsLimit, promotionsOffset } = this.props;
@@ -119,7 +90,8 @@ class Establishment extends Component {
       promotionsLimit,
       promotionsOffset,
       promotionsTotalCount,
-      monthlyData
+      monthlyData,
+      trafficPeriodChange
     } = this.props;
     return (<ReduxBlockUi tag="div" block={["ESTABLISHMENT_PAGE", "ESTABLISHMENT_PAGE_REJECTED"]} unblock={["ESTABLISHMENT_PAGE_FULFILLED"]}>
       <div className="sub-page-wrapper animated fadeIn">
@@ -143,7 +115,7 @@ class Establishment extends Component {
 
           <Row>
             <Col>
-              <TrafficChart traffic={traffic} options={trafficChartOptions} handleChangePeriod={this.handleTrafficChangePeriod} title="Traffic"/>
+              <TrafficChart traffic={traffic} options={trafficChartOptions} trafficPeriodChange={trafficPeriodChange} title="Traffic"/>
             </Col>
           </Row>
 
@@ -179,4 +151,21 @@ class Establishment extends Component {
   }
 }
 
-export default Establishment;
+Establishment.propTypes = {
+    dispatch: PropTypes.func,
+    traffic: PropTypes.object,
+    affluence: PropTypes.object,
+    typicalCustomer: PropTypes.object,
+    monthlyData: PropTypes.object,
+    promotions: PropTypes.array,
+    promotionsLimit: PropTypes.number,
+    promotionsOffset: PropTypes.number,
+    promotionsTotalCount: PropTypes.number,
+    match: PropTypes.shape({
+        params: PropTypes.shape({id: PropTypes.string})
+    }),
+    fetchEstablishmentPageData: PropTypes.func,
+    trafficPeriodChange: PropTypes.func
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Establishment);

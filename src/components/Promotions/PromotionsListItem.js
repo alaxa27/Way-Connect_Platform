@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 class PromotionsListItem extends Component {
-  static propTypes = {
-    promotion: PropTypes.object
-  }
   render() {
     const { promotion } = this.props;
     return (
@@ -27,5 +24,9 @@ class PromotionsListItem extends Component {
     );
   }
 }
+
+PromotionsListItem.propTypes = {
+    promotion: PropTypes.object
+};
 
 export default PromotionsListItem;

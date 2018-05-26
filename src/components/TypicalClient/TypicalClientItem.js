@@ -13,15 +13,6 @@ const colors = {
 };
 
 class TypicalClientItem extends Component {
-  static propTypes = {
-    prop: PropTypes.object,
-    last: PropTypes.bool,
-    title: PropTypes.string,
-    value: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.object
-    ])
-  }
   constructor(props) {
       super(props);
       this.state = {
@@ -64,5 +55,15 @@ class TypicalClientItem extends Component {
     );
   }
 }
+
+TypicalClientItem.propTypes = {
+    prop: PropTypes.object,
+    last: PropTypes.bool,
+    title: PropTypes.string,
+    value: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.object
+    ])
+};
 
 export default TypicalClientItem;
