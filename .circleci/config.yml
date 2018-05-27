@@ -28,16 +28,22 @@ jobs:
       - checkout
       - restore_cache: # special step to restore the dependency cache
           key:        dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name:       Setup Dependencies
-          command:    npm install
-      - save_cache:   # special step to save the dependency cache
-          key:        dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
       - run:          #run build
           name:       Build code
           command:    npm run build
+  deploy:
+    docker:
+      - image:        circleci/node:9.11.1
+    environment:
+      - HEROKU_APP:     wayconnect-platform
+    steps:
+      - checkout
+      - restore_cache: # special step to restore the dependency cache
+            key:        dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name:         Deploy Master to Heroku
+          command:      |
+            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP.git master
 
 workflows:
   version:            2
@@ -47,6 +53,13 @@ workflows:
       - build:
           requires:
             - test
+          filters:
+            branches:
+              only:   master
+      - deploy:
+          requires:
+            - test
+            - build
           filters:
             branches:
               only:   master
