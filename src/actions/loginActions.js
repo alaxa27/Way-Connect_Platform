@@ -15,7 +15,7 @@ import {
 
 export function login(payload) {
   return async (dispatch) => {
-    dispatch({
+    dispatch({ 
       type: LOGIN
     });
     try {

@@ -1,12 +1,12 @@
 import React from 'react';
 import { render, mount, shallow } from 'enzyme';
-import ConfigCampaign from "../src/views/Campaigns/ConfigCampaign/ConfigCampaign";
+import ConfigCampaign from "../../src/views/Campaigns/ConfigCampaign/ConfigCampaign";
 import {
     Nav,
     NavItem,
 } from "reactstrap";
-import ConfigVideo from "../src/views/Campaigns/ConfigCampaign/ConfigVideo";
-import ConfigFormulary from "../src/views/Campaigns/ConfigCampaign/ConfigFormulary";
+import ConfigVideo from "../../src/views/Campaigns/ConfigCampaign/ConfigVideo";
+import ConfigFormulary from "../../src/views/Campaigns/ConfigCampaign/ConfigFormulary";
 
 describe('Campaign Config', () => {
     it('Renders Tabs', () => {
