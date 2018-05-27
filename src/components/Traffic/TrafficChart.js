@@ -16,7 +16,6 @@ import { Line } from "react-chartjs-2";
 import _ from "underscore";
 import ReduxBlockUi from "react-block-ui/redux";
 
-
 class TrafficChart extends Component {
   constructor(props) {
     super(props);
