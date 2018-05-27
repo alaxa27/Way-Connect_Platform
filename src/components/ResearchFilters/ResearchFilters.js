@@ -100,24 +100,12 @@ class ResearchFilters extends Component {
               <div className="col col-md-5">
                 <div className="input-wrapper">
                   <label className="input-label">Professional status</label>
-                  {/*<Input type="select" className="custom-selectbox" name="proStatus" value={this.state.proStatus} onChange={this.handleChange}>
-                    <div className="custom-selectbox-main">
-                      <option value="salary">Salary</option>
-                      <option value="self_employed">Self Employed</option>
-                      </div>
-                    </Input>*/
-                  }
                   <SelectBox name="work-status" placeholder="Every status" options={this.state.workStatus} fixed={this.props.fixed}/>
                 </div>
 
                 <div className="input-wrapper">
                   <label className="input-label">Relationship status</label>
                   <div className="custom-selectbox-main">
-                    {/*<Input type="select" className="custom-selectbox" name="relationaship" value={this.state.relationaship} onChange={this.handleChange}>
-                      <option value="single">Single</option>
-                      <option value="married">Married</option>
-                    </Input>*/
-                    }
                     <SelectBox name="work-status" placeholder="Every status" options={this.state.workStatus} fixed={this.props.fixed}/>
                   </div>
                 </div>
@@ -125,11 +113,6 @@ class ResearchFilters extends Component {
                 <div className="input-wrapper">
                   <label className="input-label">Nationality</label>
                   <div className="custom-selectbox-main">
-                    {/*<Input type="select" className="custom-selectbox" name="nationality" value={this.state.nationality} onChange={this.handleChange}>
-                      <option value="indian">Indian</option>
-                      <option value="australian">Australian</option>
-                    </Input>*/
-                    }
                     <SelectBox name="nationality" placeholder="Every status" options={this.state.workStatus} fixed={this.props.fixed}/>
                   </div>
                 </div>
@@ -142,13 +125,6 @@ class ResearchFilters extends Component {
                 <div className="input-wrapper">
                   <label className="input-label">Hobbies</label>
                   <div className="custom-selectbox-main">
-                    {/*<Input type="select" className="custom-selectbox" name="hobbies" value={this.state.hobbies} onChange={this.handleChange}>
-                      <option value="technologies">Technologies</option>
-                      <option value="fishing">Fishing</option>
-                      <option value="cooking">Cooking</option>
-                      <option value="traveling">Traveling</option>
-                    </Input>*/
-                    }
                     <SelectBox name="hobbies" placeholder="Every status" options={this.state.workStatus} fixed={this.props.fixed}/>
                   </div>
                 </div>
@@ -156,11 +132,6 @@ class ResearchFilters extends Component {
                 <div className="input-wrapper">
                   <label className="input-label">Location</label>
                   <div className="custom-selectbox-main">
-                    {/*<Input type="select" className="custom-selectbox" name="location" value={this.state.location} onChange={this.handleChange}>
-                      <option value="delhi">Delhi</option>
-                      <option value="chandigarh">Chandigarh</option>
-                    </Input>*/
-                    }
                     <SelectBox name="location" placeholder="Every status" options={this.state.workStatus} fixed={this.props.fixed}/>
                   </div>
                 </div>
@@ -168,10 +139,6 @@ class ResearchFilters extends Component {
                 <div className="input-wrapper">
                   <label className="input-label">Additional Content</label>
                   <div className="custom-selectbox-main">
-                    {/*<Input type="select" className="custom-selectbox" name="additional" value={this.state.additional} onChange={this.handleChange}>
-                      <option value="additional">Additional</option>
-                    </Input>*/
-                    }
                     <SelectBox name="additional-status" placeholder="Every status" options={this.state.workStatus} fixed={this.props.fixed}/>
                   </div>
                 </div>
