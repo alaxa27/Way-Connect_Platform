@@ -1,10 +1,10 @@
 import React from 'react';
 import { render, mount, shallow } from 'enzyme';
-import { AnalyticsCampaign } from "../src/views/Campaigns/AnalyticsCampaign/AnalyticsCampaign";
-import Panel from "../src/components/Panel/Panel";
-import TrafficChart from "../src/components/Traffic/TrafficChart";
-import TrafficSales from "../src/views/Campaigns/AnalyticsCampaign/TrafficSales/TrafficSales";
-import TypicalClient from "../src/components/TypicalClient/TypicalClient";
+import { AnalyticsCampaign } from "../../src/views/Campaigns/AnalyticsCampaign/AnalyticsCampaign";
+import Panel from "../../src/components/Panel/Panel";
+import TrafficChart from "../../src/components/Traffic/TrafficChart";
+import TrafficSales from "../../src/views/Campaigns/AnalyticsCampaign/TrafficSales/TrafficSales";
+import TypicalClient from "../../src/components/TypicalClient/TypicalClient";
 
 describe('Campaign Analytics', () => {
     let trafficDefaults = null;

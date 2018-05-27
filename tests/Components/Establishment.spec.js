@@ -1,12 +1,12 @@
 import React from 'react';
 import { render, mount, shallow } from 'enzyme';
-import {Establishment} from "../src/views/Establishment/Establishment";
-import Panel from "../src/components/Panel/Panel";
-import PromotionsList from "../src/components/Promotions/PromotionsList";
-import Affluence from "../src/components/Affluence/Affluence";
-import TypicalClient from "../src/components/TypicalClient/TypicalClient";
-import ExportExcelButton from "../src/views/Establishment/ExportExcel/ExportExcelButton";
-import TrafficChart from "../src/components/Traffic/TrafficChart";
+import {Establishment} from "../../src/views/Establishment/Establishment";
+import Panel from "../../src/components/Panel/Panel";
+import PromotionsList from "../../src/components/Promotions/PromotionsList";
+import Affluence from "../../src/components/Affluence/Affluence";
+import TypicalClient from "../../src/components/TypicalClient/TypicalClient";
+import ExportExcelButton from "../../src/views/Establishment/ExportExcel/ExportExcelButton";
+import TrafficChart from "../../src/components/Traffic/TrafficChart";
 
 describe('Establishment', () => {
     let trafficDefaults = null;

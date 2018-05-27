@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, mount, shallow } from 'enzyme';
-import TypicalClient from '../src/components/TypicalClient/TypicalClient';
-import TypicalClientImage from '../src/components/TypicalClient/TypicalClientImage';
-import TypicalClientList from '../src/components/TypicalClient/TypicalClientList';
+import TypicalClient from '../../src/components/TypicalClient/TypicalClient';
+import TypicalClientImage from '../../src/components/TypicalClient/TypicalClientImage';
+import TypicalClientList from '../../src/components/TypicalClient/TypicalClientList';
 
 describe('Typical Client', () => {
     it('Renders Typical Client Image', () => {

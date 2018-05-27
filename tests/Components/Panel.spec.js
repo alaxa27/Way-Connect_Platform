@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, mount, shallow } from 'enzyme';
-import Panel from "../src/components/Panel/Panel";
+import Panel from "../../src/components/Panel/Panel";
 import CountUp from "react-countup"
 
 describe('Panel', () => {
