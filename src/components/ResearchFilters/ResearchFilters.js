@@ -50,7 +50,9 @@ class ResearchFilters extends Component {
     let gender = this.state.gender;
     gender[val] = !gender[val];
     if (!this.state.fixed) {
-      this.setState({gender: gender});
+      this.setState({
+        gender: gender
+      });
     }
   }
 
