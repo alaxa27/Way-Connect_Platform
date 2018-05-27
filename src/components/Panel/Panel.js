@@ -14,10 +14,12 @@ class Panel extends Component {
         <div className={"stats-panel stats-panel--" + index}>
           <h2>
             <CountUp start={0} end={value} duration={3} />
-            {" " + currency}
+            <span className="currency">
+              {" " + currency}
+            </span>
           </h2>
           <div className="clearfix"></div>
-          <span>
+          <span className="title">
             {title}
           </span>
         </div>
