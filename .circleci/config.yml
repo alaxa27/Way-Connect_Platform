@@ -1,5 +1,4 @@
-  version:           2
-version:              2
+version:              2.0
 jobs:
   test:
     docker:
@@ -36,30 +35,18 @@ jobs:
           key:        dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
-      - run: # run tests
-          name: Lint code
-          command: npm run lint
-      - run: #run test
-          name: Test code
-          command: npm run test
-      - run: #run build
-          name: Build code
-          command: npm run build
-      - run:          # run lint verification
-          name:       Lint code
-          command:    npm run lint
       - run:          #run build
           name:       Build code
           command:    npm run build
 
 workflows:
   version:            2
-  build_and_test:
+  test-and-build:
     jobs:
-      - build
-      - test:
+      - test
+      - build:
           requires:
-            - build
+            - test
           filters:
             branches:
               only:   master
