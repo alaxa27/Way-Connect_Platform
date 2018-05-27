@@ -1,4 +1,4 @@
-version:           2
+  version:           2
 jobs:
   build:
     docker:
@@ -17,6 +17,9 @@ jobs:
       - run: # run tests
           name: Lint code
           command: npm run lint
+      - run: #run test
+          name: Test code
+          command: npm run test
       - run: #run build
           name: Build code
           command: npm run build
