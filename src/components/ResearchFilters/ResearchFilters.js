@@ -19,7 +19,19 @@ class ResearchFilters extends Component {
           value: "chocolate",
           label: "Chocolate"
         }, {
-          value: "strawberry",
+          value: "strawberry5",
+          label: "Strawberry"
+        }, {
+          value: "strawberry4",
+          label: "Strawberry"
+        }, {
+          value: "strawberry3",
+          label: "Strawberry"
+        }, {
+          value: "strawberry2",
+          label: "Strawberry"
+        }, {
+          value: "strawberry1",
           label: "Strawberry"
         }, {
           value: "vanilla",
@@ -95,7 +107,7 @@ class ResearchFilters extends Component {
                       </div>
                     </Input>*/
                   }
-                  <SelectBox options={this.state.workStatus} fixed={this.props.fixed}/>
+                  <SelectBox name="work-status" placeholder="Every status" options={this.state.workStatus} fixed={this.props.fixed}/>
                 </div>
 
                 <div className="input-wrapper">
@@ -106,7 +118,7 @@ class ResearchFilters extends Component {
                       <option value="married">Married</option>
                     </Input>*/
                     }
-                    <SelectBox options={this.state.workStatus} fixed={this.props.fixed}/>
+                    <SelectBox name="work-status" placeholder="Every status" options={this.state.workStatus} fixed={this.props.fixed}/>
                   </div>
                 </div>
 
@@ -118,7 +130,7 @@ class ResearchFilters extends Component {
                       <option value="australian">Australian</option>
                     </Input>*/
                     }
-                    <SelectBox options={this.state.workStatus} fixed={this.props.fixed}/>
+                    <SelectBox name="nationality" placeholder="Every status" options={this.state.workStatus} fixed={this.props.fixed}/>
                   </div>
                 </div>
               </div>
@@ -137,7 +149,7 @@ class ResearchFilters extends Component {
                       <option value="traveling">Traveling</option>
                     </Input>*/
                     }
-                    <SelectBox options={this.state.workStatus} fixed={this.props.fixed}/>
+                    <SelectBox name="hobbies" placeholder="Every status" options={this.state.workStatus} fixed={this.props.fixed}/>
                   </div>
                 </div>
 
@@ -149,7 +161,7 @@ class ResearchFilters extends Component {
                       <option value="chandigarh">Chandigarh</option>
                     </Input>*/
                     }
-                    <SelectBox options={this.state.workStatus} fixed={this.props.fixed}/>
+                    <SelectBox name="location" placeholder="Every status" options={this.state.workStatus} fixed={this.props.fixed}/>
                   </div>
                 </div>
 
@@ -160,7 +172,7 @@ class ResearchFilters extends Component {
                       <option value="additional">Additional</option>
                     </Input>*/
                     }
-                    <SelectBox options={this.state.workStatus} fixed={this.props.fixed}/>
+                    <SelectBox name="additional-status" placeholder="Every status" options={this.state.workStatus} fixed={this.props.fixed}/>
                   </div>
                 </div>
               </Col>

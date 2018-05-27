@@ -21,11 +21,11 @@ class Full extends Component {
         <Sidebar {...this.props}/>
         <main className="main">
           <Breadcrumb/>
-          <Container fluid="fluid">
+          <Container fluid>
             <Switch>
               <Route path="/dashboard" name="Dashboard" component={Dashboard}/>
-              <Route exact="exact" path="/campaigns/list" name="ListCampaign" component={ListCampaign}/>
-              <Route exact="exact" path="/campaigns/create" name="CreateCampaign" component={CreateCampaign}/>
+              <Route exact path="/campaigns/list" name="ListCampaign" component={ListCampaign}/>
+              <Route exact path="/campaigns/create" name="CreateCampaign" component={CreateCampaign}/>
               <Route path="/campaigns/:id" name="Campaigns" component={Campaigns}/>
               <Route path="/establishment/:id" name="Establishment" component={Establishment}/>
               <Redirect from="/" to="/login"/>
