@@ -47,46 +47,29 @@ const trafficChartOptions = {
 };
 
 const mapStateToProps = state => ({
-    monthlyData: state.establishment.monthlyData,
-    traffic: state.establishment.traffic,
-    affluence: state.establishment.affluence,
-    typicalCustomer: state.establishment.typicalCustomer,
-    promotions: state.establishment.promotions,
-    promotionsLimit: state.establishment.promotionsLimit,
-    promotionsOffset: state.establishment.promotionsOffset,
-    promotionsTotalCount: state.establishment.promotionsTotalCount
+  monthlyData: state.establishment.monthlyData,
+  traffic: state.establishment.traffic,
+  affluence: state.establishment.affluence,
+  typicalCustomer: state.establishment.typicalCustomer,
+  promotions: state.establishment.promotions,
+  promotionsLimit: state.establishment.promotionsLimit,
+  promotionsOffset: state.establishment.promotionsOffset,
+  promotionsTotalCount: state.establishment.promotionsTotalCount
 });
 
 const mapDispatchToProps = dispatch => ({
-    trafficPeriodChange: payload => dispatch(actions.trafficPeriodChange(payload)),
-    fetchEstablishmentPageData: payload => dispatch(actions.fetchEstablishmentPageData(payload)),
+  trafficPeriodChange: payload => dispatch(actions.trafficPeriodChange(payload)),
+  fetchEstablishmentPageData: payload => dispatch(actions.fetchEstablishmentPageData(payload))
 });
 
 export class Establishment extends Component {
-  static propTypes = {
-      dispatch: PropTypes.func,
-      traffic: PropTypes.object,
-      affluence: PropTypes.object,
-      typicalCustomer: PropTypes.object,
-      monthlyData: PropTypes.object,
-      promotions: PropTypes.array,
-      promotionsLimit: PropTypes.number,
-      promotionsOffset: PropTypes.number,
-      promotionsTotalCount: PropTypes.number,
-      match: PropTypes.shape({
-          params: PropTypes.shape({id: PropTypes.string})
-      }),
-      fetchEstablishmentPageData: PropTypes.func,
-      trafficPeriodChange: PropTypes.func
-  };
-
   constructor(props) {
     super(props);
     this.loadMorePromotions = this.loadMorePromotions.bind(this);
   }
 
   componentDidMount() {
-    const { promotionsLimit, promotionsOffset, fetchEstablishmentPageData } = this.props;
+    const {promotionsLimit, promotionsOffset, fetchEstablishmentPageData} = this.props;
     fetchEstablishmentPageData({establishmentID: this.props.match.params.id, limit: promotionsLimit, offset: promotionsOffset});
   }
 
@@ -168,6 +151,21 @@ export class Establishment extends Component {
   }
 }
 
-
+Establishment.propTypes = {
+  dispatch: PropTypes.func,
+  traffic: PropTypes.object,
+  affluence: PropTypes.object,
+  typicalCustomer: PropTypes.object,
+  monthlyData: PropTypes.object,
+  promotions: PropTypes.array,
+  promotionsLimit: PropTypes.number,
+  promotionsOffset: PropTypes.number,
+  promotionsTotalCount: PropTypes.number,
+  match: PropTypes.shape({
+    params: PropTypes.shape({id: PropTypes.string})
+  }),
+  fetchEstablishmentPageData: PropTypes.func,
+  trafficPeriodChange: PropTypes.func
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Establishment);
