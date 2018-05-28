@@ -60,7 +60,7 @@ const typicalCustomerDefaults = {
 };
 
 const trafficDefaults = {
-    labels: ["M", "T", "W", "Th", "F", "Sa", "Su"],
+    labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
     datasets: [
         {
             label: "Views",
@@ -92,6 +92,7 @@ const initialState = {
     traffic: trafficDefaults,
     keyData: keyDataDefaults,
     typicalCustomer: typicalCustomerDefaults,
+    affluence: null
 };
 
 export default function reducer(state = initialState, action) {
@@ -152,7 +153,6 @@ export default function reducer(state = initialState, action) {
               ...state,
           };
       case CAMPAIGN_ANALYTICS_TRAFFIC_FULFILLED:
-
           return {
               ...state,
               traffic: action.payload,
@@ -164,6 +164,7 @@ export default function reducer(state = initialState, action) {
       case CAMPAIGN_ANALYTICS_AFFLUENCE_FULFILLED:
           return {
               ...state,
+              affluence: action.payload
           };
       case CAMPAIGN_ANALYTICS_TYPICAL_CUSTOMER:
           return {

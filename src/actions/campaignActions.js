@@ -1,6 +1,7 @@
 import {
   axiosInstance
 } from "../constants/ApiConfig";
+import _ from 'underscore';
 
 import {
   FETCH_CAMPAIGN,
@@ -81,9 +82,9 @@ export function fetchCampaignAnalyticsPageData(payload) {
       await dispatch(fetchKeyData({
         campaignId
       }));
-      // await dispatch(fetchAffluence({
-      //     campaignId
-      // }));
+      await dispatch(fetchAffluence({
+          campaignId
+      }));
       await dispatch(fetchTraffic({
         campaignId
       }));
@@ -148,6 +149,14 @@ function fetchAffluence(payload) {
   };
 }
 
+function getAverageTraffic(traffic) {
+  const monthChunks = _.chunk(traffic, 3);
+  const averageTraffic = _.map(monthChunks, chunk => {
+      return _.reduce(chunk, (acc, val) => { return acc + val; }) / 3;
+  });
+  return averageTraffic;
+}
+
 function fetchTraffic(payload) {
   return async (dispatch, getState) => {
     dispatch({
@@ -159,7 +168,7 @@ function fetchTraffic(payload) {
         url: `/campaigns/${payload.campaignId}/traffic`,
       });
       let traffic = {
-        labels: ["M", "T", "W", "Th", "F", "Sa", "Su"],
+        labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
         datasets: [{
             label: "Views",
             backgroundColor: "transparent",
@@ -167,7 +176,7 @@ function fetchTraffic(payload) {
             colorName: "primary",
             pointHoverBackgroundColor: "#fff",
             borderWidth: 3,
-            data: response.data.views.traffic,
+            data: getAverageTraffic(response.data.views.traffic),
           },
           {
             label: "Clicks",
@@ -176,7 +185,7 @@ function fetchTraffic(payload) {
             colorName: "info",
             pointHoverBackgroundColor: "#fff",
             borderWidth: 3,
-            data: response.data.clicks.traffic,
+            data: getAverageTraffic(response.data.clicks.traffic),
           },
         ],
       };
