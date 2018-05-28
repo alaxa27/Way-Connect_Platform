@@ -20,6 +20,7 @@ import {
     PROMOTIONS_FULFILLED
 } from "../constants/ActionTypes";
 import _ from "underscore";
+import { SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION } from "constants";
 
 const monthlyData = {
   visits: "0",
@@ -38,8 +39,8 @@ const initialState = {
 
     monthlyData: monthlyData,
     traffic: {
-        period: "month",
-        labels: ["M", "T", "W", "Th", "F", "Sa", "Su"],
+        period: "year",
+        labels: [],
         datasets: []
     },
     trafficRaw: null,
@@ -57,6 +58,11 @@ const initialState = {
     promotionsTotalCount: 0
 };
 
+let trafficLabels = {
+    month: ["startDate", "", "", "", "", "", "", "", "", "end"],
+    year: ["start", "", "", "", "", "", "", "", "", "", "", "endDate"],
+};
+
 let trafficDatasets = [
     {
         label: "Visits",
@@ -72,7 +78,7 @@ let trafficDatasets = [
 let affluenceDatasets = [
     {
         label: "Affluence",
-        backgroundColor: "rgba(255,99,132,0.2)",
+        backgEroundColor: "rgba(255,99,132,0.2)",
         borderColor: "rgba(255,99,132,1)",
         borderWidth: 1,
         hoverBackgroundColor: "rgba(255,99,132,0.4)",
@@ -80,6 +86,27 @@ let affluenceDatasets = [
         data: []
     }
 ];
+
+function getSummedTraffic(period, traffic) {
+    let summedTraffic = [];
+    switch(period) {
+        case "month":
+            const monthChunks = _.chunk(traffic, 3);
+            summedTraffic = _.map(monthChunks, chunk => {
+                return _.reduce(chunk, (acc, val) => { return acc + val; });
+            });
+            break;
+        case "year":
+            const yearChunks = _.chunk(traffic, 30);
+            summedTraffic = _.map(yearChunks, chunk => {
+                return _.reduce(chunk, (acc, val) => { return acc + val; });
+            });
+            break;
+        default:
+            break;
+      }
+    return summedTraffic;
+}
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -119,23 +146,32 @@ export default function reducer(state = initialState, action) {
           };
       case TRAFFIC_FULFILLED:
           const period = state.traffic.period;
-          _.first(trafficDatasets).data = action.payload[period].traffic;
+          const traffic = action.payload[period].traffic;
+          const labels = trafficLabels[period];
+          let summedTraffic = getSummedTraffic(period, traffic);
+          _.first(trafficDatasets).data = summedTraffic;
           return {
               ...state,
               traffic: {
                   ...state.traffic,
-                  datasets: trafficDatasets
+                  datasets: trafficDatasets,
+                  labels: labels
               },
               trafficRaw: action.payload
           };
       case TRAFFIC_PERIOD_CHANGE:
-          _.first(trafficDatasets).data = state.trafficRaw[action.payload].traffic;
+          const changedPeriod = action.payload;
+          const changedTraffic = state.trafficRaw[changedPeriod].traffic;
+          const changedLabels = trafficLabels[changedPeriod];
+          let changedAverageTraffic = getSummedTraffic(changedPeriod, changedTraffic);
+          _.first(trafficDatasets).data = changedAverageTraffic;
           return {
               ...state,
               traffic: {
                   ...state.traffic,
-                  period: action.payload,
-                  datasets: trafficDatasets
+                  period: changedPeriod,
+                  datasets: trafficDatasets,
+                  labels: changedLabels
               },
           };
       case AFFLUENCE:

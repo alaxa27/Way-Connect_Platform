@@ -12,6 +12,22 @@ import ReduxBlockUi from "react-block-ui/redux";
 
 const title = "Affluence";
 
+const barOptions = {
+  maintainAspectRatio: false,
+  scales: {
+    xAxes: [{
+        gridLines: {
+            display: false
+        }
+    }],
+    yAxes: [{
+        gridLines: {
+            display: false
+        }   
+    }]
+  }
+};
+
 class Affluence extends Component {
   render() {
     const { data } = this.props;
@@ -26,7 +42,7 @@ class Affluence extends Component {
               </Col>
             </Row>
             <div className="chart-wrapper" style={{height: "380px", marginTop: "40px"}}>
-              <Bar data={data} height={380} options={{maintainAspectRatio: false}} />
+              <Bar data={data} height={380} options={barOptions} />
             </div>
           </CardBody>
         </Card>

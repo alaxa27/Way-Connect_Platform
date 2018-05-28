@@ -1,41 +1,125 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import PropTypes from "prop-types";
-import {
-    Card,
-    CardBody,
-} from "reactstrap";
+import {Card, CardBody} from "reactstrap";
 import CountUp from "react-countup";
 import {Bar, Line} from "react-chartjs-2";
 
+const chartOpts = {
+  maintainAspectRatio: false,
+  legend: {
+    display: false
+  },
+  scales: {
+    xAxes: [
+      {
+        gridLines: {
+          color: "transparent",
+          zeroLineColor: "transparent"
+        },
+        ticks: {
+          fontSize: 2,
+          fontColor: "transparent"
+        }
+
+      }
+    ],
+    yAxes: [
+      {
+        display: false,
+        ticks: {
+          display: false,
+          min: 0,
+          max: 1
+        }
+      }
+    ]
+  }
+};
+
+const chartData = {
+  labels: [
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  datasets: []
+};
+
+const datasetsData1 = {
+  backgroundColor: "transparent",
+  borderColor: "#fff"
+};
+
+const datasetsData2 = {
+  backgroundColor: "rgba(255,255,255,.3)",
+  borderColor: "transparent"
+};
+
 class DashboardPanel extends Component {
   static propTypes = {
-    color: PropTypes.string,
-    displayData: PropTypes.object,
-    chartData: PropTypes.object,
-    options: PropTypes.object,
+    color: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    value: PropTypes.number.isRequired,
+    plot: PropTypes.array.isRequired,
     type: PropTypes.string
   }
+
+  static defaultProps = {
+    type: "line1"
+  }
+
   render() {
-    const { color, displayData, chartData, options, type } = this.props;
-    return (
-      <Card className="text-white dashboard-plot" style={{backgroundColor: color}}>
-        <CardBody className="pb-0">
-          <h1 className="mb-0">
-            <CountUp start={0} end={displayData.value} duration={3} />
-          </h1>
-          <p>{displayData.title}</p>
-        </CardBody>
-        <div className="chart-wrapper px-3" style={{height:"120px"}}>
-          {type === "line" ?
-            <Line data={chartData} options={options} height={120}/>
-                : type === "bar" ?
-                  <Bar data={chartData} options={options} height={120}/>
-                :
-                    null
-                }
-        </div>
-      </Card>
-    );
+    const {
+      color,
+      title,
+      value,
+      plot,
+      type
+    } = this.props;
+
+    const options = {
+      ...chartOpts
+    };
+
+    const datasetsData = (
+      type === "line1"
+      ? datasetsData1
+      : datasetsData2);
+
+    const datasets = {
+      ...datasetsData,
+      data: plot
+    };
+
+    const plotData = {
+      ...chartData,
+      datasets: [
+        datasets
+      ]
+    };
+
+    return (<Card className="text-white dashboard-plot" style={{
+        backgroundColor: color
+      }}>
+      <CardBody className="pb-0">
+        <h1 className="mb-0">
+          <CountUp start={0} end={value} duration={3}/>
+        </h1>
+        <p>{title}</p>
+      </CardBody>
+      <div className="chart-wrapper px-3" style={{
+          height: "120px"
+        }}>
+        {
+          type === "bar"
+            ? <Bar data={plotData} options={options} height={120}/>
+            : <Line data={plotData} options={options} height={120}/>
+        }
+      </div>
+    </Card>);
   }
 }
 

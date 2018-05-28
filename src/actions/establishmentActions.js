@@ -100,9 +100,6 @@ function fetchTraffic(payload) {
         method: "get",
         url: `/establishments/${payload.establishmentID}/traffic`,
       });
-
-      console.log("TRAFFIC", response.data);
-
       dispatch({
         type: TRAFFIC_FULFILLED,
         payload: response.data
