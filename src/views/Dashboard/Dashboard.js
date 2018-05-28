@@ -1,4 +1,6 @@
 import React, {Component} from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import {Bar, Line} from "react-chartjs-2";
 import {
   Badge,
@@ -26,6 +28,8 @@ import * as FontAwesome from "react-icons/lib/fa";
 import {withScriptjs, withGoogleMap, GoogleMap, Marker} from "react-google-maps";
 import {compose, withProps} from "recompose";
 import DashboardPanel from "../../components/DashboardPanel/DashboardPanel";
+
+import * as actions from "../../actions/dashboardActions";
 
 const brandPrimary = "#20a8d8";
 const brandSuccess = "#4dbd74";
@@ -682,8 +686,18 @@ const mainChartOpts = {
     }
   }
 };
+/////////// REDUX
+const mapStateToProps = state => ({
+});
 
-class Dashboard extends Component {
+const mapDispatchToProps = dispatch => ({
+  fetchDashboardData: payload => dispatch(actions.fetchDashboardData()),
+});
+/////////
+export class Dashboard extends Component {
+  static propTypes = {
+    fetchDashboardData: PropTypes.func.isRequired
+  }
   constructor(props) {
     super(props);
 
@@ -697,6 +711,8 @@ class Dashboard extends Component {
       city: "chandigarh"
     };
     this.handleChange = this.handleChange.bind(this);
+
+    this.props.fetchDashboardData();
   }
 
   handleChange(event) {
@@ -819,4 +835,4 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

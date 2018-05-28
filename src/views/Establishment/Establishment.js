@@ -63,6 +63,23 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export class Establishment extends Component {
+  static propTypes = {
+      dispatch: PropTypes.func,
+      traffic: PropTypes.object,
+      affluence: PropTypes.object,
+      typicalCustomer: PropTypes.object,
+      monthlyData: PropTypes.object,
+      promotions: PropTypes.array,
+      promotionsLimit: PropTypes.number,
+      promotionsOffset: PropTypes.number,
+      promotionsTotalCount: PropTypes.number,
+      match: PropTypes.shape({
+          params: PropTypes.shape({id: PropTypes.string})
+      }),
+      fetchEstablishmentPageData: PropTypes.func,
+      trafficPeriodChange: PropTypes.func
+  };
+
   constructor(props) {
     super(props);
     this.loadMorePromotions = this.loadMorePromotions.bind(this);
@@ -151,21 +168,6 @@ export class Establishment extends Component {
   }
 }
 
-Establishment.propTypes = {
-    dispatch: PropTypes.func,
-    traffic: PropTypes.object,
-    affluence: PropTypes.object,
-    typicalCustomer: PropTypes.object,
-    monthlyData: PropTypes.object,
-    promotions: PropTypes.array,
-    promotionsLimit: PropTypes.number,
-    promotionsOffset: PropTypes.number,
-    promotionsTotalCount: PropTypes.number,
-    match: PropTypes.shape({
-        params: PropTypes.shape({id: PropTypes.string})
-    }),
-    fetchEstablishmentPageData: PropTypes.func,
-    trafficPeriodChange: PropTypes.func
-};
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Establishment);

@@ -17,6 +17,15 @@ import _ from "underscore";
 import ReduxBlockUi from "react-block-ui/redux";
 
 class TrafficChart extends Component {
+  static propTypes = {
+      chartData: PropTypes.object,
+      defaultPeriod: PropTypes.string,
+      options: PropTypes.object,
+      title: PropTypes.string,
+      traffic: PropTypes.object,
+      trafficPeriodChange: PropTypes.func
+  };
+  
   constructor(props) {
     super(props);
   }
@@ -66,13 +75,6 @@ class TrafficChart extends Component {
   }
 }
 
-TrafficChart.propTypes = {
-    chartData: PropTypes.object,
-    defaultPeriod: PropTypes.string,
-    options: PropTypes.object,
-    title: PropTypes.string,
-    traffic: PropTypes.object,
-    trafficPeriodChange: PropTypes.func
-};
+
 
 export default TrafficChart;

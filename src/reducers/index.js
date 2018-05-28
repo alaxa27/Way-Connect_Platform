@@ -5,6 +5,7 @@ import login from "./login";
 import forgotPassword from "./forgotPassword";
 import resetPassword from "./resetPassword";
 import register from "./register";
+import dashboard from "./dashboard";
 import listCampaigns from "./listCampaigns";
 import promotion from "./promotion";
 import establishment from "./establishment";
@@ -14,6 +15,7 @@ export default combineReducers({
     login,
     forgotPassword,
     resetPassword,
+    dashboard,
     register,
     promotion,
     establishment,
