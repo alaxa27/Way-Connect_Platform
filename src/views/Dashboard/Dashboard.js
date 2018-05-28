@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 import {Bar, Line} from "react-chartjs-2";
 import {
   Badge,
@@ -31,12 +31,6 @@ import DashboardPanel from "../../components/DashboardPanel/DashboardPanel";
 
 import * as actions from "../../actions/dashboardActions";
 
-const brandPrimary = "#20a8d8";
-const brandSuccess = "#4dbd74";
-const brandInfo = "#63c2de";
-const brandWarning = "#f8cb00";
-const brandDanger = "#f86c6b";
-
 const MyMapComponent = compose(withProps({
   /**
      * Note: create and replace your own key in the Google console.
@@ -65,139 +59,16 @@ const MyMapComponent = compose(withProps({
   }
 </GoogleMap>));
 
-// convert Hex to RGBA
-function convertHex(hex, opacity) {
-  hex = hex.replace("#", "");
-  var r = parseInt(hex.substring(0, 2), 16);
-  var g = parseInt(hex.substring(2, 4), 16);
-  var b = parseInt(hex.substring(4, 6), 16);
-
-  var result = "rgba(" + r + "," + g + "," + b + "," + opacity / 100 + ")";
-  return result;
-}
-
-//Random Numbers
-function random(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-var elements = 27;
-var data1 = [];
-var data2 = [];
-var data3 = [];
-
-for (var i = 0; i <= elements; i++) {
-  data1.push(random(50, 200));
-  data2.push(random(80, 100));
-  data3.push(65);
-}
-
-const mainChart = {
-  labels: [
-    "M",
-    "T",
-    "W",
-    "T",
-    "F",
-    "S",
-    "S",
-    "M",
-    "T",
-    "W",
-    "T",
-    "F",
-    "S",
-    "S",
-    "M",
-    "T",
-    "W",
-    "T",
-    "F",
-    "S",
-    "S",
-    "M",
-    "T",
-    "W",
-    "T",
-    "F",
-    "S",
-    "S"
-  ],
-  datasets: [
-    {
-      label: "My First dataset",
-      backgroundColor: convertHex(brandInfo, 10),
-      borderColor: brandInfo,
-      pointHoverBackgroundColor: "#fff",
-      borderWidth: 2,
-      data: data1
-    }, {
-      label: "My Second dataset",
-      backgroundColor: "transparent",
-      borderColor: brandSuccess,
-      pointHoverBackgroundColor: "#fff",
-      borderWidth: 2,
-      data: data2
-    }, {
-      label: "My Third dataset",
-      backgroundColor: "transparent",
-      borderColor: brandDanger,
-      pointHoverBackgroundColor: "#fff",
-      borderWidth: 1,
-      borderDash: [
-        8, 5
-      ],
-      data: data3
-    }
-  ]
-};
-
-const mainChartOpts = {
-  maintainAspectRatio: false,
-  legend: {
-    display: false
-  },
-  scales: {
-    xAxes: [
-      {
-        gridLines: {
-          drawOnChartArea: false
-        }
-      }
-    ],
-    yAxes: [
-      {
-        ticks: {
-          beginAtZero: true,
-          maxTicksLimit: 5,
-          stepSize: Math.ceil(250 / 5),
-          max: 250
-        }
-      }
-    ]
-  },
-  elements: {
-    point: {
-      radius: 0,
-      hitRadius: 10,
-      hoverRadius: 4,
-      hoverBorderWidth: 3
-    }
-  }
-};
-
-const mapStateToProps = state => ({
-  stats: state.dashboard.stats,
-});
+const mapStateToProps = state => ({stats: state.dashboard.stats});
 
 const mapDispatchToProps = dispatch => ({
-  fetchDashboardData: payload => dispatch(actions.fetchDashboardData()),
+  fetchDashboardData: payload => dispatch(actions.fetchDashboardData())
 });
 
 export class Dashboard extends Component {
   static propTypes = {
     fetchDashboardData: PropTypes.func.isRequired,
-    stats: PropTypes.obj
+    stats: PropTypes.object
   }
   constructor(props) {
     super(props);
@@ -235,185 +106,6 @@ export class Dashboard extends Component {
   }
 
   render() {
-    const { stats } = this.props;
-
-    const campaignsPlot = {
-      labels: [],
-      datasets: [
-        {
-          backgroundColor: "transparent",
-          borderColor: "#fff",
-          data: stats.campaigns.plot
-        }
-      ]
-    };
-
-    const connectionsPlot = {
-      labels: [],
-      datasets: [
-        {
-          backgroundColor: "transparent",
-          borderColor: "#fff",
-          data: stats.connections.plot
-        }
-      ]
-    };
-
-    const customersPlot = {
-      labels: [],
-      datasets: [
-        {
-          backgroundColor: "rgba(255,255,255,.3)",
-          borderColor: "transparent",
-          data: stats.customers.plot
-        }
-      ]
-    };
-
-    const establishmentsPlot = {
-      labels: [],
-      datasets: [
-        {
-          backgroundColor: "transparent",
-          borderColor: "#fff",
-          data: [stats.establishments.plot]
-        }
-      ]
-    };
-
-    const cardChartOpts1 = {
-      maintainAspectRatio: false,
-      legend: {
-        display: false
-      },
-      scales: {
-        xAxes: [
-          {
-            gridLines: {
-              color: "transparent",
-              zeroLineColor: "transparent"
-            },
-            ticks: {
-              fontSize: 2,
-              fontColor: "transparent"
-            }
-    
-          }
-        ],
-        yAxes: [
-          {
-            display: false,
-            ticks: {
-              display: false,
-              min: Math.min.apply(Math, stats.connections.plot),
-              max: Math.max.apply(Math, stats.connections.plot)
-            }
-          }
-        ]
-      },
-      elements: {
-        line: {
-          borderWidth: 1
-        },
-        point: {
-          radius: 4,
-          hitRadius: 10,
-          hoverRadius: 4
-        }
-      }
-    };
-    
-    const cardChartOpts2 = {
-      maintainAspectRatio: false,
-      legend: {
-        display: false
-      },
-      scales: {
-        xAxes: [
-          {
-            gridLines: {
-              color: "transparent",
-              zeroLineColor: "transparent"
-            },
-            ticks: {
-              fontSize: 2,
-              fontColor: "transparent"
-            }
-    
-          }
-        ],
-        yAxes: [
-          {
-            display: false,
-            ticks: {
-              display: false,
-              min: Math.min.apply(Math, stats.establishments.plot),
-              max: Math.max.apply(Math, stats.establishments.plot)
-            }
-          }
-        ]
-      },
-      elements: {
-        line: {
-          tension: 0.00001,
-          borderWidth: 1
-        },
-        point: {
-          radius: 4,
-          hitRadius: 10,
-          hoverRadius: 4
-        }
-      }
-    };
-    
-    const cardChartOpts3 = {
-      maintainAspectRatio: false,
-      legend: {
-        display: false
-      },
-      scales: {
-        xAxes: [
-          {
-            display: false
-          }
-        ],
-        yAxes: [
-          {
-            display: false
-          }
-        ]
-      },
-      elements: {
-        line: {
-          borderWidth: 2
-        },
-        point: {
-          radius: 0,
-          hitRadius: 10,
-          hoverRadius: 4
-        }
-      }
-    };
-    
-    const cardChartOpts4 = {
-      maintainAspectRatio: false,
-      legend: {
-        display: false
-      },
-      scales: {
-        xAxes: [
-          {
-            display: false,
-            barPercentage: 0.6
-          }
-        ],
-        yAxes: [
-          {
-            display: false
-          }
-        ]
-      }
-    };
 
     const tableArray = [
       1,
@@ -423,6 +115,7 @@ export class Dashboard extends Component {
       5,
       6
     ];
+
     const taleList = tableArray.map((list, i) => <tr key={i} className={i === 0
         ? "full-opacity"
         : null}>
@@ -432,34 +125,23 @@ export class Dashboard extends Component {
       </td>
     </tr>);
 
-    console.log(cardChartOpts2);
+    const {stats} = this.props;
+
     return (<div className="animated fadeIn" style={{
         marginTop: 20
       }}>
       <Row>
         <Col xs="12" lg="6">
-          <DashboardPanel color="#F15A24" chartData={connectionsPlot} displayData={{
-              title: "Partners",
-              value: stats.connections.count
-            }} options={cardChartOpts1} type="line"/>
+          <DashboardPanel color="#F15A24" plot={stats.establishments.plot} title="Partners" value={stats.establishments.count} type="line1"/>
         </Col>
         <Col xs="12" lg="6">
-          <DashboardPanel color="#F7931E" chartData={establishmentsPlot} displayData={{
-              title: "Communication Diffusion",
-              value: stats.establishments.count
-            }} options={cardChartOpts2} type="line"/>
+          <DashboardPanel color="#F7931E" plot={stats.connections.plot} title="Communication Diffusion" value={stats.connections.count} type="line1"/>
         </Col>
         <Col xs="12" lg="6">
-          <DashboardPanel color="#FBB03B" chartData={campaignsPlot} displayData={{
-              title: "Campaigns",
-              value: stats.campaigns.count
-            }} options={cardChartOpts3} type="line"/>
+          <DashboardPanel color="#FBB03B" plot={stats.campaigns.plot} title="Campaigns" value={stats.campaigns.count} type="line2"/>
         </Col>
         <Col xs="12" lg="6">
-          <DashboardPanel color="#F9DA23" chartData={customersPlot} displayData={{
-              title: "Clients",
-              value: stats.customers.count
-            }} options={cardChartOpts4} type="bar"/>
+          <DashboardPanel color="#F9DA23" plot={stats.customers.plot} title="Clients" value={stats.customers.count} type="bar"/>
         </Col>
       </Row>
 
