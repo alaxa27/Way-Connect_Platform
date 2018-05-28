@@ -1,7 +1,7 @@
 import {
   axiosInstance
 } from "../constants/ApiConfig";
-import _ from 'underscore';
+import _ from "underscore";
 
 import {
   FETCH_CAMPAIGN,
@@ -149,12 +149,12 @@ function fetchAffluence(payload) {
   };
 }
 
-function getAverageTraffic(traffic) {
+function getSummedTraffic(traffic) {
   const monthChunks = _.chunk(traffic, 3);
-  const averageTraffic = _.map(monthChunks, chunk => {
-      return _.reduce(chunk, (acc, val) => { return acc + val; }) / 3;
+  const summedTraffic = _.map(monthChunks, chunk => {
+      return _.reduce(chunk, (acc, val) => { return acc + val; });
   });
-  return averageTraffic;
+  return summedTraffic;
 }
 
 function fetchTraffic(payload) {
@@ -176,7 +176,7 @@ function fetchTraffic(payload) {
             colorName: "primary",
             pointHoverBackgroundColor: "#fff",
             borderWidth: 3,
-            data: getAverageTraffic(response.data.views.traffic),
+            data: getSummedTraffic(response.data.views.traffic),
           },
           {
             label: "Clicks",
@@ -185,7 +185,7 @@ function fetchTraffic(payload) {
             colorName: "info",
             pointHoverBackgroundColor: "#fff",
             borderWidth: 3,
-            data: getAverageTraffic(response.data.clicks.traffic),
+            data: getSummedTraffic(response.data.clicks.traffic),
           },
         ],
       };

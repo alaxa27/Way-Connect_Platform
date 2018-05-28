@@ -59,8 +59,8 @@ const initialState = {
 };
 
 let trafficLabels = {
-    month: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-    year: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
+    month: ["startDate", "", "", "", "", "", "", "", "", "end"],
+    year: ["start", "", "", "", "", "", "", "", "", "", "", "endDate"],
 };
 
 let trafficDatasets = [
@@ -87,25 +87,25 @@ let affluenceDatasets = [
     }
 ];
 
-function getAverageTraffic(period, traffic) {
-    let averageTraffic = [];
+function getSummedTraffic(period, traffic) {
+    let summedTraffic = [];
     switch(period) {
-        case 'month':
+        case "month":
             const monthChunks = _.chunk(traffic, 3);
-            averageTraffic = _.map(monthChunks, chunk => {
-                return _.reduce(chunk, (acc, val) => { return acc + val; }) / 3;
+            summedTraffic = _.map(monthChunks, chunk => {
+                return _.reduce(chunk, (acc, val) => { return acc + val; });
             });
             break;
-        case 'year':
+        case "year":
             const yearChunks = _.chunk(traffic, 30);
-            averageTraffic = _.map(yearChunks, chunk => {
-                return _.reduce(chunk, (acc, val) => { return acc + val; }) / 30;
+            summedTraffic = _.map(yearChunks, chunk => {
+                return _.reduce(chunk, (acc, val) => { return acc + val; });
             });
             break;
         default:
             break;
       }
-    return averageTraffic;
+    return summedTraffic;
 }
 
 export default function reducer(state = initialState, action) {
@@ -148,8 +148,8 @@ export default function reducer(state = initialState, action) {
           const period = state.traffic.period;
           const traffic = action.payload[period].traffic;
           const labels = trafficLabels[period];
-          let averageTraffic = getAverageTraffic(period, traffic);
-          _.first(trafficDatasets).data = averageTraffic;
+          let summedTraffic = getSummedTraffic(period, traffic);
+          _.first(trafficDatasets).data = summedTraffic;
           return {
               ...state,
               traffic: {
@@ -163,7 +163,7 @@ export default function reducer(state = initialState, action) {
           const changedPeriod = action.payload;
           const changedTraffic = state.trafficRaw[changedPeriod].traffic;
           const changedLabels = trafficLabels[changedPeriod];
-          let changedAverageTraffic = getAverageTraffic(changedPeriod, changedTraffic);
+          let changedAverageTraffic = getSummedTraffic(changedPeriod, changedTraffic);
           _.first(trafficDatasets).data = changedAverageTraffic;
           return {
               ...state,
