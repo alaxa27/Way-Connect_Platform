@@ -1,45 +1,26 @@
 import React from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import ValidatorService from "../../services/ValidatorService";
-import ErrorMessageService from "../../services/ErrorMessageService";
 import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
+import SocietyForm from "./SocietyForm";
+import RestaurantForm from "./RestaurantForm";
+import HotelForm from "./HotelForm";
 
 class AfterLogin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
         activePlace: "society",
-        activityArea: null,
-        name: null,
-        address: null,
         firstStepSuccess: false,
         modalCompleted: false
     };
-    this.validator = new ValidatorService().getValidator();
-    this.errorMessageService = new ErrorMessageService();
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handlePlaceChange = this.handlePlaceChange.bind(this);
+    this.handleSubmitSuccess = this.handleSubmitSuccess.bind(this);
     this.handleModalComplete = this.handleModalComplete.bind(this);
-  }
-  handleInputChange(name, e) {
-    this.setState({
-        [name]: e.target.value
-    });
-  }
-  handleSubmit(e) {
-    e.preventDefault();
-
-    if(this.validator.allValid() ){
-        this.handleSubmitSuccess();
-    } else {
-        this.validator.showMessages();
-        this.forceUpdate();
-    }
   }
   handlePlaceChange(name) {
     this.setState({
-        activePlace: name
+        activePlace: name,
     });
   }
   handleSubmitSuccess() {
@@ -82,42 +63,21 @@ class AfterLogin extends React.Component {
                   </div>
                 </div>
                 <div className="after-login__form">
-                  <form onSubmit={this.handleSubmit}>
-                    {this.state.activePlace === "society" ?
-                      <div className="after-login__group mb-2">
-                        <div className="after-login__label mb-2">
-                            Activity area
-                        </div>
-                        <input type="text" className="w-100 py-1 px-3" name="activityArea" placeholder="Activity area" onChange={(e) => this.handleInputChange("activityArea", e)}/>
-                        {this.validator.message("activityArea", this.state.activityArea, "required", "text-danger activityArea-error", {
-                            required: this.errorMessageService.generateErrorMessage("Activity Area", "required")
-                        })}
-                      </div>
+                  {this.state.activePlace === "society" ?
+                    <SocietyForm 
+                            handleSubmitSuccess={this.handleSubmitSuccess}
+                        />
+                    : this.state.activePlace === "restaurant" ?
+                      <RestaurantForm 
+                            handleSubmitSuccess={this.handleSubmitSuccess}
+                        />
+                    : this.state.activePlace === "hotel" ?
+                      <HotelForm 
+                            handleSubmitSuccess={this.handleSubmitSuccess}
+                        />
                     :
                         null
                     }
-                    <div className="after-login__group mb-2">
-                      <div className="after-login__label mb-2">
-                        Name
-                      </div>
-                      <input type="text" className="w-100 py-1 px-3" name="name" placeholder="Name" onChange={(e) => this.handleInputChange("name", e)}/>
-                      {this.validator.message("name", this.state.activityArea, "required", "text-danger name-error", {
-                            required: this.errorMessageService.generateErrorMessage("Name", "required")
-                        })}
-                    </div>
-                    <div className="after-login__group mb-4">
-                      <div className="after-login__label mb-2">
-                        Address
-                      </div>
-                      <input type="text" className="w-100 py-1 px-3" name="address" placeholder="Address" onChange={(e) => this.handleInputChange("address", e)}/>
-                      {this.validator.message("address", this.state.activityArea, "required", "text-danger address-error", {
-                        required: this.errorMessageService.generateErrorMessage("Address", "required")
-                    })}
-                    </div>
-                    <button className="after-login__submit bid-btn bid-btn-dark">
-                        Lets start
-                    </button>
-                  </form>
                 </div>
               </div>
               <div className="after-login__dots d-flex justify-content-center">
