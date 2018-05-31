@@ -75,7 +75,7 @@ export class Register extends Component {
             <Row className="justify-content-center">
               <Col md="6" lg="5">
                 <div className="login d-flex align-items-center justify-content-center flex-column">
-                  <img src="../img/login_logo.png" alt="Logo" className="login__logo-img mb-3" />
+                  <img src="../img/newaccount.png" alt="Logo" className="login__logo-img mb-3" />
                   <h1 className="font-weight-bold text-center m-0">Create an account</h1>
                   <form id="register-form" className="w-100" onSubmit={this.handleRegister}>
                     <div className="login__input-box my-4">
