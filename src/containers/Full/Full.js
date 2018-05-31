@@ -12,8 +12,21 @@ import ListCampaign from "../../views/Campaigns/ListCampaign/";
 import CreateCampaign from "../../views/Campaigns/CreateCampaign/";
 import Campaigns from "../../views/Campaigns";
 import Establishment from "../../views/Establishment/";
+import AfterLogin from "../../components/Modal/AfterLogin";
 
 class Full extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isModalOpened: true
+    };
+    this.hideModal = this.hideModal.bind(this);
+  }
+  hideModal() {
+    this.setState({
+      isModalOpened: false
+    });
+  }
   render() {
     return (<div className="app">
       <Header/>
@@ -34,6 +47,10 @@ class Full extends Component {
           </Container>
         </main>
         <Aside/>
+        <AfterLogin 
+          isOpen={this.state.isModalOpened}
+          hide={this.hideModal}
+        />
       </div>
       <Footer/>
     </div>);
