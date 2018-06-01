@@ -42,7 +42,7 @@ export default function reducer(state = initialState, action) {
       return { ...state
       };
     case LOGOUT_FULFILLED:
-      return { ...state, isLoggedOut: true
+      return { ...state, isLoggedOut: true, isAuthenticated: false
       };
     case LOGOUT_REJECTED:
       return { ...state,  isLoggedOut: false

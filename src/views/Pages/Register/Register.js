@@ -75,8 +75,8 @@ export class Register extends Component {
             <Row className="justify-content-center">
               <Col md="6" lg="5">
                 <div className="login d-flex align-items-center justify-content-center flex-column">
-                  <img src="../img/login_logo.png" alt="Logo" className="login__logo-img mb-3" />
-                  <h1 className="font-weight-bold text-center m-0">Way-connect</h1>
+                  <img src="../img/newaccount.png" alt="Logo" className="login__logo-img mb-3" />
+                  <h1 className="font-weight-bold text-center m-0">Create an account</h1>
                   <form id="register-form" className="w-100" onSubmit={this.handleRegister}>
                     <div className="login__input-box my-4">
                       {error ?
@@ -86,29 +86,21 @@ export class Register extends Component {
                       :
                           null
                       }
-                      <input type="text" className="login__input w-100 py-1 px-3 mb-2" name="firstName" placeholder="First name" onChange={(e) => this.handleInputChange("firstName", e)}/>
-                      {this.validator.message("firstName", this.state.firstName, "required", "text-danger firstName-error", {
-                          required: this.errorMessageService.generateErrorMessage("First name", "required")
-                      })}
-                      <input type="text" className="login__input w-100 py-1 px-3 my-2" name="lastName" placeholder="Last name" onChange={(e) => this.handleInputChange("lastName", e)}/>
-                      {this.validator.message("lastName", this.state.lastName, "required", "text-danger lastName-error", {
-                          required: this.errorMessageService.generateErrorMessage("Last name", "required")
-                      })}
-                      <input type="text" className="login__input w-100 py-1 px-3 my-2" name="username" placeholder="Username" onChange={(e) => this.handleInputChange("username", e)}/>
+                      <input type="text" className="login__input w-100 py-1 px-3 my-2" name="username" placeholder="Choose a login" onChange={(e) => this.handleInputChange("username", e)}/>
                       {this.validator.message("username", this.state.username, "required", "text-danger username-error", {
                           required: this.errorMessageService.generateErrorMessage("Username", "required")
                       })}
-                      <input type="email" className="login__input w-100 py-1 px-3 my-2" name="email" placeholder="Email" onChange={(e) => this.handleInputChange("email", e)}/>
+                      <input type="email" className="login__input w-100 py-1 px-3 my-2" name="email" placeholder="Your e-mail address" onChange={(e) => this.handleInputChange("email", e)}/>
                       {this.validator.message("email", this.state.email, "required|email", "text-danger email-error", {
                           required: this.errorMessageService.generateErrorMessage("Email", "required"),
                           email: this.errorMessageService.generateErrorMessage("Email", "email")
                       })}
-                      <input type="password" className="login__input w-100 py-1 px-3 my-2" name="password" placeholder="Password" onChange={(e) => this.handleInputChange("password", e)}/>
+                      <input type="password" className="login__input w-100 py-1 px-3 my-2" name="password" placeholder="Type a password" onChange={(e) => this.handleInputChange("password", e)}/>
                       {this.validator.message("password", this.state.password, "required|min:8", "text-danger password-error", {
                           required: this.errorMessageService.generateErrorMessage("Password", "required"),
                           min: this.errorMessageService.generateErrorMessage("Password", "min", 8)
                       })}
-                      <input type="password" className="login__input w-100 py-1 px-3 my-2" name="passwordConfirmation" placeholder="Password Confirmation" onChange={(e) => this.handleInputChange("passwordConfirmation", e)}/>
+                      <input type="password" className="login__input w-100 py-1 px-3 my-2" name="passwordConfirmation" placeholder="Confirm password" onChange={(e) => this.handleInputChange("passwordConfirmation", e)}/>
                       {this.validator.message("passwordConfirmation", this.state.passwordConfirmation, `required|password_confirmation:${this.state.password}`, "text-danger passwordConfirmation-error", {
                           required: this.errorMessageService.generateErrorMessage("Password confirmation", "required"),
                           password_confirmation: this.errorMessageService.generateErrorMessage("Password confirmation", "password_confirmation")
