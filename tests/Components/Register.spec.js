@@ -9,16 +9,6 @@ describe('Register', () => {
         expect(wrapper.find("#register-form").length).toBe(1);
     });
 
-    it('Renders first name input', () => {
-        const wrapper = shallow(<Register />);
-        expect(wrapper.find("input[name='firstName']").length).toBe(1);
-    });
-
-    it('Renders last name input', () => {
-        const wrapper = shallow(<Register />);
-        expect(wrapper.find("input[name='lastName']").length).toBe(1);
-    });
-
     it('Renders username input', () => {
         const wrapper = shallow(<Register />);
         expect(wrapper.find("input[name='username']").length).toBe(1);
@@ -54,18 +44,6 @@ describe('Register', () => {
         expect(wrapper.find('#link-go-back').length).toBe(1);
     });
 
-    it('Should respond to first name change and change the state of the Register Component', () => {
-        const wrapper = shallow(<Register />);
-        wrapper.find("input[name='firstName']").simulate('change', {target: {name: 'firstName', value: 'firstName'}});
-        expect(wrapper.state('firstName')).toEqual('firstName');
-    });
-
-    it('Should respond to last name change and change the state of the Register Component', () => {
-        const wrapper = shallow(<Register />);
-        wrapper.find("input[name='lastName']").simulate('change', {target: {name: 'lastName', value: 'lastName'}});
-        expect(wrapper.state('lastName')).toEqual('lastName');
-    });
-
     it('Should respond to username change and change the state of the Register Component', () => {
         const wrapper = shallow(<Register />);
         wrapper.find("input[name='username']").simulate('change', {target: {name: 'username', value: 'username'}});
@@ -88,20 +66,6 @@ describe('Register', () => {
         const wrapper = shallow(<Register />);
         wrapper.find("input[name='passwordConfirmation']").simulate('change', {target: {name: 'passwordConfirmation', value: 'passwordConfirmation'}});
         expect(wrapper.state('passwordConfirmation')).toEqual('passwordConfirmation');
-    });
-
-    it('Should display error message if first name is empty', () => {
-        const wrapper = mount(<Register />);
-        wrapper.find('.btn-app-login')
-            .simulate('submit');
-        expect(wrapper.find('.firstName-error').length).toBe(1);
-    });
-
-    it('Should display error message if last name is empty', () => {
-        const wrapper = mount(<Register />);
-        wrapper.find('.btn-app-login')
-            .simulate('submit');
-        expect(wrapper.find('.lastName-error').length).toBe(1);
     });
 
     it('Should display error message if username is empty', () => {
@@ -161,8 +125,6 @@ describe('Register', () => {
         const register = jest.fn();
         const wrapper = mount(<Register register={register} />);
 
-        wrapper.find("input[name='firstName']").simulate('change', { target: { value: 'firstName' } });
-        wrapper.find("input[name='lastName']").simulate('change', { target: { value: 'lastName' } });
         wrapper.find("input[name='username']").simulate('change', { target: { value: 'username' } });
         wrapper.find("input[name='email']").simulate('change', { target: { value: 'example@example.com' } });
         wrapper.find("input[name='password']").simulate('change', { target: { value: '12345678' } });
