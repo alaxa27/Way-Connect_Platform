@@ -55,7 +55,8 @@ const initialState = {
     promotions: [],
     promotionsLimit: 10,
     promotionsOffset: 0,
-    promotionsTotalCount: 0
+    promotionsTotalCount: 0,
+    promotionsPage: 0
 };
 
 let trafficLabels = {
@@ -202,11 +203,15 @@ export default function reducer(state = initialState, action) {
               ...state,
           };
       case PROMOTIONS_FULFILLED:
+          let page = state.promotionsPage;
+          page++;
+          console.log(action.payload.promotions.results);
           return {
               ...state,
-              promotions: action.payload.promotions.results,
+              promotions: state.promotions.concat(action.payload.promotions.results),
               promotionsOffset: action.payload.offset,
-              promotionsTotalCount: action.payload.promotions.count
+              promotionsTotalCount: action.payload.promotions.count,
+              promotionsPage: page
           };
       default:
           return {...state};
