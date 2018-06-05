@@ -10,14 +10,14 @@ class PromotionsList extends Component {
     super(props);
   }
   render() {
-    const { data, promotionsTotalCount, loadMore } = this.props;
+    const { data, promotionsPage, promotionsTotalCount, promotionsLimit, loadMore } = this.props;
     return (
       <ReduxBlockUi tag="div" block="PROMOTIONS" unblock={["PROMOTIONS_FULFILLED", "PROMOTIONS_REJECTED"]}>
         <div className="promotion px-4 mt-4">
           <InfiniteScroll
                     pageStart={0}
                     loadMore={loadMore}
-                    hasMore={data.length < promotionsTotalCount}
+                    hasMore={promotionsPage < promotionsTotalCount / promotionsLimit}
                     loader={<div className="loader my-3 text-center" key={0}>...</div>}
                     useWindow={false}
                 >
@@ -37,11 +37,9 @@ class PromotionsList extends Component {
 }
 
 PromotionsList.propTypes = {
-    dispatch: PropTypes.func,
-    promotions: PropTypes.array,
     data: PropTypes.array,
+    promotionsPage: PropTypes.number,
     promotionsLimit: PropTypes.number,
-    promotionsOffset: PropTypes.number,
     promotionsTotalCount: PropTypes.number,
     loadMore: PropTypes.func
 };

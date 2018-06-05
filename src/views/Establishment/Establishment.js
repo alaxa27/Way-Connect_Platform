@@ -54,12 +54,14 @@ const mapStateToProps = state => ({
   promotions: state.establishment.promotions,
   promotionsLimit: state.establishment.promotionsLimit,
   promotionsOffset: state.establishment.promotionsOffset,
-  promotionsTotalCount: state.establishment.promotionsTotalCount
+  promotionsTotalCount: state.establishment.promotionsTotalCount,
+  promotionsPage: state.establishment.promotionsPage
 });
 
 const mapDispatchToProps = dispatch => ({
   trafficPeriodChange: payload => dispatch(actions.trafficPeriodChange(payload)),
-  fetchEstablishmentPageData: payload => dispatch(actions.fetchEstablishmentPageData(payload))
+  fetchEstablishmentPageData: payload => dispatch(actions.fetchEstablishmentPageData(payload)),
+  fetchPromotions: payload => dispatch(actions.fetchPromotions(payload)),
 });
 
 export class Establishment extends Component {
@@ -74,12 +76,12 @@ export class Establishment extends Component {
   }
 
   loadMorePromotions() {
-    console.log("LOAD MORE");
-    // const { promotionsLimit, promotionsOffset } = this.props;
-    // this.props.dispatch(actions.fetchPromotions({
-    //     limit: promotionsLimit,
-    //     offset: promotionsOffset + promotionsLimit
-    // }));
+    const { promotionsLimit, promotionsOffset, fetchPromotions } = this.props;
+    fetchPromotions({
+        establishmentID: this.props.match.params.id,
+        limit: promotionsLimit,
+        offset: promotionsOffset + promotionsLimit
+    });
   }
   render() {
     const {
@@ -90,6 +92,7 @@ export class Establishment extends Component {
       promotionsLimit,
       promotionsOffset,
       promotionsTotalCount,
+      promotionsPage,
       monthlyData,
       trafficPeriodChange
     } = this.props;
@@ -128,7 +131,7 @@ export class Establishment extends Component {
           </Row>
           <Row>
             <Col md="6">
-              <PromotionsList data={promotions} promotionsLimit={promotionsLimit} promotionsOffset={promotionsOffset} promotionsTotalCount={promotionsTotalCount} loadMore={this.loadMorePromotions}/>
+              <PromotionsList data={promotions} promotionsLimit={promotionsLimit} promotionsPage={promotionsPage} promotionsTotalCount={promotionsTotalCount} loadMore={this.loadMorePromotions}/>
             </Col>
             <Col md="6">
               <div className="d-flex flex-column right-box">
@@ -161,11 +164,13 @@ Establishment.propTypes = {
   promotionsLimit: PropTypes.number,
   promotionsOffset: PropTypes.number,
   promotionsTotalCount: PropTypes.number,
+  promotionsPage: PropTypes.number,
   match: PropTypes.shape({
     params: PropTypes.shape({id: PropTypes.string})
   }),
   fetchEstablishmentPageData: PropTypes.func,
-  trafficPeriodChange: PropTypes.func
+  trafficPeriodChange: PropTypes.func,
+  fetchPromotions: PropTypes.func
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Establishment);

@@ -47,10 +47,10 @@ class Full extends Component {
           </Container>
         </main>
         <Aside/>
-        <AfterLogin 
+        {/* <AfterLogin 
           isOpen={this.state.isModalOpened}
           hide={this.hideModal}
-        />
+        /> */}
       </div>
       <Footer/>
     </div>);
