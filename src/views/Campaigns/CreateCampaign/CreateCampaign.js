@@ -7,6 +7,7 @@ import "react-input-range/lib/css/index.css";
 import { Row, Col, Button, Input } from "reactstrap";
 
 import ResearchFilters from "../../../components/ResearchFilters/ResearchFilters";
+import TypologieList from "../../../components/TypologieList/TypologieList";
 
 class CreateCampaign extends Component {
   constructor(props) {
@@ -25,46 +26,44 @@ class CreateCampaign extends Component {
         location: "chandigarh",
         hobbies: "traveling",
         age: { min: 18, max: 24},
+
+        communicationType: {
+          brand: false,
+          product: false
+        },
+        name: '',
+        description: ''
       };
   }
-
   render() {
-    const tableArray = [1, 2, 3, 4, 5, 6];
-      const typologieList = tableArray.map(( list, i) =>
-        <tr key={i} className={ i === 3 ? "full-opacity" : null }>
-          <td><label>Optician</label></td>
-          <td><label><img src={Eye} alt="View" /><span style={{position: "relative", left: -5, backgroundColor: "#dbdbdb"}}>$</span></label></td>
-          <td><label>5 <span className="line-through">WC</span></label></td>
-          <td><label><img src={Eye} alt="View" /></label></td>
-          <td><label>3500</label></td>
-          <td><label><FontAwesome.FaUser /> &nbsp; 12</label></td>
-          <td><label><img src={Cart} alt="Cart" /> &nbsp; 500</label></td>
-        </tr>
-      );
     return (
       <div className="sub-page-wrapper animated fadeIn">
         <Row>
           <Col>
-            <h2 className="way-heading" style={{fontSize: "24px"}}><FontAwesome.FaCircle className="yellow-circle" /> #1 Typologie list</h2>
-            <Col>
-              <Col>
-                <table className="typology-table">
-                  <tbody>
-                    {typologieList}
-                  </tbody>
-                </table>
-              </Col>
-            </Col>
+            <div className="custom-breadcrumb-wrapper">
+              <div className="custom-breadcrumb no-border">
+                <div className="custom-breadcrumb-label">
+                <FontAwesome.FaCircle className="yellow-circle" />
+                  Typologie list
+                </div>
+              </div>
+            </div>
+            <TypologieList {...this.state}/>
           </Col>
         </Row>
-        <br/><br/>
         <Row>
           <Col>
-            <h2 className="way-heading" style={{fontSize: "24px"}}><FontAwesome.FaCircle className="yellow-circle" /> #2 Research filter</h2>
+            <div className="custom-breadcrumb-wrapper">
+              <div className="custom-breadcrumb no-border">
+                <div className="custom-breadcrumb-label">
+                  <FontAwesome.FaCircle className="green-circle" /> 
+                  Research Filters
+                </div>
+              </div>
+            </div>
             <ResearchFilters {...this.state}/>
           </Col>
         </Row>
-        <br/><br/>
       </div>
     );
   }
