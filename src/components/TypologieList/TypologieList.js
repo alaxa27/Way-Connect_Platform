@@ -36,15 +36,15 @@ class TypologieList extends Component {
           <Col md="6" xs="12">
             <div className="input-wrapper">
               <label className="input-label">The name of your campaign</label>
-              <Input type="text" id="name" className="create-campaign-input" name="name" value={this.state.name} onChange={(e) => this.handleInputChange('name', e) }/>
+              <Input type="text" id="name" className="create-campaign-input" name="name" value={this.state.name} onChange={(e) => this.handleInputChange("name", e) }/>
             </div>
 
             <div className="input-wrapper">
               <label className="input-label">Type of communication</label>
               <div className="radio-buttons-container">
-                <Input type="radio" id="brand" name="brand" value="brand" checked={this.state.communicationType.brand} onClick={() => this.handleRadioChange('brand') }/>
+                <Input type="radio" id="brand" name="brand" value="brand" checked={this.state.communicationType.brand} onClick={() => this.handleRadioChange("brand") }/>
                 <label htmlFor="brand" className="pull-left">Brand</label>
-                <Input type="radio" id="product" name="product" value="product" checked={this.state.communicationType.product} onClick={() => this.handleRadioChange('product') }/>
+                <Input type="radio" id="product" name="product" value="product" checked={this.state.communicationType.product} onClick={() => this.handleRadioChange("product") }/>
                 <label htmlFor="product" className="pull-right">Product</label>
                 <div className="clearfix"></div>
               </div>
@@ -52,7 +52,7 @@ class TypologieList extends Component {
 
             <div className="input-wrapper">
               <label className="input-label">Product description</label>
-              <Input type="text" id="description" className="create-campaign-input" name="description" value={this.state.description} onChange={(e) => this.handleInputChange('description', e) }/>
+              <Input type="text" id="description" className="create-campaign-input" name="description" value={this.state.description} onChange={(e) => this.handleInputChange("description", e) }/>
             </div>
           </Col>
         </Row>

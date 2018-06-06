@@ -31,8 +31,8 @@ class CreateCampaign extends Component {
           brand: false,
           product: false
         },
-        name: '',
-        description: ''
+        name: "",
+        description: ""
       };
   }
   render() {
@@ -43,7 +43,7 @@ class CreateCampaign extends Component {
             <div className="custom-breadcrumb-wrapper">
               <div className="custom-breadcrumb no-border">
                 <div className="custom-breadcrumb-label">
-                <FontAwesome.FaCircle className="yellow-circle" />
+                  <FontAwesome.FaCircle className="yellow-circle" />
                   Typologie list
                 </div>
               </div>
