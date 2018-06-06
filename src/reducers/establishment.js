@@ -205,7 +205,6 @@ export default function reducer(state = initialState, action) {
       case PROMOTIONS_FULFILLED:
           let page = state.promotionsPage;
           page++;
-          console.log(action.payload.promotions.results);
           return {
               ...state,
               promotions: state.promotions.concat(action.payload.promotions.results),

@@ -96,7 +96,7 @@ export class Establishment extends Component {
       monthlyData,
       trafficPeriodChange
     } = this.props;
-    return (<ReduxBlockUi tag="div" block={["ESTABLISHMENT_PAGE", "ESTABLISHMENT_PAGE_REJECTED"]} unblock={["ESTABLISHMENT_PAGE_FULFILLED"]}>
+    return (<ReduxBlockUi tag="div" block={["ESTABLISHMENT_PAGE"]} unblock={["ESTABLISHMENT_PAGE_FULFILLED", "ESTABLISHMENT_PAGE_REJECTED"]}>
       <div className="sub-page-wrapper animated fadeIn">
         <div style={{
             marginTop: 20

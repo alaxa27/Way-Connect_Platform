@@ -26,7 +26,7 @@ class PromotionsListItem extends Component {
 }
 
 PromotionsListItem.propTypes = {
-    promotion: PropTypes.object
+    promotion: PropTypes.object.isRequired
 };
 
 export default PromotionsListItem;

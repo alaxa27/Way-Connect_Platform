@@ -1,3 +1,4 @@
+import _ from "underscore";
 import {
   axiosInstance
 } from "../constants/ApiConfig";
@@ -72,13 +73,19 @@ function fetchMonthlyData(payload) {
       });
 
       const monthlyData = { ...response.data };
-      monthlyData.customer_average_visits *= 100;
-      const currency = Object.keys(monthlyData.total_rewards)[0];
-
-      monthlyData.total_rewards = {
-        value: monthlyData.total_rewards[currency],
-        currency: currency
-      };
+      
+      if (!_.isEmpty(monthlyData.total_rewards)) {
+        const currency = Object.keys(monthlyData.total_rewards)[0];
+        monthlyData.total_rewards = {
+          value: monthlyData.total_rewards[currency],
+          currency: currency
+        };
+      } else {
+        monthlyData.total_rewards = {
+          value: 0,
+          currency: ""
+        };
+      }
 
       dispatch({
         type: MONTHLY_DATA_FULFILLED,
