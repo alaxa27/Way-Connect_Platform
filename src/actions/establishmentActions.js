@@ -23,6 +23,9 @@ import {
 
   TYPICAL_CUSTOMER,
   TYPICAL_CUSTOMER_FULFILLED,
+
+  ESTABLISHMENT_LIST,
+  ESTABLISHMENT_LIST_FULFILLED
 } from "../constants/ActionTypes";
 
 export function fetchEstablishmentPageData(payload) {
@@ -182,6 +185,33 @@ function fetchTypicalCustomer(payload) {
       dispatch({
         type: TYPICAL_CUSTOMER_FULFILLED,
         payload: response.data
+      });
+    } catch (error) {
+      throw new Error();
+    }
+  };
+}
+
+export function fetchEstablishmentList() {
+  return async (dispatch, getState) => {
+    dispatch({
+      type: ESTABLISHMENT_LIST,
+    });
+    try {
+      const response = await axiosInstance({
+        method: "get",
+        url: "/establishments/",
+      });
+      const data = response.data;
+      const formattedList = _.map(data, item => {
+        return {
+          name: item.name,
+          url: "/establishments/" + item.id
+        };
+      });
+      dispatch({
+        type: ESTABLISHMENT_LIST_FULFILLED,
+        payload: formattedList
       });
     } catch (error) {
       throw new Error();

@@ -36,6 +36,10 @@ export default {
       icon: "fa fa-upload"
     },
     {
+      name: "EstablishmentList",
+      icon: "fa fa-upload"
+    },
+    {
       name: "Log Out",
       url: "/logout",
       class: "mt-auto",

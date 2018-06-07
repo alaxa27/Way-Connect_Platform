@@ -17,7 +17,10 @@ import {
     TYPICAL_CUSTOMER_FULFILLED,
 
     PROMOTIONS,
-    PROMOTIONS_FULFILLED
+    PROMOTIONS_FULFILLED,
+
+    ESTABLISHMENT_LIST,
+    ESTABLISHMENT_LIST_FULFILLED
 } from "../constants/ActionTypes";
 import _ from "underscore";
 import { SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION } from "constants";
@@ -56,7 +59,8 @@ const initialState = {
     promotionsLimit: 10,
     promotionsOffset: 0,
     promotionsTotalCount: 0,
-    promotionsPage: 0
+    promotionsPage: 0,
+    establishmentList: []
 };
 
 let trafficLabels = {
@@ -212,6 +216,17 @@ export default function reducer(state = initialState, action) {
               promotionsTotalCount: action.payload.promotions.count,
               promotionsPage: page
           };
+      case ESTABLISHMENT_LIST:
+          return {
+              ...state
+          };
+          break;
+      case ESTABLISHMENT_LIST_FULFILLED:
+          return {
+              ...state,
+              establishmentList: action.payload
+          };
+          break;
       default:
           return {...state};
   }

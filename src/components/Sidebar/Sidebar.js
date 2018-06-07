@@ -7,17 +7,28 @@ import SidebarFooter from "./../SidebarFooter";
 import SidebarForm from "./../SidebarForm";
 import SidebarHeader from "./../SidebarHeader";
 import SidebarMinimizer from "./../SidebarMinimizer";
+import * as actions from "../../actions/establishmentActions";
+import { connect } from "react-redux";
+import _ from "underscore";
+import PropTypes from "prop-types";
+
+const mapStateToProps = state => ({
+  establishmentList: state.establishment.establishmentList,
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchEstablishmentList: payload => dispatch(actions.fetchEstablishmentList())
+});
 
 class Sidebar extends Component {
 
   constructor(props) {
     super(props);
-
     this.handleClick = this.handleClick.bind(this);
     this.activeRoute = this.activeRoute.bind(this);
     this.hideMobile = this.hideMobile.bind(this);
+    props.fetchEstablishmentList();
   }
-
 
   handleClick(e) {
     e.preventDefault();
@@ -41,8 +52,14 @@ class Sidebar extends Component {
   //   return this.props.location.pathname.indexOf(routeName) > -1 ? "nav nav-second-level collapse in" : "nav nav-second-level collapse";
   // }
 
+  UNSAFE_componentWillUpdate(nextProps, nextState) {
+    const establishmentList = nextProps.establishmentList;
+    let establishmentMenuItem = _.find(nav.items, item => item.name === "EstablishmentList");
+    establishmentMenuItem["children"] = establishmentList;
+  }
 
   render() {
+    console.log("render");
 
     const props = this.props;
 
@@ -161,4 +178,9 @@ class Sidebar extends Component {
   }
 }
 
-export default Sidebar;
+Sidebar.propTypes = {
+  fetchEstablishmentList: PropTypes.func,
+  establishmentList: PropTypes.array
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
