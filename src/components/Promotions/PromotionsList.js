@@ -12,7 +12,7 @@ class PromotionsList extends Component {
 
   renderPromotionList(data, promotionsPage, promotionsTotalCount, promotionsLimit, loadMore) {
     if (data.length > 0) {
-      <InfiniteScroll pageStart={0} loadMore={loadMore} hasMore={promotionsPage < promotionsTotalCount / promotionsLimit} loader={<div className = "loader my-3 text-center" key = {
+      return (<InfiniteScroll pageStart={0} loadMore={loadMore} hasMore={promotionsPage < promotionsTotalCount / promotionsLimit} loader={<div className = "loader my-3 text-center" key = {
           0
         } > ...</div>} useWindow={false}>
         {
@@ -20,7 +20,7 @@ class PromotionsList extends Component {
             return (<PromotionsListItem key={key} promotion={promotion}/>);
           })
         }
-      </InfiniteScroll>;
+      </InfiniteScroll>);
     }
   }
 
