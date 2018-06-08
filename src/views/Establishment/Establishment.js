@@ -67,12 +67,20 @@ const mapDispatchToProps = dispatch => ({
 export class Establishment extends Component {
   constructor(props) {
     super(props);
+    
+    this.fetchData(props);
     this.loadMorePromotions = this.loadMorePromotions.bind(this);
   }
 
-  componentDidMount() {
-    const {promotionsLimit, promotionsOffset, fetchEstablishmentPageData} = this.props;
+  fetchData(props) {
+    const {promotionsLimit, promotionsOffset, fetchEstablishmentPageData} = props;
     fetchEstablishmentPageData({establishmentID: this.props.match.params.id, limit: promotionsLimit, offset: promotionsOffset});
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.match.params.id !== this.props.match.params.id) {
+      this.fetchData(this.props);
+    }
   }
 
   loadMorePromotions() {

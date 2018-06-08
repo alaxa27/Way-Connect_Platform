@@ -52,8 +52,8 @@ class Sidebar extends Component {
   //   return this.props.location.pathname.indexOf(routeName) > -1 ? "nav nav-second-level collapse in" : "nav nav-second-level collapse";
   // }
 
-  UNSAFE_componentWillUpdate(nextProps, nextState) {
-    const establishmentList = nextProps.establishmentList;
+  handleEstablishments(props) {
+    const establishmentList = props.establishmentList;
     let establishmentMenuItem = _.find(nav.items, item => item.name === "Establishments");
     establishmentMenuItem["children"] = establishmentList;
   }
@@ -61,6 +61,8 @@ class Sidebar extends Component {
   render() {
 
     const props = this.props;
+
+    this.handleEstablishments(props);
 
     // badge addon to NavItem
     const badge = (badge) => {

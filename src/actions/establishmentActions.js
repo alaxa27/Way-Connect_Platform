@@ -35,6 +35,9 @@ export function fetchEstablishmentPageData(payload) {
     });
     try {
       const establishmentID = payload.establishmentID;
+      if (establishmentID === getState().establishment.id) {
+        throw new Error("Already fetched;");
+      }
       await dispatch(fetchMonthlyData({
         establishmentID
       }));
@@ -54,6 +57,7 @@ export function fetchEstablishmentPageData(payload) {
       }));
       dispatch({
         type: ESTABLISHMENT_PAGE_FULFILLED,
+        payload: establishmentID
       });
     } catch (error) {
       dispatch({
