@@ -76,7 +76,7 @@ function fetchMonthlyData(payload) {
       });
 
       const monthlyData = { ...response.data };
-      
+
       if (!_.isEmpty(monthlyData.total_rewards)) {
         const currency = Object.keys(monthlyData.total_rewards)[0];
         monthlyData.total_rewards = {
@@ -206,7 +206,7 @@ export function fetchEstablishmentList() {
       const formattedList = _.map(data, item => {
         return {
           name: item.name,
-          url: "/establishments/" + item.id
+          url: "/establishment/" + item.id
         };
       });
       dispatch({

@@ -36,7 +36,7 @@ export default {
       icon: "fa fa-upload"
     },
     {
-      name: "EstablishmentList",
+      name: "Establishments",
       icon: "fa fa-upload"
     },
     {

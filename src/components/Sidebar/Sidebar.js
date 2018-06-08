@@ -54,12 +54,11 @@ class Sidebar extends Component {
 
   UNSAFE_componentWillUpdate(nextProps, nextState) {
     const establishmentList = nextProps.establishmentList;
-    let establishmentMenuItem = _.find(nav.items, item => item.name === "EstablishmentList");
+    let establishmentMenuItem = _.find(nav.items, item => item.name === "Establishments");
     establishmentMenuItem["children"] = establishmentList;
   }
 
   render() {
-    console.log("render");
 
     const props = this.props;
 
