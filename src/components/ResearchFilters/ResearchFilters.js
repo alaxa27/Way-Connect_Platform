@@ -42,7 +42,6 @@ class ResearchFilters extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleRangeChange = this.handleRangeChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
-
   }
 
   handleInputChange(event) {
@@ -70,14 +69,12 @@ class ResearchFilters extends Component {
   }
 
   render() {
-    return (<Row style={{
-        width: "100%"
-      }}>
-      <Col><br/>
-        <Col>
-          <Col md="5">
+    return (
+      <div className="research-filters">
+        <Row>
+          <Col md="6" xs="12">
             <label className="input-label">Gender</label>
-            <div className="gender-radio-buttons">
+            <div className="radio-buttons-container">
               <Input type="radio" id="male" name="gender_male" value="male" checked={this.state.gender.male} onClick={this.handleInputChange}/>
               <label htmlFor="male" className="pull-left">Male</label>
               <Input type="radio" id="female" name="gender_female" value="female" checked={this.state.gender.female} onClick={this.handleInputChange}/>
@@ -88,73 +85,61 @@ class ResearchFilters extends Component {
               <label className="input-label pull-left">Age</label>
               <label className="age-title">{this.state.age.min}-{this.state.age.max}yo</label>
               <div style={{
-                  paddingTop: 40
-                }}>
+                    paddingTop: 40
+                  }}>
                 <InputRange maxValue={100} minValue={0} value={this.state.age} onChange={this.handleRangeChange}/>
               </div>
             </div>
           </Col>
-          <div className="clearfix"></div>
-          <Col>
-            <div className="row" style={{
-                margin: 0
-              }}>
-              <div className="col col-md-5">
-                <div className="input-wrapper">
-                  <label className="input-label">Professional status</label>
-                  <SelectBox name="work-status" placeholder="Every status" options={this.state.workStatus} fixed={this.props.fixed}/>
-                </div>
-
-                <div className="input-wrapper">
-                  <label className="input-label">Relationship status</label>
-                  <div className="custom-selectbox-main">
-                    <SelectBox name="work-status" placeholder="Every status" options={this.state.workStatus} fixed={this.props.fixed}/>
-                  </div>
-                </div>
-
-                <div className="input-wrapper">
-                  <label className="input-label">Nationality</label>
-                  <div className="custom-selectbox-main">
-                    <SelectBox name="nationality" placeholder="Every status" options={this.state.workStatus} fixed={this.props.fixed}/>
-                  </div>
-                </div>
-              </div>
-
-              <Col md={{
-                  size: 5,
-                  offset: 1
-                }}>
-                <div className="input-wrapper">
-                  <label className="input-label">Hobbies</label>
-                  <div className="custom-selectbox-main">
-                    <SelectBox name="hobbies" placeholder="Every status" options={this.state.workStatus} fixed={this.props.fixed}/>
-                  </div>
-                </div>
-
-                <div className="input-wrapper">
-                  <label className="input-label">Location</label>
-                  <div className="custom-selectbox-main">
-                    <SelectBox name="location" placeholder="Every status" options={this.state.workStatus} fixed={this.props.fixed}/>
-                  </div>
-                </div>
-
-                <div className="input-wrapper">
-                  <label className="input-label">Additional Content</label>
-                  <div className="custom-selectbox-main">
-                    <SelectBox name="additional-status" placeholder="Every status" options={this.state.workStatus} fixed={this.props.fixed}/>
-                  </div>
-                </div>
-              </Col>
-              <div className="clearfix"></div>
+        </Row>
+        <Row>
+          <Col md="6" xs="12">
+            <div className="input-wrapper">
+              <label className="input-label">Professional status</label>
+              <SelectBox name="work-status" placeholder="Every status" options={this.state.workStatus} fixed={this.props.fixed}/>
             </div>
-            <br/>
-            <Col>
-              <span className="filters-completed">Filters completed</span>
-            </Col>
+
+            <div className="input-wrapper">
+              <label className="input-label">Relationship status</label>
+              <div className="custom-selectbox-main">
+                <SelectBox name="work-status" placeholder="Every status" options={this.state.workStatus} fixed={this.props.fixed}/>
+              </div>
+            </div>
+
+            <div className="input-wrapper">
+              <label className="input-label">Nationality</label>
+              <div className="custom-selectbox-main">
+                <SelectBox name="nationality" placeholder="Every status" options={this.state.workStatus} fixed={this.props.fixed}/>
+              </div>
+            </div>
           </Col>
-        </Col>
-      </Col>
-    </Row>);
+          <Col md="6" xs="12">
+            <div className="input-wrapper">
+              <label className="input-label">Hobbies</label>
+              <div className="custom-selectbox-main">
+                <SelectBox name="hobbies" placeholder="Every status" options={this.state.workStatus} fixed={this.props.fixed}/>
+              </div>
+            </div>
+
+            <div className="input-wrapper">
+              <label className="input-label">Location</label>
+              <div className="custom-selectbox-main">
+                <SelectBox name="location" placeholder="Every status" options={this.state.workStatus} fixed={this.props.fixed}/>
+              </div>
+            </div>
+
+            <div className="input-wrapper">
+              <label className="input-label">Additional Content</label>
+              <div className="custom-selectbox-main">
+                <SelectBox name="additional-status" placeholder="Every status" options={this.state.workStatus} fixed={this.props.fixed}/>
+              </div>
+            </div>
+          </Col>
+          <Col md="6" xs="12">
+            <button className="bid-btn bid-btn-dark" style={{marginTop: "25px"}}>Start bidding</button>
+          </Col>
+        </Row>
+      </div>);
   }
 }
 

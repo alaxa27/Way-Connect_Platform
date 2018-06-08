@@ -217,11 +217,11 @@
   font-size: 1rem;
 }
 
-.gender-radio-buttons input {
+.radio-buttons-container input {
   display: none;
 }
 
-.gender-radio-buttons label {
+.radio-buttons-container label {
   width: 48%;
   color: #fff;
   font-weight: normal;
@@ -233,9 +233,14 @@
   background: #dbdbdb;
 }
 
-.gender-radio-buttons input:checked + label {
+.radio-buttons-container input:checked + label {
   font-weight: bold;
   background: linear-gradient(to right, #F15A24, #FBB03B);
+}
+
+.create-campaign-input {
+  border-radius: 1.5em;
+  border: none;
 }
 
 .age-title {
@@ -275,7 +280,31 @@ body {
   padding: 15px 30px;
   background-color: #fff;
   cursor: pointer;
+
+  &.no-border {
+    border: none;
+  }
 }
+
+.custom-breadcrumb-label {
+  color: #989898;
+  display: flex;
+  align-items: center;
+
+  svg {
+    margin-right: 10px;
+  }
+}
+
+.typologie-list {
+  margin-bottom: 25px;
+}
+
+.research-filters {
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
+
 /* Campaign page */
 .fixed-filters-wrap {
   width: calc(100% - 100px);
@@ -536,17 +565,11 @@ body {
 
 .campaign-types-container {
     margin-bottom: 30px;
-  .add-btn {
-  }
 }
+
 .custom-breadcrumb-wrapper {
   margin-left: -30px;
   margin-right: -30px;
-}
-
-.filters-completed {
-  color: #32CD32;
-  font-size: 12px;
 }
 
 .video-uploading-tabs ul {
