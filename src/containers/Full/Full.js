@@ -40,14 +40,14 @@ class Full extends Component {
               <Route exact path="/campaigns/list" name="ListCampaign" component={ListCampaign}/>
               <Route exact path="/campaigns/create" name="CreateCampaign" component={CreateCampaign}/>
               <Route path="/campaigns/:id" name="Campaigns" component={Campaigns}/>
-              <Route path="/establishment/:id" name="Establishment" component={Establishment}/>
+              <Route exact path="/establishment/:id" name="Establishment" component={Establishment}/>
               <Redirect from="/" to="/login"/>
 
             </Switch>
           </Container>
         </main>
         <Aside/>
-        {/* <AfterLogin 
+        {/* <AfterLogin
           isOpen={this.state.isModalOpened}
           hide={this.hideModal}
         /> */}

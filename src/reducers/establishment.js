@@ -40,6 +40,7 @@ const initialState = {
     success: false,
     error: null,
 
+    id: 0,
     monthlyData: monthlyData,
     traffic: {
         period: "year",
@@ -125,6 +126,7 @@ export default function reducer(state = initialState, action) {
       case ESTABLISHMENT_PAGE_FULFILLED:
           return {
               ...state,
+              id: action.payload,
               fetching: false,
               success: true,
               error: null,
