@@ -6,14 +6,9 @@ export default {
       icon: "icon-speedometer",
     },
     {
-      name: "ListCampaign",
+      name: "Campaigns",
       url: "/campaigns/list",
-      icon: "fa fa-upload"
-    },
-    {
-      name: "Create a Campaign",
-      url: "/campaigns/create",
-      icon: "icon-plus",
+      icon: "fa fa-list"
     },
     {
       name: "BidCampaign",
@@ -31,13 +26,8 @@ export default {
       icon: "fa fa-upload"
     },
     {
-      name: "Establishment",
-      url: "/establishment/12",
-      icon: "fa fa-upload"
-    },
-    {
       name: "Establishments",
-      icon: "fa fa-upload"
+      icon: "fa fa-building"
     },
     {
       name: "Log Out",
