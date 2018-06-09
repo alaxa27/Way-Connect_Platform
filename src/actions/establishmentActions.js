@@ -205,6 +205,9 @@ export function fetchEstablishmentList() {
       const response = await axiosInstance({
         method: "get",
         url: "/establishments/",
+        params: {
+          owner: "me"
+        }
       });
       const data = response.data;
       const formattedList = _.map(data, item => {
