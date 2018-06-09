@@ -60,7 +60,7 @@ class Sidebar extends Component {
       name: "Add",
       url: "",
       icon: "icon-plus"
-    })
+    });
   }
 
   render() {

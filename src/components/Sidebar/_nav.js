@@ -11,19 +11,26 @@ export default {
       icon: "fa fa-list"
     },
     {
-      name: "BidCampaign",
-      url: "/campaigns/46/bid",
-      icon: "icon-layers",
-    },
-    {
-      name: "ConfigCampaign",
-      url: "/campaigns/46/config",
-      icon: "fa fa-upload"
-    },
-    {
-      name: "AnalyticsCampaign",
-      url: "/campaigns/46/analytics",
-      icon: "fa fa-upload"
+      name: "CampaignsDev",
+      url: "/campaigns/list",
+      icon: "fa fa-list",
+      children: [
+        {
+          name: "BidCampaign",
+          url: "/campaigns/46/bid",
+          icon: "icon-layers",
+        },
+        {
+          name: "ConfigCampaign",
+          url: "/campaigns/46/config",
+          icon: "fa fa-upload"
+        },
+        {
+          name: "AnalyticsCampaign",
+          url: "/campaigns/46/analytics",
+          icon: "fa fa-upload"
+        }
+      ]
     },
     {
       name: "Establishments",

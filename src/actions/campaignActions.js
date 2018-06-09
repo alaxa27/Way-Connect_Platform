@@ -4,6 +4,10 @@ import {
 import _ from "underscore";
 
 import {
+  FETCH_FILTER_DATA,
+  FETCH_FILTER_DATA_FULFILLED,
+  FETCH_FILTER_DATA_REJECTED,
+
   FETCH_CAMPAIGN,
   FETCH_CAMPAIGN_FULFILLED,
   FETCH_CAMPAIGN_REJECTED,
@@ -25,6 +29,46 @@ import {
   CAMPAIGN_ANALYTICS_KEY_DATA,
   CAMPAIGN_ANALYTICS_KEY_DATA_FULFILLED,
 } from "../constants/ActionTypes";
+
+const STATUS = require("../data/status");
+
+export function fetchFilterData(payload) {
+  return async (dispatch, getState) => {
+    dispatch({
+      type: FETCH_FILTER_DATA
+    })
+
+    try {
+      const response = await axiosInstance({
+        method: "get",
+        url: "/customers/hobbies/",
+      });
+
+      const hobbies = response.data.map((item) => {
+        return {
+          "label": item.name,
+          "value": item.id
+        };
+      });
+
+      dispatch({
+        type: FETCH_FILTER_DATA_FULFILLED,
+        payload: {
+          hobbies: hobbies,
+          workStatus: STATUS["PROFESSIONAL"],
+          relationshipStatus: STATUS["RELATIONSHIP"],
+          nationality: STATUS["NATIONALITY"],
+        }
+      })
+    } catch (error) {
+      dispatch({
+        type: FETCH_FILTER_DATA_REJECTED
+      })
+
+    }
+
+  }
+}
 
 export function fetchCampaign(payload) {
   return async (dispatch, getState) => {
@@ -83,7 +127,7 @@ export function fetchCampaignAnalyticsPageData(payload) {
         campaignId
       }));
       await dispatch(fetchAffluence({
-          campaignId
+        campaignId
       }));
       await dispatch(fetchTraffic({
         campaignId
@@ -152,7 +196,9 @@ function fetchAffluence(payload) {
 function getSummedTraffic(traffic) {
   const monthChunks = _.chunk(traffic, 3);
   const summedTraffic = _.map(monthChunks, chunk => {
-      return _.reduce(chunk, (acc, val) => { return acc + val; });
+    return _.reduce(chunk, (acc, val) => {
+      return acc + val;
+    });
   });
   return summedTraffic;
 }
