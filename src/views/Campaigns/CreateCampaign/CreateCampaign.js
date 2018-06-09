@@ -34,7 +34,7 @@ class CreateCampaign extends Component {
       name: "",
       description: ""
     };
-    this.props.dispatch(fetchFilterData())
+    this.props.dispatch(fetchFilterData());
   }
 
   render() {
@@ -70,6 +70,7 @@ class CreateCampaign extends Component {
 }
 
 CreateCampaign.propTypes = {
-  dispatch: PropTypes.func
-}
+  dispatch: PropTypes.func,
+  filterData: PropTypes.object.isRequired
+};
 export default CreateCampaign;

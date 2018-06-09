@@ -36,7 +36,7 @@ export function fetchFilterData(payload) {
   return async (dispatch, getState) => {
     dispatch({
       type: FETCH_FILTER_DATA
-    })
+    });
 
     try {
       const response = await axiosInstance({
@@ -59,15 +59,15 @@ export function fetchFilterData(payload) {
           relationshipStatus: STATUS["RELATIONSHIP"],
           nationality: STATUS["NATIONALITY"],
         }
-      })
+      });
     } catch (error) {
       dispatch({
         type: FETCH_FILTER_DATA_REJECTED
-      })
+      });
 
     }
 
-  }
+  };
 }
 
 export function fetchCampaign(payload) {

@@ -101,7 +101,7 @@ const filterDataDefaults = {
     min: 18,
     max: 24
   },
-}
+};
 
 const initialState = {
   fetching: false,
@@ -125,7 +125,7 @@ export default function reducer(state = initialState, action) {
           fetching: true,
           fetched: false
         }
-      }
+      };
     case FETCH_FILTER_DATA_FULFILLED:
       return { ...state,
         filterData: { ...state.filterData,
@@ -133,7 +133,7 @@ export default function reducer(state = initialState, action) {
           fetching: false,
           fetched: true
         }
-      }
+      };
     case FETCH_FILTER_DATA_REJECTED:
       return { ...state,
         filterData: {
@@ -141,7 +141,7 @@ export default function reducer(state = initialState, action) {
           fetching: false,
           fetched: false
         }
-      }
+      };
     case FETCH_CAMPAIGN:
       return {
         ...state,

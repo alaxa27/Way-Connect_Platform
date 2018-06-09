@@ -45,7 +45,7 @@ class ResearchFilters extends Component {
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps !== this.props) {
-      this.setState({...this.props})
+      this.setState({...this.props});
     }
   }
 

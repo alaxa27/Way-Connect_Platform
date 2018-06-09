@@ -69,7 +69,7 @@ class ListCampaignType extends Component {
               canAddNew
                 ? <Link to="/campaigns/create">
                   <Button className="add-btn"><MdIconPack.MdAddCircleOutline/>
-                      {"start a new campaign"}</Button>
+                    {"start a new campaign"}</Button>
                 </Link>
                 : null
             }
