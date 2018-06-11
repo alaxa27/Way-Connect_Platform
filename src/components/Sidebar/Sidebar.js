@@ -55,7 +55,7 @@ class Sidebar extends Component {
   handleEstablishments(props) {
     const establishmentList = props.establishmentList;
     let establishmentMenuItem = _.find(nav.items, item => item.name === "Establishments");
-    establishmentMenuItem["children"] = establishmentList;
+    establishmentMenuItem["children"] = [...establishmentList];
     establishmentMenuItem["children"].push({
       name: "Add",
       url: "",
