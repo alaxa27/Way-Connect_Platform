@@ -6430,6 +6430,12 @@ react-google-maps@^9.4.5:
     scriptjs "^2.5.8"
     warning "^3.0.0"
 
+react-https-redirect@^1.0.10:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/react-https-redirect/-/react-https-redirect-1.0.10.tgz#c5181d0ed649d1024b49243b8de66a3fa8b27f6e"
+  dependencies:
+    prop-types "^15.5.8"
+
 react-icon-base@2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/react-icon-base/-/react-icon-base-2.1.0.tgz#a196e33fdf1e7aaa1fda3aefbb68bdad9e82a79d"

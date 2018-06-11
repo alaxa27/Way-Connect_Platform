@@ -73,6 +73,7 @@
     "react-dom": "16.3.0",
     "react-dropzone-component": "^3.2.0",
     "react-google-maps": "^9.4.5",
+    "react-https-redirect": "^1.0.10",
     "react-icons": "^2.2.7",
     "react-infinite-scroller": "^1.1.4",
     "react-input-range": "^1.3.0",
