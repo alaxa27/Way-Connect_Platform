@@ -173,7 +173,12 @@ export function fetchPromotions(payload) {
 
       let promotions = {};
       if (Array.isArray(response.data)) {
-        promotions = {};
+        promotions = {
+          data: [],
+          offset: 0,
+          total_count: 0,
+          page: 1
+        };
       } else {
         promotions = {
           data: [...promotionState.data, ...response.data.results],
