@@ -209,14 +209,12 @@ export default function reducer(state = initialState, action) {
               ...state,
           };
       case PROMOTIONS_FULFILLED:
-          let page = state.promotionsPage;
-          page++;
           return {
               ...state,
-              promotions: state.promotions.concat(action.payload.promotions.results),
+              promotions: [...state.promotions, action.payload.promotions.results],
               promotionsOffset: action.payload.offset,
               promotionsTotalCount: action.payload.promotions.count,
-              promotionsPage: page
+              promotionsPage: state.promotionsPage + 1
           };
       case ESTABLISHMENT_LIST:
           return {

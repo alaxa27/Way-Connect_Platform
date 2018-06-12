@@ -67,7 +67,7 @@ const mapDispatchToProps = dispatch => ({
 export class Establishment extends Component {
   constructor(props) {
     super(props);
-    
+
     this.fetchData(props);
     this.loadMorePromotions = this.loadMorePromotions.bind(this);
   }

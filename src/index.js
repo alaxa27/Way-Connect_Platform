@@ -64,5 +64,4 @@ ReactDOM.render((<Provider store={store}>
       </Switch>
     </HashRouter>
   </HttpsRedirect>
-
-        </Provider>), document.getElementById("root"));
+</Provider>), document.getElementById("root"));
