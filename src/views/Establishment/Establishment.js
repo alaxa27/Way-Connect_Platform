@@ -52,10 +52,6 @@ const mapStateToProps = state => ({
   affluence: state.establishment.affluence,
   typicalCustomer: state.establishment.typicalCustomer,
   promotions: state.establishment.promotions,
-  promotionsLimit: state.establishment.promotionsLimit,
-  promotionsOffset: state.establishment.promotionsOffset,
-  promotionsTotalCount: state.establishment.promotionsTotalCount,
-  promotionsPage: state.establishment.promotionsPage
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -73,8 +69,8 @@ export class Establishment extends Component {
   }
 
   fetchData(props) {
-    const {promotionsLimit, promotionsOffset, fetchEstablishmentPageData} = props;
-    fetchEstablishmentPageData({establishmentID: this.props.match.params.id, limit: promotionsLimit, offset: promotionsOffset});
+    const {promotions, fetchEstablishmentPageData} = props;
+    fetchEstablishmentPageData({establishmentID: this.props.match.params.id, limit: promotions.limit});
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -84,11 +80,11 @@ export class Establishment extends Component {
   }
 
   loadMorePromotions() {
-    const { promotionsLimit, promotionsOffset, fetchPromotions } = this.props;
+    const { promotions, fetchPromotions } = this.props;
     fetchPromotions({
         establishmentID: this.props.match.params.id,
-        limit: promotionsLimit,
-        offset: promotionsOffset + promotionsLimit
+        limit: promotions.limit,
+        offset: promotions.offset
     });
   }
   render() {
@@ -97,10 +93,6 @@ export class Establishment extends Component {
       typicalCustomer,
       affluence,
       promotions,
-      promotionsLimit,
-      promotionsOffset,
-      promotionsTotalCount,
-      promotionsPage,
       monthlyData,
       trafficPeriodChange
     } = this.props;
@@ -139,7 +131,7 @@ export class Establishment extends Component {
           </Row>
           <Row>
             <Col md="6">
-              <PromotionsList data={promotions} promotionsLimit={promotionsLimit} promotionsPage={promotionsPage} promotionsTotalCount={promotionsTotalCount} loadMore={this.loadMorePromotions}/>
+              <PromotionsList data={promotions.data} promotionsLimit={promotions.limit} promotionsPage={promotions.page} promotionsTotalCount={promotions.total_count} loadMore={this.loadMorePromotions}/>
             </Col>
             <Col md="6">
               <div className="d-flex flex-column right-box">
@@ -168,11 +160,13 @@ Establishment.propTypes = {
   affluence: PropTypes.object,
   typicalCustomer: PropTypes.object,
   monthlyData: PropTypes.object,
-  promotions: PropTypes.array,
-  promotionsLimit: PropTypes.number,
-  promotionsOffset: PropTypes.number,
-  promotionsTotalCount: PropTypes.number,
-  promotionsPage: PropTypes.number,
+  promotions: PropTypes.shape({
+    data: PropTypes.array,
+    limit: PropTypes.number,
+    offset: PropTypes.number,
+    total_count: PropTypes.number,
+    page: PropTypes.number
+  }),
   match: PropTypes.shape({
     params: PropTypes.shape({id: PropTypes.string})
   }),

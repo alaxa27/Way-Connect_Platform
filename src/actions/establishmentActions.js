@@ -48,9 +48,9 @@ export function fetchEstablishmentPageData(payload) {
         establishmentID
       }));
       await dispatch(fetchPromotions({
-          limit: payload.limit,
-          offset: payload.offset,
-          establishmentID
+        limit: payload.limit,
+        offset: 0,
+        establishmentID
       }));
       await dispatch(fetchTypicalCustomer({
         establishmentID
@@ -79,7 +79,8 @@ function fetchMonthlyData(payload) {
         url: `/establishments/${payload.establishmentID}/monthly_data`,
       });
 
-      const monthlyData = { ...response.data };
+      const monthlyData = { ...response.data
+      };
 
       if (!_.isEmpty(monthlyData.total_rewards)) {
         const currency = Object.keys(monthlyData.total_rewards)[0];
@@ -159,16 +160,31 @@ export function fetchPromotions(payload) {
       type: PROMOTIONS,
     });
     try {
+      const promotionState = { ...getState().establishment.promotions
+      };
+      if (payload.offset === 0) {
+        promotionState.data = [];
+        promotionState.page = 0;
+      }
       const response = await axiosInstance({
         method: "get",
         url: `/establishments/${payload.establishmentID}/discount_activations/?limit=${payload.limit}&offset=${payload.offset}`,
       });
+
+      let promotions = {};
+      if (Array.isArray(response.data)) {
+        promotions = {};
+      } else {
+        promotions = {
+          data: [...promotionState.data, ...response.data.results],
+          offset: payload.offset + payload.limit,
+          total_count: response.data.count,
+          page: promotionState.page + 1
+        };
+      }
       dispatch({
         type: PROMOTIONS_FULFILLED,
-        payload: {
-          promotions: response.data,
-          offset: payload.offset
-        }
+        payload: promotions
       });
     } catch (error) {
       throw new Error();
