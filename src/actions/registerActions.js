@@ -20,7 +20,6 @@ export function register(payload) {
           email: payload.email,
           password1: payload.password,
           password2: payload.passwordConfirmation,
-          username: payload.username
         }
       });
       const token = response.data.key;

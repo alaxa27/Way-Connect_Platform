@@ -15,7 +15,7 @@ import {
 
 export function login(payload) {
   return async (dispatch) => {
-    dispatch({ 
+    dispatch({
       type: LOGIN
     });
     try {
@@ -23,7 +23,7 @@ export function login(payload) {
         method: "POST",
         url: "/auth/login/",
         data: {
-          username: payload.username,
+          email: payload.email,
           password: payload.password
         }
       });

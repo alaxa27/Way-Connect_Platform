@@ -33,19 +33,19 @@ export class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
+      email: "",
       password: "",
       remember: false,
       redirect: getJwt()
     };
-    this.handleChangeUsername = this.handleChangeUsername.bind(this);
+    this.handleChangeEmail = this.handleChangeEmail.bind(this);
     this.handleChangePassword = this.handleChangePassword.bind(this);
     this.handleRemember = this.handleRemember.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
   }
 
-  handleChangeUsername(e) {
-    this.setState({username: e.target.value});
+  handleChangeEmail(e) {
+    this.setState({email: e.target.value});
   }
 
   handleChangePassword(e) {
@@ -62,7 +62,7 @@ export class Login extends Component {
     e.preventDefault();
     const { login } = this.props;
     login({
-        username: this.state.username,
+        email: this.state.email,
         password: this.state.password,
         remember: this.state.remember
     });
@@ -94,7 +94,7 @@ export class Login extends Component {
                       </div>
                       : null
                   }
-                  <input type="text" className="login__input w-100 py-1 px-3 mb-2" name="username" placeholder="Username or email" onChange={this.handleChangeUsername}/>
+                  <input type="text" className="login__input w-100 py-1 px-3 mb-2" name="email" placeholder="Email" onChange={this.handleChangeEmail}/>
                   <input type="password" className="login__input w-100 py-1 px-3 mb-3" name="password" placeholder="Password" onChange={this.handleChangePassword}/>
                   <div className="d-flex align-items-center checkbox-wrapper">
                     <input type="checkbox" name="remember" className="checkbox" onChange={this.handleRemember} />

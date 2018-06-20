@@ -9,9 +9,9 @@ describe('Login', () => {
         expect(wrapper.find("#login-form").length).toBe(1);
     });
 
-    it('Renders username input', () => {
+    it('Renders email input', () => {
         const wrapper = shallow(<Login/>);
-        expect(wrapper.find("input[name='username']").length).toBe(1);
+        expect(wrapper.find("input[name='email']").length).toBe(1);
     });
 
     it('Renders password input', () => {
@@ -44,10 +44,10 @@ describe('Login', () => {
         expect(wrapper.find('#link-go-back').length).toBe(1);
     });
 
-    it('Username input responds to change event and changes the state of the Login Component', () => {
+    it('Email input responds to change event and changes the state of the Login Component', () => {
         const wrapper = shallow(<Login />);
-        wrapper.find("input[name='username']").simulate('change', {target: {name: 'username', value: 'example@example.com'}});
-        expect(wrapper.state('username')).toEqual('example@example.com');
+        wrapper.find("input[name='email']").simulate('change', {target: {name: 'email', value: 'example@example.com'}});
+        expect(wrapper.state('email')).toEqual('example@example.com');
     });
 
     it('Password input responds to change event and changes the state of the Login Component', () => {
@@ -71,12 +71,12 @@ describe('Login', () => {
         const wrapper = shallow(<Login fetching={true} />);
         expect(wrapper.find('.loader').length).toBe(1);
     });
-    
+
     it('Redirects if user is authenticated', () => {
         const wrapper = shallow(<Login isAuthenticated={true} location={{state: null}} />);
         expect(wrapper.find(Redirect).length).toBe(1);
     });
-    
+
     it('Redirects if JWT is in storage', () => {
         const wrapper = shallow(<Login location={{state: null}} />);
         wrapper.setState({
@@ -84,7 +84,7 @@ describe('Login', () => {
         });
         expect(wrapper.find(Redirect).length).toBe(1);
     });
-    
+
     it('Redirects to previously visited page', () => {
         const wrapper = shallow(
             <Login
@@ -99,12 +99,12 @@ describe('Login', () => {
             />);
         expect(wrapper.find(Redirect).props().to).toBe('/campaigns');
     });
-    
+
     it('Redirects to dashboard if user did not visit any pages yet', () => {
         const wrapper = shallow(<Login isAuthenticated={true} location={{state: null}} />);
         expect(wrapper.find(Redirect).props().to).toBe('/dashboard');
     });
-    
+
     it('Dispatches login action on form submit', () => {
         const login = jest.fn();
         const wrapper = mount(<Login login={login} />);

@@ -27,7 +27,6 @@ export class Register extends Component {
         this.state = {
             firstName: null,
             lastName: null,
-            username: null,
             email: null,
             password: null,
             passwordConfirmation: null
@@ -47,8 +46,7 @@ export class Register extends Component {
             register({
                 email: this.state.email,
                 password: this.state.password,
-                passwordConfirmation: this.state.passwordConfirmation,
-                username: this.state.username
+                passwordConfirmation: this.state.passwordConfirmation
             });
         } else {
             this.validator.showMessages();
@@ -86,10 +84,6 @@ export class Register extends Component {
                       :
                           null
                       }
-                      <input type="text" className="login__input w-100 py-1 px-3 my-2" name="username" placeholder="Choose a login" onChange={(e) => this.handleInputChange("username", e)}/>
-                      {this.validator.message("username", this.state.username, "required", "text-danger username-error", {
-                          required: this.errorMessageService.generateErrorMessage("Username", "required")
-                      })}
                       <input type="email" className="login__input w-100 py-1 px-3 my-2" name="email" placeholder="Your e-mail address" onChange={(e) => this.handleInputChange("email", e)}/>
                       {this.validator.message("email", this.state.email, "required|email", "text-danger email-error", {
                           required: this.errorMessageService.generateErrorMessage("Email", "required"),

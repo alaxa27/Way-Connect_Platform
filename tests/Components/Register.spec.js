@@ -9,11 +9,6 @@ describe('Register', () => {
         expect(wrapper.find("#register-form").length).toBe(1);
     });
 
-    it('Renders username input', () => {
-        const wrapper = shallow(<Register />);
-        expect(wrapper.find("input[name='username']").length).toBe(1);
-    });
-
     it('Renders email input', () => {
         const wrapper = shallow(<Register />);
         expect(wrapper.find("input[name='email']").length).toBe(1);
@@ -44,12 +39,6 @@ describe('Register', () => {
         expect(wrapper.find('#link-go-back').length).toBe(1);
     });
 
-    it('Should respond to username change and change the state of the Register Component', () => {
-        const wrapper = shallow(<Register />);
-        wrapper.find("input[name='username']").simulate('change', {target: {name: 'username', value: 'username'}});
-        expect(wrapper.state('username')).toEqual('username');
-    });
-
     it('Should respond to email change and change the state of the Register Component', () => {
         const wrapper = shallow(<Register />);
         wrapper.find("input[name='email']").simulate('change', {target: {name: 'email', value: 'email'}});
@@ -66,13 +55,6 @@ describe('Register', () => {
         const wrapper = shallow(<Register />);
         wrapper.find("input[name='passwordConfirmation']").simulate('change', {target: {name: 'passwordConfirmation', value: 'passwordConfirmation'}});
         expect(wrapper.state('passwordConfirmation')).toEqual('passwordConfirmation');
-    });
-
-    it('Should display error message if username is empty', () => {
-        const wrapper = mount(<Register />);
-        wrapper.find('.btn-app-login')
-            .simulate('submit');
-        expect(wrapper.find('.username-error').length).toBe(1);
     });
 
     it('Should display error message if email is empty', () => {
@@ -125,7 +107,6 @@ describe('Register', () => {
         const register = jest.fn();
         const wrapper = mount(<Register register={register} />);
 
-        wrapper.find("input[name='username']").simulate('change', { target: { value: 'username' } });
         wrapper.find("input[name='email']").simulate('change', { target: { value: 'example@example.com' } });
         wrapper.find("input[name='password']").simulate('change', { target: { value: '12345678' } });
         wrapper.find("input[name='passwordConfirmation']").simulate('change', { target: { value: '12345678' } });
