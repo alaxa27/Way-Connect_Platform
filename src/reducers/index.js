@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 
-import example from "./example";
 import login from "./login";
 import forgotPassword from "./forgotPassword";
 import resetPassword from "./resetPassword";
 import register from "./register";
+import confirmRegistration from "./confirmRegistration";
 import dashboard from "./dashboard";
 import listCampaigns from "./listCampaigns";
 import promotion from "./promotion";
@@ -17,6 +17,7 @@ export default combineReducers({
     resetPassword,
     dashboard,
     register,
+    confirmRegistration,
     promotion,
     establishment,
     listCampaigns,

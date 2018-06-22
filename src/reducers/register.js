@@ -1,13 +1,14 @@
 import {
   REGISTER,
   REGISTER_FULFILLED,
-  REGISTER_REJECTED
+  REGISTER_REJECTED,
 } from "../constants/ActionTypes";
 
 const initialState = {
     fetching: false,
     success: false,
-    error: null
+    error: null,
+    confirming: false
 };
 
 export default function reducer(state = initialState, action) {

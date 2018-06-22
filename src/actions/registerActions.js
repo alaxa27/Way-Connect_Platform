@@ -4,7 +4,7 @@ import { setJwt } from "../services/CookieService";
 import {
   REGISTER,
   REGISTER_FULFILLED,
-  REGISTER_REJECTED
+  REGISTER_REJECTED,
 } from "../constants/ActionTypes";
 
 export function register(payload) {
