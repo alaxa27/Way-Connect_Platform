@@ -22,8 +22,6 @@ export function register(payload) {
           password2: payload.passwordConfirmation,
         }
       });
-      const token = response.data.key;
-      setJwt(token);
       dispatch({
         type: REGISTER_FULFILLED,
       });

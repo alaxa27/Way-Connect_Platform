@@ -64,7 +64,7 @@ export class Register extends Component {
       const { error, fetching, success } = this.props;
 
       if(success) {
-          return <Redirect to="/dashboard" />;
+          return <Redirect to="/register/confirm" />;
       }
 
       return (

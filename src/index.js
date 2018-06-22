@@ -26,6 +26,7 @@ import Full from "./containers/Full/";
 import Login from "./views/Pages/Login/";
 import Logout from "./views/Pages/Logout/";
 import Register from "./views/Pages/Register/";
+import ConfirmationSent from "./views/Pages/ConfirmationSent/";
 import ForgotPassword from "./views/Pages/ForgotPassword/";
 import ResetPassword from "./views/Pages/ResetPassword/ResetPassword";
 import Page404 from "./views/Pages/Page404/";
@@ -56,6 +57,7 @@ ReactDOM.render((<Provider store={store}>
         <Route exact="exact" path="/login" name="Login Page" component={Login}/>
         <Route exact="exact" path="/logout" name="Logout Page" component={Logout}/>
         <Route exact="exact" path="/register" name="Register Page" component={Register}/>
+        <Route exact="exact" path="/register/confirm" name="Confirmation Sent Page" component={ConfirmationSent}/>
         <Route exact="exact" path="/forgot-password" name="Forgot Password Page" component={ForgotPassword}/>
         <Route exact="exact" path="/reset-password/:uid/:token" name="Reset Password Page" component={ResetPassword}/>
         <Route exact="exact" path="/404" name="Page 404" component={Page404}/>
