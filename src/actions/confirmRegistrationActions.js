@@ -1,4 +1,5 @@
-import { axiosInstance } from "../constants/ApiConfig";
+import axios from "axios";
+
 import {
   CONFIRM_REGISTRATION,
   CONFIRM_REGISTRATION_FULFILLED,
@@ -11,9 +12,10 @@ export function confirmRegistration(payload) {
       type: CONFIRM_REGISTRATION
     });
     try {
-      await axiosInstance({
-        method: "GET",
-        url: payload,
+      console.log(decodeURIComponent(payload));
+      await axios({
+        method: "get",
+        url: decodeURIComponent(payload),
       });
       dispatch({
         type: CONFIRM_REGISTRATION_FULFILLED,

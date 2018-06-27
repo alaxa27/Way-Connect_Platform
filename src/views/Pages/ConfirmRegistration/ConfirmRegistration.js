@@ -35,7 +35,7 @@ export class ConfirmRegistration extends Component {
                     <div className="loader">
                       <img src="../img/loader.gif" alt="Loader" style={{width: "50px"}} />
                     </div>
-                : success ?
+                : success || error ?
                   <React.Fragment>
                     <img src="../img/login_logo.png" alt="Logo" className="login__logo-img mb-3"/>
                     <p className="my-3">Congratulations, your account has been confirmed</p>

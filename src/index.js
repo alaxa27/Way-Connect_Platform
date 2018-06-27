@@ -55,15 +55,15 @@ ReactDOM.render((<Provider store={store}>
   <HttpsRedirect>
     <HashRouter>
       <Switch>
-        <Route exact="exact" path="/login" name="Login Page" component={Login}/>
-        <Route exact="exact" path="/logout" name="Logout Page" component={Logout}/>
-        <Route exact="exact" path="/register" name="Register Page" component={Register}/>
-        <Route exact="exact" path="/register/confirm" name="Confirmation Sent Page" component={ConfirmationSent}/>
-        <Route exact="exact" path="/confirm-registration/:activateUrl" name="Confirm Registration Page" component={ConfirmRegistration}/>
-        <Route exact="exact" path="/forgot-password" name="Forgot Password Page" component={ForgotPassword}/>
-        <Route exact="exact" path="/reset-password/:uid/:token" name="Reset Password Page" component={ResetPassword}/>
-        <Route exact="exact" path="/404" name="Page 404" component={Page404}/>
-        <Route exact="exact" path="/500" name="Page 500" component={Page500}/>
+        <Route exact={true} path="/login" name="Login Page" component={Login}/>
+        <Route exact={true} path="/logout" name="Logout Page" component={Logout}/>
+        <Route exact={true} path="/register" name="Register Page" component={Register}/>
+        <Route exact={true} path="/register/confirm" name="Confirmation Sent Page" component={ConfirmationSent}/>
+        <Route exact={true} path="/confirm-registration/:activateUrl" name="Confirm Registration Page" component={ConfirmRegistration}/>
+        <Route exact={true} path="/forgot-password" name="Forgot Password Page" component={ForgotPassword}/>
+        <Route exact={true} path="/reset-password/:uid/:token" name="Reset Password Page" component={ResetPassword}/>
+        <Route exact={true} path="/404" name="Page 404" component={Page404}/>
+        <Route exact={true} path="/500" name="Page 500" component={Page500}/>
         <PrivateRoute path="/" name="Home" component={Full}/>
       </Switch>
     </HashRouter>
