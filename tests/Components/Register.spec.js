@@ -134,8 +134,8 @@ describe('Register', () => {
         expect(wrapper.find('.loader').length).toBe(1);
     });
 
-    it('Redirects to dashboard if user was successfully registered', () => {
+    it('Redirects to confirmation email has been sent if user was successfully registered', () => {
         const wrapper = shallow(<Register success={true} />);
-        expect(wrapper.find(Redirect).props().to).toBe('/dashboard');
+        expect(wrapper.find(Redirect).props().to).toBe('/register/confirm');
     });
 });
