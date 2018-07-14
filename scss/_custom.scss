@@ -126,12 +126,8 @@
   font-size: 20px;
 }
 
-.full-opacity label {
-  opacity: 1 !important;
-}
-
 .top-space {
-  margin-top: 60px;
+  margin-top: 72px;
 }
 
 .custom-selectbox:focus {
@@ -166,37 +162,24 @@
   color: #32CD32;
 }
 
-.typology-table {
-  width: 100%;
-  margin-top: 30px;
-}
+.establishments {
+  height: 500px;
+  overflow: auto;
 
-.typology-table tr td:first-child {
-  width: auto;
-}
+  &__item {
+    padding: 5px 20px;
+    background-color: #dbdbdb;
+    color: #000;
+    margin-bottom: 10px;
+    width: 100%;
+    font-weight: bold;
+    font-size: 14px;
+    opacity: 0.5;
 
-.typology-table tr td {
-  padding: 0;
-  width: 100px;
-}
-
-.typology-table tr td label {
-  padding: 5px 20px;
-  background-color: #dbdbdb;
-  color: #000;
-  margin-bottom: 10px;
-  width: 100%;
-  font-weight: bold;
-  font-size: 14px;
-  opacity: 0.5;
-}
-
-.full-opacity label {
-  opacity: 1 !important;
-}
-
-.typology-table tr td img {
-  height: 20px;
+    &--full-opacity {
+      opacity: 1;
+    }
+  }
 }
 
 .line-through {
@@ -1096,7 +1079,7 @@ body {
   }
 }
 
-.after-login {
+.modal-body {
 
   &__heading {
     text-align: center;
@@ -1109,6 +1092,7 @@ body {
   &__title {
     font-size: 2rem;
     font-weight: bold;
+    line-height: 1.1;
 
     &--big {
       font-size: 4rem;
@@ -1156,5 +1140,60 @@ body {
       &--active {
         background: #333333;
       }
+  }
+}
+
+.react-countdown-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.react-countdown-box {
+  background: #F0F0F0;
+  margin-right: 1rem;
+  border-radius: 8px;
+  padding: 10px 7px;
+  width: 70px;
+}
+
+.react-countdown-element {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+
+.react-countdown-time {
+  color: #F6881C;
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+
+.react-countdown-time-text {
+  font-weight: bold;
+  letter-spacing: -1px;
+}
+
+.aside-menu {
+
+  &__coming-soon {
+    
+    img {
+      width: 150px;
+    }
+  }
+
+  &__title {
+    font-size: 0.75rem;
+    font-weight: bold;
+    line-height: 1.1;
+
+    &--big {
+      font-size: 2rem;
+    }
+
+    &--colored {
+      color: #F6881C;
+    }
   }
 }

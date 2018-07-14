@@ -20,7 +20,9 @@ import {
   PROMOTIONS_FULFILLED,
 
   ESTABLISHMENT_LIST,
-  ESTABLISHMENT_LIST_FULFILLED
+  ESTABLISHMENT_LIST_FULFILLED,
+
+  SELECT_ESTABLISHMENT,
 } from "../constants/ActionTypes";
 import _ from "underscore";
 import {
@@ -45,6 +47,14 @@ const promotionsDefault = {
   page: 0,
 };
 
+const establishmentsDefault = {
+  items: [],
+  fetching: false,
+  limit: 10,
+  offset: 0,
+  total_count: 0,
+  page: 0,
+};
 
 const initialState = {
   fetching: false,
@@ -68,7 +78,8 @@ const initialState = {
   },
   typicalCustomer: null,
   promotions: promotionsDefault,
-  establishmentList: []
+  establishments: establishmentsDefault,
+  selectedEstablishment: null
 };
 
 let trafficLabels = {
@@ -222,15 +233,28 @@ export default function reducer(state = initialState, action) {
       };
     case ESTABLISHMENT_LIST:
       return {
-        ...state
+        ...state,
+        establishments: {
+          ...state.establishments,
+          fetching: true
+        },
+        selectedEstablishment: null
       };
-      break;
     case ESTABLISHMENT_LIST_FULFILLED:
       return {
         ...state,
-        establishmentList: action.payload
+        establishments: {
+          ...state.establishments,
+          items: action.payload,
+          fetching: false
+        },
+        selectedEstablishment: _.first(action.payload)
       };
-      break;
+    case SELECT_ESTABLISHMENT:
+      return {
+        ...state,
+        selectedEstablishment: action.payload
+      };
     default:
       return { ...state
       };

@@ -25,7 +25,9 @@ import {
   TYPICAL_CUSTOMER_FULFILLED,
 
   ESTABLISHMENT_LIST,
-  ESTABLISHMENT_LIST_FULFILLED
+  ESTABLISHMENT_LIST_FULFILLED,
+
+  SELECT_ESTABLISHMENT
 } from "../constants/ActionTypes";
 
 export function fetchEstablishmentPageData(payload) {
@@ -227,22 +229,24 @@ export function fetchEstablishmentList() {
         method: "get",
         url: "/establishments/",
         params: {
-          owner: "me"
+          owner: 'me'
         }
-      });
-      const data = response.data;
-      const formattedList = _.map(data, item => {
-        return {
-          name: item.name,
-          url: "/establishment/" + item.id
-        };
       });
       dispatch({
         type: ESTABLISHMENT_LIST_FULFILLED,
-        payload: formattedList
+        payload: response.data
       });
     } catch (error) {
       throw new Error();
     }
+  };
+}
+
+export function selectEstablishment(item) {
+  return async dispatch => {
+    dispatch({
+      type: SELECT_ESTABLISHMENT,
+      payload: item
+    });
   };
 }

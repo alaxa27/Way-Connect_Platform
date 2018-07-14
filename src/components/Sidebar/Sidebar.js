@@ -13,7 +13,7 @@ import _ from "underscore";
 import PropTypes from "prop-types";
 
 const mapStateToProps = state => ({
-  establishmentList: state.establishment.establishmentList,
+  establishments: state.establishment.establishments,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -53,9 +53,14 @@ class Sidebar extends Component {
   // }
 
   handleEstablishments(props) {
-    const establishmentList = props.establishmentList;
+    const establishments = _.map(props.establishments.items, item => {
+      return {
+        name: item.name,
+        url: "/establishment/" + item.id
+      };
+    });
     let establishmentMenuItem = _.find(nav.items, item => item.name === "Establishments");
-    establishmentMenuItem["children"] = [...establishmentList];
+    establishmentMenuItem["children"] = [...establishments];
     establishmentMenuItem["children"].push({
       name: "Add",
       url: "",
@@ -64,7 +69,6 @@ class Sidebar extends Component {
   }
 
   render() {
-
     const props = this.props;
 
     this.handleEstablishments(props);
@@ -186,7 +190,7 @@ class Sidebar extends Component {
 
 Sidebar.propTypes = {
   fetchEstablishmentList: PropTypes.func,
-  establishmentList: PropTypes.array
+  establishments: PropTypes.object
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
