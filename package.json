@@ -93,8 +93,8 @@
   },
   "scripts": {
     "dev": "webpack -d --progress --watch --profile --json > compilation-stats.json --env.dev",
-    "start": "webpack-dev-server --progress --color --inline --env.dev",
-    "build": "webpack -p --progress --env.prod",
+    "start": "webpack-dev-server --progress --color --inline --env.dev --env.NODE_ENV=development",
+    "build": "webpack -p --progress --env.prod --env.NODE_ENV=production",
     "clean": "rimraf ./build",
     "lint": "./node_modules/.bin/eslint ./src --fix",
     "test": "jest",
