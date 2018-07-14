@@ -3,7 +3,7 @@ import prodNav from "./_prod-nav";
 
 let nav = null;
 switch(process.env.NODE_ENV) {
-  case 'development':
+  case "development":
     nav = devNav;
     break;
   default:

@@ -8,7 +8,7 @@ class EstablishmentListItem extends Component {
       <a 
         href="#" 
         className={"d-block establishments__item " + (selectedEstablishment.id === establishment.id ? "establishments__item--full-opacity" : "")}
-        onClick={(e) => { selectEstablishment(e, establishment) }}
+        onClick={(e) => { selectEstablishment(e, establishment); }}
       >
           #{index + 1} {establishment.name}
       </a>

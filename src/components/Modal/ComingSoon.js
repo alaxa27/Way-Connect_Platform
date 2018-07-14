@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal, ModalBody} from "reactstrap";
-import Countdown from 'react-sexy-countdown'
+import Countdown from "react-sexy-countdown";
 
 const ComingSoon = () => {
   const date = new Date(Date.now());
@@ -18,21 +18,21 @@ const ComingSoon = () => {
           </div>
         </div>                    
         <div className="modal-body__content my-4">
-        <Countdown
+          <Countdown
           date={date.toString()}
           onEndCountdown={ (count) => console.log(count) }
           displayText={{
-            Days: 'Days',
-            Hours: 'Hours',
-            Min: 'Minutes',
-            Sec: 'Seconds'
+            Days: "Days",
+            Hours: "Hours",
+            Min: "Minutes",
+            Sec: "Seconds"
           }}
         />
         </div>
       </ModalBody>
     </Modal>
   );
-}
+};
 
 ComingSoon.propTypes = {
 };

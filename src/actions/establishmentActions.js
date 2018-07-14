@@ -229,7 +229,7 @@ export function fetchEstablishmentList() {
         method: "get",
         url: "/establishments/",
         params: {
-          owner: 'me'
+          owner: "me"
         }
       });
       dispatch({

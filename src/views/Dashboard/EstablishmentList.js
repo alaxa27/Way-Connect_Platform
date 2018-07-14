@@ -49,7 +49,7 @@ class EstablishmentList extends Component {
           </div>
         }
       </InfiniteScroll>
-    )
+    );
   }
 }
 

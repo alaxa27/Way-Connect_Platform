@@ -10,7 +10,7 @@ import * as FontAwesome from "react-icons/lib/fa";
 import {withScriptjs, withGoogleMap, GoogleMap, Marker} from "react-google-maps";
 import {compose, withProps} from "recompose";
 import DashboardPanel from "../../components/DashboardPanel/DashboardPanel";
-import { map } from 'underscore';
+import { map } from "underscore";
 
 import * as dashboardActions from "../../actions/dashboardActions";
 import * as establishmentActions from "../../actions/establishmentActions";
@@ -37,13 +37,13 @@ const MyMapComponent = compose(withProps({
     lat: props.markerCoordinates[0],
     lng: props.markerCoordinates[1]
   }}>
-  {
+    {
     props.isMarkerShown && (<Marker position={{
         lat: props.markerCoordinates[0],
         lng: props.markerCoordinates[1]
       }}/>)
   }
-</GoogleMap>));
+  </GoogleMap>));
 
 const mapStateToProps = state => ({
   stats: state.dashboard.stats,
@@ -58,10 +58,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export class Dashboard extends Component {
-  static propTypes = {
-    fetchDashboardData: PropTypes.func.isRequired,
-    stats: PropTypes.object
-  }
   constructor(props) {
     super(props);
 
@@ -169,5 +165,14 @@ export class Dashboard extends Component {
     </div>);
   }
 }
+
+Dashboard.propTypes = {
+  fetchDashboardData: PropTypes.func.isRequired,
+  fetchEstablishmentList: PropTypes.func.isRequired,
+  stats: PropTypes.object,
+  establishments: PropTypes.object,
+  selectEstablishment: PropTypes.func,
+  selectedEstablishment: PropTypes.object,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
