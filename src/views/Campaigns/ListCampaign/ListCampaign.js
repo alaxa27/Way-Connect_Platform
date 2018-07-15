@@ -1,11 +1,6 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import * as FontAwesome from "react-icons/lib/fa";
-import * as MdIconPack from "react-icons/lib/md";
-import {Row, Col, Button} from "reactstrap";
-import _ from "underscore";
-
 import { fetchCampaigns } from "../../../actions/listCampaignsActions";
 import CampaignType from "./ListCampaignType";
 import ComingSoon from "../../../components/Modal/ComingSoon";

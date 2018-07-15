@@ -64,7 +64,8 @@ class Sidebar extends Component {
     establishmentMenuItem["children"].push({
       name: "Add",
       url: "",
-      icon: "icon-plus"
+      icon: "icon-plus",
+      onClick: this.props.toggleModal
     });
   }
 
@@ -114,11 +115,14 @@ class Sidebar extends Component {
 
     // nav item with nav link
     const navItem = (item, key) => {
-      const classes = {
+      let classes = {
         item: classNames( item.class) ,
         link: classNames( "nav-link", item.variant ? `nav-link-${item.variant}` : ""),
-        icon: classNames( item.icon )
+        icon: classNames( item.icon ),
       };
+      if(item.onClick) {
+        classes["onClick"] = item.onClick;
+      }
       return (
         navLink(item, key, classes)
       );
@@ -134,7 +138,7 @@ class Sidebar extends Component {
               <i className={classes.icon}></i>{item.name}{badge(item.badge)}
             </RsNavLink>
             :
-            <NavLink to={url} className={classes.link} activeClassName="active" onClick={this.hideMobile}>
+            <NavLink to={url} className={classes.link} activeClassName="active" onClick={classes.onClick ? classes.onClick : this.hideMobile}>
               <i className={classes.icon}></i>{item.name}{badge(item.badge)}
             </NavLink>
           }

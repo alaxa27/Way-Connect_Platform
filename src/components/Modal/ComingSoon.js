@@ -1,10 +1,11 @@
 import React from "react";
 import Countdown from "react-sexy-countdown";
-import {Row, Col} from 'reactstrap';
+import {Row, Col} from "reactstrap";
+import moment from 'moment';
+
+const launchDate = moment('2018-08-05');
 
 const ComingSoon = () => {
-  const date = new Date(Date.now());
-  date.setDate(date.getDate() + 21);
   return (
     <div className="modal-outline">
       <div className="modal-body">
@@ -25,7 +26,7 @@ const ComingSoon = () => {
         </div>                    
         <div className="modal-body__content my-4">
           <Countdown
-          date={date.toString()}
+          date={launchDate.toString()}
           onEndCountdown={ (count) => console.log(count) }
           displayText={{
             Days: "Days",

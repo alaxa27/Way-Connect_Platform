@@ -10,6 +10,7 @@ class RestaurantForm extends React.Component {
     super(props);
     this.state = {
         name: null,
+        phone: null,
         address: null,
     };
     this.validator = new ValidatorService().getValidator();
@@ -35,8 +36,8 @@ class RestaurantForm extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <div className="after-login__group mb-2">
-          <div className="after-login__label mb-2">
+        <div className="modal-body__group mb-2">
+          <div className="modal-body__label mb-2">
                     Name
           </div>
           <input type="text" className="w-100 py-1 px-3" name="name" placeholder="Name" onChange={(e) => this.handleInputChange("name", e)}/>
@@ -44,8 +45,17 @@ class RestaurantForm extends React.Component {
                         required: this.errorMessageService.generateErrorMessage("Name", "required")
                     })}
         </div>
-        <div className="after-login__group mb-4">
-          <div className="after-login__label mb-2">
+        <div className="modal-body__group mb-2">
+          <div className="modal-body__label mb-2">
+                    Phone
+          </div>
+          <input type="text" className="w-100 py-1 px-3" name="phone" placeholder="Phone" onChange={(e) => this.handleInputChange("phone", e)}/>
+          {this.validator.message("phone", this.state.phone, "required", "text-danger phone-error", {
+                        required: this.errorMessageService.generateErrorMessage("Phone", "required")
+                    })}
+        </div>
+        <div className="modal-body__group mb-4">
+          <div className="modal-body__label mb-2">
                     Address
           </div>
           <input type="text" className="w-100 py-1 px-3" name="address" placeholder="Address" onChange={(e) => this.handleInputChange("address", e)}/>
@@ -53,7 +63,7 @@ class RestaurantForm extends React.Component {
                     required: this.errorMessageService.generateErrorMessage("Address", "required")
                 })}
         </div>
-        <button className="after-login__submit bid-btn bid-btn-dark">
+        <button className="modal-body__submit bid-btn bid-btn-dark">
                 Lets start
         </button>
       </form>
