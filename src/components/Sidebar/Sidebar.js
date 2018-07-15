@@ -194,7 +194,8 @@ class Sidebar extends Component {
 
 Sidebar.propTypes = {
   fetchEstablishmentList: PropTypes.func,
-  establishments: PropTypes.object
+  establishments: PropTypes.object,
+  toggleModal: PropTypes.func
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);

@@ -1,9 +1,9 @@
 import React from "react";
 import Countdown from "react-sexy-countdown";
 import {Row, Col} from "reactstrap";
-import moment from 'moment';
+import moment from "moment";
 
-const launchDate = moment('2018-08-05');
+const launchDate = moment("2018-08-05");
 
 const ComingSoon = () => {
   return (
