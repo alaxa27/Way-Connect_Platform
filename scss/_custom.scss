@@ -1,6 +1,35 @@
 // Here you can add other styles
 @import '~react-block-ui/style.css';
 
+html { 
+  font-size: 16px;
+
+  // 1199px and down
+  @include media-breakpoint-down(lg) {
+    font-size: 15px;
+  }
+
+  // 991px and down
+  @include media-breakpoint-down(md) { 
+    font-size: 14px;
+  }
+
+  // 767px and down
+  @include media-breakpoint-down(sm) { 
+    font-size: 13px;
+  }
+
+  // 575px and down
+  @include media-breakpoint-down(xs) { 
+    font-size: 12px;
+  }
+
+  // height: 767px and down
+  @media(max-height: 767px) {
+    font-size: 12px;
+  }
+} 
+
 .panel-bg {
   background-image: url("../img/panel-bg.png");
   background-repeat: no-repeat;
@@ -1100,7 +1129,11 @@ body {
   }
 
   &__img {
-    width: 250px;
+    max-width: 250px;
+    max-height: 250px;
+    min-width: 90px;
+    min-height: 90px;
+    height: 20vh;
   }
 
   &__title {
