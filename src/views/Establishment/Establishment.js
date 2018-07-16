@@ -58,6 +58,7 @@ const mapDispatchToProps = dispatch => ({
   trafficPeriodChange: payload => dispatch(actions.trafficPeriodChange(payload)),
   fetchEstablishmentPageData: payload => dispatch(actions.fetchEstablishmentPageData(payload)),
   fetchPromotions: payload => dispatch(actions.fetchPromotions(payload)),
+  downloadEstablishments: () => dispatch(actions.downloadEstablishments())
 });
 
 export class Establishment extends Component {
@@ -94,7 +95,8 @@ export class Establishment extends Component {
       affluence,
       promotions,
       monthlyData,
-      trafficPeriodChange
+      trafficPeriodChange,
+      downloadEstablishments
     } = this.props;
     return (<ReduxBlockUi tag="div" block={["ESTABLISHMENT_PAGE"]} unblock={["ESTABLISHMENT_PAGE_FULFILLED", "ESTABLISHMENT_PAGE_REJECTED"]}>
       <div className="sub-page-wrapper animated fadeIn">
@@ -143,7 +145,9 @@ export class Establishment extends Component {
 
           <Row>
             <Col>
-              <ExportExcelButton/>
+              <ExportExcelButton
+                action={downloadEstablishments}
+              />
             </Col>
           </Row>
 
@@ -172,7 +176,8 @@ Establishment.propTypes = {
   }),
   fetchEstablishmentPageData: PropTypes.func,
   trafficPeriodChange: PropTypes.func,
-  fetchPromotions: PropTypes.func
+  fetchPromotions: PropTypes.func,
+  downloadEstablishments: PropTypes.func
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Establishment);

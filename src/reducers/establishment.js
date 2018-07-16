@@ -23,6 +23,10 @@ import {
   ESTABLISHMENT_LIST_FULFILLED,
 
   SELECT_ESTABLISHMENT,
+
+  ESTABLISHMENT_DOWNLOAD,
+  ESTABLISHMENT_DOWNLOAD_FULFILLED,
+  ESTABLISHMENT_DOWNLOAD_REJECTED
 } from "../constants/ActionTypes";
 import _ from "underscore";
 import {
@@ -79,7 +83,10 @@ const initialState = {
   typicalCustomer: null,
   promotions: promotionsDefault,
   establishments: establishmentsDefault,
-  selectedEstablishment: null
+  selectedEstablishment: null,
+
+  downloading: false,
+  establishmentsInXls: null
 };
 
 let trafficLabels = {
@@ -254,6 +261,26 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         selectedEstablishment: action.payload
+      };
+    case ESTABLISHMENT_DOWNLOAD:
+      return {
+        ...state,
+        downloading: true,
+        error: false
+      };
+    case ESTABLISHMENT_DOWNLOAD_FULFILLED:
+      return {
+        ...state,
+        downloading: false,
+        error: false,
+        establishmentsInXls: action.payload
+      };
+    case ESTABLISHMENT_DOWNLOAD_REJECTED:
+      return {
+        ...state,
+        downloading: false,
+        error: action.payload,
+        establishmentsInXls: null
       };
     default:
       return { ...state

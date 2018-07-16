@@ -27,7 +27,11 @@ import {
   ESTABLISHMENT_LIST,
   ESTABLISHMENT_LIST_FULFILLED,
 
-  SELECT_ESTABLISHMENT
+  SELECT_ESTABLISHMENT,
+
+  ESTABLISHMENT_DOWNLOAD,
+  ESTABLISHMENT_DOWNLOAD_FULFILLED,
+  ESTABLISHMENT_DOWNLOAD_REJECTED
 } from "../constants/ActionTypes";
 
 export function fetchEstablishmentPageData(payload) {
@@ -245,5 +249,28 @@ export function selectEstablishment(item) {
       type: SELECT_ESTABLISHMENT,
       payload: item
     });
+  };
+}
+
+export function downloadEstablishments() {
+  return async (dispatch, getState) => {
+    dispatch({
+      type: ESTABLISHMENT_DOWNLOAD,
+    });
+    try {
+      const response = await axiosInstance({
+        method: "get",
+        url: "/promotions/activations?format=xls"
+      });
+      dispatch({
+        type: ESTABLISHMENT_DOWNLOAD_FULFILLED,
+        payload: response.data
+      });
+    } catch (error) {
+      dispatch({
+        type: ESTABLISHMENT_DOWNLOAD_REJECTED,
+        payload: error
+      });
+    }
   };
 }
