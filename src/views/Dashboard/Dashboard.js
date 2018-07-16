@@ -60,14 +60,7 @@ const mapDispatchToProps = dispatch => ({
 export class Dashboard extends Component {
   constructor(props) {
     super(props);
-
-    this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
-
     this.state = {
-      dropdownOpen: false,
-      radioSelected: 2,
-      country: "india",
-      city: "chandigarh"
     };
     this.handleChange = this.handleChange.bind(this);
 
@@ -80,10 +73,6 @@ export class Dashboard extends Component {
     const name = target.name;
 
     this.setState({[name]: value});
-  }
-
-  onRadioBtnClick(radioSelected) {
-    this.setState({radioSelected: radioSelected});
   }
 
   selectEstablishment = (e, item) => {
@@ -138,7 +127,7 @@ export class Dashboard extends Component {
           <Row>
             <Col>
               <div className="google-maps-wrapper mt-4">
-                <MyMapComponent 
+                <MyMapComponent
                   isMarkerShown={true}
                   markerCoordinates={selectedEstablishment ? selectedEstablishment.location.coordinates : [0, 0]}
                 />
