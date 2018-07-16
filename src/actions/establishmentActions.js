@@ -227,10 +227,7 @@ export function fetchEstablishmentList() {
     try {
       const response = await axiosInstance({
         method: "get",
-        url: "/establishments/",
-        params: {
-          owner: "me"
-        }
+        url: "/establishments/"
       });
       dispatch({
         type: ESTABLISHMENT_LIST_FULFILLED,
