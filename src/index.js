@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import {HashRouter, Route, Switch, Redirect} from "react-router-dom";
 import {Provider} from "react-redux";
-import HttpsRedirect from "react-https-redirect";
 
 import store from "./store";
 
@@ -52,7 +51,6 @@ PrivateRoute.propTypes = {
 };
 
 ReactDOM.render((<Provider store={store}>
-  <HttpsRedirect>
     <HashRouter>
       <Switch>
         <Route exact={true} path="/login" name="Login Page" component={Login}/>
@@ -67,5 +65,4 @@ ReactDOM.render((<Provider store={store}>
         <PrivateRoute path="/" name="Home" component={Full}/>
       </Switch>
     </HashRouter>
-  </HttpsRedirect>
 </Provider>), document.getElementById("root"));
