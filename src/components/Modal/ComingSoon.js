@@ -1,7 +1,8 @@
 import React from "react";
-import Countdown from "react-sexy-countdown";
 import {Row, Col} from "reactstrap";
 import moment from "moment";
+
+import Countdown from "../Countdown";
 
 const launchDate = moment("2018-08-05");
 
