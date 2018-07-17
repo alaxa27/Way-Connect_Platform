@@ -34,13 +34,13 @@ const MyMapComponent = compose(withProps({
       }}/>
 }), withScriptjs, withGoogleMap)(props => (
   <GoogleMap defaultZoom={8} center={{
-    lat: props.markerCoordinates[0],
-    lng: props.markerCoordinates[1]
+    lat: props.markerCoordinates[1],
+    lng: props.markerCoordinates[0]
   }}>
     {
     props.isMarkerShown && (<Marker position={{
-        lat: props.markerCoordinates[0],
-        lng: props.markerCoordinates[1]
+        lat: props.markerCoordinates[1],
+        lng: props.markerCoordinates[0]
       }}/>)
   }
   </GoogleMap>));
