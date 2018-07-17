@@ -23,7 +23,7 @@ const ComingSoon = () => {
               </div>
             </Col>
           </Row>
-        </div>                    
+        </div>
         <div className="modal-body__content my-4">
           <Countdown
           date={launchDate.toString()}
