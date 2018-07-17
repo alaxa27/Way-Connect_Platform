@@ -90,28 +90,36 @@ export class Dashboard extends Component {
     });
   }
 
+  formatPlotData = (data) => {
+    const plotData = map(data, item => {
+      return Math.floor(item * 100) / 100;
+    });
+    return plotData;
+  }
+
   render() {
     const { stats, establishments, selectedEstablishment } = this.props;
 
-    const connectionsPlot = map(stats.connections.plot, item => {
-      return Math.floor(item * 100) / 100;
-    });
+    const connectionsPlot = this.formatPlotData(stats.connections.plot);
+    const establishmentsPlot = this.formatPlotData(stats.establishments.plot);
+    const campaignsPlot = this.formatPlotData(stats.campaigns.plot);
+    const customersPlot = this.formatPlotData(stats.customers.plot);
 
     return (<div className="animated fadeIn" style={{
         marginTop: 20
       }}>
       <Row>
         <Col xs="12" lg="6">
-          <DashboardPanel color="#F15A24" plot={stats.establishments.plot} title="Partners" value={stats.establishments.count} type="line1"/>
+          <DashboardPanel color="#F15A24" plot={establishmentsPlot} title="Partners" value={stats.establishments.count} type="line1"/>
         </Col>
         <Col xs="12" lg="6">
           <DashboardPanel color="#F7931E" plot={connectionsPlot} title="Communication Diffusion" value={stats.connections.count} type="line1"/>
         </Col>
         <Col xs="12" lg="6">
-          <DashboardPanel color="#FBB03B" plot={stats.campaigns.plot} title="Campaigns" value={stats.campaigns.count} type="line2"/>
+          <DashboardPanel color="#FBB03B" plot={campaignsPlot} title="Campaigns" value={stats.campaigns.count} type="line2"/>
         </Col>
         <Col xs="12" lg="6">
-          <DashboardPanel color="#F9DA23" plot={stats.customers.plot} title="Clients" value={stats.customers.count} type="bar"/>
+          <DashboardPanel color="#F9DA23" plot={customersPlot} title="Clients" value={stats.customers.count} type="bar"/>
         </Col>
       </Row>
 
