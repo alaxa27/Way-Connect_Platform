@@ -12,26 +12,29 @@ import ListCampaign from "../../views/Campaigns/ListCampaign/";
 import CreateCampaign from "../../views/Campaigns/CreateCampaign/";
 import Campaigns from "../../views/Campaigns";
 import Establishment from "../../views/Establishment/";
-import AfterLogin from "../../components/Modal/AfterLogin";
+import AddEstablishmentModal from "../../components/Modal/AddEstablishmentModal";
 
 class Full extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isModalOpened: true
-    };
-    this.hideModal = this.hideModal.bind(this);
-  }
-  hideModal() {
-    this.setState({
       isModalOpened: false
+    };
+  }
+  toggleModal = (e) => {
+    if(e) e.preventDefault();
+    this.setState({
+      isModalOpened: !this.state.isModalOpened
     });
   }
   render() {
     return (<div className="app">
       <Header/>
       <div className="app-body">
-        <Sidebar {...this.props}/>
+        <Sidebar 
+          {...this.props}
+          toggleModal={this.toggleModal}
+        />
         <main className="main">
           <Breadcrumb/>
           <Container fluid>
@@ -47,10 +50,14 @@ class Full extends Component {
           </Container>
         </main>
         <Aside/>
-        {/* <AfterLogin
-          isOpen={this.state.isModalOpened}
-          hide={this.hideModal}
-        /> */}
+        {this.state.isModalOpened ?
+          <AddEstablishmentModal
+            isOpen={this.state.isModalOpened}
+            toggleModal={this.toggleModal}
+          />
+        :
+          null
+        }
       </div>
       <Footer/>
     </div>);

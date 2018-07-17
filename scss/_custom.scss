@@ -1,6 +1,35 @@
 // Here you can add other styles
 @import '~react-block-ui/style.css';
 
+html { 
+  font-size: 16px;
+
+  // 1199px and down
+  @include media-breakpoint-down(lg) {
+    font-size: 15px;
+  }
+
+  // 991px and down
+  @include media-breakpoint-down(md) { 
+    font-size: 14px;
+  }
+
+  // 767px and down
+  @include media-breakpoint-down(sm) { 
+    font-size: 13px;
+  }
+
+  // 575px and down
+  @include media-breakpoint-down(xs) { 
+    font-size: 12px;
+  }
+
+  // height: 767px and down
+  @media(max-height: 767px) {
+    font-size: 12px;
+  }
+} 
+
 .panel-bg {
   background-image: url("../img/panel-bg.png");
   background-repeat: no-repeat;
@@ -126,12 +155,8 @@
   font-size: 20px;
 }
 
-.full-opacity label {
-  opacity: 1 !important;
-}
-
 .top-space {
-  margin-top: 60px;
+  margin-top: 72px;
 }
 
 .custom-selectbox:focus {
@@ -166,37 +191,24 @@
   color: #32CD32;
 }
 
-.typology-table {
-  width: 100%;
-  margin-top: 30px;
-}
+.establishments {
+  height: 500px;
+  overflow: auto;
 
-.typology-table tr td:first-child {
-  width: auto;
-}
+  &__item {
+    padding: 5px 20px;
+    background-color: #dbdbdb;
+    color: #000;
+    margin-bottom: 10px;
+    width: 100%;
+    font-weight: bold;
+    font-size: 14px;
+    opacity: 0.5;
 
-.typology-table tr td {
-  padding: 0;
-  width: 100px;
-}
-
-.typology-table tr td label {
-  padding: 5px 20px;
-  background-color: #dbdbdb;
-  color: #000;
-  margin-bottom: 10px;
-  width: 100%;
-  font-weight: bold;
-  font-size: 14px;
-  opacity: 0.5;
-}
-
-.full-opacity label {
-  opacity: 1 !important;
-}
-
-.typology-table tr td img {
-  height: 20px;
+    &--full-opacity {
+      opacity: 1;
+    }
+  }
 }
 
 .line-through {
@@ -1088,31 +1100,49 @@ body {
   border-top: 1px solid #B3B3B3;
 }
 
-.after-login-modal {
-  max-width: 700px;
+.add-establishment-modal {
+  max-width: 950px;
 
   .modal-body {
     padding: 2rem 3rem;
+    width: 100%;
   }
 }
 
-.after-login {
+.modal-outline {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,.5);
+  padding: 75px 50px 0 50px;
+}
+
+.modal-body {
+  background: #fff;
+  max-width: 900px;
+  margin: auto;
 
   &__heading {
     text-align: center;
   }
 
   &__img {
-    width: 250px;
+    max-width: 250px;
+    max-height: 250px;
+    min-width: 90px;
+    min-height: 90px;
+    height: 20vh;
   }
 
   &__title {
     font-size: 2rem;
     font-weight: bold;
+    line-height: 1.1;
 
     &--big {
       font-size: 4rem;
-      line-height: 50px;
     }
   }
 
@@ -1157,4 +1187,63 @@ body {
         background: #333333;
       }
   }
+}
+
+.react-countdown-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.react-countdown-box {
+  background: #F0F0F0;
+  margin-right: 1rem;
+  border-radius: 8px;
+  padding: 10px 7px;
+  width: 70px;
+}
+
+.react-countdown-element {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+
+.react-countdown-time {
+  color: #F6881C;
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+
+.react-countdown-time-text {
+  font-weight: bold;
+  letter-spacing: -1px;
+}
+
+.aside-menu {
+
+  &__coming-soon {
+    
+    img {
+      width: 150px;
+    }
+  }
+
+  &__title {
+    font-size: 0.75rem;
+    font-weight: bold;
+    line-height: 1.1;
+
+    &--big {
+      font-size: 2rem;
+    }
+
+    &--colored {
+      color: #F6881C;
+    }
+  }
+}
+
+.main {
+  position: relative;
 }

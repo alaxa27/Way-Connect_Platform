@@ -1,35 +1,20 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {Bar, Line} from "react-chartjs-2";
 import {
-  Badge,
   Row,
   Col,
-  Progress,
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  CardTitle,
-  Button,
-  ButtonToolbar,
-  ButtonGroup,
-  ButtonDropdown,
-  Label,
   Input,
-  Table
 } from "reactstrap";
 import * as FontAwesome from "react-icons/lib/fa";
 import {withScriptjs, withGoogleMap, GoogleMap, Marker} from "react-google-maps";
 import {compose, withProps} from "recompose";
 import DashboardPanel from "../../components/DashboardPanel/DashboardPanel";
+import { map } from "underscore";
 
-import * as actions from "../../actions/dashboardActions";
+import * as dashboardActions from "../../actions/dashboardActions";
+import * as establishmentActions from "../../actions/establishmentActions";
+import EstablishmentList from "./EstablishmentList";
 
 const MyMapComponent = compose(withProps({
   /**
@@ -47,40 +32,35 @@ const MyMapComponent = compose(withProps({
   mapElement: <div style={{
         height: "100%"
       }}/>
-}), withScriptjs, withGoogleMap)(props => (<GoogleMap defaultZoom={8} defaultCenter={{
-    lat: -34.397,
-    lng: 150.644
+}), withScriptjs, withGoogleMap)(props => (
+  <GoogleMap defaultZoom={8} center={{
+    lat: props.markerCoordinates[0],
+    lng: props.markerCoordinates[1]
   }}>
-  {
+    {
     props.isMarkerShown && (<Marker position={{
-        lat: -34.397,
-        lng: 150.644
+        lat: props.markerCoordinates[0],
+        lng: props.markerCoordinates[1]
       }}/>)
   }
-</GoogleMap>));
+  </GoogleMap>));
 
-const mapStateToProps = state => ({stats: state.dashboard.stats});
+const mapStateToProps = state => ({
+  stats: state.dashboard.stats,
+  establishments: state.establishment.establishments,
+  selectedEstablishment: state.establishment.selectedEstablishment
+});
 
 const mapDispatchToProps = dispatch => ({
-  fetchDashboardData: payload => dispatch(actions.fetchDashboardData())
+  fetchDashboardData: () => dispatch(dashboardActions.fetchDashboardData()),
+  selectEstablishment: payload => dispatch(establishmentActions.selectEstablishment(payload)),
+  fetchEstablishmentList: payload => dispatch(establishmentActions.fetchEstablishmentList(payload))
 });
 
 export class Dashboard extends Component {
-  static propTypes = {
-    fetchDashboardData: PropTypes.func.isRequired,
-    stats: PropTypes.object
-  }
   constructor(props) {
     super(props);
-
-    this.toggle = this.toggle.bind(this);
-    this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
-
     this.state = {
-      dropdownOpen: false,
-      radioSelected: 2,
-      country: "india",
-      city: "chandigarh"
     };
     this.handleChange = this.handleChange.bind(this);
 
@@ -95,53 +75,51 @@ export class Dashboard extends Component {
     this.setState({[name]: value});
   }
 
-  toggle() {
-    this.setState({
-      dropdownOpen: !this.state.dropdownOpen
+  selectEstablishment = (e, item) => {
+    e.preventDefault();
+    const { selectEstablishment } = this.props;
+    selectEstablishment(item);
+  }
+
+  loadMoreEstablishments = () => {
+    const { establishments, fetchEstablishmentList } = this.props;
+    // TODO - add payload to action
+    fetchEstablishmentList({
+      limit: establishments.limit,
+      offset: establishments.offset
     });
   }
 
-  onRadioBtnClick(radioSelected) {
-    this.setState({radioSelected: radioSelected});
+  formatPlotData = (data) => {
+    const plotData = map(data, item => {
+      return Math.floor(item * 100) / 100;
+    });
+    return plotData;
   }
 
   render() {
+    const { stats, establishments, selectedEstablishment } = this.props;
 
-    const tableArray = [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6
-    ];
-
-    const taleList = tableArray.map((list, i) => <tr key={i} className={i === 0
-        ? "full-opacity"
-        : null}>
-      <td>
-        <label>#{i + 1}
-          Westside Shopping Center</label>
-      </td>
-    </tr>);
-
-    const {stats} = this.props;
+    const connectionsPlot = this.formatPlotData(stats.connections.plot);
+    const establishmentsPlot = this.formatPlotData(stats.establishments.plot);
+    const campaignsPlot = this.formatPlotData(stats.campaigns.plot);
+    const customersPlot = this.formatPlotData(stats.customers.plot);
 
     return (<div className="animated fadeIn" style={{
         marginTop: 20
       }}>
       <Row>
         <Col xs="12" lg="6">
-          <DashboardPanel color="#F15A24" plot={stats.establishments.plot} title="Partners" value={stats.establishments.count} type="line1"/>
+          <DashboardPanel color="#F15A24" plot={establishmentsPlot} title="Partners" value={stats.establishments.count} type="line1"/>
         </Col>
         <Col xs="12" lg="6">
-          <DashboardPanel color="#F7931E" plot={stats.connections.plot} title="Communication Diffusion" value={stats.connections.count} type="line1"/>
+          <DashboardPanel color="#F7931E" plot={connectionsPlot} title="Communication Diffusion" value={stats.connections.count} type="line1"/>
         </Col>
         <Col xs="12" lg="6">
-          <DashboardPanel color="#FBB03B" plot={stats.campaigns.plot} title="Campaigns" value={stats.campaigns.count} type="line2"/>
+          <DashboardPanel color="#FBB03B" plot={campaignsPlot} title="Campaigns" value={stats.campaigns.count} type="line2"/>
         </Col>
         <Col xs="12" lg="6">
-          <DashboardPanel color="#F9DA23" plot={stats.customers.plot} title="Clients" value={stats.customers.count} type="bar"/>
+          <DashboardPanel color="#F9DA23" plot={customersPlot} title="Clients" value={stats.customers.count} type="bar"/>
         </Col>
       </Row>
 
@@ -157,40 +135,25 @@ export class Dashboard extends Component {
           <Row>
             <Col>
               <div className="google-maps-wrapper mt-4">
-                <MyMapComponent isMarkerShown="isMarkerShown"/>
+                <MyMapComponent
+                  isMarkerShown={true}
+                  markerCoordinates={selectedEstablishment ? selectedEstablishment.location.coordinates : [0, 0]}
+                />
               </div>
             </Col>
           </Row>
         </Col>
         <Col xs="12" md="6" className="top-space">
-          <h4 className="way-heading">Select a country</h4>
+          <EstablishmentList
+            establishments={establishments}
+            selectEstablishment={this.selectEstablishment}
+            selectedEstablishment={selectedEstablishment}
 
-          <div className="custom-selectbox-main">
-            <Input type="select" className="custom-selectbox" name="country" value={this.state.country} onChange={this.handleChange}>
-              <option value="India">India</option>
-              <option value="australia">Australia</option>
-            </Input>
-            <FontAwesome.FaArrowCircleODown className="custom-selectbox-arrow"/>
-          </div>
-
-          <h4 className="way-heading">Select a city</h4>
-
-          <div className="custom-selectbox-main">
-            <Input type="select" className="custom-selectbox" name="city" value={this.state.city} onChange={this.handleChange}>
-              <option value="chandigarh">Chandigarh</option>
-              <option value="delhi">Delhi</option>
-            </Input>
-            <FontAwesome.FaArrowCircleODown className="custom-selectbox-arrow"/>
-          </div>
-
-          <div>
-            <table className="locations-list">
-              <tbody>
-                {taleList}
-              </tbody>
-            </table>
-          </div>
-
+            establishmentsPage={establishments.page}
+            establishmentsTotalCount={establishments.totalCount}
+            establishmentsLimit={establishments.limit}
+            loadMore={this.loadMoreEstablishments}
+          />
         </Col>
         <div className="clearfix"></div>
       </Row>
@@ -199,5 +162,14 @@ export class Dashboard extends Component {
     </div>);
   }
 }
+
+Dashboard.propTypes = {
+  fetchDashboardData: PropTypes.func.isRequired,
+  fetchEstablishmentList: PropTypes.func.isRequired,
+  stats: PropTypes.object,
+  establishments: PropTypes.object,
+  selectEstablishment: PropTypes.func,
+  selectedEstablishment: PropTypes.object,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

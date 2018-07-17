@@ -20,7 +20,16 @@ import {
   PROMOTIONS_FULFILLED,
 
   ESTABLISHMENT_LIST,
-  ESTABLISHMENT_LIST_FULFILLED
+  ESTABLISHMENT_LIST_FULFILLED,
+
+  MY_ESTABLISHMENT_LIST,
+  MY_ESTABLISHMENT_LIST_FULFILLED,
+
+  SELECT_ESTABLISHMENT,
+
+  ESTABLISHMENT_DOWNLOAD,
+  ESTABLISHMENT_DOWNLOAD_FULFILLED,
+  ESTABLISHMENT_DOWNLOAD_REJECTED
 } from "../constants/ActionTypes";
 import _ from "underscore";
 import {
@@ -45,6 +54,23 @@ const promotionsDefault = {
   page: 0,
 };
 
+const establishmentsDefault = {
+  items: [],
+  fetching: false,
+  limit: 10,
+  offset: 0,
+  total_count: 0,
+  page: 0,
+};
+
+const myEstablishmentsDefault = {
+  items: [],
+  fetching: false,
+  limit: 10,
+  offset: 0,
+  total_count: 0,
+  page: 0,
+};
 
 const initialState = {
   fetching: false,
@@ -68,7 +94,12 @@ const initialState = {
   },
   typicalCustomer: null,
   promotions: promotionsDefault,
-  establishmentList: []
+  establishments: establishmentsDefault,
+  myEstablishments: myEstablishmentsDefault,
+  selectedEstablishment: null,
+
+  downloading: false,
+  establishmentsInXls: null
 };
 
 let trafficLabels = {
@@ -222,15 +253,65 @@ export default function reducer(state = initialState, action) {
       };
     case ESTABLISHMENT_LIST:
       return {
-        ...state
+        ...state,
+        establishments: {
+          ...state.establishments,
+          fetching: true
+        },
+        selectedEstablishment: null
       };
-      break;
     case ESTABLISHMENT_LIST_FULFILLED:
       return {
         ...state,
-        establishmentList: action.payload
+        establishments: {
+          ...state.establishments,
+          items: action.payload,
+          fetching: false
+        },
+        selectedEstablishment: _.first(action.payload)
       };
-      break;
+    case MY_ESTABLISHMENT_LIST:
+      return {
+        ...state,
+        myEstablishments: {
+          ...state.myEstablishments,
+          fetching: true
+        },
+      };
+    case MY_ESTABLISHMENT_LIST_FULFILLED:
+      return {
+        ...state,
+        myEstablishments: {
+          ...state.myEstablishments,
+          items: action.payload,
+          fetching: false
+        },
+      };
+    case SELECT_ESTABLISHMENT:
+      return {
+        ...state,
+        selectedEstablishment: action.payload
+      };
+    case ESTABLISHMENT_DOWNLOAD:
+      return {
+        ...state,
+        downloading: true,
+        error: false
+      };
+    case ESTABLISHMENT_DOWNLOAD_FULFILLED:
+      return {
+        ...state,
+        downloading: false,
+        error: false,
+        establishmentsInXls: action.payload
+      };
+    case ESTABLISHMENT_DOWNLOAD_REJECTED:
+      return {
+        ...state,
+        downloading: false,
+        error: action.payload,
+        establishmentsInXls: null
+      };
     default:
       return { ...state
       };

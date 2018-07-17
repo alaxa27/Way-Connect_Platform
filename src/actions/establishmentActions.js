@@ -24,8 +24,14 @@ import {
   TYPICAL_CUSTOMER,
   TYPICAL_CUSTOMER_FULFILLED,
 
-  ESTABLISHMENT_LIST,
-  ESTABLISHMENT_LIST_FULFILLED
+  MY_ESTABLISHMENT_LIST,
+  MY_ESTABLISHMENT_LIST_FULFILLED,
+
+  SELECT_ESTABLISHMENT,
+
+  ESTABLISHMENT_DOWNLOAD,
+  ESTABLISHMENT_DOWNLOAD_FULFILLED,
+  ESTABLISHMENT_DOWNLOAD_REJECTED
 } from "../constants/ActionTypes";
 
 export function fetchEstablishmentPageData(payload) {
@@ -217,10 +223,10 @@ function fetchTypicalCustomer(payload) {
   };
 }
 
-export function fetchEstablishmentList() {
+export function fetchMyEstablishmentList() {
   return async (dispatch, getState) => {
     dispatch({
-      type: ESTABLISHMENT_LIST,
+      type: MY_ESTABLISHMENT_LIST,
     });
     try {
       const response = await axiosInstance({
@@ -230,19 +236,44 @@ export function fetchEstablishmentList() {
           owner: "me"
         }
       });
-      const data = response.data;
-      const formattedList = _.map(data, item => {
-        return {
-          name: item.name,
-          url: "/establishment/" + item.id
-        };
-      });
       dispatch({
-        type: ESTABLISHMENT_LIST_FULFILLED,
-        payload: formattedList
+        type: MY_ESTABLISHMENT_LIST_FULFILLED,
+        payload: response.data
       });
     } catch (error) {
       throw new Error();
+    }
+  };
+}
+
+export function selectEstablishment(item) {
+  return async dispatch => {
+    dispatch({
+      type: SELECT_ESTABLISHMENT,
+      payload: item
+    });
+  };
+}
+
+export function downloadEstablishments() {
+  return async (dispatch, getState) => {
+    dispatch({
+      type: ESTABLISHMENT_DOWNLOAD,
+    });
+    try {
+      const response = await axiosInstance({
+        method: "get",
+        url: "/promotions/activations?format=xls"
+      });
+      dispatch({
+        type: ESTABLISHMENT_DOWNLOAD_FULFILLED,
+        payload: response.data
+      });
+    } catch (error) {
+      dispatch({
+        type: ESTABLISHMENT_DOWNLOAD_REJECTED,
+        payload: error
+      });
     }
   };
 }

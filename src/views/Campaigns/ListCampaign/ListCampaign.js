@@ -1,13 +1,9 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import * as FontAwesome from "react-icons/lib/fa";
-import * as MdIconPack from "react-icons/lib/md";
-import {Row, Col, Button} from "reactstrap";
-import _ from "underscore";
-
 import { fetchCampaigns } from "../../../actions/listCampaignsActions";
 import CampaignType from "./ListCampaignType";
+import ComingSoon from "../../../components/Modal/ComingSoon";
 
 @connect((store) => {
   let listCampaignsStore = store.listCampaigns;
@@ -26,13 +22,16 @@ class ListCampaign extends Component {
   }
 
   render() {
-    return (<div className="sub-page-wrapper animated fadeIn">
-      <div className="campaign-types-container">
-        <CampaignType title="Bidding" campaigns={this.props.campaigns} status="bidding" canAddNew/>
-        <CampaignType title="In Progress" campaigns={this.props.campaigns} status="progress"/>
-        <CampaignType title="Delivered" campaigns={this.props.campaigns} status="delivered"/>
+    return (
+      <div className="sub-page-wrapper animated fadeIn">
+        <div className="campaign-types-container">
+          <CampaignType title="Bidding" campaigns={this.props.campaigns} status="bidding" canAddNew/>
+          <CampaignType title="In Progress" campaigns={this.props.campaigns} status="progress"/>
+          <CampaignType title="Delivered" campaigns={this.props.campaigns} status="delivered"/>
+        </div>
+        <ComingSoon />
       </div>
-    </div>);
+    );
   }
 }
 export default ListCampaign;

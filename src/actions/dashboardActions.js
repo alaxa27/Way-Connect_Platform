@@ -9,7 +9,9 @@ import {
 
   DASHBOARD_STATS,
   DASHBOARD_STATS_FULFILLED,
-  DASHBOARD_STATS_REJECTED,
+
+  ESTABLISHMENT_LIST,
+  ESTABLISHMENT_LIST_FULFILLED
 } from "../constants/ActionTypes";
 
 export function fetchDashboardData(payload) {
@@ -18,7 +20,8 @@ export function fetchDashboardData(payload) {
       type: FETCH_DASHBOARD,
     });
     try {
-      await dispatch(fetchStats());
+    await dispatch(fetchStats());
+      await dispatch(fetchEstablishmentList());
       dispatch({
         type: FETCH_DASHBOARD_FULFILLED,
       });
@@ -43,6 +46,26 @@ function fetchStats(payload) {
       });
       dispatch({
         type: DASHBOARD_STATS_FULFILLED,
+        payload: response.data
+      });
+    } catch (error) {
+      throw new Error();
+    }
+  };
+}
+
+export function fetchEstablishmentList() {
+  return async (dispatch, getState) => {
+    dispatch({
+      type: ESTABLISHMENT_LIST,
+    });
+    try {
+      const response = await axiosInstance({
+        method: "get",
+        url: "/establishments/",
+      });
+      dispatch({
+        type: ESTABLISHMENT_LIST_FULFILLED,
         payload: response.data
       });
     } catch (error) {

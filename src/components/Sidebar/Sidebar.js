@@ -13,11 +13,11 @@ import _ from "underscore";
 import PropTypes from "prop-types";
 
 const mapStateToProps = state => ({
-  establishmentList: state.establishment.establishmentList,
+  myEstablishments: state.establishment.myEstablishments,
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchEstablishmentList: payload => dispatch(actions.fetchEstablishmentList())
+  fetchMyEstablishmentList: payload => dispatch(actions.fetchMyEstablishmentList())
 });
 
 class Sidebar extends Component {
@@ -27,7 +27,7 @@ class Sidebar extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.activeRoute = this.activeRoute.bind(this);
     this.hideMobile = this.hideMobile.bind(this);
-    props.fetchEstablishmentList();
+    props.fetchMyEstablishmentList();
   }
 
   handleClick(e) {
@@ -53,18 +53,23 @@ class Sidebar extends Component {
   // }
 
   handleEstablishments(props) {
-    const establishmentList = props.establishmentList;
+    const myEstablishments = _.map(props.myEstablishments.items, item => {
+      return {
+        name: item.name,
+        url: "/establishment/" + item.id
+      };
+    });
     let establishmentMenuItem = _.find(nav.items, item => item.name === "Establishments");
-    establishmentMenuItem["children"] = [...establishmentList];
+    establishmentMenuItem["children"] = [...myEstablishments];
     establishmentMenuItem["children"].push({
       name: "Add",
       url: "",
-      icon: "icon-plus"
+      icon: "icon-plus",
+      onClick: this.props.toggleModal
     });
   }
 
   render() {
-
     const props = this.props;
 
     this.handleEstablishments(props);
@@ -110,11 +115,14 @@ class Sidebar extends Component {
 
     // nav item with nav link
     const navItem = (item, key) => {
-      const classes = {
+      let classes = {
         item: classNames( item.class) ,
         link: classNames( "nav-link", item.variant ? `nav-link-${item.variant}` : ""),
-        icon: classNames( item.icon )
+        icon: classNames( item.icon ),
       };
+      if(item.onClick) {
+        classes["onClick"] = item.onClick;
+      }
       return (
         navLink(item, key, classes)
       );
@@ -130,7 +138,7 @@ class Sidebar extends Component {
               <i className={classes.icon}></i>{item.name}{badge(item.badge)}
             </RsNavLink>
             :
-            <NavLink to={url} className={classes.link} activeClassName="active" onClick={this.hideMobile}>
+            <NavLink to={url} className={classes.link} activeClassName="active" onClick={classes.onClick ? classes.onClick : this.hideMobile}>
               <i className={classes.icon}></i>{item.name}{badge(item.badge)}
             </NavLink>
           }
@@ -185,8 +193,9 @@ class Sidebar extends Component {
 }
 
 Sidebar.propTypes = {
-  fetchEstablishmentList: PropTypes.func,
-  establishmentList: PropTypes.array
+  fetchMyEstablishmentList: PropTypes.func,
+  myEstablishments: PropTypes.object,
+  toggleModal: PropTypes.func
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
