@@ -12,7 +12,7 @@ import TrafficChart from "../../components/Traffic/TrafficChart";
 import ExportExcelButton from "./ExportExcel/ExportExcelButton";
 import * as actions from "../../actions/establishmentActions";
 
-const trafficChartOptions = {
+let trafficChartOptions = {
   maintainAspectRatio: false,
   legend: {
     display: false

@@ -20,8 +20,19 @@ class TrafficChart extends Component {
   constructor(props) {
     super(props);
   }
+  setMaxHeight = (value) => {
+    const { options } = this.props;
+    _.first(options.scales.yAxes).ticks.max = value;
+  }
+  arrayMax = (numArray) => {
+    return Math.max.apply(null, numArray);
+  }
   render() {
     const {traffic, options, title, trafficPeriodChange} = this.props;
+    // TODO probably it would be better to load this component after we receive traffic data
+    if(_.first(traffic.datasets)) {
+      this.setMaxHeight(this.arrayMax(_.first(traffic.datasets).data));
+    }
     return (<ReduxBlockUi tag="div" block="TRAFFIC" unblock={["TRAFFIC_FULFILLED", "TRAFFIC_REJECTED"]}>
       <Card>
         <CardBody>
