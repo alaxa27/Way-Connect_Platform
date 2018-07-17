@@ -13,11 +13,11 @@ import _ from "underscore";
 import PropTypes from "prop-types";
 
 const mapStateToProps = state => ({
-  establishments: state.establishment.establishments,
+  myEstablishments: state.establishment.myEstablishments,
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchEstablishmentList: payload => dispatch(actions.fetchEstablishmentList())
+  fetchMyEstablishmentList: payload => dispatch(actions.fetchMyEstablishmentList())
 });
 
 class Sidebar extends Component {
@@ -27,7 +27,7 @@ class Sidebar extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.activeRoute = this.activeRoute.bind(this);
     this.hideMobile = this.hideMobile.bind(this);
-    props.fetchEstablishmentList();
+    props.fetchMyEstablishmentList();
   }
 
   handleClick(e) {
@@ -53,14 +53,14 @@ class Sidebar extends Component {
   // }
 
   handleEstablishments(props) {
-    const establishments = _.map(props.establishments.items, item => {
+    const myEstablishments = _.map(props.myEstablishments.items, item => {
       return {
         name: item.name,
         url: "/establishment/" + item.id
       };
     });
     let establishmentMenuItem = _.find(nav.items, item => item.name === "Establishments");
-    establishmentMenuItem["children"] = [...establishments];
+    establishmentMenuItem["children"] = [...myEstablishments];
     establishmentMenuItem["children"].push({
       name: "Add",
       url: "",
@@ -193,8 +193,8 @@ class Sidebar extends Component {
 }
 
 Sidebar.propTypes = {
-  fetchEstablishmentList: PropTypes.func,
-  establishments: PropTypes.object,
+  fetchMyEstablishmentList: PropTypes.func,
+  myEstablishments: PropTypes.object,
   toggleModal: PropTypes.func
 };
 

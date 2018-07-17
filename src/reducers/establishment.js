@@ -22,6 +22,9 @@ import {
   ESTABLISHMENT_LIST,
   ESTABLISHMENT_LIST_FULFILLED,
 
+  MY_ESTABLISHMENT_LIST,
+  MY_ESTABLISHMENT_LIST_FULFILLED,
+
   SELECT_ESTABLISHMENT,
 
   ESTABLISHMENT_DOWNLOAD,
@@ -60,6 +63,15 @@ const establishmentsDefault = {
   page: 0,
 };
 
+const myEstablishmentsDefault = {
+  items: [],
+  fetching: false,
+  limit: 10,
+  offset: 0,
+  total_count: 0,
+  page: 0,
+};
+
 const initialState = {
   fetching: false,
   success: false,
@@ -83,6 +95,7 @@ const initialState = {
   typicalCustomer: null,
   promotions: promotionsDefault,
   establishments: establishmentsDefault,
+  myEstablishments: myEstablishmentsDefault,
   selectedEstablishment: null,
 
   downloading: false,
@@ -256,6 +269,23 @@ export default function reducer(state = initialState, action) {
           fetching: false
         },
         selectedEstablishment: _.first(action.payload)
+      };
+    case MY_ESTABLISHMENT_LIST:
+      return {
+        ...state,
+        myEstablishments: {
+          ...state.myEstablishments,
+          fetching: true
+        },
+      };
+    case MY_ESTABLISHMENT_LIST_FULFILLED:
+      return {
+        ...state,
+        myEstablishments: {
+          ...state.myEstablishments,
+          items: action.payload,
+          fetching: false
+        },
       };
     case SELECT_ESTABLISHMENT:
       return {

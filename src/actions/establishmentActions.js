@@ -24,8 +24,8 @@ import {
   TYPICAL_CUSTOMER,
   TYPICAL_CUSTOMER_FULFILLED,
 
-  ESTABLISHMENT_LIST,
-  ESTABLISHMENT_LIST_FULFILLED,
+  MY_ESTABLISHMENT_LIST,
+  MY_ESTABLISHMENT_LIST_FULFILLED,
 
   SELECT_ESTABLISHMENT,
 
@@ -223,18 +223,21 @@ function fetchTypicalCustomer(payload) {
   };
 }
 
-export function fetchEstablishmentList() {
+export function fetchMyEstablishmentList() {
   return async (dispatch, getState) => {
     dispatch({
-      type: ESTABLISHMENT_LIST,
+      type: MY_ESTABLISHMENT_LIST,
     });
     try {
       const response = await axiosInstance({
         method: "get",
-        url: "/establishments/"
+        url: "/establishments/",
+        params: {
+          owner: 'me'
+        }
       });
       dispatch({
-        type: ESTABLISHMENT_LIST_FULFILLED,
+        type: MY_ESTABLISHMENT_LIST_FULFILLED,
         payload: response.data
       });
     } catch (error) {
