@@ -20,11 +20,11 @@ class TrafficChart extends Component {
   constructor(props) {
     super(props);
   }
-  setMaxHeight = (value) => {
+  setMaxHeight(value) {
     const { options } = this.props;
     _.first(options.scales.yAxes).ticks.max = value;
   }
-  arrayMax = (numArray) => {
+  arrayMax(numArray) {
     return Math.max.apply(null, numArray);
   }
   render() {
