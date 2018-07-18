@@ -38,7 +38,6 @@ class Affluence extends Component {
             <Row>
               <Col>
                 <CardTitle className="mb-0">{title}</CardTitle>
-                <div className="small text-muted">November 2017</div>
               </Col>
             </Row>
             <div className="chart-wrapper" style={{height: "380px", marginTop: "40px"}}>

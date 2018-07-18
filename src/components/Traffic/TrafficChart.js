@@ -29,7 +29,6 @@ class TrafficChart extends Component {
   }
   render() {
     const {traffic, options, title, trafficPeriodChange} = this.props;
-    // TODO probably it would be better to load this component after we receive traffic data
     if(_.first(traffic.datasets)) {
       this.setMaxHeight(this.arrayMax(_.first(traffic.datasets).data));
     }
@@ -39,7 +38,6 @@ class TrafficChart extends Component {
           <Row>
             <Col sm="5">
               <CardTitle className="mb-0">{title}</CardTitle>
-              <div className="small text-muted">November 2017</div>
             </Col>
             {
               trafficPeriodChange
