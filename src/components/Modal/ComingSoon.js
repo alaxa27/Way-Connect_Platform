@@ -20,7 +20,7 @@ const ComingSoon = () => {
             </Col>
             <Col xs="12" sm={{size: 10, offset: 1}}>
               <div className="modal-body__title">
-                Vouz pourrez beintot creer votre campagne publicitaire
+                You will soon be able to create your own advertising campaign.
               </div>
             </Col>
           </Row>

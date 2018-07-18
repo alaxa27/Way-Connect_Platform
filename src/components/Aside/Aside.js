@@ -14,7 +14,7 @@ class Aside extends Component {
             Coming Soon
           </div>
           <div className="aside-menu__title">
-            Vouz pourrez beintot creer votre campagne publicitaire
+            You will soon be able to create your own advertising campaign.
           </div>
         </div>
       </aside>
