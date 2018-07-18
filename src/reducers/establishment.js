@@ -35,7 +35,7 @@ import _ from "underscore";
 import {
   SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION
 } from "constants";
-import moment from 'moment';
+import moment from "moment";
 
 const monthlyData = {
   visits: "0",
@@ -195,8 +195,8 @@ export default function reducer(state = initialState, action) {
       const traffic = action.payload[period].traffic;
       let summedTraffic = getSummedTraffic(period, traffic);
 
-      trafficLabels[period][0] = moment(action.payload[period].start_date).format('YYYY-MM-DD');
-      trafficLabels[period][trafficLabels[period].length - 1] = moment(action.payload[period].end_date).format('YYYY-MM-DD');
+      trafficLabels[period][0] = moment(action.payload[period].start_date).format("YYYY-MM-DD");
+      trafficLabels[period][trafficLabels[period].length - 1] = moment(action.payload[period].end_date).format("YYYY-MM-DD");
 
       _.first(trafficDatasets).data = summedTraffic;
       return {
@@ -213,8 +213,8 @@ export default function reducer(state = initialState, action) {
       const changedTraffic = state.trafficRaw[changedPeriod].traffic;
       let changedAverageTraffic = getSummedTraffic(changedPeriod, changedTraffic);
 
-      trafficLabels[changedPeriod][0] = moment(state.trafficRaw[changedPeriod].start_date).format('YYYY-MM-DD');
-      trafficLabels[changedPeriod][trafficLabels[changedPeriod].length - 1] = moment(state.trafficRaw[changedPeriod].end_date).format('YYYY-MM-DD');
+      trafficLabels[changedPeriod][0] = moment(state.trafficRaw[changedPeriod].start_date).format("YYYY-MM-DD");
+      trafficLabels[changedPeriod][trafficLabels[changedPeriod].length - 1] = moment(state.trafficRaw[changedPeriod].end_date).format("YYYY-MM-DD");
 
       _.first(trafficDatasets).data = changedAverageTraffic;
       return {
