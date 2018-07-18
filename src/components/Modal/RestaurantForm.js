@@ -27,13 +27,14 @@ class RestaurantForm extends React.Component {
     e.preventDefault();
     const { handleSubmitSuccess } = this.props;
     if(this.validator.allValid()){
-        handleSubmitSuccess();
+        handleSubmitSuccess(this.state);
     } else {
         this.validator.showMessages();
         this.forceUpdate();
     }
   }
   render() {
+    const { error } = this.props;
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="modal-body__group mb-2">
@@ -44,6 +45,13 @@ class RestaurantForm extends React.Component {
           {this.validator.message("name", this.state.name, "required", "text-danger name-error", {
                         required: this.errorMessageService.generateErrorMessage("Name", "required")
                     })}
+          {error && error["name"] ?
+            <div className="text-danger phone-error">
+              {error["name"]}
+            </div>
+          :
+            null
+          }
         </div>
         <div className="modal-body__group mb-2">
           <div className="modal-body__label mb-2">
@@ -53,6 +61,13 @@ class RestaurantForm extends React.Component {
           {this.validator.message("phone", this.state.phone, "required", "text-danger phone-error", {
                         required: this.errorMessageService.generateErrorMessage("Phone", "required")
                     })}
+          {error && error["phone"] ?
+            <div className="text-danger phone-error">
+              {error["phone"]}
+            </div>
+          :
+            null
+          }
         </div>
         <div className="modal-body__group mb-4">
           <div className="modal-body__label mb-2">
@@ -62,6 +77,13 @@ class RestaurantForm extends React.Component {
           {this.validator.message("address", this.state.address, "required", "text-danger address-error", {
                     required: this.errorMessageService.generateErrorMessage("Address", "required")
                 })}
+          {error && error["address"] ?
+            <div className="text-danger phone-error">
+              {error["address"]}
+            </div>
+          :
+            null
+          }
         </div>
         <button className="modal-body__submit bid-btn bid-btn-dark">
                 Lets start
@@ -72,7 +94,8 @@ class RestaurantForm extends React.Component {
 }
 
 RestaurantForm.propTypes = {
-    handleSubmitSuccess: PropTypes.func
+    handleSubmitSuccess: PropTypes.func,
+    error: PropTypes.object
 };
 
 export default RestaurantForm;
