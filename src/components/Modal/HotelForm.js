@@ -45,9 +45,9 @@ class HotelForm extends React.Component {
           {this.validator.message("name", this.state.name, "required", "text-danger name-error", {
                         required: this.errorMessageService.generateErrorMessage("Name", "required")
                     })}
-          {error && error['name'] ?
+          {error && error["name"] ?
             <div className="text-danger phone-error">
-              {error['name']}
+              {error["name"]}
             </div>
           :
             null
@@ -61,9 +61,9 @@ class HotelForm extends React.Component {
           {this.validator.message("phone", this.state.phone, "required", "text-danger phone-error", {
                         required: this.errorMessageService.generateErrorMessage("Phone", "required")
                     })}
-          {error && error['phone'] ?
+          {error && error["phone"] ?
             <div className="text-danger phone-error">
-              {error['phone']}
+              {error["phone"]}
             </div>
           :
             null
@@ -77,9 +77,9 @@ class HotelForm extends React.Component {
           {this.validator.message("address", this.state.address, "required", "text-danger address-error", {
                     required: this.errorMessageService.generateErrorMessage("Address", "required")
                 })}
-          {error && error['address'] ?
+          {error && error["address"] ?
             <div className="text-danger phone-error">
-              {error['address']}
+              {error["address"]}
             </div>
           :
             null

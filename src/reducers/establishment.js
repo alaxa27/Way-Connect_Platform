@@ -116,7 +116,7 @@ const initialState = {
     hotel: null
   },
   addEstablishmentSuccess: false,
-  addEstablishmentActiveType: 'restaurant'
+  addEstablishmentActiveType: "restaurant"
 };
 
 let trafficLabels = {
@@ -371,7 +371,7 @@ export default function reducer(state = initialState, action) {
           hotel: null
         },
         addEstablishmentSuccess: false
-      }
+      };
     case ESTABLISHMENT_CHANGE_PLACE:
       return {
         ...state,
@@ -380,7 +380,7 @@ export default function reducer(state = initialState, action) {
           restaurant: null,
           hotel: null
         },
-      }
+      };
     default:
       return { ...state
       };
