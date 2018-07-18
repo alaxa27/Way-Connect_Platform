@@ -13,21 +13,29 @@ import CreateCampaign from "../../views/Campaigns/CreateCampaign/";
 import Campaigns from "../../views/Campaigns";
 import Establishment from "../../views/Establishment/";
 import AddEstablishmentModal from "../../components/Modal/AddEstablishmentModal";
+import * as establishmentActions from "../../actions/establishmentActions";
+import {connect} from "react-redux";
+import PropTypes from "prop-types";
+
+const mapStateToProps = state => ({
+  addModalShown: state.establishment.addModalShown,
+});
+
+const mapDispatchToProps = dispatch => ({
+  toggleAddModal: () => dispatch(establishmentActions.toggleAddModal())
+});
 
 class Full extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isModalOpened: false
-    };
   }
   toggleModal = (e) => {
     if(e) e.preventDefault();
-    this.setState({
-      isModalOpened: !this.state.isModalOpened
-    });
+    const { toggleAddModal } = this.props;
+    toggleAddModal();
   }
   render() {
+    const { addModalShown } = this.props;
     return (<div className="app">
       <Header/>
       <div className="app-body">
@@ -45,14 +53,13 @@ class Full extends Component {
               <Route path="/campaigns/:id" name="Campaigns" component={Campaigns}/>
               <Route exact path="/establishment/:id" name="Establishment" component={Establishment}/>
               <Redirect from="/" to="/login"/>
-
             </Switch>
           </Container>
         </main>
         <Aside/>
-        {this.state.isModalOpened ?
+        {addModalShown ?
           <AddEstablishmentModal
-            isOpen={this.state.isModalOpened}
+            isOpen={true}
             toggleModal={this.toggleModal}
           />
         :
@@ -64,4 +71,9 @@ class Full extends Component {
   }
 }
 
-export default Full;
+Full.propTypes = {
+  toggleAddModal: PropTypes.func,
+  addModalShown: PropTypes.bool,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Full);

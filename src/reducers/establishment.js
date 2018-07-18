@@ -29,7 +29,15 @@ import {
 
   ESTABLISHMENT_DOWNLOAD,
   ESTABLISHMENT_DOWNLOAD_FULFILLED,
-  ESTABLISHMENT_DOWNLOAD_REJECTED
+  ESTABLISHMENT_DOWNLOAD_REJECTED,
+
+  ESTABLISHMENT_ADD,
+  ESTABLISHMENT_ADD_FULFILLED,
+  ESTABLISHMENT_ADD_REJECTED,
+
+  ESTABLISHMENT_ADD_MODAL_TOGGLE,
+
+  ESTABLISHMENT_CHANGE_PLACE,
 } from "../constants/ActionTypes";
 import _ from "underscore";
 import {
@@ -100,7 +108,15 @@ const initialState = {
   selectedEstablishment: null,
 
   downloading: false,
-  establishmentsInXls: null
+  establishmentsInXls: null,
+
+  addModalShown: false,
+  addEstablishmentError: {
+    restaurant: null,
+    hotel: null
+  },
+  addEstablishmentSuccess: false,
+  addEstablishmentActiveType: 'restaurant'
 };
 
 let trafficLabels = {
@@ -319,6 +335,52 @@ export default function reducer(state = initialState, action) {
         error: action.payload,
         establishmentsInXls: null
       };
+    case ESTABLISHMENT_ADD:
+      return {
+        ...state,
+        addEstablishmentError: {
+          restaurant: null,
+          hotel: null
+        },
+        addEstablishmentSuccess: false
+      };
+    case ESTABLISHMENT_ADD_FULFILLED:
+      return {
+        ...state,
+        addEstablishmentError: {
+          restaurant: null,
+          hotel: null
+        },
+        addEstablishmentSuccess: true
+      };
+    case ESTABLISHMENT_ADD_REJECTED:
+      return {
+        ...state,
+        addEstablishmentError: {
+          ...state.addEstablishmentError,
+          [action.payload.establishmentType]: action.payload.error,
+        },
+        addEstablishmentSuccess: false
+      };
+    case ESTABLISHMENT_ADD_MODAL_TOGGLE:
+      return {
+        ...state,
+        addModalShown: !state.addModalShown,
+        addEstablishmentError: {
+          restaurant: null,
+          hotel: null
+        },
+        addEstablishmentSuccess: false
+      }
+    case ESTABLISHMENT_CHANGE_PLACE:
+      return {
+        ...state,
+        addEstablishmentActiveType: action.payload,
+        addEstablishmentError: {
+          restaurant: null,
+          hotel: null
+        },
+      }
     default:
       return { ...state
       };

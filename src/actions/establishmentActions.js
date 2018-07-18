@@ -31,7 +31,15 @@ import {
 
   ESTABLISHMENT_DOWNLOAD,
   ESTABLISHMENT_DOWNLOAD_FULFILLED,
-  ESTABLISHMENT_DOWNLOAD_REJECTED
+  ESTABLISHMENT_DOWNLOAD_REJECTED,
+
+  ESTABLISHMENT_ADD,
+  ESTABLISHMENT_ADD_FULFILLED,
+  ESTABLISHMENT_ADD_REJECTED,
+
+  ESTABLISHMENT_ADD_MODAL_TOGGLE,
+
+  ESTABLISHMENT_CHANGE_PLACE
 } from "../constants/ActionTypes";
 
 export function fetchEstablishmentPageData(payload) {
@@ -275,5 +283,54 @@ export function downloadEstablishments() {
         payload: error
       });
     }
+  };
+}
+
+export function addEstablishment(payload) {
+  return async (dispatch, getState) => {
+    dispatch({
+      type: ESTABLISHMENT_ADD,
+    });
+    try {
+      const response = await axiosInstance({
+        method: "post",
+        url: "/contact/partner/",
+        data: {
+          name: payload.name,
+          phone: payload.phone,
+          address: payload.address,
+          establishment_type: payload.establishmentType
+        }
+      });
+      dispatch({
+        type: ESTABLISHMENT_ADD_FULFILLED,
+        payload: response.data
+      });
+    } catch (error) {
+      dispatch({
+        type: ESTABLISHMENT_ADD_REJECTED,
+        payload: {
+          establishmentType: payload.establishmentType,
+          error: error.response.data
+        }
+      });
+    }
+  };
+}
+
+export function toggleAddModal() {
+  return async dispatch => {
+    dispatch({
+      type: ESTABLISHMENT_ADD_MODAL_TOGGLE,
+    });
+  };
+}
+
+export function changePlace(payload) {
+  return async dispatch => {
+    dispatch({
+      type: ESTABLISHMENT_CHANGE_PLACE,
+      payload
+    });
   };
 }
