@@ -33,15 +33,26 @@ const MyMapComponent = compose(withProps({
         height: "100%"
       }}/>
 }), withScriptjs, withGoogleMap)(props => (
-  <GoogleMap defaultZoom={8} center={{
-    lat: props.markerCoordinates[1],
-    lng: props.markerCoordinates[0]
+  <GoogleMap defaultZoom={7} center={{
+    lat: props.center[1],
+    lng: props.center[0]
   }}>
     {
-    props.isMarkerShown && (<Marker position={{
-        lat: props.markerCoordinates[1],
-        lng: props.markerCoordinates[0]
-      }}/>)
+    props.isMarkerShown && (
+      <React.Fragment>
+        {map(props.markers, (marker, i) => {
+          return (
+            <Marker
+              key={i}
+              position={{
+                lat: marker[1],
+                lng: marker[0]
+              }}
+            />
+          );
+        })}
+      </React.Fragment>
+    )
   }
   </GoogleMap>));
 
@@ -100,6 +111,10 @@ export class Dashboard extends Component {
   render() {
     const { stats, establishments, selectedEstablishment } = this.props;
 
+    const markers = map(establishments.items, item => {
+      return item.location.coordinates;
+    });
+
     const connectionsPlot = this.formatPlotData(stats.connections.plot);
     const establishmentsPlot = this.formatPlotData(stats.establishments.plot);
     const campaignsPlot = this.formatPlotData(stats.campaigns.plot);
@@ -137,7 +152,8 @@ export class Dashboard extends Component {
               <div className="google-maps-wrapper mt-4">
                 <MyMapComponent
                   isMarkerShown={true}
-                  markerCoordinates={selectedEstablishment ? selectedEstablishment.location.coordinates : [0, 0]}
+                  center={selectedEstablishment ? selectedEstablishment.location.coordinates : [0, 0]}
+                  markers={markers}
                 />
               </div>
             </Col>
