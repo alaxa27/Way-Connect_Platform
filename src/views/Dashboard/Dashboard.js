@@ -33,7 +33,7 @@ const MyMapComponent = compose(withProps({
         height: "100%"
       }}/>
 }), withScriptjs, withGoogleMap)(props => (
-  <GoogleMap defaultZoom={8} center={{
+  <GoogleMap defaultZoom={7} center={{
     lat: props.center[1],
     lng: props.center[0]
   }}>
@@ -42,7 +42,7 @@ const MyMapComponent = compose(withProps({
       <React.Fragment>
         {map(props.markers, (marker, i) => {
           return (
-            <Marker 
+            <Marker
               key={i}
               position={{
                 lat: marker[1],
@@ -110,7 +110,7 @@ export class Dashboard extends Component {
 
   render() {
     const { stats, establishments, selectedEstablishment } = this.props;
-    
+
     const markers = map(establishments.items, item => {
       return item.location.coordinates;
     });
