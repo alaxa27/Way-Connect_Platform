@@ -9,12 +9,12 @@ const title = "Export Excel";
 
 class ExportExcelButton extends Component {
   render() {
-    const { action } = this.props;
+    const { action, establishmentId } = this.props;
     return (
       <Button 
         className="bid-btn d-flex align-items-center justify-content-center" 
         style={{width: "250px", fontSize: "18px", marginTop: 25}}
-        onClick={() => action()}
+        onClick={() => action(establishmentId)}
       >
         <FontAwesome.FaFileExcelO size={28} className="mr-2" />
         {title}
@@ -25,6 +25,7 @@ class ExportExcelButton extends Component {
 
 ExportExcelButton.propTypes = {
   action: PropTypes.func,
+  establishmentId: PropTypes.integer,
 };
 
 export default ExportExcelButton;

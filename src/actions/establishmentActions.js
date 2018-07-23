@@ -263,7 +263,7 @@ export function selectEstablishment(item) {
   };
 }
 
-export function downloadEstablishments() {
+export function downloadEstablishment(id) {
   return async (dispatch, getState) => {
     dispatch({
       type: ESTABLISHMENT_DOWNLOAD,
@@ -271,7 +271,8 @@ export function downloadEstablishments() {
     try {
       const response = await axiosInstance({
         method: "get",
-        url: "/promotions/activations?format=xls"
+        url: "/promotions/activations?format=xls&establishment=" + id,
+        responseType: "blob",
       });
       dispatch({
         type: ESTABLISHMENT_DOWNLOAD_FULFILLED,
