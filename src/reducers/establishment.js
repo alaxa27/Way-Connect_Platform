@@ -108,7 +108,7 @@ const initialState = {
   selectedEstablishment: null,
 
   downloading: false,
-  establishmentsInXls: null,
+  establishmentInXls: null,
 
   addModalShown: false,
   addEstablishmentError: {
@@ -326,14 +326,14 @@ export default function reducer(state = initialState, action) {
         ...state,
         downloading: false,
         error: false,
-        establishmentsInXls: action.payload
+        establishmentInXls: action.payload
       };
     case ESTABLISHMENT_DOWNLOAD_REJECTED:
       return {
         ...state,
         downloading: false,
         error: action.payload,
-        establishmentsInXls: null
+        establishmentInXls: null
       };
     case ESTABLISHMENT_ADD:
       return {
