@@ -1,16 +1,13 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {
-  Row,
-  Col,
-  Input,
-} from "reactstrap";
+import {translate} from "react-i18next";
+import {Row, Col, Input} from "reactstrap";
 import * as FontAwesome from "react-icons/lib/fa";
 import {withScriptjs, withGoogleMap, GoogleMap, Marker} from "react-google-maps";
 import {compose, withProps} from "recompose";
 import DashboardPanel from "../../components/DashboardPanel/DashboardPanel";
-import { map } from "underscore";
+import {map} from "underscore";
 
 import * as dashboardActions from "../../actions/dashboardActions";
 import * as establishmentActions from "../../actions/establishmentActions";
@@ -32,35 +29,25 @@ const MyMapComponent = compose(withProps({
   mapElement: <div style={{
         height: "100%"
       }}/>
-}), withScriptjs, withGoogleMap)(props => (
-  <GoogleMap defaultZoom={7} center={{
+}), withScriptjs, withGoogleMap)(props => (<GoogleMap defaultZoom={7} center={{
     lat: props.center[1],
     lng: props.center[0]
   }}>
-    {
-    props.isMarkerShown && (
-      <React.Fragment>
-        {map(props.markers, (marker, i) => {
-          return (
-            <Marker
-              key={i}
-              position={{
-                lat: marker[1],
-                lng: marker[0]
-              }}
-            />
-          );
-        })}
-      </React.Fragment>
-    )
+  {
+    props.isMarkerShown && (<React.Fragment>
+      {
+        map(props.markers, (marker, i) => {
+          return (<Marker key={i} position={{
+              lat: marker[1],
+              lng: marker[0]
+            }}/>);
+        })
+      }
+    </React.Fragment>)
   }
-  </GoogleMap>));
+</GoogleMap>));
 
-const mapStateToProps = state => ({
-  stats: state.dashboard.stats,
-  establishments: state.establishment.establishments,
-  selectedEstablishment: state.establishment.selectedEstablishment
-});
+const mapStateToProps = state => ({stats: state.dashboard.stats, establishments: state.establishment.establishments, selectedEstablishment: state.establishment.selectedEstablishment});
 
 const mapDispatchToProps = dispatch => ({
   fetchDashboardData: () => dispatch(dashboardActions.fetchDashboardData()),
@@ -71,8 +58,7 @@ const mapDispatchToProps = dispatch => ({
 export class Dashboard extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = {};
     this.handleChange = this.handleChange.bind(this);
 
     this.props.fetchDashboardData();
@@ -88,17 +74,14 @@ export class Dashboard extends Component {
 
   selectEstablishment = (e, item) => {
     e.preventDefault();
-    const { selectEstablishment } = this.props;
+    const {selectEstablishment} = this.props;
     selectEstablishment(item);
   }
 
   loadMoreEstablishments = () => {
-    const { establishments, fetchEstablishmentList } = this.props;
+    const {establishments, fetchEstablishmentList} = this.props;
     // TODO - add payload to action
-    fetchEstablishmentList({
-      limit: establishments.limit,
-      offset: establishments.offset
-    });
+    fetchEstablishmentList({limit: establishments.limit, offset: establishments.offset});
   }
 
   formatPlotData = (data) => {
@@ -109,7 +92,7 @@ export class Dashboard extends Component {
   }
 
   render() {
-    const { stats, establishments, selectedEstablishment } = this.props;
+    const {stats, establishments, selectedEstablishment, i18n, t} = this.props;
 
     const markers = map(establishments.items, item => {
       return item.location.coordinates;
@@ -125,7 +108,7 @@ export class Dashboard extends Component {
       }}>
       <Row>
         <Col xs="12" lg="6">
-          <DashboardPanel color="#F15A24" plot={establishmentsPlot} title="Partners" value={stats.establishments.count} type="line1"/>
+          <DashboardPanel color="#F15A24" plot={establishmentsPlot} title={t("dashboard.kdp.partners.title")} value={stats.establishments.count} type="line1"/>
         </Col>
         <Col xs="12" lg="6">
           <DashboardPanel color="#F7931E" plot={connectionsPlot} title="Communication Diffusion" value={stats.connections.count} type="line1"/>
@@ -150,26 +133,15 @@ export class Dashboard extends Component {
           <Row>
             <Col>
               <div className="google-maps-wrapper mt-4">
-                <MyMapComponent
-                  isMarkerShown={true}
-                  center={selectedEstablishment ? selectedEstablishment.location.coordinates : [0, 0]}
-                  markers={markers}
-                />
+                <MyMapComponent isMarkerShown={true} center={selectedEstablishment
+                    ? selectedEstablishment.location.coordinates
+                    : [0, 0]} markers={markers}/>
               </div>
             </Col>
           </Row>
         </Col>
         <Col xs="12" md="6" className="top-space">
-          <EstablishmentList
-            establishments={establishments}
-            selectEstablishment={this.selectEstablishment}
-            selectedEstablishment={selectedEstablishment}
-
-            establishmentsPage={establishments.page}
-            establishmentsTotalCount={establishments.totalCount}
-            establishmentsLimit={establishments.limit}
-            loadMore={this.loadMoreEstablishments}
-          />
+          <EstablishmentList establishments={establishments} selectEstablishment={this.selectEstablishment} selectedEstablishment={selectedEstablishment} establishmentsPage={establishments.page} establishmentsTotalCount={establishments.totalCount} establishmentsLimit={establishments.limit} loadMore={this.loadMoreEstablishments}/>
         </Col>
         <div className="clearfix"></div>
       </Row>
@@ -186,6 +158,8 @@ Dashboard.propTypes = {
   establishments: PropTypes.object,
   selectEstablishment: PropTypes.func,
   selectedEstablishment: PropTypes.object,
+  t: PropTypes.func,
+  i18n: PropTypes.object
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default compose(connect(mapStateToProps, mapDispatchToProps), translate("translations"))(Dashboard);

@@ -30,8 +30,7 @@ module.exports = (env = {}) => {
       open: true
     },
     module: {
-      rules: [
-        {
+      rules: [{
           test: /\.(js|jsx)$/,
           exclude: /node_modules/,
           use: {
@@ -51,10 +50,13 @@ module.exports = (env = {}) => {
           test: /\.(scss)$/,
           use: ['css-hot-loader'].concat(extractSCSS.extract({
             fallback: 'style-loader',
-            use: [
-              {
+            use: [{
                 loader: 'css-loader',
-                options: {alias: {'../img': '../public/img'}}
+                options: {
+                  alias: {
+                    '../img': '../public/img'
+                  }
+                }
               },
               {
                 loader: 'sass-loader'
@@ -71,15 +73,13 @@ module.exports = (env = {}) => {
         },
         {
           test: /\.(png|jpg|jpeg|gif|ico)$/,
-          use: [
-            {
-              // loader: 'url-loader'
-              loader: 'file-loader',
-              options: {
-                name: './img/[name].[hash].[ext]'
-              }
+          use: [{
+            // loader: 'url-loader'
+            loader: 'file-loader',
+            options: {
+              name: './img/[name].[hash].[ext]'
             }
-          ]
+          }]
         },
         {
           test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
@@ -87,25 +87,34 @@ module.exports = (env = {}) => {
           options: {
             name: './fonts/[name].[hash].[ext]'
           }
-        }]
+        }
+      ]
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
-      new webpack.optimize.UglifyJsPlugin({sourceMap: true}),
+      new webpack.optimize.UglifyJsPlugin({
+        sourceMap: true
+      }),
       new webpack.NamedModulesPlugin(),
       extractCSS,
       extractSCSS,
-      new HtmlWebpackPlugin(
-        {
-          inject: true,
-          template: './public/index.html'
-        }
-      ),
-      new CopyWebpackPlugin([
-          {from: './public/img', to: 'img'}
-        ],
-        {copyUnmodified: false}
-      ),
+      new HtmlWebpackPlugin({
+        inject: true,
+        template: './public/index.html'
+      }),
+      new CopyWebpackPlugin([{
+        from: './public/img',
+        to: 'img'
+      }], {
+        copyUnmodified: false
+      }),
+      new CopyWebpackPlugin([{
+        from: './public/locales',
+        to: 'locales'
+      }], {
+        copyUnmodified: false
+      }),
+
       new webpack.DefinePlugin({
         'process.env': {
           NODE_ENV: JSON.stringify(env.NODE_ENV),
