@@ -25,7 +25,7 @@ class ExportExcelButton extends Component {
 
 ExportExcelButton.propTypes = {
   action: PropTypes.func,
-  establishmentId: PropTypes.integer,
+  establishmentId: PropTypes.string,
 };
 
 export default ExportExcelButton;

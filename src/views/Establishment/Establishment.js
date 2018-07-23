@@ -92,6 +92,13 @@ export class Establishment extends Component {
     });
   }
 
+  componentDidUpdate() {
+    const { establishmentInXls } = this.props;
+    if(establishmentInXls) {
+      fileDownload(establishmentInXls, "file.xls");
+    }
+  }
+
   render() {
     const {
       traffic,
@@ -101,12 +108,7 @@ export class Establishment extends Component {
       monthlyData,
       trafficPeriodChange,
       downloadEstablishment,
-      establishmentInXls
     } = this.props;
-
-    if(establishmentInXls) {
-      fileDownload(establishmentInXls, "file.xls");
-    }
 
     return (<ReduxBlockUi tag="div" block={["ESTABLISHMENT_PAGE"]} unblock={["ESTABLISHMENT_PAGE_FULFILLED", "ESTABLISHMENT_PAGE_REJECTED"]}>
       <div className="sub-page-wrapper animated fadeIn">
@@ -189,7 +191,10 @@ Establishment.propTypes = {
   trafficPeriodChange: PropTypes.func,
   fetchPromotions: PropTypes.func,
   downloadEstablishment: PropTypes.func,
-  establishmentInXls: PropTypes.string
+  establishmentInXls: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object
+  ])
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Establishment);
