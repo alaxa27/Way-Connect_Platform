@@ -22,7 +22,6 @@ import ResearchFilters from "../../components/ResearchFilters/ResearchFilters";
 
 import {fetchCampaign} from "../../actions/campaignActions";
 import {translate} from "react-i18next";
-import PropTypes from "prop-types";
 
 @connect((store) => {
   let campaignStore = store.campaign;
