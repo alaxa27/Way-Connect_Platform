@@ -7,14 +7,15 @@ import {
   CardHeader,
   CardBody
 } from "reactstrap";
-
-const title = "Traffic & Sales";
+import {translate} from "react-i18next";
+import PropTypes from "prop-types";
 
 class TrafficSales extends Component {
   constructor(props) {
     super(props);
   }
   render() {
+    const { title, t } = this.props;
     return (<Card>
       <CardHeader>
         {title}
@@ -25,7 +26,7 @@ class TrafficSales extends Component {
             <ul className="horizontal-bars traffic-bars">
               <li>
                 <div className="title">
-                  Monday
+                  {t("general.monday")}
                 </div>
                 <div className="bars">
                   <Progress className="progress-xs" color="info" value="34"/>
@@ -34,7 +35,7 @@ class TrafficSales extends Component {
               </li>
               <li>
                 <div className="title">
-                  Tuesday
+                  {t("general.tuesday")}
                 </div>
                 <div className="bars">
                   <Progress className="progress-xs" color="info" value="56"/>
@@ -43,7 +44,7 @@ class TrafficSales extends Component {
               </li>
               <li>
                 <div className="title">
-                  Wednesday
+                  {t("general.wednesday")}
                 </div>
                 <div className="bars">
                   <Progress className="progress-xs" color="info" value="12"/>
@@ -52,7 +53,7 @@ class TrafficSales extends Component {
               </li>
               <li>
                 <div className="title">
-                  Thursday
+                  {t("general.thursday")}
                 </div>
                 <div className="bars">
                   <Progress className="progress-xs" color="info" value="43"/>
@@ -61,7 +62,7 @@ class TrafficSales extends Component {
               </li>
               <li>
                 <div className="title">
-                  Friday
+                  {t("general.friday")}
                 </div>
                 <div className="bars">
                   <Progress className="progress-xs" color="info" value="22"/>
@@ -70,7 +71,7 @@ class TrafficSales extends Component {
               </li>
               <li>
                 <div className="title">
-                  Saturday
+                  {t("general.saturday")}
                 </div>
                 <div className="bars">
                   <Progress className="progress-xs" color="info" value="53"/>
@@ -79,7 +80,7 @@ class TrafficSales extends Component {
               </li>
               <li>
                 <div className="title">
-                  Sunday
+                  {t("general.sunday")}
                 </div>
                 <div className="bars">
                   <Progress className="progress-xs" color="info" value="9"/>
@@ -93,4 +94,10 @@ class TrafficSales extends Component {
     </Card>);
   }
 }
-export default TrafficSales;
+
+TrafficSales.propTypes = {
+  title: PropTypes.string,
+  t: PropTypes.func,
+};
+
+export default translate("translations")(TrafficSales);

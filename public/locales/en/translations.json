@@ -1,9 +1,179 @@
 {
+  "general": {
+    "month": "Month",
+    "year": "Year",
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday",
+    "trafficChart": {
+      "title": "Traffic"
+    },
+    "affluence": {
+      "title": "Affluence"
+    },
+    "exportExcel": {
+      "title": "Export Excel"
+    }
+  },
   "dashboard": {
     "kdp": {
       "partners": {
         "title": "Partners"
+      },
+      "communicationDiffusion": {
+        "title": "Communication Diffusion"
+      },
+      "campaigns": {
+        "title": "Campaigns"
+      },
+      "clients" : {
+        "title": "Clients"
       }
+    },
+    "ourPartners": {
+      "title": "Our partners"
+    }
+  },
+  "campaigns": {
+    "start": {
+      "text": "Start a new campaign"
+    },
+    "bidding": {
+      "title": "Bidding"
+    },
+    "inProgress": {
+      "title": "In progress"
+    },
+    "delivered": {
+      "title": "Delivered"
+    },
+    "comingSoon": {
+      "title": "Coming Soon",
+      "description": "You will soon be able to create your own advertising campaign.",
+      "countDown": {
+        "days": "Days",
+        "hours": "Hours",
+        "minutes": "Minutes",
+        "seconds": "Seconds"
+      }
+    },
+    "fixedFilters": {
+      "title": "Filters fixed"
+    }
+  },
+  "bidCampaign": {
+    "bid": {
+      "title": "last bid at",
+      "wc": "WC",
+      "viewsAvailable": "views available",
+      "peopleInterested": "peoples are interested about this product",
+      "repetition": "Repetition",
+      "period": "Period",
+      "month": "month",
+      "getQuotations": "Get quotations",
+      "number": "Number",
+      "total": "Total",
+      "ready": "Ready for bidding",
+      "bid": "bid"
+    }
+  },
+  "configCampaign": {
+    "tabs": {
+      "video": {
+        "title": "Video"
+      },
+      "survey": {
+        "title": "Survey"
+      },
+      "submit": {
+        "title": "Submit"
+      }
+    },
+    "survey": {
+      "title": "Define a formulary",
+      "inputs": {
+        "name": {
+          "label": "Name your formulary"
+        },
+        "question1": {
+          "label": "Question1"
+        }
+      },
+      "addAnswer": {
+        "title": "Add an answer"
+      },
+      "addQuestion": {
+        "title": "Add a question"
+      }
+    },
+    "video": {
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+      "upload": {
+        "title": "Upload a file (mp4, m4v, avi, flv)"
+      }
+    }
+  },
+  "analyticsCampaign": {
+    "panel": {
+      "views": {
+        "title": "Views"
+      },
+      "viewers": {
+        "title": "Viewers"
+      },
+      "expenseTracking": {
+        "title": "Expense Tracking"
+      },
+      "clicks": {
+        "title": "Clicks"
+      }
+    },
+    "trafficChart": {
+      "title": "Traffic"
+    },
+    "trafficAndSalesChart": {
+      "title": "Traffic & Sales"
+    },
+    "typicalClient": {
+      "title": "Client Type",
+      "age": {
+        "title": "Age"
+      },
+      "country": {
+        "title": "Country"
+      },
+      "gender": {
+        "title": "Gender"
+      },
+      "relationshipStatus": {
+        "title": "Relationship status"
+      },
+      "workStatus": {
+        "title": "Work status"
+      }
+    }
+  },
+  "establishment": {
+    "panel": {
+      "visits": {
+        "title": "Visits"
+      },
+      "promotions": {
+        "title": "Total of Promotions"
+      },
+      "revisitAverage": {
+        "title": "Average of Revisit"
+      },
+      "visitFluctuation": {
+        "title": "Visit Fluctuation"
+      }
+    },
+    "promotions": {
+      "title": "Promotions"
     }
   }
 }

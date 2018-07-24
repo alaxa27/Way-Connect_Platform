@@ -15,6 +15,7 @@ import {
 import {Line} from "react-chartjs-2";
 import _ from "underscore";
 import ReduxBlockUi from "react-block-ui/redux";
+import {translate} from "react-i18next";
 
 class TrafficChart extends Component {
   constructor(props) {
@@ -28,7 +29,7 @@ class TrafficChart extends Component {
     return Math.max.apply(null, numArray);
   }
   render() {
-    const {traffic, options, title, trafficPeriodChange} = this.props;
+    const {traffic, options, title, trafficPeriodChange, t} = this.props;
     if(_.first(traffic.datasets)) {
       this.setMaxHeight(this.arrayMax(_.first(traffic.datasets).data));
     }
@@ -44,8 +45,8 @@ class TrafficChart extends Component {
                 ? <Col sm="7" className="d-none d-sm-inline-block">
                   <ButtonToolbar className="float-right" aria-label="Toolbar with button groups">
                     <ButtonGroup className="mr-3" aria-label="First group">
-                      <Button color="outline-secondary" onClick={() => trafficPeriodChange("month")} active={traffic.period === "month"}>Month</Button>
-                      <Button color="outline-secondary" onClick={() => trafficPeriodChange("year")} active={traffic.period === "year"}>Year</Button>
+                      <Button color="outline-secondary" onClick={() => trafficPeriodChange("month")} active={traffic.period === "month"}>{t("general.month")}</Button>
+                      <Button color="outline-secondary" onClick={() => trafficPeriodChange("year")} active={traffic.period === "year"}>{t("general.year")}</Button>
                     </ButtonGroup>
                   </ButtonToolbar>
                 </Col>
@@ -82,7 +83,8 @@ TrafficChart.propTypes = {
   options: PropTypes.object,
   title: PropTypes.string,
   traffic: PropTypes.object,
-  trafficPeriodChange: PropTypes.func
+  trafficPeriodChange: PropTypes.func,
+  t: PropTypes.func,
 };
 
-export default TrafficChart;
+export default translate("translations")(TrafficChart);

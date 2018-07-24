@@ -111,13 +111,13 @@ export class Dashboard extends Component {
           <DashboardPanel color="#F15A24" plot={establishmentsPlot} title={t("dashboard.kdp.partners.title")} value={stats.establishments.count} type="line1"/>
         </Col>
         <Col xs="12" lg="6">
-          <DashboardPanel color="#F7931E" plot={connectionsPlot} title="Communication Diffusion" value={stats.connections.count} type="line1"/>
+          <DashboardPanel color="#F7931E" plot={connectionsPlot} title={t("dashboard.kdp.communicationDiffusion.title")} value={stats.connections.count} type="line1"/>
         </Col>
         <Col xs="12" lg="6">
-          <DashboardPanel color="#FBB03B" plot={campaignsPlot} title="Campaigns" value={stats.campaigns.count} type="line2"/>
+          <DashboardPanel color="#FBB03B" plot={campaignsPlot} title={t("dashboard.kdp.campaigns.title")} value={stats.campaigns.count} type="line2"/>
         </Col>
         <Col xs="12" lg="6">
-          <DashboardPanel color="#F9DA23" plot={customersPlot} title="Clients" value={stats.customers.count} type="bar"/>
+          <DashboardPanel color="#F9DA23" plot={customersPlot} title={t("dashboard.kdp.clients.title")} value={stats.customers.count} type="bar"/>
         </Col>
       </Row>
 
@@ -127,7 +127,7 @@ export class Dashboard extends Component {
             <Col>
               <h2 className="way-heading" style={{
                   fontSize: "24px"
-                }}>Our partners</h2>
+                }}>{t("dashboard.ourPartners.title")}</h2>
             </Col>
           </Row>
           <Row>

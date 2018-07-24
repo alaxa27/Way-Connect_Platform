@@ -5,6 +5,8 @@ import Eye from "./view.png";
 import Cart from "./shopping_cart_ok.png";
 import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
+import {translate} from "react-i18next";
+import PropTypes from "prop-types";
 
 class BidCampaign extends Component {
   constructor(props) {
@@ -43,6 +45,7 @@ class BidCampaign extends Component {
   }
 
   render() {
+    const { t } = this.props;
     const data = [
       {
         rank: 1,
@@ -51,7 +54,7 @@ class BidCampaign extends Component {
         view: 600,
         bid: 6,
         cart: 200,
-        status: "Delivered"
+        status: t("campaigns.bidding.title")
       }, {
         rank: 2,
         name: "Teads.tv",
@@ -59,7 +62,7 @@ class BidCampaign extends Component {
         view: 600,
         bid: 6,
         cart: 200,
-        status: "Bidding"
+        status: t("campaigns.bidding.title")
       }, {
         rank: 3,
         name: "Teads.tv",
@@ -67,7 +70,7 @@ class BidCampaign extends Component {
         view: 600,
         bid: 6,
         cart: 200,
-        status: "Bidding"
+        status: t("campaigns.bidding.title")
       }, {
         rank: 4,
         name: "Teads.tv",
@@ -75,7 +78,7 @@ class BidCampaign extends Component {
         view: 600,
         bid: 6,
         cart: 200,
-        status: "Progress"
+        status: t("campaigns.inProgress.title")
       }, {
         rank: 5,
         name: "Teads.tv",
@@ -83,7 +86,7 @@ class BidCampaign extends Component {
         view: 600,
         bid: 6,
         cart: 200,
-        status: "Progress"
+        status: t("campaigns.inProgress.title")
       }, {
         rank: 6,
         name: "Teads.tv",
@@ -91,7 +94,7 @@ class BidCampaign extends Component {
         view: 600,
         bid: 6,
         cart: 200,
-        status: "Bidding"
+        status: t("campaigns.bidding.title")
       }, {
         rank: 7,
         name: "Teads.tv",
@@ -99,7 +102,7 @@ class BidCampaign extends Component {
         view: 600,
         bid: 6,
         cart: 200,
-        status: "Progress"
+        status: t("campaigns.inProgress.title")
       }, {
         rank: 8,
         name: "Teads.tv",
@@ -107,7 +110,7 @@ class BidCampaign extends Component {
         view: 600,
         bid: 6,
         cart: 200,
-        status: "Progress"
+        status: t("campaigns.inProgress.title")
       }, {
         rank: 9,
         name: "Teads.tv",
@@ -115,7 +118,7 @@ class BidCampaign extends Component {
         view: 600,
         bid: 6,
         cart: 200,
-        status: "Progress"
+        status: t("campaigns.inProgress.title")
       }
     ];
     const showData = data.map((list, i) => <tr key={list.rank}>
@@ -129,7 +132,7 @@ class BidCampaign extends Component {
       </td>
       <td>
         <label>{list.name}</label>
-        <span>last bid at {list.lastBid}</span>
+        <span>{t("bidCampaign.bid.title")} {list.lastBid}</span>
       </td>
       <td>
         <p>
@@ -149,7 +152,7 @@ class BidCampaign extends Component {
             }
           </label>
           <label className="pull-left">{list.bid}
-            <span className="line-through">WC</span>
+            <span className="line-through">{t("bidCampaign.bid.wc")}</span>
           </label>
         </p>
       </td>
@@ -183,38 +186,38 @@ class BidCampaign extends Component {
             <div className="search-detail-wrap">
               <div className="search-detail-head">
                 <h1>Bakery</h1>
-                <label>1950/4000 views available</label>
-                <span>9 peoples are interested about this product</span>
+                <label>1950/4000 {t("bidCampaign.bid.viewsAvailable")}</label>
+                <span>9 {t("bidCampaign.bid.peopleInterested")}</span>
               </div>
               <div className="bidding-panel">
                 <div className="quote-detail">
-                  <label>Repetition</label>
+                  <label>{t("bidCampaign.bid.repetition")}</label>
                   <div onClick={this.hit}>
                     <InputRange maxValue={1000} minValue={0} value={this.state.value} onChange={value => this.setState({value})}/>
                   </div>
                   <span className="pull-right right-slider-label">{this.state.value}</span>
                   <div className="clearfix"></div>
                   <br/><br/>
-                  <label>Period</label>
+                  <label>{t("bidCampaign.bid.period")}</label>
                   <div onClick={this.hit}>
                     <InputRange maxValue={12} minValue={0} value={this.state.period} onChange={period => this.setState({period})}/>
                   </div>
                   <span className="pull-left right-slider-label">0</span>
                   <span className="pull-right right-slider-label">{this.state.period}
-                    month</span>
+                    {t("bidCampaign.bid.month")}</span>
                   <div className="clearfix"></div>
 
                   {
                     this.state.bidWrap
                       ? null
-                      : <Button className="get-quotations-btn button-radius" onClick={this.toggleBid}>Get quotations</Button>
+                      : <Button className="get-quotations-btn button-radius" onClick={this.toggleBid}>{t("bidCampaign.bid.getQuotations")}</Button>
                   }
                 </div>
               </div>
             </div>
             {
               this.state.bidWrap && <div className="bidding-area animated fadeIn">
-                <label>Number</label>
+                <label>{t("bidCampaign.bid.number")}</label>
                 <InputRange maxValue={100} minValue={0} value={this.state.number} onChange={number => this.setState({number})}/>
                 <span className="pull-left right-slider-label">0</span>
                 <span className="pull-right right-slider-label">100</span>
@@ -222,14 +225,14 @@ class BidCampaign extends Component {
 
                 <Row>
                   <Col>
-                    <label className="total-cost-label">Total 250
-                      <span className="line-through">WC</span>
+                    <label className="total-cost-label">{t("bidCampaign.bid.total")} 250
+                      <span className="line-through">{t("bidCampaign.bid.wc")}</span>
                     </label>
                     <label className="ready-status"><FontAwesome.FaCircle/>
-                        Ready for biding</label>
+                      {t("bidCampaign.bid.ready")}</label>
                   </Col>
                   <Col>
-                    <Button className="bid-btn button-radius">Bid</Button>
+                    <Button className="bid-btn button-radius">{t("bidCampaign.bid.bid")}</Button>
                   </Col>
                 </Row>
 
@@ -242,4 +245,9 @@ class BidCampaign extends Component {
     </div>);
   }
 }
-export default BidCampaign;
+
+BidCampaign.propTypes = {
+  t: PropTypes.func,
+};
+
+export default translate("translations")(BidCampaign);

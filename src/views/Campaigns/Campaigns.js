@@ -21,6 +21,8 @@ import AnalyticsCampaign from "./AnalyticsCampaign/";
 import ResearchFilters from "../../components/ResearchFilters/ResearchFilters";
 
 import {fetchCampaign} from "../../actions/campaignActions";
+import {translate} from "react-i18next";
+import PropTypes from "prop-types";
 
 @connect((store) => {
   let campaignStore = store.campaign;
@@ -98,6 +100,7 @@ class Campaigns extends Component {
   }
 
   render() {
+    const { t } = this.props;
     return (<div className="sub-page-wrapper animated fadeIn">
 
       <div className="custom-breadcrumb-wrapper">
@@ -108,19 +111,19 @@ class Campaigns extends Component {
             <Col xs="4" md="3">
               <label className="bidding-status-label">
                 <FontAwesome.FaCircle className={this.renderStatusCircle("bidding")}/>
-                Bidding
+                {t("campaigns.bidding.title")}
               </label>
             </Col>
             <Col xs="4" md="3">
               <label className="bidding-status-label">
                 <FontAwesome.FaCircle className={this.renderStatusCircle("progress")}/>
-                In Progress
+                {t("campaigns.inProgress.title")}
               </label>
             </Col>
             <Col xs="4" md="3">
               <label className="bidding-status-label">
                 <FontAwesome.FaCircle className={this.renderStatusCircle("delivered")}/>
-                Delivered
+                {t("campaigns.delivered.title")}
               </label>
             </Col>
           </Row>
@@ -134,7 +137,7 @@ class Campaigns extends Component {
                   color: "#989898"
                 }} onClick={this.showFilter}>
                 <FontAwesome.FaCircle/>
-                Filters fixed {
+                {t("campaigns.fixedFilters.title")} {
                   this.state.filter
                     ? <FontAwesome.FaAngleDown/>
                     : <FontAwesome.FaAngleLeft/>
@@ -156,4 +159,7 @@ class Campaigns extends Component {
     </div>);
   }
 }
-export default Campaigns;
+Campaigns.propTypes = {
+  t: PropTypes.func,
+};
+export default translate("translations")(Campaigns);
