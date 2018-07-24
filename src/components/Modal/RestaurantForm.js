@@ -40,7 +40,7 @@ class RestaurantForm extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <div className="modal-body__group mb-2">
           <div className="modal-body__label mb-2">
-            {t('general.form.name')}
+            {t("general.form.name")}
           </div>
           <input type="text" className="w-100 py-1 px-3" name="name" placeholder="Name" onChange={(e) => this.handleInputChange("name", e)}/>
           {this.validator.message("name", this.state.name, "required", "text-danger name-error", {
@@ -56,7 +56,7 @@ class RestaurantForm extends React.Component {
         </div>
         <div className="modal-body__group mb-2">
           <div className="modal-body__label mb-2">
-          {t('general.form.phone')}
+            {t("general.form.phone")}
           </div>
           <input type="text" className="w-100 py-1 px-3" name="phone" placeholder="Phone" onChange={(e) => this.handleInputChange("phone", e)}/>
           {this.validator.message("phone", this.state.phone, "required", "text-danger phone-error", {
@@ -72,7 +72,7 @@ class RestaurantForm extends React.Component {
         </div>
         <div className="modal-body__group mb-4">
           <div className="modal-body__label mb-2">
-          {t('general.form.address')}
+            {t("general.form.address")}
           </div>
           <input type="text" className="w-100 py-1 px-3" name="address" placeholder="Address" onChange={(e) => this.handleInputChange("address", e)}/>
           {this.validator.message("address", this.state.address, "required", "text-danger address-error", {
@@ -87,7 +87,7 @@ class RestaurantForm extends React.Component {
           }
         </div>
         <button className="modal-body__submit bid-btn bid-btn-dark">
-        {t('addEstablishment.step1.form.submit')}
+          {t("addEstablishment.step1.form.submit")}
         </button>
       </form>
     );

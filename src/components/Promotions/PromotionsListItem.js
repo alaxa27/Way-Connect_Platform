@@ -18,8 +18,8 @@ class PromotionsListItem extends Component {
           <span className="promotion__span-middle">{new Date(promotion.date).toLocaleString()}</span>
         </div>
         <div className="text-right">
-          <label className="promotion__label-right">{promotion.views}<sup>{t('general.th')}</sup></label>
-          <span className="promotion__span-right">{t('general.visit')}</span>
+          <label className="promotion__label-right">{promotion.views}<sup>{t("general.th")}</sup></label>
+          <span className="promotion__span-right">{t("general.visit")}</span>
         </div>
       </div>
     );

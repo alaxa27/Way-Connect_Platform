@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {Route, Link} from "react-router-dom";
 import {Breadcrumb, BreadcrumbItem} from "reactstrap";
 import {translate} from "react-i18next";
-import BreadcrumbsItem from './BreadcrumbsItem';
+import BreadcrumbsItem from "./BreadcrumbsItem";
 
 const getPaths = (pathname) => {
   const paths = ["/"];

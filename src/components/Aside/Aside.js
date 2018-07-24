@@ -8,15 +8,15 @@ class Aside extends Component {
     return (
       <aside className="aside-menu text-center px-2">
         <div className="aside-menu__title aside-menu__title--colored mt-4">
-          {t('walletManager.top')}
+          {t("walletManager.top")}
         </div>
         <div className="aside-menu__coming-soon">
           <img src="../img/shiba-01.png" alt="Logo" className="modal-body__img" />
           <div className="aside-menu__title aside-menu__title--big mb-3">
-            {t('walletManager.title')}
+            {t("walletManager.title")}
           </div>
           <div className="aside-menu__title">
-            {t('walletManager.subtitle')}
+            {t("walletManager.subtitle")}
           </div>
         </div>
       </aside>

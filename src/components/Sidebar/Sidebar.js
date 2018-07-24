@@ -13,8 +13,8 @@ import _ from "underscore";
 import PropTypes from "prop-types";
 import {translate} from "react-i18next";
 import {compose} from "recompose";
-import { isUndefined } from 'underscore';
-import { camelCase } from 'lodash';
+import { isUndefined } from "underscore";
+import { camelCase } from "lodash";
 
 const mapStateToProps = state => ({
   myEstablishments: state.establishment.myEstablishments,
@@ -135,8 +135,8 @@ class Sidebar extends Component {
 
     const translate = (item) => {
       const { t } = this.props;
-      return !isUndefined(item.translatable) ? item.name : t('sidebar.' + camelCase(item.name));
-    }
+      return !isUndefined(item.translatable) ? item.name : t("sidebar." + camelCase(item.name));
+    };
 
     // nav link
     const navLink = (item, key, classes) => {
@@ -152,8 +152,8 @@ class Sidebar extends Component {
             :
             <NavLink to={url} className={classes.link} activeClassName="active" onClick={classes.onClick ? classes.onClick : this.hideMobile}>
               <i className={classes.icon}></i>
-                {translate(item)}
-                {badge(item.badge)}
+              {translate(item)}
+              {badge(item.badge)}
             </NavLink>
           }
         </NavItem>

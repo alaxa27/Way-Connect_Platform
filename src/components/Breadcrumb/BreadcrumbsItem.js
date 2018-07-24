@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {BreadcrumbItem} from "reactstrap";
 import {translate} from "react-i18next";
 import routes from "../../routes";
-import { camelCase } from 'lodash';
+import { camelCase } from "lodash";
 
 const findRouteName = url => routes[url];
 
@@ -14,8 +14,8 @@ const BreadcrumbsItem = ({
 }) => {
   const routeName = findRouteName(match.url);
   const translate = (routeName) => {
-    return t('breadcrumbs.' + camelCase(routeName));
-  }
+    return t("breadcrumbs." + camelCase(routeName));
+  };
   if (routeName) {
     return (
       match.isExact

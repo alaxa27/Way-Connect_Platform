@@ -38,24 +38,24 @@ class AddEstablishmentModal extends React.Component {
               <div className="modal-body__heading">
                 <img src="../img/b1.png" alt="Logo" className="modal-body__img" />
                 <div className="modal-body__title modal-body__title--big mb-3">
-                  {t('addEstablishment.step1.title')}
+                  {t("addEstablishment.step1.title")}
                 </div>
                 <div className="modal-body__title">
-                  {t('addEstablishment.step1.subtitle')}
+                  {t("addEstablishment.step1.subtitle")}
                 </div>
               </div>                    
               <div className="modal-body__content my-4">
                 <div className="modal-body__types">
                   <div className="modal-body__label mb-2">
-                    {t('addEstablishment.step1.placeType.title')}
+                    {t("addEstablishment.step1.placeType.title")}
                   </div>
                   <div className="modal-body__types mb-2">
                     <Row>
                       <Col md="6" xs="12" className="mb-2">
-                        <button type="submit" className={"modal-body__type bid-btn" + (activeType === "restaurant" ? " bid-btn-dark" : "")} onClick={() => { changePlace("restaurant"); }}>{t('addEstablishment.step1.placeType.restaurant')}</button>
+                        <button type="submit" className={"modal-body__type bid-btn" + (activeType === "restaurant" ? " bid-btn-dark" : "")} onClick={() => { changePlace("restaurant"); }}>{t("addEstablishment.step1.placeType.restaurant")}</button>
                       </Col>
                       <Col md="6" xs="12">
-                        <button type="submit" className={"modal-body__type bid-btn" + (activeType === "hotel" ? " bid-btn-dark" : "")} onClick={() => { changePlace("hotel"); }}>{t('addEstablishment.step1.placeType.hotel')}</button>
+                        <button type="submit" className={"modal-body__type bid-btn" + (activeType === "hotel" ? " bid-btn-dark" : "")} onClick={() => { changePlace("hotel"); }}>{t("addEstablishment.step1.placeType.hotel")}</button>
                       </Col>
                     </Row>
                   </div>
@@ -86,13 +86,13 @@ class AddEstablishmentModal extends React.Component {
               <div className="modal-body__heading">
                 <img src="../img/b1.png" alt="Logo" className="modal-body__img" />
                 <div className="modal-body__title modal-body__title--big mb-3">
-                {t('addEstablishment.step2.title')}
+                  {t("addEstablishment.step2.title")}
                 </div>
                 <div className="modal-body__title">
-                {t('addEstablishment.step2.subtitle')}
+                  {t("addEstablishment.step2.subtitle")}
                 </div>
                 <button onClick={toggleModal} className="modal-body__submit bid-btn bid-btn-dark btn-block mt-4 mb-5">
-                {t('addEstablishment.step1.subtitle')}
+                  {t("addEstablishment.step1.subtitle")}
                 </button>
                 <div className="modal-body__dots d-flex justify-content-center">
                   <span className="modal-body__dot mr-2"></span>
