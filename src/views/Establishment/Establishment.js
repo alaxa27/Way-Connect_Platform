@@ -154,7 +154,7 @@ export class Establishment extends Component {
               <div className="d-flex flex-column right-box">
                 <Affluence title={t("general.affluence.title")} data={affluence}/>
                 {typicalCustomer ?
-                  <TypicalClient data={typicalCustomer}/>
+                  <TypicalClient title={t("general.typicalClient.title")} data={typicalCustomer}/>
                 :
                   null
                 }

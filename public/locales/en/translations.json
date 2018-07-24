@@ -10,14 +10,47 @@
     "saturday": "Saturday",
     "sunday": "Sunday",
     "trafficChart": {
-      "title": "Traffic"
+      "title": "Traffic",
+      "legend": {
+        "visits": "Visits55",
+        "views": "Views",
+        "clicks": "Clicks"
+      }
+    },
+    "trafficAndSalesChart": {
+      "title": "Traffic & Sales"
     },
     "affluence": {
       "title": "Affluence"
     },
+    "typicalClient": {
+      "title": "Client Type",
+      "age": {
+        "title": "Age"
+      },
+      "country": {
+        "title": "Country"
+      },
+      "gender": {
+        "title": "Gender"
+      },
+      "relationshipStatus": {
+        "title": "Relationship status"
+      },
+      "workStatus": {
+        "title": "Work status"
+      }
+    },
     "exportExcel": {
       "title": "Export Excel"
-    }
+    },
+    "form": {
+      "name": "Name",
+      "phone": "Phone",
+      "address": "Address"
+    },
+    "th": "th",
+    "visit": "visit"
   },
   "dashboard": {
     "kdp": {
@@ -131,30 +164,6 @@
       "clicks": {
         "title": "Clicks"
       }
-    },
-    "trafficChart": {
-      "title": "Traffic"
-    },
-    "trafficAndSalesChart": {
-      "title": "Traffic & Sales"
-    },
-    "typicalClient": {
-      "title": "Client Type",
-      "age": {
-        "title": "Age"
-      },
-      "country": {
-        "title": "Country"
-      },
-      "gender": {
-        "title": "Gender"
-      },
-      "relationshipStatus": {
-        "title": "Relationship status"
-      },
-      "workStatus": {
-        "title": "Work status"
-      }
     }
   },
   "establishment": {
@@ -175,5 +184,45 @@
     "promotions": {
       "title": "Promotions"
     }
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "campaigns": "Campaigns",
+    "campaignsDev": "CampaignsDev",
+    "bidCampaign": "BidCampaign",
+    "configCampaign": "ConfigCampaign",
+    "analyticsCampaign": "AnalyticsCampaign",
+    "establishments": "Establishments",
+    "add": "Add",
+    "logOut": "Log Out"
+  },
+  "breadcrumbs": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "listCampaign": "Campaigns list"
+  },
+  "addEstablishment": {
+    "step1": {
+      "title": "Welcome!",
+      "subtitle": "Last step before starting ...",
+      "placeType": {
+        "title": "Type of place",
+        "restaurant": "Restaurant",
+        "hotel": "Hotel"
+      },
+      "form": {
+        "submit": "Lets start"
+      }
+    },
+    "step2": {
+      "title": "Great!",
+      "subtitle": "We will contact you and deliver you a Way-Box in the next 72h.",
+      "button": "Continue on the dashboard"
+    }
+  },
+  "walletManager": {
+    "top": "Wallet Manager",
+    "title": "Coming Soon",
+    "subtitle": "You will soon be able to create your own advertising campaign."
   }
 }

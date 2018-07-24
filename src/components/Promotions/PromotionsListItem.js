@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import {translate} from "react-i18next";
 
 class PromotionsListItem extends Component {
   render() {
-    const { promotion } = this.props;
+    const { promotion, t } = this.props;
     return (
       <div className="promotion__item d-flex align-items-center py-3">
         <div className="promotion__circle-container pr-4">
@@ -17,8 +18,8 @@ class PromotionsListItem extends Component {
           <span className="promotion__span-middle">{new Date(promotion.date).toLocaleString()}</span>
         </div>
         <div className="text-right">
-          <label className="promotion__label-right">{promotion.views}<sup>th</sup></label>
-          <span className="promotion__span-right">visit</span>
+          <label className="promotion__label-right">{promotion.views}<sup>{t('general.th')}</sup></label>
+          <span className="promotion__span-right">{t('general.visit')}</span>
         </div>
       </div>
     );
@@ -26,7 +27,8 @@ class PromotionsListItem extends Component {
 }
 
 PromotionsListItem.propTypes = {
-    promotion: PropTypes.object.isRequired
+    promotion: PropTypes.object.isRequired,
+    t: PropTypes.func
 };
 
-export default PromotionsListItem;
+export default translate("translations")(PromotionsListItem);

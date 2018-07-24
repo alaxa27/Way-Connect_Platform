@@ -98,7 +98,7 @@ export class AnalyticsCampaign extends Component {
                 <TrafficChart
                     traffic={traffic}
                     options={trafficChartOptions}
-                    title={t("analyticsCampaign.trafficChart.title")}
+                    title={t("general.trafficChart.title")}
                   />
               </Col>
             </Row>
@@ -106,13 +106,13 @@ export class AnalyticsCampaign extends Component {
             <Row>
               <Col xs="12" lg="6">
                 <TrafficSales
-                    title={t("analyticsCampaign.trafficAndSalesChart.title")}
+                    title={t("general.trafficAndSalesChart.title")}
                 />
               </Col>
               <Col xs="12" lg="6">
                 <TypicalClient
                         data={typicalCustomer}
-                        title={t("analyticsCampaign.typicalClient.title")}
+                        title={t("general.typicalClient.title")}
                     />
               </Col>
             </Row>

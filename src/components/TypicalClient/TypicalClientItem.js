@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import * as FontAwesome from "react-icons/lib/fa";
 import { Tooltip } from "reactstrap";
-import _ from "underscore";
+import { isNumber } from "underscore";
 
 class TypicalClientItem extends Component {
   constructor(props) {
@@ -27,12 +27,12 @@ class TypicalClientItem extends Component {
             {title}
           </div>
           <div className="typical-client__value text-right">
-            {label}
+            {isNumber(label) ? Math.floor(label) : label}
           </div>
           <div href="#" className="typical-client__settings text-right pl-2" id={"Tooltip-" + id}>
             <FontAwesome.FaCog />
             <Tooltip placement="top" isOpen={this.state.tooltipShown} target={"Tooltip-" + id} toggle={this.toggleTooltip}>
-              {Math.round(value * 100)}%
+              {value < 1 ? Math.round(value * 100) : Math.floor(value)}%
             </Tooltip>
           </div>
         </div>
@@ -42,11 +42,14 @@ class TypicalClientItem extends Component {
 }
 
 TypicalClientItem.propTypes = {
-    id: PropTypes.integer,
+    id: PropTypes.number,
     last: PropTypes.bool,
     title: PropTypes.string,
     value: PropTypes.number,
-    label: PropTypes.string,
+    label: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.integer
+    ]),
     color: PropTypes.string
 };
 

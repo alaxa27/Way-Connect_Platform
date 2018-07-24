@@ -3,6 +3,7 @@ import {Row, Col} from "reactstrap";
 import moment from "moment";
 import {translate} from "react-i18next";
 import Countdown from "../Countdown";
+import PropTypes from "prop-types";
 
 const launchDate = moment("2018-08-05");
 
