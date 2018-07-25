@@ -5,7 +5,7 @@ import {translate} from "react-i18next";
 import Countdown from "../Countdown";
 import PropTypes from "prop-types";
 
-const launchDate = moment("2018-08-05");
+const launchDate = moment("2018-08-10");
 
 const ComingSoon = ({ t }) => {
   return (
