@@ -5,6 +5,8 @@ import RestaurantForm from "./RestaurantForm";
 import HotelForm from "./HotelForm";
 import * as establishmentActions from "../../actions/establishmentActions";
 import {connect} from "react-redux";
+import {translate} from "react-i18next";
+import {compose} from "recompose";
 
 const mapStateToProps = state => ({
   addEstablishmentError: state.establishment.addEstablishmentError,
@@ -27,7 +29,7 @@ class AddEstablishmentModal extends React.Component {
     addEstablishment({...formState, establishmentType: activeType});
   }
   render() {
-    const { isOpen, toggleModal, addEstablishmentError, addEstablishmentSuccess, changePlace, activeType } = this.props;
+    const { isOpen, toggleModal, addEstablishmentError, addEstablishmentSuccess, changePlace, activeType, t } = this.props;
     return (
       <Modal isOpen={isOpen} toggle={toggleModal} className="add-establishment-modal">
         <div className="container-fluid">
@@ -36,24 +38,24 @@ class AddEstablishmentModal extends React.Component {
               <div className="modal-body__heading">
                 <img src="../img/b1.png" alt="Logo" className="modal-body__img" />
                 <div className="modal-body__title modal-body__title--big mb-3">
-                                    Welcome!
+                  {t("addEstablishment.step1.title")}
                 </div>
                 <div className="modal-body__title">
-                                    Last step before starting ...
+                  {t("addEstablishment.step1.subtitle")}
                 </div>
               </div>                    
               <div className="modal-body__content my-4">
                 <div className="modal-body__types">
                   <div className="modal-body__label mb-2">
-                                        Type of place
+                    {t("addEstablishment.step1.placeType.title")}
                   </div>
                   <div className="modal-body__types mb-2">
                     <Row>
                       <Col md="6" xs="12" className="mb-2">
-                        <button type="submit" className={"modal-body__type bid-btn" + (activeType === "restaurant" ? " bid-btn-dark" : "")} onClick={() => { changePlace("restaurant"); }}>Restaurant</button>
+                        <button type="submit" className={"modal-body__type bid-btn" + (activeType === "restaurant" ? " bid-btn-dark" : "")} onClick={() => { changePlace("restaurant"); }}>{t("addEstablishment.step1.placeType.restaurant")}</button>
                       </Col>
                       <Col md="6" xs="12">
-                        <button type="submit" className={"modal-body__type bid-btn" + (activeType === "hotel" ? " bid-btn-dark" : "")} onClick={() => { changePlace("hotel"); }}>Hotel</button>
+                        <button type="submit" className={"modal-body__type bid-btn" + (activeType === "hotel" ? " bid-btn-dark" : "")} onClick={() => { changePlace("hotel"); }}>{t("addEstablishment.step1.placeType.hotel")}</button>
                       </Col>
                     </Row>
                   </div>
@@ -84,13 +86,13 @@ class AddEstablishmentModal extends React.Component {
               <div className="modal-body__heading">
                 <img src="../img/b1.png" alt="Logo" className="modal-body__img" />
                 <div className="modal-body__title modal-body__title--big mb-3">
-                                    Great!
+                  {t("addEstablishment.step2.title")}
                 </div>
                 <div className="modal-body__title">
-                                    We will contact you and deliver you a Way-Box in the next 72h.
+                  {t("addEstablishment.step2.subtitle")}
                 </div>
                 <button onClick={toggleModal} className="modal-body__submit bid-btn bid-btn-dark btn-block mt-4 mb-5">
-                                    Continue on the dashboard
+                  {t("addEstablishment.step1.subtitle")}
                 </button>
                 <div className="modal-body__dots d-flex justify-content-center">
                   <span className="modal-body__dot mr-2"></span>
@@ -112,7 +114,8 @@ AddEstablishmentModal.propTypes = {
     addEstablishmentSuccess: PropTypes.bool,
     addEstablishment: PropTypes.func,
     changePlace: PropTypes.func,
-    activeType: PropTypes.string
+    activeType: PropTypes.string,
+    t: PropTypes.func
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddEstablishmentModal);
+export default compose(connect(mapStateToProps, mapDispatchToProps), translate("translations"))(AddEstablishmentModal);

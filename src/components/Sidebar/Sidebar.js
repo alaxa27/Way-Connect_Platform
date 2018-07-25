@@ -11,6 +11,10 @@ import * as actions from "../../actions/establishmentActions";
 import { connect } from "react-redux";
 import _ from "underscore";
 import PropTypes from "prop-types";
+import {translate} from "react-i18next";
+import {compose} from "recompose";
+import { isUndefined } from "underscore";
+import { camelCase } from "lodash";
 
 const mapStateToProps = state => ({
   myEstablishments: state.establishment.myEstablishments,
@@ -56,7 +60,8 @@ class Sidebar extends Component {
     const myEstablishments = _.map(props.myEstablishments.items, item => {
       return {
         name: item.name,
-        url: "/establishment/" + item.id
+        url: "/establishment/" + item.id,
+        translatable: false
       };
     });
     let establishmentMenuItem = _.find(nav.items, item => item.name === "Establishments");
@@ -128,6 +133,11 @@ class Sidebar extends Component {
       );
     };
 
+    const translate = (item) => {
+      const { t } = this.props;
+      return !isUndefined(item.translatable) ? item.name : t("sidebar." + camelCase(item.name));
+    };
+
     // nav link
     const navLink = (item, key, classes) => {
       const url = item.url ? item.url : "";
@@ -135,11 +145,15 @@ class Sidebar extends Component {
         <NavItem key={key} className={classes.item}>
           { isExternal(url) ?
             <RsNavLink href={url} className={classes.link} active>
-              <i className={classes.icon}></i>{item.name}{badge(item.badge)}
+              <i className={classes.icon}></i>
+              {translate(item)}
+              {badge(item.badge)}
             </RsNavLink>
             :
             <NavLink to={url} className={classes.link} activeClassName="active" onClick={classes.onClick ? classes.onClick : this.hideMobile}>
-              <i className={classes.icon}></i>{item.name}{badge(item.badge)}
+              <i className={classes.icon}></i>
+              {translate(item)}
+              {badge(item.badge)}
             </NavLink>
           }
         </NavItem>
@@ -150,7 +164,9 @@ class Sidebar extends Component {
     const navDropdown = (item, key) => {
       return (
         <li key={key} className={this.activeRoute(item.url, props)}>
-          <a className="nav-link nav-dropdown-toggle" href="#" onClick={this.handleClick}><i className={item.icon}></i>{item.name}</a>
+          <a className="nav-link nav-dropdown-toggle" href="#" onClick={this.handleClick}><i className={item.icon}></i>
+            {translate(item)}
+          </a>
           <ul className="nav-dropdown-items">
             {navList(item.children)}
           </ul>
@@ -195,7 +211,8 @@ class Sidebar extends Component {
 Sidebar.propTypes = {
   fetchMyEstablishmentList: PropTypes.func,
   myEstablishments: PropTypes.object,
-  toggleModal: PropTypes.func
+  toggleModal: PropTypes.func,
+  t: PropTypes.func
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
+export default compose(connect(mapStateToProps, mapDispatchToProps), translate("translations"))(Sidebar);

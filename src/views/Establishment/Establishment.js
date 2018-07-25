@@ -11,6 +11,8 @@ import Panel from "../../components/Panel/Panel";
 import TrafficChart from "../../components/Traffic/TrafficChart";
 import ExportExcelButton from "./ExportExcel/ExportExcelButton";
 import * as actions from "../../actions/establishmentActions";
+import {translate} from "react-i18next";
+import {compose} from "recompose";
 
 const fileDownload = require("js-file-download");
 
@@ -108,6 +110,7 @@ export class Establishment extends Component {
       monthlyData,
       trafficPeriodChange,
       downloadEstablishment,
+      t
     } = this.props;
 
     return (<ReduxBlockUi tag="div" block={["ESTABLISHMENT_PAGE"]} unblock={["ESTABLISHMENT_PAGE_FULFILLED", "ESTABLISHMENT_PAGE_REJECTED"]}>
@@ -117,22 +120,22 @@ export class Establishment extends Component {
           }}>
           <Row>
             <Col xs="12" md="6" lg="3">
-              <Panel index={1} value={monthlyData.visits} title="Visits"/>
+              <Panel index={1} value={monthlyData.visits} title={t("establishment.panel.visits.title")} />
             </Col>
             <Col xs="12" md="6" lg="3">
-              <Panel index={2} value={monthlyData.total_rewards.value} currency={monthlyData.total_rewards.currency} title="Total of Promotions"/>
+              <Panel index={2} value={monthlyData.total_rewards.value} currency={monthlyData.total_rewards.currency} title={t("establishment.panel.promotions.title")} />
             </Col>
             <Col xs="12" md="6" lg="3">
-              <Panel index={3} value={monthlyData.customer_average_visits} title="Average of Revisit"/>
+              <Panel index={3} value={monthlyData.customer_average_visits} title={t("establishment.panel.revisitAverage.title")} />
             </Col>
             <Col xs="12" md="6" lg="3">
-              <Panel index={4} value={monthlyData.visits_change} title="Visit Fluctuation"/>
+              <Panel index={4} value={monthlyData.visits_change} title={t("establishment.panel.visitFluctuation.title")} />
             </Col>
           </Row>
 
           <Row>
             <Col>
-              <TrafficChart traffic={traffic} options={trafficChartOptions} trafficPeriodChange={trafficPeriodChange} title="Traffic"/>
+              <TrafficChart traffic={traffic} options={trafficChartOptions} trafficPeriodChange={trafficPeriodChange} title={t("general.trafficChart.title")}/>
             </Col>
           </Row>
 
@@ -140,7 +143,7 @@ export class Establishment extends Component {
             <Col>
               <h2 className="way-heading" style={{
                   fontSize: "24px"
-                }}>Promotions</h2>
+                }}>{t("establishment.promotions.title")}</h2>
             </Col>
           </Row>
           <Row>
@@ -149,8 +152,12 @@ export class Establishment extends Component {
             </Col>
             <Col md="6">
               <div className="d-flex flex-column right-box">
-                <Affluence data={affluence}/>
-                <TypicalClient data={typicalCustomer}/>
+                <Affluence title={t("general.affluence.title")} data={affluence}/>
+                {typicalCustomer ?
+                  <TypicalClient title={t("general.typicalClient.title")} data={typicalCustomer}/>
+                :
+                  null
+                }
               </div>
             </Col>
           </Row>
@@ -158,6 +165,7 @@ export class Establishment extends Component {
           <Row>
             <Col>
               <ExportExcelButton
+                title={t("general.exportExcel.title")}
                 action={downloadEstablishment}
                 establishmentId={this.props.match.params.id}
               />
@@ -194,7 +202,8 @@ Establishment.propTypes = {
   establishmentInXls: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object
-  ])
+  ]),
+  t: PropTypes.func,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Establishment);
+export default compose(connect(mapStateToProps, mapDispatchToProps), translate("translations"))(Establishment);

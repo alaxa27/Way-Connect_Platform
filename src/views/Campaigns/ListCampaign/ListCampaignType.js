@@ -5,7 +5,7 @@ import * as FontAwesome from "react-icons/lib/fa";
 import * as MdIconPack from "react-icons/lib/md";
 import "react-input-range/lib/css/index.css";
 import {Row, Col, Button, Collapse} from "reactstrap";
-
+import {translate} from "react-i18next";
 import ListCampaignItem from "./ListCampaignItem";
 
 class ListCampaignType extends Component {
@@ -32,7 +32,7 @@ class ListCampaignType extends Component {
   }
 
   render() {
-    const {title, status, canAddNew, campaigns} = this.props;
+    const {title, status, canAddNew, campaigns, t} = this.props;
 
     const items = campaigns.map((item, key) =>
       <ListCampaignItem status={status} item={item} key={key}/>);
@@ -69,7 +69,7 @@ class ListCampaignType extends Component {
               canAddNew
                 ? <Link to="/campaigns/create">
                   <Button className="add-btn"><MdIconPack.MdAddCircleOutline/>
-                    {"start a new campaign"}</Button>
+                    {t("campaigns.start.text")}</Button>
                 </Link>
                 : null
             }
@@ -79,4 +79,7 @@ class ListCampaignType extends Component {
     </div>);
   }
 }
-export default ListCampaignType;
+ListCampaignType.propTypes = {
+  t: PropTypes.func,
+};
+export default translate("translations")(ListCampaignType);

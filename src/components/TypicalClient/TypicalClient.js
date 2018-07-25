@@ -10,7 +10,6 @@ import TypicalClientImage from "./TypicalClientImage";
 import TypicalClientList from "./TypicalClientList";
 import ReduxBlockUi from "react-block-ui/redux";
 
-const title = "Client Type";
 const clientImageDimensions = {
   width: 180,
   height: 180
@@ -21,7 +20,7 @@ class TypicalClient extends Component {
       super(props);
   }
   render() {
-    const { data } = this.props;
+    const { data, title } = this.props;
     return (
       <ReduxBlockUi tag="div" block="TYPICAL_CUSTOMER" unblock={["TYPICAL_CUSTOMER_FULFILLED", "TYPICAL_CUSTOMER_REJECTED"]}>
         <Card className="typical-client-card">
@@ -51,7 +50,8 @@ class TypicalClient extends Component {
 }
 
 TypicalClient.propTypes = {
-    data: PropTypes.object
+    data: PropTypes.object,
+    title: PropTypes.string,
 };
 
 export default TypicalClient;

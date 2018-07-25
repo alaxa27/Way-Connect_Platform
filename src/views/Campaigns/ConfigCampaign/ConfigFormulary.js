@@ -6,6 +6,8 @@ import {
     Button,
     Input,
 } from "reactstrap";
+import {translate} from "react-i18next";
+import PropTypes from "prop-types";
 
 class ConfigFormulary extends Component {
   constructor(props) {
@@ -13,6 +15,7 @@ class ConfigFormulary extends Component {
   }
 
   render() {
+    const { t } = this.props;
     return (
       <Row>
         <Col>
@@ -22,17 +25,19 @@ class ConfigFormulary extends Component {
                     fontSize: "24px",
                     marginBottom: 0,
                     marginTop: "25px"
-                }}>Define a formulary</h2>
+                }}>
+                {t("configCampaign.survey.title")}
+              </h2>
               <div className="sep">&nbsp;</div>
             </Col>
 
             <Col className="formulary-input-wrap">
-              <label>Name your formulary</label>
+              <label>{t("configCampaign.survey.inputs.name.label")}</label>
               <Input type="text" name="formularyName"/>
             </Col>
 
             <Col className="formulary-input-wrap">
-              <label>Question 1</label>
+              <label>{t("configCampaign.survey.inputs.question1.label")}</label>
               <Input type="text" name="question1"/>
             </Col>
 
@@ -42,7 +47,7 @@ class ConfigFormulary extends Component {
               }} className="formulary-input-wrap">
               <Input type="text" name="answer1"/>
               <Button className="add-btn"><MdIconPack.MdAddCircleOutline/>
-                  add an answer</Button>
+                {t("configCampaign.survey.addAnswer.title")}</Button>
             </Col>
 
             <Col>
@@ -50,7 +55,7 @@ class ConfigFormulary extends Component {
             </Col>
 
             <Col className="formulary-input-wrap">
-              <label>Question 1</label>
+              <label>{t("configCampaign.survey.inputs.question1.label")}</label>
               <Input type="text" name="question1"/>
             </Col>
 
@@ -60,7 +65,7 @@ class ConfigFormulary extends Component {
               }} className="formulary-input-wrap">
               <Input type="text" name="answer1"/>
               <Button className="add-btn"><MdIconPack.MdAddCircleOutline/>
-                  add an answer</Button>
+                {t("configCampaign.survey.addAnswer.title")}</Button>
             </Col>
 
             <Col>
@@ -69,7 +74,7 @@ class ConfigFormulary extends Component {
 
             <Col className="formulary-input-wrap">
               <Button className="add-btn"><MdIconPack.MdAddCircleOutline/>
-                  add a question</Button>
+                {t("configCampaign.survey.addQuestion.title")}</Button>
             </Col>
           </div>
         </Col>
@@ -77,4 +82,7 @@ class ConfigFormulary extends Component {
     );
   }
 }
-export default ConfigFormulary;
+ConfigFormulary.propTypes = {
+  t: PropTypes.func,
+};
+export default translate("translations")(ConfigFormulary);

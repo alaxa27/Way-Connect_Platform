@@ -2,9 +2,8 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {Route, Link} from "react-router-dom";
 import {Breadcrumb, BreadcrumbItem} from "reactstrap";
-import routes from "../../routes";
-
-const findRouteName = url => routes[url];
+import {translate} from "react-i18next";
+import BreadcrumbsItem from "./BreadcrumbsItem";
 
 const getPaths = (pathname) => {
   const paths = ["/"];
@@ -18,27 +17,6 @@ const getPaths = (pathname) => {
     return currPath;
   });
   return paths;
-};
-
-const BreadcrumbsItem = ({
-  match,
-  ...rest
-}) => {
-  const routeName = findRouteName(match.url);
-  if (routeName) {
-    return (
-      match.isExact
-      ? (<BreadcrumbItem active>{routeName}</BreadcrumbItem>)
-      : (<BreadcrumbItem>
-        <Link to={match.url || ""}>
-          {routeName}
-        </Link>
-      </BreadcrumbItem>));
-  }
-  return null;
-};
-BreadcrumbsItem.propTypes = {
-  match: PropTypes.object
 };
 
 const Breadcrumbs = ({
@@ -70,4 +48,4 @@ class BreadcrumbComponent extends Component {
   }
 }
 
-export default BreadcrumbComponent;
+export default translate("translations")(BreadcrumbComponent);

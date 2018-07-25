@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { fetchCampaigns } from "../../../actions/listCampaignsActions";
 import CampaignType from "./ListCampaignType";
 import ComingSoon from "../../../components/Modal/ComingSoon";
+import {translate} from "react-i18next";
 
 @connect((store) => {
   let listCampaignsStore = store.listCampaigns;
@@ -22,16 +23,20 @@ class ListCampaign extends Component {
   }
 
   render() {
+    const { t } = this.props;
     return (
       <div className="sub-page-wrapper animated fadeIn">
         <div className="campaign-types-container">
-          <CampaignType title="Bidding" campaigns={this.props.campaigns} status="bidding" canAddNew/>
-          <CampaignType title="In Progress" campaigns={this.props.campaigns} status="progress"/>
-          <CampaignType title="Delivered" campaigns={this.props.campaigns} status="delivered"/>
+          <CampaignType title={t("campaigns.bidding.title")} campaigns={this.props.campaigns} status="bidding" canAddNew/>
+          <CampaignType title={t("campaigns.inProgress.title")} campaigns={this.props.campaigns} status="progress"/>
+          <CampaignType title={t("campaigns.delivered.title")} campaigns={this.props.campaigns} status="delivered"/>
         </div>
         <ComingSoon />
       </div>
     );
   }
 }
-export default ListCampaign;
+ListCampaign.propTypes = {
+  t: PropTypes.func,
+};
+export default translate("translations")(ListCampaign);

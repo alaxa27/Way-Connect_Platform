@@ -15,6 +15,8 @@ import TrafficSales from "./TrafficSales/TrafficSales";
 import { connect } from "react-redux";
 import * as actions from "../../../actions/campaignActions";
 import ReduxBlockUi from "react-block-ui/redux";
+import {translate} from "react-i18next";
+import {compose} from "recompose";
 
 const trafficChartOptions = {
     maintainAspectRatio: false,
@@ -70,7 +72,7 @@ export class AnalyticsCampaign extends Component {
       });
   }
   render() {
-    const { traffic, keyData, typicalCustomer } = this.props;
+    const { traffic, keyData, typicalCustomer, t } = this.props;
     return (
       <ReduxBlockUi tag="div" block={["CAMPAIGN_ANALYTICS", "CAMPAIGN_ANALYTICS_REJECTED"]} unblock={["CAMPAIGN_ANALYTICS_FULFILLED"]}>
         <div className="sub-page-wrapper animated fadeIn">
@@ -79,16 +81,16 @@ export class AnalyticsCampaign extends Component {
               }}>
             <Row>
               <Col xs="12" md="6" lg="3">
-                <Panel index={1} value={keyData.views} title="Views"/>
+                <Panel index={1} value={keyData.views} title={t("analyticsCampaign.panel.views.title")}/>
               </Col>
               <Col xs="12" md="6" lg="3">
-                <Panel index={2} value={keyData.customers} title="Viewers"/>
+                <Panel index={2} value={keyData.customers} title={t("analyticsCampaign.panel.viewers.title")}/>
               </Col>
               <Col xs="12" md="6" lg="3">
-                <Panel index={3} value={keyData.expense.value} currency={keyData.expense.currency} title="Expense Tracking"/>
+                <Panel index={3} value={keyData.expense.value} currency={keyData.expense.currency} title={t("analyticsCampaign.panel.expenseTracking.title")} />
               </Col>
               <Col xs="12" md="6" lg="3">
-                <Panel index={4} value={keyData.clicks} title="Clicks"/>
+                <Panel index={4} value={keyData.clicks} title={t("analyticsCampaign.panel.clicks.title")} />
               </Col>
             </Row>
             <Row>
@@ -96,18 +98,21 @@ export class AnalyticsCampaign extends Component {
                 <TrafficChart
                     traffic={traffic}
                     options={trafficChartOptions}
-                    title="Traffic"
+                    title={t("general.trafficChart.title")}
                   />
               </Col>
             </Row>
 
             <Row>
               <Col xs="12" lg="6">
-                <TrafficSales />
+                <TrafficSales
+                    title={t("general.trafficAndSalesChart.title")}
+                />
               </Col>
               <Col xs="12" lg="6">
                 <TypicalClient
                         data={typicalCustomer}
+                        title={t("general.typicalClient.title")}
                     />
               </Col>
             </Row>
@@ -130,7 +135,8 @@ AnalyticsCampaign.propTypes = {
     typicalCustomer: PropTypes.oneOfType([
         PropTypes.object,
     ]),
-    fetchCampaignAnalyticsPageData: PropTypes.func
+    fetchCampaignAnalyticsPageData: PropTypes.func,
+    t: PropTypes.func,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AnalyticsCampaign);
+export default compose(connect(mapStateToProps, mapDispatchToProps), translate("translations"))(AnalyticsCampaign);

@@ -14,6 +14,8 @@ import {
 import classnames from "classnames";
 import ConfigVideo from "./ConfigVideo";
 import ConfigFormulary from "./ConfigFormulary";
+import {translate} from "react-i18next";
+import PropTypes from "prop-types";
 
 class ConfigCampaign extends Component {
   constructor(props) {
@@ -31,6 +33,7 @@ class ConfigCampaign extends Component {
   }
 
   render() {
+    const { t } = this.props;
     const componentConfig = {
       iconFiletypes: [
         ".mp4", ".m4v", ".avi", ".flv"
@@ -61,7 +64,7 @@ class ConfigCampaign extends Component {
                     })} onClick={() => {
                       this.toggle("1");
                     }}>
-                    Video
+                    {t("configCampaign.tabs.video.title")}
                   </NavLink>
                 </NavItem>
                 <NavItem>
@@ -70,7 +73,7 @@ class ConfigCampaign extends Component {
                     })} onClick={() => {
                       this.toggle("2");
                     }}>
-                    Survey
+                    {t("configCampaign.tabs.survey.title")}
                   </NavLink>
                 </NavItem>
               </Nav>
@@ -90,7 +93,7 @@ class ConfigCampaign extends Component {
                 <Col className="text-right border-top">
                   <Button className="bid-btn" style={{
                       maxWidth: 200
-                    }}>Submit</Button>
+                    }}>{t("configCampaign.tabs.submit.title")}</Button>
                 </Col>
 
               </TabContent>
@@ -103,4 +106,7 @@ class ConfigCampaign extends Component {
     </div>);
   }
 }
-export default ConfigCampaign;
+ConfigCampaign.propTypes = {
+  t: PropTypes.func,
+};
+export default translate("translations")(ConfigCampaign);

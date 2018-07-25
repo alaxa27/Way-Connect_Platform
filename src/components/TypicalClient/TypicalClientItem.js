@@ -2,15 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import * as FontAwesome from "react-icons/lib/fa";
 import { Tooltip } from "reactstrap";
-import _ from "underscore";
-
-const colors = {
-    age: "#FC6600",
-    gender: "#FC6600",
-    relationship_status: "#F9812A",
-    work_status: "#F9A602",
-    country: "#FFBF00"
-};
+import { isNumber } from "underscore";
 
 class TypicalClientItem extends Component {
   constructor(props) {
@@ -25,29 +17,22 @@ class TypicalClientItem extends Component {
         tooltipShown: !this.state.tooltipShown
     });
   }
-  unslugify(word) {
-      const splits = word.split("_");
-      const capitalized = _.map(splits, split => {
-         return split.charAt(0).toUpperCase() + split.slice(1);
-      });
-      return capitalized.join(" ");
-  }
   render() {
-    const { title, value, last } = this.props;
+    const { id, title, color, label, value, last } = this.props;
     return (
       <li className="typical-client__item d-flex align-items-center">
-        <div className="typical-client__color" style={{backgroundColor: colors[title]}}></div>
+        <div className="typical-client__color" style={{backgroundColor: color}}></div>
         <div className={"typical-client__body d-flex align-items-center ml-2 py-2" + (last ? " typical-client__body--last" : "")}>
           <div className="typical-client__prop">
-            {this.unslugify(title)}
+            {title}
           </div>
           <div className="typical-client__value text-right">
-            {_.isObject(value) ? value.label : Math.floor(value)}
+            {isNumber(label) ? Math.floor(label) : label}
           </div>
-          <div href="#" className="typical-client__settings text-right pl-2" id={"Tooltip-" + title}>
+          <div href="#" className="typical-client__settings text-right pl-2" id={"Tooltip-" + id}>
             <FontAwesome.FaCog />
-            <Tooltip placement="top" isOpen={this.state.tooltipShown} target={"Tooltip-" + title} toggle={this.toggleTooltip}>
-              {_.isObject(value) ? Math.round(value.value * 100) : 100}%
+            <Tooltip placement="top" isOpen={this.state.tooltipShown} target={"Tooltip-" + id} toggle={this.toggleTooltip}>
+              {value < 1 ? Math.round(value * 100) : Math.floor(value)}%
             </Tooltip>
           </div>
         </div>
@@ -57,13 +42,15 @@ class TypicalClientItem extends Component {
 }
 
 TypicalClientItem.propTypes = {
-    prop: PropTypes.object,
+    id: PropTypes.number,
     last: PropTypes.bool,
     title: PropTypes.string,
-    value: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.object
-    ])
+    value: PropTypes.number,
+    label: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.integer
+    ]),
+    color: PropTypes.string
 };
 
 export default TypicalClientItem;

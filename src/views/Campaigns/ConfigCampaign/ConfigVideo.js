@@ -3,6 +3,8 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import {translate} from "react-i18next";
+import PropTypes from "prop-types";
 
 class ConfigVideo extends Component {
   constructor(props) {
@@ -10,6 +12,7 @@ class ConfigVideo extends Component {
   }
 
   render() {
+    const { t } = this.props;
     const componentConfig = {
       iconFiletypes: [
         ".mp4", ".m4v", ".avi", ".flv"
@@ -45,7 +48,7 @@ class ConfigVideo extends Component {
                   offset: 2
                 }}>
               <div className="video__teaser">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
+                {t("configCampaign.video.description")}
               </div>
             </Col>
           </Row>
@@ -56,7 +59,7 @@ class ConfigVideo extends Component {
                 }}>
               <div className="video__file-upload">
                 <button className="bid-btn bid-btn-dark">
-                    Upload a file (mp4, m4v, avi, flv)
+                  {t("configCampaign.video.upload.title")}
                 </button>
               </div>
             </Col>
@@ -66,4 +69,7 @@ class ConfigVideo extends Component {
     );
   }
 }
-export default ConfigVideo;
+ConfigVideo.propTypes = {
+  t: PropTypes.func,
+};
+export default translate("translations")(ConfigVideo);

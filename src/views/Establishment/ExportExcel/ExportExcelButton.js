@@ -5,11 +5,9 @@ import {
 import * as FontAwesome from "react-icons/lib/fa";
 import PropTypes from "prop-types";
 
-const title = "Export Excel";
-
 class ExportExcelButton extends Component {
   render() {
-    const { action, establishmentId } = this.props;
+    const { action, establishmentId, title } = this.props;
     return (
       <Button 
         className="bid-btn d-flex align-items-center justify-content-center" 
@@ -26,6 +24,8 @@ class ExportExcelButton extends Component {
 ExportExcelButton.propTypes = {
   action: PropTypes.func,
   establishmentId: PropTypes.string,
+  t: PropTypes.func,
+  title: PropTypes.string,
 };
 
 export default ExportExcelButton;

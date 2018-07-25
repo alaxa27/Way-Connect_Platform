@@ -4,6 +4,7 @@ import ValidatorService from "../../services/ValidatorService";
 import ErrorMessageService from "../../services/ErrorMessageService";
 import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
+import {translate} from "react-i18next";
 
 class RestaurantForm extends React.Component {
   constructor(props) {
@@ -34,12 +35,12 @@ class RestaurantForm extends React.Component {
     }
   }
   render() {
-    const { error } = this.props;
+    const { error, t } = this.props;
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="modal-body__group mb-2">
           <div className="modal-body__label mb-2">
-                    Name
+            {t("general.form.name")}
           </div>
           <input type="text" className="w-100 py-1 px-3" name="name" placeholder="Name" onChange={(e) => this.handleInputChange("name", e)}/>
           {this.validator.message("name", this.state.name, "required", "text-danger name-error", {
@@ -55,7 +56,7 @@ class RestaurantForm extends React.Component {
         </div>
         <div className="modal-body__group mb-2">
           <div className="modal-body__label mb-2">
-                    Phone
+            {t("general.form.phone")}
           </div>
           <input type="text" className="w-100 py-1 px-3" name="phone" placeholder="Phone" onChange={(e) => this.handleInputChange("phone", e)}/>
           {this.validator.message("phone", this.state.phone, "required", "text-danger phone-error", {
@@ -71,7 +72,7 @@ class RestaurantForm extends React.Component {
         </div>
         <div className="modal-body__group mb-4">
           <div className="modal-body__label mb-2">
-                    Address
+            {t("general.form.address")}
           </div>
           <input type="text" className="w-100 py-1 px-3" name="address" placeholder="Address" onChange={(e) => this.handleInputChange("address", e)}/>
           {this.validator.message("address", this.state.address, "required", "text-danger address-error", {
@@ -86,7 +87,7 @@ class RestaurantForm extends React.Component {
           }
         </div>
         <button className="modal-body__submit bid-btn bid-btn-dark">
-                Lets start
+          {t("addEstablishment.step1.form.submit")}
         </button>
       </form>
     );
@@ -95,7 +96,8 @@ class RestaurantForm extends React.Component {
 
 RestaurantForm.propTypes = {
     handleSubmitSuccess: PropTypes.func,
-    error: PropTypes.object
+    error: PropTypes.object,
+    t: PropTypes.func
 };
 
-export default RestaurantForm;
+export default translate("translations")(RestaurantForm);

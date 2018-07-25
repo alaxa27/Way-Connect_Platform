@@ -10,8 +10,6 @@ import {
 import {Bar} from "react-chartjs-2";
 import ReduxBlockUi from "react-block-ui/redux";
 
-const title = "Affluence";
-
 const barOptions = {
   maintainAspectRatio: false,
   scales: {
@@ -30,7 +28,7 @@ const barOptions = {
 
 class Affluence extends Component {
   render() {
-    const { data } = this.props;
+    const { data, title } = this.props;
     return (
       <ReduxBlockUi tag="div" block="AFFLUENCE" unblock={["AFFLUENCE_FULFILLED", "AFFLUENCE_REJECTED"]}>
         <Card className="affluence-card">
@@ -51,7 +49,8 @@ class Affluence extends Component {
 }
 
 Affluence.propTypes = {
-    data: PropTypes.object
+    data: PropTypes.object,
+    title: PropTypes.string,
 };
 
 export default Affluence;
