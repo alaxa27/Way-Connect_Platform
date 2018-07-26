@@ -77,7 +77,7 @@ export class Dashboard extends Component {
     e.preventDefault();
     const {selectEstablishment, changeMapZoom} = this.props;
     selectEstablishment(item);
-    changeMapZoom(9);
+    changeMapZoom(15);
   }
 
   loadMoreEstablishments = () => {
