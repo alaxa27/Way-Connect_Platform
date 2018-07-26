@@ -41,6 +41,7 @@ import {
 
   ESTABLISHMENT_CHANGE_PLACE
 } from "../constants/ActionTypes";
+const fileDownload = require("js-file-download");
 
 export function fetchEstablishmentPageData(payload) {
   return async (dispatch, getState) => {
@@ -274,9 +275,9 @@ export function downloadEstablishment(id) {
         url: "/promotions/activations?format=xls&establishment=" + id,
         responseType: "blob",
       });
+      fileDownload(response.data, "file.xls");
       dispatch({
         type: ESTABLISHMENT_DOWNLOAD_FULFILLED,
-        payload: response.data
       });
     } catch (error) {
       dispatch({

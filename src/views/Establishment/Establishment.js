@@ -14,7 +14,6 @@ import * as actions from "../../actions/establishmentActions";
 import {translate} from "react-i18next";
 import {compose} from "recompose";
 
-const fileDownload = require("js-file-download");
 
 let trafficChartOptions = {
   maintainAspectRatio: false,
@@ -56,14 +55,12 @@ const mapStateToProps = state => ({
   affluence: state.establishment.affluence,
   typicalCustomer: state.establishment.typicalCustomer,
   promotions: state.establishment.promotions,
-  establishmentInXls: state.establishment.establishmentInXls
 });
 
 const mapDispatchToProps = dispatch => ({
   trafficPeriodChange: payload => dispatch(actions.trafficPeriodChange(payload)),
   fetchEstablishmentPageData: payload => dispatch(actions.fetchEstablishmentPageData(payload)),
   fetchPromotions: payload => dispatch(actions.fetchPromotions(payload)),
-  downloadEstablishment: (payload) => dispatch(actions.downloadEstablishment(payload))
 });
 
 export class Establishment extends Component {
@@ -94,13 +91,6 @@ export class Establishment extends Component {
     });
   }
 
-  componentDidUpdate() {
-    const { establishmentInXls } = this.props;
-    if(establishmentInXls) {
-      fileDownload(establishmentInXls, "file.xls");
-    }
-  }
-
   render() {
     const {
       traffic,
@@ -109,10 +99,8 @@ export class Establishment extends Component {
       promotions,
       monthlyData,
       trafficPeriodChange,
-      downloadEstablishment,
       t
     } = this.props;
-
     return (<ReduxBlockUi tag="div" block={["ESTABLISHMENT_PAGE"]} unblock={["ESTABLISHMENT_PAGE_FULFILLED", "ESTABLISHMENT_PAGE_REJECTED"]}>
       <div className="sub-page-wrapper animated fadeIn">
         <div style={{
@@ -166,7 +154,6 @@ export class Establishment extends Component {
             <Col>
               <ExportExcelButton
                 title={t("general.exportExcel.title")}
-                action={downloadEstablishment}
                 establishmentId={this.props.match.params.id}
               />
             </Col>
@@ -198,11 +185,6 @@ Establishment.propTypes = {
   fetchEstablishmentPageData: PropTypes.func,
   trafficPeriodChange: PropTypes.func,
   fetchPromotions: PropTypes.func,
-  downloadEstablishment: PropTypes.func,
-  establishmentInXls: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object
-  ]),
   t: PropTypes.func,
 };
 
