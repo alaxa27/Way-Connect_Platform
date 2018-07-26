@@ -1,0 +1,30 @@
+.stats-panel {
+  padding: 15px 15px 50px;
+  margin-bottom: 1.5rem;
+  border-radius: 5px;
+  color: #fff;
+
+  &--1 {
+    background: #F15A24 url("../img/panel_bg.png") no-repeat bottom right;
+    background-size: 100px;
+  }
+
+  &--2 {
+    background: #F7931E url("../img/panel_bg.png") no-repeat bottom right;
+    background-size: 100px;
+  }
+
+  &--3 {
+    background: #FBB03B url("../img/panel_bg.png") no-repeat bottom right;
+    background-size: 100px;
+  }
+
+  &--4 {
+    background: #F9DA23 url("../img/panel_bg.png") no-repeat bottom right;
+    background-size: 100px;
+  }
+
+  h2 {
+    margin: 0;
+  }
+}

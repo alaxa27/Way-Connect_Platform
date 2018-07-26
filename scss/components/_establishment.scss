@@ -1,0 +1,19 @@
+.establishments {
+    height: 500px;
+    overflow: auto;
+  
+    &__item {
+      padding: 5px 20px;
+      background-color: #dbdbdb;
+      color: #000;
+      margin-bottom: 10px;
+      width: 100%;
+      font-weight: bold;
+      font-size: 14px;
+      opacity: 0.5;
+  
+      &--full-opacity {
+        opacity: 1;
+      }
+    }
+}

@@ -1,0 +1,30 @@
+.react-countdown-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .react-countdown-box {
+    background: #F0F0F0;
+    margin-right: 1rem;
+    border-radius: 8px;
+    padding: 10px 7px;
+    width: 70px;
+  }
+  
+  .react-countdown-element {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  
+  .react-countdown-time {
+    color: #F6881C;
+    font-size: 1.75rem;
+    font-weight: bold;
+  }
+  
+  .react-countdown-time-text {
+    font-weight: bold;
+    letter-spacing: -1px;
+  }
