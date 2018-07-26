@@ -11,7 +11,9 @@ import {
   DASHBOARD_STATS_FULFILLED,
 
   ESTABLISHMENT_LIST,
-  ESTABLISHMENT_LIST_FULFILLED
+  ESTABLISHMENT_LIST_FULFILLED,
+
+  DASHBOARD_MAP_ZOOM,
 } from "../constants/ActionTypes";
 
 export function fetchDashboardData(payload) {
@@ -71,5 +73,14 @@ export function fetchEstablishmentList() {
     } catch (error) {
       throw new Error();
     }
+  };
+}
+
+export function changeMapZoom(payload) {
+  return async (dispatch, getState) => {
+    dispatch({
+      type: DASHBOARD_MAP_ZOOM,
+      payload
+    });
   };
 }
