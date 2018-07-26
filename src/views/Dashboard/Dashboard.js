@@ -29,7 +29,7 @@ const MyMapComponent = compose(withProps({
   mapElement: <div style={{
         height: "100%"
       }}/>
-}), withScriptjs, withGoogleMap)(props => (<GoogleMap defaultZoom={7} center={{
+}), withScriptjs, withGoogleMap)(props => (<GoogleMap zoom={props.zoom} center={{
     lat: props.center[1],
     lng: props.center[0]
   }}>
@@ -47,10 +47,11 @@ const MyMapComponent = compose(withProps({
   }
 </GoogleMap>));
 
-const mapStateToProps = state => ({stats: state.dashboard.stats, establishments: state.establishment.establishments, selectedEstablishment: state.establishment.selectedEstablishment});
+const mapStateToProps = state => ({stats: state.dashboard.stats, zoom: state.dashboard.mapZoom, establishments: state.establishment.establishments, selectedEstablishment: state.establishment.selectedEstablishment});
 
 const mapDispatchToProps = dispatch => ({
   fetchDashboardData: () => dispatch(dashboardActions.fetchDashboardData()),
+  changeMapZoom: (payload) => dispatch(dashboardActions.changeMapZoom(payload)),
   selectEstablishment: payload => dispatch(establishmentActions.selectEstablishment(payload)),
   fetchEstablishmentList: payload => dispatch(establishmentActions.fetchEstablishmentList(payload))
 });
@@ -74,8 +75,9 @@ export class Dashboard extends Component {
 
   selectEstablishment = (e, item) => {
     e.preventDefault();
-    const {selectEstablishment} = this.props;
+    const {selectEstablishment, changeMapZoom} = this.props;
     selectEstablishment(item);
+    changeMapZoom(9);
   }
 
   loadMoreEstablishments = () => {
@@ -92,7 +94,7 @@ export class Dashboard extends Component {
   }
 
   render() {
-    const {stats, establishments, selectedEstablishment, i18n, t} = this.props;
+    const {stats, establishments, selectedEstablishment, zoom, t} = this.props;
 
     const markers = map(establishments.items, item => {
       return item.location.coordinates;
@@ -135,7 +137,7 @@ export class Dashboard extends Component {
               <div className="google-maps-wrapper mt-4">
                 <MyMapComponent isMarkerShown={true} center={selectedEstablishment
                     ? selectedEstablishment.location.coordinates
-                    : [0, 0]} markers={markers}/>
+                    : [0, 0]} markers={markers} zoom={zoom}/>
               </div>
             </Col>
           </Row>
@@ -159,7 +161,9 @@ Dashboard.propTypes = {
   selectEstablishment: PropTypes.func,
   selectedEstablishment: PropTypes.object,
   t: PropTypes.func,
-  i18n: PropTypes.object
+  i18n: PropTypes.object,
+  changeMapZoom: PropTypes.func,
+  zoom: PropTypes.number
 };
 
 export default compose(connect(mapStateToProps, mapDispatchToProps), translate("translations"))(Dashboard);

@@ -7,6 +7,7 @@ import {
   DASHBOARD_STATS_FULFILLED,
   DASHBOARD_STATS_REJECTED,
 
+  DASHBOARD_MAP_ZOOM
 } from "../constants/ActionTypes";
 import _ from "underscore";
 
@@ -56,7 +57,7 @@ const statsDefault = {
       0,
       0
     ]
-  }
+  },
 };
 
 
@@ -65,6 +66,7 @@ const initialState = {
   fetching: false,
   success: false,
   error: null,
+  mapZoom: 7
 };
 
 export default function reducer(state = initialState, action) {
@@ -89,6 +91,11 @@ export default function reducer(state = initialState, action) {
         fetching: false,
         success: false,
         error: action.payload
+      };
+    case DASHBOARD_MAP_ZOOM:
+      return {
+        ...state,
+        mapZoom: action.payload
       };
     case DASHBOARD_STATS:
       return {
