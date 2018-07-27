@@ -127,9 +127,7 @@ export class Dashboard extends Component {
         <Col xs="12" md="6">
           <Row>
             <Col>
-              <h2 className="way-heading" style={{
-                  fontSize: "24px"
-                }}>{t("dashboard.ourPartners.title")}</h2>
+              <h2 className="way-heading">{t("dashboard.ourPartners.title")}</h2>
             </Col>
           </Row>
           <Row>

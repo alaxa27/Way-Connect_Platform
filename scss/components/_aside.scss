@@ -1,0 +1,24 @@
+.aside-menu {
+
+  &__coming-soon {
+
+    img {
+      width: 150px;
+      height: 150px;
+    }
+  }
+
+  &__title {
+    font-size: 0.75rem;
+    font-weight: bold;
+    line-height: 1.1;
+
+    &--big {
+      font-size: 2rem;
+    }
+
+    &--colored {
+      color: #F6881C;
+    }
+  }
+}

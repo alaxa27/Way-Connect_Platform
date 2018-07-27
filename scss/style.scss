@@ -18,5 +18,15 @@
 // Import core styles
 @import "core/core";
 
-// Custom styles
-@import "custom";
+@import '~react-block-ui/style.css';
+
+@import "mixins";
+@import "general";
+@import "components/modal";
+@import "components/establishment";
+@import "components/panel";
+@import "components/typical-client";
+@import "components/promotion";
+@import "components/auth";
+@import "components/aside";
+@import "components/countdown";

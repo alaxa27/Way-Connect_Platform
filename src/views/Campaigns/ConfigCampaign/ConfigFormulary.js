@@ -22,7 +22,6 @@ class ConfigFormulary extends Component {
           <div className="formulary">
             <Col>
               <h2 className="way-heading" style={{
-                    fontSize: "24px",
                     marginBottom: 0,
                     marginTop: "25px"
                 }}>
