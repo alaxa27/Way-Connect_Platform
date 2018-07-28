@@ -1,5 +1,5 @@
 import axios from "axios";
-import { each, map, isNumber, isArray, isObject } from 'underscore';
+import { each, map, isNumber, isArray, isObject } from "underscore";
 
 let backendHost;
 const apiVersion = "v1";
@@ -11,7 +11,7 @@ const formatResponse = (data) => {
     if(isNumber(value)) {
         data[key] = floor(value);
     } else if(isArray(value)) {
-      if(key !== 'coordinates') {
+      if(key !== "coordinates") {
         const newArray = map(value, item => floor(item));
         data[key] = newArray;
       }
@@ -19,11 +19,11 @@ const formatResponse = (data) => {
       formatResponse(value);
     }
   });
-}
+};
 
 const floor = (value) => {
   return Math.floor(value * 100) / 100;
-}
+};
 
 if (hostname === "way-connect.com") {
   backendHost = "https://api.way-connect.com";
