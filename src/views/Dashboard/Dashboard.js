@@ -86,13 +86,6 @@ export class Dashboard extends Component {
     fetchEstablishmentList({limit: establishments.limit, offset: establishments.offset});
   }
 
-  formatPlotData = (data) => {
-    const plotData = map(data, item => {
-      return Math.floor(item * 100) / 100;
-    });
-    return plotData;
-  }
-
   render() {
     const {stats, establishments, selectedEstablishment, zoom, t} = this.props;
 
@@ -100,10 +93,10 @@ export class Dashboard extends Component {
       return item.location.coordinates;
     });
 
-    const connectionsPlot = this.formatPlotData(stats.connections.plot);
-    const establishmentsPlot = this.formatPlotData(stats.establishments.plot);
-    const campaignsPlot = this.formatPlotData(stats.campaigns.plot);
-    const customersPlot = this.formatPlotData(stats.customers.plot);
+    const connectionsPlot = stats.connections.plot;
+    const establishmentsPlot = stats.establishments.plot;
+    const campaignsPlot = stats.campaigns.plot;
+    const customersPlot = stats.customers.plot;
 
     return (<div className="animated fadeIn" style={{
         marginTop: 20
