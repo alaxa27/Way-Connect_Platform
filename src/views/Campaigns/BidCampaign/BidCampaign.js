@@ -135,9 +135,9 @@ class BidCampaign extends Component {
       <div>
         <Row>
           <Col>
-            <div className="my-4 top-track d-flex align-items-center">
+            <div className="my-4 total-sum d-flex align-items-center">
               <InputRange maxValue={topTrackData.max} minValue={topTrackData.min} value={topTrackData.value} disabled={true} onChange={(val) => {console.log(val);}} />
-              <div className="top-track-currency">
+              <div className="total-sum__currency">
                 +<i className="fa fa-usd"></i>
               </div>
             </div>
@@ -166,7 +166,7 @@ class BidCampaign extends Component {
             </div>
           </Col>
           <Col lg="6">            
-            <div className="bids">
+            <div className="bids mb-4 mb-lg-0">
               {map(data, (item, index) => {
                 return (
                   <div className={"bids__item" + (index === 4 ? " active": "")} key={index}>
@@ -212,7 +212,7 @@ class BidCampaign extends Component {
                         </div>
                       </div>
                       <div className="bids__item-progress">
-                        <div className="bottom-track mr-3">
+                        <div className="bid-progress-bar mr-3">
                           <InputRange maxValue={100} minValue={0} value={70} disabled={true} onChange={(val) => {console.log(val);}} />
                         </div>
                         <div className="bids__item-progress-value">

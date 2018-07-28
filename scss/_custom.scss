@@ -1110,7 +1110,22 @@ body {
 }
 
 // Bid campaign new look
-.top-track {
+.total-sum {
+
+  &__currency {
+    width: 40px;
+    background: #000;
+    color: #fff;
+    text-align: center;
+    margin-left: 10px;
+    border-radius: 5px;
+    padding: 2px 0;
+    font-weight: bold;
+
+    i {
+      font-weight: bold;
+    }
+  }
 
   .input-range {
     height: 1rem;
@@ -1131,27 +1146,7 @@ body {
   }
 }
 
-.top-track-legend {
-  width: calc(100% - 50px);
-  overflow: hidden;
-}
-
-.top-track-currency {
-  width: 40px;
-  background: #000;
-  color: #fff;
-  text-align: center;
-  margin-left: 10px;
-  border-radius: 5px;
-  padding: 2px 0;
-  font-weight: bold;
-
-  i {
-    font-weight: bold;
-  }
-}
-
-.bottom-track {
+.bid-progress-bar {
   width: 100%;
   display: flex;
   align-items: center;

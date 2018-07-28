@@ -92,7 +92,7 @@ class AddEstablishmentModal extends React.Component {
                   {t("addEstablishment.step2.subtitle")}
                 </div>
                 <button onClick={toggleModal} className="modal-body__submit bid-btn bid-btn-dark btn-block mt-4 mb-5">
-                  {t("addEstablishment.step1.subtitle")}
+                  {t("addEstablishment.step2.button")}
                 </button>
                 <div className="modal-body__dots d-flex justify-content-center">
                   <span className="modal-body__dot mr-2"></span>
