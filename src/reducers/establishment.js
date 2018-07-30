@@ -119,8 +119,8 @@ const initialState = {
 };
 
 let trafficLabels = {
-  month: ["startDate", "", "", "", "", "", "", "", "", "end"],
-  year: ["start", "", "", "", "", "", "", "", "", "", "", "endDate"],
+  month: new Array(30),
+  year: new Array(12)
 };
 
 let trafficDatasets = [{
@@ -213,7 +213,7 @@ export default function reducer(state = initialState, action) {
       trafficLabels[period][0] = moment(action.payload[period].start_date).format("YYYY-MM-DD");
       trafficLabels[period][trafficLabels[period].length - 1] = moment(action.payload[period].end_date).format("YYYY-MM-DD");
 
-      _.first(trafficDatasets).data = summedTraffic;
+      _.first(trafficDatasets).data = traffic//summedTraffic;
       return {
         ...state,
         traffic: {
@@ -231,7 +231,7 @@ export default function reducer(state = initialState, action) {
       trafficLabels[changedPeriod][0] = moment(state.trafficRaw[changedPeriod].start_date).format("YYYY-MM-DD");
       trafficLabels[changedPeriod][trafficLabels[changedPeriod].length - 1] = moment(state.trafficRaw[changedPeriod].end_date).format("YYYY-MM-DD");
 
-      _.first(trafficDatasets).data = changedAverageTraffic;
+      _.first(trafficDatasets).data = changedTraffic//changedAverageTraffic;
       return {
         ...state,
         traffic: {
