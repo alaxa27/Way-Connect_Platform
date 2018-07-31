@@ -1,5 +1,5 @@
 import axios from "axios";
-import { each, map, isNumber, isArray, isObject } from "underscore";
+import { each, map, isNumber, isArray, isObject, first } from "underscore";
 
 let backendHost;
 const apiVersion = "v1";
@@ -11,9 +11,13 @@ const formatResponse = (data) => {
     if(isNumber(value)) {
         data[key] = floor(value);
     } else if(isArray(value)) {
-      if(key !== "coordinates") {
-        const newArray = map(value, item => floor(item));
-        data[key] = newArray;
+      if(isObject(first(value))) {
+        formatResponse(value);
+      } else {
+        if(key !== "coordinates") {
+          const newArray = map(value, item => floor(item));
+          data[key] = newArray;
+        }
       }
     } else if(isObject(value)) {
       formatResponse(value);
