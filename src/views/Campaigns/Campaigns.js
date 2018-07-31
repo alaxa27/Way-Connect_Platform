@@ -132,11 +132,14 @@ class Campaigns extends Component {
               width: "100%"
             }}>
             <Col>
-              <label className="bidding-status-label" style={{
+              <label className="bidding-status-label w-100 d-flex align-items-center justify-content-between" style={{
                   color: "#989898"
                 }} onClick={this.showFilter}>
-                <FontAwesome.FaCircle/>
-                {t("campaigns.fixedFilters.title")} {
+                <div>
+                  <FontAwesome.FaCircle/>
+                  {t("campaigns.fixedFilters.title")}
+                </div>
+                {
                   this.state.filter
                     ? <FontAwesome.FaAngleDown/>
                     : <FontAwesome.FaAngleLeft/>
