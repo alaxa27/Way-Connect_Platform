@@ -102,16 +102,17 @@
     "bid": {
       "title": "last bid at",
       "wc": "WC",
-      "viewsAvailable": "views available",
-      "peopleInterested": "peoples are interested about this product",
-      "repetition": "Repetition",
-      "period": "Period",
-      "month": "month",
-      "getQuotations": "Get quotations",
-      "number": "Number",
-      "total": "Total",
-      "ready": "Ready for bidding",
-      "bid": "bid"
+      "notAvailable": "You cannot bid if your funds are empty",
+      "creditCampaign": "Credit campaign",
+      "bid": "Bid",
+      "users": "Users",
+      "currentTime": "Current time",
+      "averagePrice": "Average price",
+      "boost": "Boost",
+      "historyTitle": "History",
+      "boostAction": "Boost Auction",
+      "timeElapsed": "Time elapsed",
+      "timeRemaining": "Time remaining"
     }
   },
   "configCampaign": {
