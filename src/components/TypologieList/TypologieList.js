@@ -36,7 +36,7 @@ class TypologieList extends Component {
           <Col md="6" xs="12">
             <div className="input-wrapper">
               <label className="input-label">The name of your campaign</label>
-              <Input type="text" id="name" className="create-campaign-input" name="name" value={this.state.name} onChange={(e) => this.handleInputChange("name", e) }/>
+              <Input type="text" id="name" className="typologie-list__input" name="name" value={this.state.name} onChange={(e) => this.handleInputChange("name", e) }/>
             </div>
 
             <div className="input-wrapper">
@@ -52,7 +52,7 @@ class TypologieList extends Component {
 
             <div className="input-wrapper">
               <label className="input-label">Product description</label>
-              <Input type="text" id="description" className="create-campaign-input" name="description" value={this.state.description} onChange={(e) => this.handleInputChange("description", e) }/>
+              <Input type="text" id="description" className="typologie-list__input" name="description" value={this.state.description} onChange={(e) => this.handleInputChange("description", e) }/>
             </div>
           </Col>
         </Row>

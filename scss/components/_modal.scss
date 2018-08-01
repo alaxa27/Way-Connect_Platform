@@ -1,0 +1,79 @@
+.modal-outline {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,.5);
+    padding: 75px 50px 0 50px;
+  }
+  
+  .modal-body {
+    background: #fff;
+    max-width: 900px;
+    margin: auto;
+  
+    &__heading {
+      text-align: center;
+    }
+  
+    &__img {
+      max-width: 250px;
+      max-height: 250px;
+      min-width: 90px;
+      min-height: 90px;
+      height: 20vh;
+    }
+  
+    &__title {
+      font-size: 2rem;
+      font-weight: bold;
+      line-height: 1.1;
+  
+      &--big {
+        font-size: 4rem;
+      }
+    }
+  
+    &__type {
+      flex: 1;
+      margin: 0;
+      padding: 3px 0;
+  
+      &:hover {
+        margin: 0;
+        padding: 3px 0;
+      }
+    }
+  
+    &__form {
+  
+      input {
+        border: 0;
+        border-radius: 12px;
+        background-color: #f1f1f1;
+      }
+    }
+  
+    &__submit {
+      margin: 0;
+      padding: 10px 0;
+  
+      &:hover {
+        margin: 0;
+        padding: 10px 0;
+      }
+    }
+  
+    &__dot {
+        width: 10px;
+        height: 10px;
+        display: block;
+        border-radius: 50%;
+        background: #8b8b8b;
+  
+        &--active {
+          background: #333333;
+        }
+    }
+  }

@@ -139,7 +139,7 @@ export class Establishment extends Component {
               <PromotionsList data={promotions.data} promotionsLimit={promotions.limit} promotionsPage={promotions.page} promotionsTotalCount={promotions.total_count} loadMore={this.loadMorePromotions}/>
             </Col>
             <Col md="6">
-              <div className="d-flex flex-column right-box">
+              <div className="d-flex flex-column">
                 <Affluence title={t("general.affluence.title")} data={affluence}/>
                 {typicalCustomer ?
                   <TypicalClient title={t("general.typicalClient.title")} data={typicalCustomer}/>

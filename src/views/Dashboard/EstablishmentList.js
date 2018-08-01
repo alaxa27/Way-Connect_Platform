@@ -43,9 +43,9 @@ class EstablishmentList extends Component {
                 );
               })
           :
-            <div className="text-center">
+              <div className="text-center">
               No establishments found
-            </div>
+              </div>
           }
         </div>
       </InfiniteScroll>

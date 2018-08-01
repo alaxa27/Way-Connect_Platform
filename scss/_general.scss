@@ -54,6 +54,32 @@ body {
   color: #32CD32;
 }
 
+.input-range__label-container {
+  position: static;
+}
+
+.input-range__label {
+  font-size: 1rem;
+  color: #000;
+}
+
+.input-range__label--value {
+  top: 0;
+}
+
+.input-range__track {
+  background: #999 !important;
+}
+
+.input-range__track--active {
+  background: linear-gradient(to right, #F15A24, #FBB03B) !important;
+}
+
+.input-range__slider {
+  background: #333 !important;
+  border: 1px solid #333 !important;
+}
+
 .line-through {
   position: relative;
 
@@ -96,27 +122,27 @@ body {
   }
 }
 
-.create-campaign-input {
-  border-radius: 1.5em;
-  border: none;
-}
-
-.age-title {
-  font-size: 24px;
-  float: right;
-}
-
 .input-wrapper {
   margin-top: 10px;
 }
 
 .typologie-list {
   margin-bottom: 25px;
+
+  &__input {
+    border-radius: 1.5em;
+    border: none;
+  }
 }
 
 .research-filters {
   margin-top: 10px;
   margin-bottom: 25px;
+
+  .age-title {
+    font-size: 24px;
+    float: right;
+  }
 }
 
 .bid-btn {
@@ -147,14 +173,6 @@ body {
     margin-right: 10px;
     position: relative;
     top: -2px;
-  
-    &.mark-bidding {
-      color: #FFBE05;
-    }
-  
-    &.mark-progress {
-      color: #15CC35;
-    }
   }
 }
 
@@ -186,37 +204,6 @@ body {
     font-size: 18px;
     position: relative;
     top: -2px;
-  }
-}
-
-.stats-panel {
-  padding: 15px 15px 50px;
-  margin-bottom: 1.5rem;
-  border-radius: 5px;
-  color: #fff;
-
-  &--1 {
-    background: #F15A24 url("../img/panel_bg.png") no-repeat bottom right;
-    background-size: 100px;
-  }
-
-  &--2 {
-    background: #F7931E url("../img/panel_bg.png") no-repeat bottom right;
-    background-size: 100px;
-  }
-
-  &--3 {
-    background: #FBB03B url("../img/panel_bg.png") no-repeat bottom right;
-    background-size: 100px;
-  }
-
-  &--4 {
-    background: #F9DA23 url("../img/panel_bg.png") no-repeat bottom right;
-    background-size: 100px;
-  }
-
-  h2 {
-    margin: 0;
   }
 }
 
@@ -263,287 +250,17 @@ body {
   }
 }
 
-.line-through-bids:after {
+.line-through-bids {
 
   &::after {
     top: 7px !important;
   }
 }
 
-.right-box {
-  height: 100%;
-
-  .typical-client-card {
-    height: 35%;
-    margin-bottom: 0;
-  }
-
-  .affluence-card {
-    margin-top: 1.5rem;
-    height: 65%;
-  }
-}
-
-.typical-client {
-  &__item {
-    font-size: 12px;
-    color: #536c79;
-  }
-
-  &__color {
-    width: 20px;
-    height: 20px;
-  }
-
-  &__body {
-    flex: 1;
-    border-top: 1px solid #cbcbcb;
-
-    &--last {
-      border-bottom: 1px solid #cbcbcb;
-    }
-  }
-
-  &__prop {
-    flex: 1;
-  }
-
-  &__settings {
-    cursor: pointer;
-    color: #cbcbcb;
-  }
-}
-
-.promotion {
-  background: #fff;
-  overflow: auto;
-  height: 800px;
-  border: 1px solid #c2cfd6;
-
-  &__item {
-    border-bottom: 1px solid #cbcbcb;
-  }
-
-  &__label-middle {
-    width: 100%;
-    margin-bottom: 0;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: normal;
-  }
-
-  &__span-middle {
-    font-weight: lighter;
-    font-size: 14px;
-  }
-
-  &__label-right {
-    width: 100%;
-    font-weight: bold;
-    font-size: 24px;
-    line-height: normal;
-    margin-bottom: 0;
-  }
-
-  &__span-right {
-    font-weight: lighter;
-    font-size: 12px;
-  }
-
-  &__circle-container {
-    border-right: 1px solid #cbcbcb;
-  }
-
-    &__circle {
-        width: 100px;
-        height: 100px;
-        background: #363636;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-
-    span {
-      &:first-child {
-        font-weight: bold;
-        font-size: 30px;
-      }
-
-            &:first-child {
-                font-weight: bold;
-                font-size: 25px;
-            }
-
-            &:last-child {
-                position: relative;
-                bottom: -4px;
-                font-size: 12px;
-            }
-        }
-    }
-}
-
 .app {
   &--dark {
-    background: #1A1A1A url("../img/login_bg.png") no-repeat;
+    background: rgb(252, 198, 198) url("../img/login_bg.png") no-repeat;
     background-position: bottom right;
     background-size: 40vw;
   }
-}
-
-.checkbox-wrapper {
-  display: block;
-  position: relative;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-
-  .checkbox {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    left: 0;
-    top: 0;
-    z-index: 1;
-    width: 25px;
-    height: 25px;
-
-    &:checked {
-      ~ .checkmark {
-        background-color: #2196F3;
-
-        &:after {
-          display: block;
-        }
-      }
-    }
-  }
-
-  .checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 25px;
-    width: 25px;
-    background-color: transparent;
-    border: 3px solid #fff;
-
-    &:after {
-      content: "";
-      position: absolute;
-      display: none;
-      left: 7px;
-      top: 4px;
-      width: 5px;
-      height: 10px;
-      border: solid white;
-      border-width: 0 3px 3px 0;
-      -webkit-transform: rotate(45deg);
-      -ms-transform: rotate(45deg);
-      transform: rotate(45deg);
-    }
-  }
-}
-
-.main-chart-legend {
-  
-  &__item {
-    padding: 0 5rem!important !important;
-  }
-}
-
-.add-establishment-modal {
-  max-width: 950px;
-
-  .modal-body {
-    padding: 2rem 3rem;
-    width: 100%;
-  }
-}
-
-.modal-outline {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0,0,0,.5);
-  padding: 75px 50px 0 50px;
-}
-
-.modal-body {
-  background: #fff;
-  max-width: 900px;
-  margin: auto;
-
-  &__heading {
-    text-align: center;
-  }
-
-  &__img {
-    max-width: 250px;
-    max-height: 250px;
-    min-width: 90px;
-    min-height: 90px;
-    height: 20vh;
-  }
-
-  &__title {
-    font-size: 2rem;
-    font-weight: bold;
-    line-height: 1.1;
-
-    &--big {
-      font-size: 4rem;
-    }
-  }
-
-  &__type {
-    flex: 1;
-    margin: 0;
-    padding: 3px 0;
-
-    &:hover {
-      margin: 0;
-      padding: 3px 0;
-    }
-  }
-
-  &__form {
-
-    input {
-      border: 0;
-      border-radius: 12px;
-      background-color: #f1f1f1;
-    }
-  }
-
-  &__submit {
-    margin: 0;
-    padding: 10px 0;
-
-    &:hover {
-      margin: 0;
-      padding: 10px 0;
-    }
-  }
-
-  &__dot {
-      width: 10px;
-      height: 10px;
-      display: block;
-      border-radius: 50%;
-      background: #8b8b8b;
-
-      &--active {
-        background: #333333;
-      }
-  }
-}
-
-.main {
-  position: relative;
 }
