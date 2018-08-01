@@ -1,0 +1,58 @@
+.login {
+    color: #fff;
+    font-size: 1.12rem;
+    @include placeholder {
+      color: #fff;
+    }
+  
+    h1 {
+      font-size: 2.75rem;
+    }
+  
+    .btn-login {
+      border-radius: 12px;
+      color: #fff;
+      height: 35px;
+      border: 0;
+  
+      &:focus {
+        outline: none;
+      }
+    }
+  
+    .btn-app-login {
+      background-color: #333333;
+    }
+  
+    .btn-fb-login {
+      background-color: #0071BC;
+    }
+  
+    &__input {
+      border-radius: 12px;
+      border: 3px solid #fff;
+      color: #fff;
+      background: transparent;
+      height: 35px;
+  
+      &:focus {
+        outline: none;
+      }
+    }
+  
+    &__link {
+      color: #fff;
+  
+      &:active,
+      &:focus,
+      &:hover {
+        color: #fff;
+        text-decoration: none;
+      }
+    }
+  
+    &__logo-img {
+      max-width: 200px;
+      max-height: 50vh;
+    }
+  }

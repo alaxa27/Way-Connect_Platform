@@ -1,0 +1,28 @@
+.custom-breadcrumb-wrapper {
+    margin-left: -30px;
+    margin-right: -30px;
+  }
+  
+  .custom-breadcrumb {
+    width: 100%;
+    border-bottom: 1px solid #a4b7c1;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 15px 30px;
+    background-color: #fff;
+    cursor: pointer;
+  
+    &--no-border {
+      border: none;
+    }
+  
+    &__label {
+      color: #989898;
+      display: flex;
+      align-items: center;
+    
+      svg {
+        margin-right: 10px;
+      }
+    }
+  }

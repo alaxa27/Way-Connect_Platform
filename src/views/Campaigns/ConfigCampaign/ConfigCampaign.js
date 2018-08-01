@@ -48,7 +48,7 @@ class ConfigCampaign extends Component {
       addedfile: (file) => console.log(file)
     };
 
-    return (<div className="sub-page-wrapper animated fadeIn">
+    return (<div className="config-campaign sub-page-wrapper animated fadeIn">
 
       <div style={{
           marginTop: 20
@@ -56,7 +56,7 @@ class ConfigCampaign extends Component {
         <Row>
 
           <Col>
-            <div className="video-uploading-tabs">
+            <div className="tabs">
               <Nav tabs>
                 <NavItem>
                   <NavLink className={classnames({
@@ -91,9 +91,7 @@ class ConfigCampaign extends Component {
                 </TabPane>
 
                 <Col className="text-right border-top">
-                  <Button className="bid-btn" style={{
-                      maxWidth: 200
-                    }}>{t("configCampaign.tabs.submit.title")}</Button>
+                  <Button className="bid-btn">{t("configCampaign.tabs.submit.title")}</Button>
                 </Col>
 
               </TabContent>

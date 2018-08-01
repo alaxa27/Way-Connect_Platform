@@ -18,5 +18,13 @@
 // Import core styles
 @import "core/core";
 
-// Custom styles
-@import "custom";
+@import "mixins";
+@import "general";
+
+@import "pages/dashboard";
+@import "pages/bid-campaign";
+@import "pages/config-campaign";
+@import "pages/auth";
+@import "components/react-countdown";
+@import "components/aside";
+@import "breadcrumbs";
