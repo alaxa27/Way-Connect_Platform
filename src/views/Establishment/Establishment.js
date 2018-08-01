@@ -102,10 +102,7 @@ export class Establishment extends Component {
       t
     } = this.props;
     return (<ReduxBlockUi tag="div" block={["ESTABLISHMENT_PAGE"]} unblock={["ESTABLISHMENT_PAGE_FULFILLED", "ESTABLISHMENT_PAGE_REJECTED"]}>
-      <div className="sub-page-wrapper animated fadeIn">
-        <div style={{
-            marginTop: 20
-          }}>
+      <div className="page-establishment sub-page-wrapper animated fadeIn">
           <Row>
             <Col xs="12" md="6" lg="3">
               <Panel index={1} value={monthlyData.visits} title={t("establishment.panel.visits.title")} />
@@ -139,7 +136,7 @@ export class Establishment extends Component {
               <PromotionsList data={promotions.data} promotionsLimit={promotions.limit} promotionsPage={promotions.page} promotionsTotalCount={promotions.total_count} loadMore={this.loadMorePromotions}/>
             </Col>
             <Col md="6">
-              <div className="d-flex flex-column">
+              <div className="d-flex flex-column mt-4">
                 <Affluence title={t("general.affluence.title")} data={affluence}/>
                 {typicalCustomer ?
                   <TypicalClient title={t("general.typicalClient.title")} data={typicalCustomer}/>
@@ -158,9 +155,6 @@ export class Establishment extends Component {
               />
             </Col>
           </Row>
-
-        </div>
-        <br/>
       </div>
     </ReduxBlockUi>);
   }
