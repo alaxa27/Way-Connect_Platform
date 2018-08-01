@@ -103,58 +103,58 @@ export class Establishment extends Component {
     } = this.props;
     return (<ReduxBlockUi tag="div" block={["ESTABLISHMENT_PAGE"]} unblock={["ESTABLISHMENT_PAGE_FULFILLED", "ESTABLISHMENT_PAGE_REJECTED"]}>
       <div className="page-establishment sub-page-wrapper animated fadeIn">
-          <Row>
-            <Col xs="12" md="6" lg="3">
-              <Panel index={1} value={monthlyData.visits} title={t("establishment.panel.visits.title")} />
-            </Col>
-            <Col xs="12" md="6" lg="3">
-              <Panel index={2} value={monthlyData.total_rewards.value} currency={monthlyData.total_rewards.currency} title={t("establishment.panel.promotions.title")} />
-            </Col>
-            <Col xs="12" md="6" lg="3">
-              <Panel index={3} value={monthlyData.customer_average_visits} title={t("establishment.panel.revisitAverage.title")} />
-            </Col>
-            <Col xs="12" md="6" lg="3">
-              <Panel index={4} value={monthlyData.visits_change} title={t("establishment.panel.visitFluctuation.title")} />
-            </Col>
-          </Row>
+        <Row>
+          <Col xs="12" md="6" lg="3">
+            <Panel index={1} value={monthlyData.visits} title={t("establishment.panel.visits.title")} />
+          </Col>
+          <Col xs="12" md="6" lg="3">
+            <Panel index={2} value={monthlyData.total_rewards.value} currency={monthlyData.total_rewards.currency} title={t("establishment.panel.promotions.title")} />
+          </Col>
+          <Col xs="12" md="6" lg="3">
+            <Panel index={3} value={monthlyData.customer_average_visits} title={t("establishment.panel.revisitAverage.title")} />
+          </Col>
+          <Col xs="12" md="6" lg="3">
+            <Panel index={4} value={monthlyData.visits_change} title={t("establishment.panel.visitFluctuation.title")} />
+          </Col>
+        </Row>
 
-          <Row>
-            <Col>
-              <TrafficChart traffic={traffic} options={trafficChartOptions} trafficPeriodChange={trafficPeriodChange} title={t("general.trafficChart.title")}/>
-            </Col>
-          </Row>
+        <Row>
+          <Col>
+            <TrafficChart traffic={traffic} options={trafficChartOptions} trafficPeriodChange={trafficPeriodChange} title={t("general.trafficChart.title")}/>
+          </Col>
+        </Row>
 
-          <Row>
-            <Col>
-              <h2 className="heading" style={{
+        <Row>
+          <Col>
+            <h2 className="heading" style={{
                   fontSize: "24px"
                 }}>{t("establishment.promotions.title")}</h2>
-            </Col>
-          </Row>
-          <Row>
-            <Col md="6">
-              <PromotionsList data={promotions.data} promotionsLimit={promotions.limit} promotionsPage={promotions.page} promotionsTotalCount={promotions.total_count} loadMore={this.loadMorePromotions}/>
-            </Col>
-            <Col md="6">
-              <div className="d-flex flex-column mt-4">
-                <Affluence title={t("general.affluence.title")} data={affluence}/>
-                {typicalCustomer ?
-                  <TypicalClient title={t("general.typicalClient.title")} data={typicalCustomer}/>
+          </Col>
+        </Row>
+        <Row>
+          <Col md="6">
+            <PromotionsList data={promotions.data} promotionsLimit={promotions.limit} promotionsPage={promotions.page} promotionsTotalCount={promotions.total_count} loadMore={this.loadMorePromotions}/>
+          </Col>
+          <Col md="6">
+            <div className="d-flex flex-column mt-4">
+              <Affluence title={t("general.affluence.title")} data={affluence}/>
+              {typicalCustomer ?
+                <TypicalClient title={t("general.typicalClient.title")} data={typicalCustomer}/>
                 :
                   null
                 }
-              </div>
-            </Col>
-          </Row>
+            </div>
+          </Col>
+        </Row>
 
-          <Row>
-            <Col>
-              <ExportExcelButton
+        <Row>
+          <Col>
+            <ExportExcelButton
                 title={t("general.exportExcel.title")}
                 establishmentId={this.props.match.params.id}
               />
-            </Col>
-          </Row>
+          </Col>
+        </Row>
       </div>
     </ReduxBlockUi>);
   }
