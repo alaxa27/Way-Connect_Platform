@@ -29,6 +29,10 @@ html {
   }
 }
 
+body {
+  background-color: $body-bg;
+}
+
 .app {
 
   &--dark {
