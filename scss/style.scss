@@ -12,9 +12,6 @@
 // Import Bootstrap source files
 @import "node_modules/bootstrap/scss/bootstrap";
 
-// Override core variables
-@import "core-variables";
-
 // Import core styles
 @import "core/core";
 
@@ -26,6 +23,8 @@
 @import "pages/config-campaign";
 @import "pages/establishment";
 @import "pages/auth";
+@import "pages/create-campaign";
+@import "pages/list-campaign";
 @import "components/react-countdown";
 @import "components/aside";
 @import "components/modal";
@@ -35,3 +34,6 @@
 @import "components/typical-client";
 @import "components/stats-panel";
 @import "components/breadcrumbs";
+@import "components/radio";
+@import "components/typologie-list";
+@import "components/research-filters";

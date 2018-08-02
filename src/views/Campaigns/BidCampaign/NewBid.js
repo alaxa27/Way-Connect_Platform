@@ -19,7 +19,7 @@ class NewBid extends Component {
               {t("bidCampaign.bid.notAvailable")}
             </div>
             <div className="bid__forbidden-action">
-              <button className="bid-btn bid-btn-dark m-0 text-center">
+              <button className="bid-btn bid-btn--dark">
                 {t("bidCampaign.bid.creditCampaign")}
               </button>
             </div>
@@ -104,7 +104,7 @@ class NewBid extends Component {
                 <div className="bid__average-price-value font-weight-bold">122 {t("bidCampaign.bid.wc")}</div>
               </div>
             </div>
-            <button className="bid-btn bid-btn-dark m-0 text-center">
+            <button className="bid-btn bid-btn--dark">
               {t("bidCampaign.bid.boostAction")}
             </button>
           </div>

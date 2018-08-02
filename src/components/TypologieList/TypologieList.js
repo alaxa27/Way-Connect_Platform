@@ -35,12 +35,12 @@ class TypologieList extends Component {
         <Row>
           <Col md="6" xs="12">
             <div className="input-wrapper">
-              <label className="input-label">The name of your campaign</label>
+              <label>The name of your campaign</label>
               <Input type="text" id="name" className="typologie-list__input" name="name" value={this.state.name} onChange={(e) => this.handleInputChange("name", e) }/>
             </div>
 
             <div className="input-wrapper">
-              <label className="input-label">Type of communication</label>
+              <label>Type of communication</label>
               <div className="radio-buttons-container">
                 <Input type="radio" id="brand" name="brand" value="brand" checked={this.state.communicationType.brand} onClick={() => this.handleRadioChange("brand") }/>
                 <label htmlFor="brand" className="pull-left">Brand</label>
@@ -51,7 +51,7 @@ class TypologieList extends Component {
             </div>
 
             <div className="input-wrapper">
-              <label className="input-label">Product description</label>
+              <label>Product description</label>
               <Input type="text" id="description" className="typologie-list__input" name="description" value={this.state.description} onChange={(e) => this.handleInputChange("description", e) }/>
             </div>
           </Col>

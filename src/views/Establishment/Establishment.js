@@ -132,10 +132,10 @@ export class Establishment extends Component {
           </Col>
         </Row>
         <Row>
-          <Col md="6">
+          <Col lg="6">
             <PromotionsList data={promotions.data} promotionsLimit={promotions.limit} promotionsPage={promotions.page} promotionsTotalCount={promotions.total_count} loadMore={this.loadMorePromotions}/>
           </Col>
-          <Col md="6">
+          <Col lg="6">
             <div className="d-flex flex-column mt-4">
               <Affluence title={t("general.affluence.title")} data={affluence}/>
               {typicalCustomer ?

@@ -52,10 +52,10 @@ class AddEstablishmentModal extends React.Component {
                   <div className="modal-body__types mb-2">
                     <Row>
                       <Col md="6" xs="12" className="mb-2">
-                        <button type="submit" className={"modal-body__type bid-btn" + (activeType === "restaurant" ? " bid-btn-dark" : "")} onClick={() => { changePlace("restaurant"); }}>{t("addEstablishment.step1.placeType.restaurant")}</button>
+                        <button type="submit" className={"modal-body__type bid-btn" + (activeType === "restaurant" ? " bid-btn--dark" : "")} onClick={() => { changePlace("restaurant"); }}>{t("addEstablishment.step1.placeType.restaurant")}</button>
                       </Col>
                       <Col md="6" xs="12">
-                        <button type="submit" className={"modal-body__type bid-btn" + (activeType === "hotel" ? " bid-btn-dark" : "")} onClick={() => { changePlace("hotel"); }}>{t("addEstablishment.step1.placeType.hotel")}</button>
+                        <button type="submit" className={"modal-body__type bid-btn" + (activeType === "hotel" ? " bid-btn--dark" : "")} onClick={() => { changePlace("hotel"); }}>{t("addEstablishment.step1.placeType.hotel")}</button>
                       </Col>
                     </Row>
                   </div>
@@ -91,7 +91,7 @@ class AddEstablishmentModal extends React.Component {
                 <div className="modal-body__title">
                   {t("addEstablishment.step2.subtitle")}
                 </div>
-                <button onClick={toggleModal} className="modal-body__submit bid-btn bid-btn-dark btn-block mt-4 mb-5">
+                <button onClick={toggleModal} className="modal-body__submit bid-btn bid-btn--dark btn-block mt-4 mb-5">
                   {t("addEstablishment.step2.button")}
                 </button>
                 <div className="modal-body__dots d-flex justify-content-center">

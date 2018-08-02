@@ -110,9 +110,6 @@ export class Login extends Component {
                     null
                   }
                 </button>
-                <button className="btn-login btn-fb-login text-uppercase w-100 mb-1">
-                  Login with facebook
-                </button>
                 <div className="d-flex justify-content-between">
                   <a id="link-register" className="login__link" href="#/register" >Register</a>
                   <a id="link-forgot-password" className="login__link" href="#/forgot-password" >Forgot your password?</a>

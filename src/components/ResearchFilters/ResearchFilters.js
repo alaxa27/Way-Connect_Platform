@@ -53,17 +53,19 @@ class ResearchFilters extends Component {
     return (<div className="research-filters">
       <Row>
         <Col md="6" xs="12">
-          <label className="input-label">Gender</label>
-          <div className="radio-buttons-container">
-            <Input type="radio" id="male" name="gender_male" value="male" checked={this.state.gender.male} onClick={this.handleInputChange}/>
-            <label htmlFor="male" className="pull-left">Male</label>
-            <Input type="radio" id="female" name="gender_female" value="female" checked={this.state.gender.female} onClick={this.handleInputChange}/>
-            <label htmlFor="female" className="pull-right">Female</label>
-            <div className="clearfix"></div>
+          <div className="input-wrapper">
+            <label>Gender</label>
+            <div className="radio-buttons-container">
+              <Input type="radio" id="male" name="gender_male" value="male" checked={this.state.gender.male} onClick={this.handleInputChange}/>
+              <label htmlFor="male" className="pull-left">Male</label>
+              <Input type="radio" id="female" name="gender_female" value="female" checked={this.state.gender.female} onClick={this.handleInputChange}/>
+              <label htmlFor="female" className="pull-right">Female</label>
+              <div className="clearfix"></div>
+            </div>
           </div>
           <div className="input-wrapper">
-            <label className="input-label pull-left">Age</label>
-            <label className="age-title">{this.state.age.min}-{this.state.age.max}yo</label>
+            <label className="pull-left">Age</label>
+            <label className="research-filters__preview">{this.state.age.min}-{this.state.age.max}yo</label>
             <div style={{
                 paddingTop: 40
               }}>
@@ -75,33 +77,33 @@ class ResearchFilters extends Component {
       <Row>
         <Col md="6" xs="12">
           <div className="input-wrapper">
-            <label className="input-label">Work status</label>
+            <label>Work status</label>
             <SelectBox name="work-status" placeholder="Every status" options={this.state.workStatus} fixed={this.props.fixed}/>
           </div>
 
           <div className="input-wrapper">
-            <label className="input-label">Relationship status</label>
+            <label>Relationship status</label>
             <SelectBox name="relationship-status" placeholder="Every status" options={this.state.relationshipStatus} fixed={this.props.fixed}/>
           </div>
 
           <div className="input-wrapper">
-            <label className="input-label">Nationality</label>
+            <label>Nationality</label>
             <SelectBox name="nationality" placeholder="Every status" options={this.state.nationality} fixed={this.props.fixed}/>
           </div>
         </Col>
         <Col md="6" xs="12">
           <div className="input-wrapper">
-            <label className="input-label">Hobbies</label>
+            <label>Hobbies</label>
             <SelectBox name="hobbies" placeholder="Every status" options={this.state.hobbies} fixed={this.props.fixed}/>
           </div>
 
           <div className="input-wrapper">
-            <label className="input-label">Location</label>
+            <label>Location</label>
             <SelectBox name="location" placeholder="Every status" options={this.state.workStatus} fixed={this.props.fixed}/>
           </div>
 
           <div className="input-wrapper">
-            <label className="input-label">Additional Content</label>
+            <label>Additional Content</label>
             <SelectBox name="additional-status" placeholder="Every status" options={this.state.workStatus} fixed={this.props.fixed}/>
           </div>
         </Col>
@@ -110,7 +112,7 @@ class ResearchFilters extends Component {
             this.props.fixed
             ? null
             : (<Col md="6" xs="12">
-              <button className="bid-btn bid-btn-dark" style={{
+              <button className="bid-btn bid-btn--dark" style={{
                   marginTop: "25px"
                 }}>Start bidding</button>
             </Col>))

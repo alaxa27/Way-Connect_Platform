@@ -36,7 +36,7 @@ class ListCampaignItem extends Component {
                   position: "relative",
                   left: -5,
                   fontSize: "16px"
-                }}>$</span>{` ${item.view_price}`}<span className="line-through line-through-bids">WC</span>
+                }}>$</span>{` ${item.view_price}`}<span className="line-through">WC</span>
             </label>
           </Link>
         </td>

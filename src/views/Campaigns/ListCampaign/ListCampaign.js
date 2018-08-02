@@ -26,11 +26,9 @@ class ListCampaign extends Component {
     const { t } = this.props;
     return (
       <div className="sub-page-wrapper animated fadeIn">
-        <div className="campaign-types-container">
-          <CampaignType title={t("campaigns.bidding.title")} campaigns={this.props.campaigns} status="bidding" canAddNew/>
-          <CampaignType title={t("campaigns.inProgress.title")} campaigns={this.props.campaigns} status="progress"/>
-          <CampaignType title={t("campaigns.delivered.title")} campaigns={this.props.campaigns} status="delivered"/>
-        </div>
+        <CampaignType title={t("campaigns.bidding.title")} campaigns={this.props.campaigns} status="bidding" canAddNew/>
+        <CampaignType title={t("campaigns.inProgress.title")} campaigns={this.props.campaigns} status="progress"/>
+        <CampaignType title={t("campaigns.delivered.title")} campaigns={this.props.campaigns} status="delivered"/>
         <ComingSoon />
       </div>
     );
