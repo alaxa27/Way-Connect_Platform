@@ -4,12 +4,12 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(0,0,0,.5);
+    background: $modal-outline-bg;
     padding: 75px 50px 0 50px;
   }
   
   .modal-body {
-    background: #fff;
+    background: $white;
     max-width: 900px;
     margin: auto;
   
@@ -51,7 +51,7 @@
       input {
         border: 0;
         border-radius: 12px;
-        background-color: #f1f1f1;
+        background-color: $modal-input-bg;
       }
     }
   
@@ -70,10 +70,10 @@
         height: 10px;
         display: block;
         border-radius: 50%;
-        background: #8b8b8b;
+        background: $dot-unactive;
   
         &--active {
-          background: #333333;
+          background: $dot-active;
         }
     }
   }

@@ -9,29 +9,29 @@
       width: auto;
 
       label {
-        border-left: 1px solid #a4b7c1;
+        border-left: 1px solid $bids-border;
       }
     }
 
     &:last-child {
 
       label {
-        border-right: 1px solid #a4b7c1;
+        border-right: 1px solid $bids-border;
       }
     }
 
     label {
       padding: 5px 20px;
       background-color: #CCCCCC;
-      color: #000;
+      color: $black;
       margin-bottom: 5px;
       width: 100%;
       font-size: 14px;
       height: 45px;
       display: flex;
       align-items: center;
-      border-top: 1px solid #a4b7c1;
-      border-bottom: 1px solid #a4b7c1;
+      border-top: 1px solid $bids-border;
+      border-bottom: 1px solid $bids-border;
       cursor: pointer;
     }
 

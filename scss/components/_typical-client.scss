@@ -1,7 +1,7 @@
 .typical-client {
   &__item {
     font-size: 12px;
-    color: #536c79;
+    color: $typical-client-text;
   }
 
   &__color {
@@ -11,10 +11,10 @@
 
   &__body {
     flex: 1;
-    border-top: 1px solid #cbcbcb;
+    border-top: 1px solid $typical-client-border;
 
     &--last {
-      border-bottom: 1px solid #cbcbcb;
+      border-bottom: 1px solid $typical-client-border;
     }
   }
 
@@ -24,6 +24,6 @@
 
   &__settings {
     cursor: pointer;
-    color: #cbcbcb;
+    color: $typical-client-border;
   }
 }

@@ -4,8 +4,8 @@
 
     &__currency {
       width: 40px;
-      background: #000;
-      color: #fff;
+      background: $black;
+      color: $white;
       text-align: center;
       margin-left: 10px;
       border-radius: 5px;
@@ -24,7 +24,6 @@
     .input-range__track {
       height: 1rem;
       border-radius: 0;
-      background-color: #cecece;
     }
   
     .input-range__track--background {
@@ -39,13 +38,13 @@
   .bid-meta {
 
     &__type {
-      color: #696969;
+      color: $bids-text;
     }
   }
 
   .bids {
-    background-color: #e6e6e6;
-    border: 1px solid #a4b7c1;
+    background-color: $bids-bg;
+    border: 1px solid $bids-border;
   
     img {
       height: 20px;
@@ -58,24 +57,24 @@
       cursor: pointer;
   
       &.active {
-        background: #fff;
+        background: $white;
       }
   
       &:not(:last-child) {
-        border-bottom: 1px solid #a4b7c1;
+        border-bottom: 1px solid $bids-border;
       }
     }
   
     &__item-nr {
       padding-right: 15px;
       position: relative;
-      border-right: 1px solid #a4b7c1;
+      border-right: 1px solid $bids-border;
       display: flex;
       align-items: center;
   
       > div {
-        background-color: #000;
-        color: #fff;
+        background-color: $black;
+        color: $white;
         font-size: 1.85rem;
         border-radius: 50%;
         padding: 8px;
@@ -89,7 +88,7 @@
   
       svg {
         font-size: 20px;
-        color: #F15A24;
+        color: $g-orange-dark;
         margin-left: -5px;
       }
     }
@@ -131,16 +130,16 @@
       }
   
       &--sub {
-        color: #696969;
+        color: $bids-text;
       }
     }
   }
   
 
 .bid {
-    background-color: #fff;
+    background-color: $white;
     font-size: 0.9rem;
-    border: 1px solid #a4b7c1;
+    border: 1px solid $bids-border;
     position: relative;
   
     &__forbidden {
@@ -156,7 +155,7 @@
     }
   
     &__forbidden-wrapper {
-      background-color: #e6e6e6;
+      background-color: $bids-bg;
       position: absolute;
       top: 0;
       right: 0;
@@ -176,7 +175,7 @@
       
       i {
         font-size: 3rem;
-        background: #c3c3c3;
+        background: $bids-forbidden-bg;
         border-radius: 50%;
         padding: 25px;
       }
@@ -189,7 +188,7 @@
     &__block {
   
       &:not(:last-child) {
-        border-bottom: 1px solid #a4b7c1;
+        border-bottom: 1px solid $bids-border;
       }
     }
   
@@ -209,7 +208,7 @@
       align-items: center;
   
       &--bordered {
-        border-bottom: 1px solid #a4b7c1;
+        border-bottom: 1px solid $bids-border;
       }
   
       i {
@@ -223,17 +222,17 @@
     }
   
     &__history {
-      background-color: #e6e6e6;
+      background-color: $bids-bg;
       height: 250px;
       overflow: auto;
   
       i {
-        color: #e6e6e6;
+        color: $bids-bg;
       }
     }
   
     &__history-block {
-      background-color: #fff;
+      background-color: $white;
   
       &:not(:last-child) {
         margin-bottom: 0.5rem;
@@ -275,7 +274,6 @@
     .input-range__track {
       height: .5rem;
       border-radius: 0;
-      background-color: #cecece;
     }
   
     .input-range__track--background {

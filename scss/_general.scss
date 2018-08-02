@@ -29,16 +29,10 @@ html {
   }
 }
 
-body {
-  color: #212529;
-  font-size: 1rem;
-  background-color: #f1f1f1;
-}
-
 .app {
 
   &--dark {
-    background: #1A1A1A url("../img/login_bg.png") no-repeat;
+    background: $gray-900 url("../img/login_bg.png") no-repeat;
     background-position: bottom right;
     background-size: 40vw;
   }
@@ -46,7 +40,7 @@ body {
 
 .heading {
   font-weight: bold;
-  color: #1A1A1A;
+  color: $gray-900;
   font-size: 14px;
   margin: 10px 0;
 }
@@ -61,7 +55,7 @@ body {
 
 .input-range__label {
   font-size: 1rem;
-  color: #000;
+  color: $black;
 }
 
 .input-range__label--value {
@@ -69,16 +63,16 @@ body {
 }
 
 .input-range__track {
-  background: #999 !important;
+  background: $track-unactive-bg !important;
 }
 
 .input-range__track--active {
-  background: linear-gradient(to right, #F15A24, #FBB03B) !important;
+  background: $track-active-bg !important;
 }
 
 .input-range__slider {
-  background: #333 !important;
-  border: 1px solid #333 !important;
+  background: $slider-bg !important;
+  border: 1px solid $slider-bg !important;
 }
 
 .line-through {
@@ -99,7 +93,7 @@ body {
 }
 
 .bid-btn {
-  background-color: #8b8b8b;
+  background-color: $bid-btn-light;
   width: 100%;
   padding: 10px;
   color: #fff;
@@ -107,19 +101,19 @@ body {
   border: none;
 
   &--dark {
-    background-color: #333333;
+    background-color: $bid-btn-dark;
   }
 
   &:hover {
-    background-color: #8b8b8b;
-    color: #fff;
+    background-color: $bid-btn-light;
+    color: $white;
   }
 }
 
 .separator {
   height: 1px;
   width: 100%;
-  background-color: #a4b7c1;
+  background-color: $separator-bg;
   margin: 15px 0;
 }
 

@@ -1,8 +1,8 @@
 .login {
-    color: #fff;
+    color: $white;
     font-size: 1.12rem;
     @include placeholder {
-      color: #fff;
+      color: $white;
     }
   
     h1 {
@@ -11,7 +11,7 @@
   
     .btn-login {
       border-radius: 12px;
-      color: #fff;
+      color: $white;
       height: 35px;
       border: 0;
   
@@ -21,13 +21,13 @@
     }
   
     .btn-app-login {
-      background-color: #333333;
+      background-color: $login-btn-bg;
     }
   
     &__input {
       border-radius: 12px;
-      border: 3px solid #fff;
-      color: #fff;
+      border: 3px solid $white;
+      color: $white;
       background: transparent;
       height: 35px;
   
@@ -37,12 +37,12 @@
     }
   
     &__link {
-      color: #fff;
+      color: $white;
   
       &:active,
       &:focus,
       &:hover {
-        color: #fff;
+        color: $white;
         text-decoration: none;
       }
     }

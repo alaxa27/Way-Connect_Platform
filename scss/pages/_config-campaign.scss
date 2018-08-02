@@ -1,26 +1,26 @@
 .tabs {
 
   ul {
-    border: 1px solid #bdbdbd;
-    background-color: #f1f1f1;
+    border: 1px solid $config-campaign-border;
+    background-color: $config-campaign-nav-bg;
   }
 
   .tab-content {
-    border: 1px solid #bdbdbd;
+    border: 1px solid $config-campaign-border;
   }
 
   .nav-link {
-    border: 1px solid #bdbdbd;
+    border: 1px solid $config-campaign-border;
     border-top: none !important;
   }
 
   .nav-item .nav-link {
     border-left: none !important;
-    color: #989898;
+    color: $config-campaign-nav-link;
     font-size: 14px;
 
     &:hover {
-      color: #989898;
+      color: $config-campaign-nav-link;
     }
   }
 
@@ -60,6 +60,6 @@
   input[type="text"] {
     border: 0;
     border-radius: 12px;
-    background-color: #f1f1f1;
+    background-color: $config-campaign-formulary-input;
   }
 }

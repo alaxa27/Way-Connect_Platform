@@ -5,11 +5,11 @@
   
   .custom-breadcrumb {
     width: 100%;
-    border-bottom: 1px solid #a4b7c1;
+    border-bottom: 1px solid $breadcrumb-border;
     display: flex;
     flex-wrap: wrap;
     padding: 15px 30px;
-    background-color: #fff;
+    background-color: $white;
     cursor: pointer;
   
     &--no-border {
@@ -17,7 +17,7 @@
     }
   
     &__label {
-      color: #989898;
+      color: $breadcrumb-label;
       display: flex;
       align-items: center;
       margin: 0;

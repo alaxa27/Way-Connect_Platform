@@ -6,18 +6,18 @@
 
   label {
     width: 48%;
-    color: #fff;
+    color: $white;
     font-weight: normal;
     font-size: 14px;
     text-transform: lowercase;
     text-align: center;
     padding: 5px;
     border-radius: 10px;
-    background: #dbdbdb;
+    background: $radio-label-unactive;
   }
 
   input:checked + label {
     font-weight: bold;
-    background: linear-gradient(to right, #F15A24, #FBB03B);
+    background: $radio-label-active;
   }
 }

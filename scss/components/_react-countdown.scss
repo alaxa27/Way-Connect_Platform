@@ -5,7 +5,7 @@
   }
   
   .react-countdown-box {
-    background: #F0F0F0;
+    background: $countdown-box-bg;
     margin-right: 1rem;
     border-radius: 8px;
     padding: 10px 7px;
@@ -19,7 +19,7 @@
   }
   
   .react-countdown-time {
-    color: #F6881C;
+    color: $g-orange;
     font-size: 1.75rem;
     font-weight: bold;
   }

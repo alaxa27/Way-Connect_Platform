@@ -44,7 +44,7 @@ class CreateCampaign extends Component {
           <div className="custom-breadcrumb-wrapper">
             <div className="custom-breadcrumb--no-border">
               <div className="custom-breadcrumb__label">
-                <FontAwesome.FaCircle className="yellow-circle"/>
+                <FontAwesome.FaCircle className="orange-circle"/>
                 Typologie list
               </div>
             </div>
