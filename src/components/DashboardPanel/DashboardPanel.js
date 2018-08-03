@@ -60,7 +60,7 @@ const datasetsData2 = {
 
 class DashboardPanel extends Component {
   static propTypes = {
-    color: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     value: PropTypes.number.isRequired,
     plot: PropTypes.array.isRequired,
@@ -73,7 +73,7 @@ class DashboardPanel extends Component {
 
   render() {
     const {
-      color,
+      id,
       title,
       value,
       plot,
@@ -101,9 +101,7 @@ class DashboardPanel extends Component {
       ]
     };
 
-    return (<Card className="text-white dashboard-panel" style={{
-        backgroundColor: color
-      }}>
+    return (<Card className={"text-white dashboard-panel dashboard-panel--" + id}>
       <CardBody className="pb-0">
         <h1 className="mb-0">
           <CountUp start={0} end={value} duration={3}/>

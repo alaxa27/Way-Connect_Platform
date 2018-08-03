@@ -7,6 +7,26 @@
   &__color {
     width: 20px;
     height: 20px;
+
+    &--1 {
+      background-color: $typical-client-color-1;
+    }
+
+    &--2 {
+      background-color: $typical-client-color-2;
+    }
+
+    &--3 {
+      background-color: $typical-client-color-3
+    }
+
+    &--4 {
+      background-color: $typical-client-color-4;
+    }
+
+    &--5 {
+      background-color: $typical-client-color-5;
+    }
   }
 
   &__body {
@@ -29,5 +49,7 @@
 
   &__image {
     background: $typical-client-image-bg;
+    width: 180px;
+    height: 180px;
   }
 }

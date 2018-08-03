@@ -49,46 +49,46 @@ class ConfigCampaign extends Component {
     };
 
     return (<div className="config-campaign sub-page-wrapper animated fadeIn">
-        <Row className="my-4">
-          <Col>
-            <div className="tabs">
-              <Nav tabs>
-                <NavItem>
-                  <NavLink className={classnames({
+      <Row className="my-4">
+        <Col>
+          <div className="tabs">
+            <Nav tabs>
+              <NavItem>
+                <NavLink className={classnames({
                       active: this.state.activeTab === "1"
                     })} onClick={() => {
                       this.toggle("1");
                     }}>
-                    {t("configCampaign.tabs.video.title")}
-                  </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink className={classnames({
+                  {t("configCampaign.tabs.video.title")}
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink className={classnames({
                       active: this.state.activeTab === "2"
                     })} onClick={() => {
                       this.toggle("2");
                     }}>
-                    {t("configCampaign.tabs.survey.title")}
-                  </NavLink>
-                </NavItem>
-              </Nav>
-              <TabContent activeTab={this.state.activeTab}>
-                <TabPane tabId="1" className="p-0">
-                  <ConfigVideo/>
-                </TabPane>
+                  {t("configCampaign.tabs.survey.title")}
+                </NavLink>
+              </NavItem>
+            </Nav>
+            <TabContent activeTab={this.state.activeTab}>
+              <TabPane tabId="1" className="p-0">
+                <ConfigVideo/>
+              </TabPane>
 
-                <TabPane tabId="2" className="p-0">
-                  <ConfigFormulary/>
-                </TabPane>
+              <TabPane tabId="2" className="p-0">
+                <ConfigFormulary/>
+              </TabPane>
 
-                <Col className="text-right border-top">
-                  <Button className="bid-btn">{t("configCampaign.tabs.submit.title")}</Button>
-                </Col>
+              <Col className="text-right border-top">
+                <Button className="bid-btn">{t("configCampaign.tabs.submit.title")}</Button>
+              </Col>
 
-              </TabContent>
-            </div>
-          </Col>
-        </Row>
+            </TabContent>
+          </div>
+        </Col>
+      </Row>
     </div>);
   }
 }

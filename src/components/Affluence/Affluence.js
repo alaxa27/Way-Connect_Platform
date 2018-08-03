@@ -39,7 +39,7 @@ class Affluence extends Component {
                 <CardTitle className="mb-0">{title}</CardTitle>
               </Col>
             </Row>
-            <div className="affluence__chart" style={{height: height + "px"}}>
+            <div className="affluence__chart">
               <Bar data={data} height={height} options={barOptions} />
             </div>
           </CardBody>

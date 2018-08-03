@@ -10,11 +10,6 @@ import TypicalClientImage from "./TypicalClientImage";
 import TypicalClientList from "./TypicalClientList";
 import ReduxBlockUi from "react-block-ui/redux";
 
-const clientImageDimensions = {
-  width: 180,
-  height: 180
-};
-
 class TypicalClient extends Component {
   constructor(props) {
       super(props);
@@ -31,8 +26,6 @@ class TypicalClient extends Component {
             <Media>
               <Media left>
                 <TypicalClientImage
-                    width={clientImageDimensions.width}
-                    height={clientImageDimensions.height}
                     src={"img/user-portrait.png"}
                   />
               </Media>

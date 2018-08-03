@@ -6,13 +6,9 @@ import {
 
 class TypicalClientImage extends Component {
   render() {
-    const { width, height, src } = this.props;
+    const { src } = this.props;
     return (
       <Media
-          style={{
-            width: width,
-            height: height
-          }}
           className="typical-client__image p-3"
           object
           src={src}

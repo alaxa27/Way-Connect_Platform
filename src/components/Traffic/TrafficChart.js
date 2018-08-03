@@ -54,9 +54,7 @@ class TrafficChart extends Component {
                 : null
             }
           </Row>
-        <div className="traffic__chart" style={{
-              height: height + "px"
-            }}>
+          <div className="traffic__chart">
             <Line data={traffic} options={options} height={height}/>
           </div>
         </CardBody>

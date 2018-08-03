@@ -32,10 +32,10 @@ class PromotionsList extends Component {
     const {data, promotionsPage, promotionsTotalCount, promotionsLimit, loadMore} = this.props;
     return (<ReduxBlockUi tag="div" block="PROMOTIONS" unblock={["PROMOTIONS_FULFILLED", "PROMOTIONS_REJECTED"]}>
       <Card className="promotion px-4 mt-4">
-          <CardBody className="p-0">
-            {this.renderPromotionList(data, promotionsPage, promotionsTotalCount, promotionsLimit, loadMore)}
-          </CardBody>
-        </Card>
+        <CardBody className="p-0">
+          {this.renderPromotionList(data, promotionsPage, promotionsTotalCount, promotionsLimit, loadMore)}
+        </CardBody>
+      </Card>
     </ReduxBlockUi>);
   }
 }
