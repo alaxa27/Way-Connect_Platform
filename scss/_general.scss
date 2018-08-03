@@ -46,10 +46,7 @@ body {
   font-weight: bold;
   color: $gray-900;
   margin: 10px 0;
-}
-
-.map-wrapper > div {
-  height: 500px !important;
+  font-size: 1.5rem;
 }
 
 .input-range__label-container {
@@ -107,6 +104,11 @@ body {
     background-color: $bid-btn-dark;
   }
 
+  &--fixed {
+    max-width: 250px;
+    font-size: 1.12rem;
+  }
+
   &:hover {
     background-color: $bid-btn-light;
     color: $white;
@@ -133,5 +135,12 @@ body {
   svg {
     margin-right: 5px;
     font-size: 1.12rem;
+  }
+}
+
+.loader {
+  
+  img {
+    width: 50px;
   }
 }

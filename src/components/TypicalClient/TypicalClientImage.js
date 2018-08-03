@@ -11,10 +11,9 @@ class TypicalClientImage extends Component {
       <Media
           style={{
             width: width,
-            height: height,
-            background: "#f0f3f5"
+            height: height
           }}
-          className="p-3"
+          className="typical-client__image p-3"
           object
           src={src}
           alt="Generic placeholder image"

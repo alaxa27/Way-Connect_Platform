@@ -21,11 +21,7 @@ class ConfigFormulary extends Component {
         <Col>
           <div className="formulary">
             <Col>
-              <h2 className="heading" style={{
-                    fontSize: "24px",
-                    marginBottom: 0,
-                    marginTop: "25px"
-                }}>
+              <h2 className="heading my-3">
                 {t("configCampaign.survey.title")}
               </h2>
               <div className="separator">&nbsp;</div>

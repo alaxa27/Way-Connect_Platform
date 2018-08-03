@@ -20,15 +20,9 @@ const MyMapComponent = compose(withProps({
      * The key "AIzaSyBkNaAGLEVq0YLQMi-PYEMabFeREadYe1Q" can be ONLY used in this sandbox (no forked).
      */
   googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyD_vysGBcAkp6DMhvF0xbubCjhLWdUxrXw&v=3.exp&libraries=geometry,drawing,places",
-  loadingElement: <div style={{
-      height: "100%"
-    }}/>,
-  containerElement: <div style={{
-      height: "400px"
-    }}/>,
-  mapElement: <div style={{
-        height: "100%"
-      }}/>
+  loadingElement: <div className="map__loading-el"/>,
+  containerElement: <div className="map__container-el"/>,
+  mapElement: <div className="map__element"/>
 }), withScriptjs, withGoogleMap)(props => (<GoogleMap zoom={props.zoom} center={{
     lat: props.center[1],
     lng: props.center[0]
@@ -118,9 +112,7 @@ export class Dashboard extends Component {
         <Col xs="12" md="6">
           <Row>
             <Col>
-              <h2 className="heading" style={{
-                  fontSize: "24px"
-                }}>{t("dashboard.ourPartners.title")}</h2>
+              <h2 className="heading">{t("dashboard.ourPartners.title")}</h2>
             </Col>
           </Row>
           <Row>

@@ -36,7 +36,7 @@ class TypicalClient extends Component {
                     src={"img/user-portrait.png"}
                   />
               </Media>
-              <Media body style={{paddingLeft: "1.25rem"}}>
+              <Media className="pl-3" body>
                 <TypicalClientList
                     data={data}
                   />

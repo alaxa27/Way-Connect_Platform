@@ -104,9 +104,7 @@ class Campaigns extends Component {
 
       <div className="custom-breadcrumb-wrapper">
         <div className="custom-breadcrumb">
-          <Row style={{
-              width: "100%"
-            }}>
+          <Row>
             <Col xs="4" md="3">
               <label className="custom-breadcrumb__label">
                 <FontAwesome.FaCircle className={this.renderStatusCircle("bidding")}/>
@@ -128,13 +126,9 @@ class Campaigns extends Component {
           </Row>
         </div>
         <div className="custom-breadcrumb">
-          <Row style={{
-              width: "100%"
-            }}>
+          <Row>
             <Col>
-              <label className="custom-breadcrumb__label w-100 d-flex align-items-center justify-content-between" style={{
-                  color: "#989898"
-                }} onClick={this.showFilter}>
+              <label className="custom-breadcrumb__label w-100 d-flex align-items-center justify-content-between" onClick={this.showFilter}>
                 <div>
                   <FontAwesome.FaCircle/>
                   {t("campaigns.fixedFilters.title")}
@@ -147,9 +141,7 @@ class Campaigns extends Component {
               </label>
             </Col>
           </Row>
-          <Collapse isOpen={this.state.filter} style={{
-              width: "100%"
-            }}>
+          <Collapse isOpen={this.state.filter}>
             <ResearchFilters {...this.state}/>
           </Collapse>
         </div>

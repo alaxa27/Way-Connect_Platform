@@ -26,4 +26,8 @@
     cursor: pointer;
     color: $typical-client-border;
   }
+
+  &__image {
+    background: $typical-client-image-bg;
+  }
 }

@@ -33,6 +33,7 @@ class TrafficChart extends Component {
     if(_.first(traffic.datasets)) {
       this.setMaxHeight(this.arrayMax(_.first(traffic.datasets).data));
     }
+    const height = 300;
     return (<ReduxBlockUi tag="div" block="TRAFFIC" unblock={["TRAFFIC_FULFILLED", "TRAFFIC_REJECTED"]}>
       <Card>
         <CardBody>
@@ -53,11 +54,10 @@ class TrafficChart extends Component {
                 : null
             }
           </Row>
-          <div className="chart-wrapper" style={{
-              height: 300 + "px",
-              marginTop: 40 + "px"
+        <div className="traffic__chart" style={{
+              height: height + "px"
             }}>
-            <Line data={traffic} options={options} height={300}/>
+            <Line data={traffic} options={options} height={height}/>
           </div>
         </CardBody>
         <CardFooter>

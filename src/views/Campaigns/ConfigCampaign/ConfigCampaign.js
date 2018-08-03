@@ -49,12 +49,7 @@ class ConfigCampaign extends Component {
     };
 
     return (<div className="config-campaign sub-page-wrapper animated fadeIn">
-
-      <div style={{
-          marginTop: 20
-        }}>
-        <Row>
-
+        <Row className="my-4">
           <Col>
             <div className="tabs">
               <Nav tabs>
@@ -78,15 +73,11 @@ class ConfigCampaign extends Component {
                 </NavItem>
               </Nav>
               <TabContent activeTab={this.state.activeTab}>
-                <TabPane tabId="1" style={{
-                    padding: 0
-                }}>
+                <TabPane tabId="1" className="p-0">
                   <ConfigVideo/>
                 </TabPane>
 
-                <TabPane tabId="2" style={{
-                    padding: 0
-                  }}>
+                <TabPane tabId="2" className="p-0">
                   <ConfigFormulary/>
                 </TabPane>
 
@@ -97,10 +88,7 @@ class ConfigCampaign extends Component {
               </TabContent>
             </div>
           </Col>
-
         </Row>
-      </div>
-      <br/>
     </div>);
   }
 }

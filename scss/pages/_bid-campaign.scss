@@ -44,7 +44,6 @@
 
   .bids {
     background-color: $bids-bg;
-    border: 1px solid $bids-border;
   
     img {
       height: 20px;
@@ -139,7 +138,6 @@
 .bid {
     background-color: $white;
     font-size: 0.9rem;
-    border: 1px solid $bids-border;
     position: relative;
   
     &__forbidden {

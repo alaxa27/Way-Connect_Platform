@@ -28,6 +28,7 @@ const barOptions = {
 
 class Affluence extends Component {
   render() {
+    const height = 380;
     const { data, title } = this.props;
     return (
       <ReduxBlockUi tag="div" block="AFFLUENCE" unblock={["AFFLUENCE_FULFILLED", "AFFLUENCE_REJECTED"]}>
@@ -38,8 +39,8 @@ class Affluence extends Component {
                 <CardTitle className="mb-0">{title}</CardTitle>
               </Col>
             </Row>
-            <div className="chart-wrapper" style={{height: "380px", marginTop: "40px"}}>
-              <Bar data={data} height={380} options={barOptions} />
+            <div className="affluence__chart" style={{height: height + "px"}}>
+              <Bar data={data} height={height} options={barOptions} />
             </div>
           </CardBody>
         </Card>

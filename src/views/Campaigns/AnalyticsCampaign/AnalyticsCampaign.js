@@ -76,10 +76,7 @@ export class AnalyticsCampaign extends Component {
     return (
       <ReduxBlockUi tag="div" block={["CAMPAIGN_ANALYTICS", "CAMPAIGN_ANALYTICS_REJECTED"]} unblock={["CAMPAIGN_ANALYTICS_FULFILLED"]}>
         <div className="sub-page-wrapper animated fadeIn">
-          <div style={{
-                  marginTop: 20
-              }}>
-            <Row>
+            <Row className="mt-4">
               <Col xs="12" md="6" lg="3">
                 <Panel index={1} value={keyData.views} title={t("analyticsCampaign.panel.views.title")}/>
               </Col>
@@ -117,7 +114,6 @@ export class AnalyticsCampaign extends Component {
               </Col>
             </Row>
           </div>
-        </div>
       </ReduxBlockUi>
     );
   }

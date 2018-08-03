@@ -126,9 +126,7 @@ export class Establishment extends Component {
 
         <Row>
           <Col>
-            <h2 className="heading" style={{
-                  fontSize: "24px"
-                }}>{t("establishment.promotions.title")}</h2>
+            <h2 className="heading">{t("establishment.promotions.title")}</h2>
           </Col>
         </Row>
         <Row>

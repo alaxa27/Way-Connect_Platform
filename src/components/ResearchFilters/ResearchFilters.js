@@ -63,14 +63,12 @@ class ResearchFilters extends Component {
               <div className="clearfix"></div>
             </div>
           </div>
-          <div className="input-wrapper">
-            <label className="pull-left">Age</label>
+          <div className="input-wrapper d-flex justify-content-between">
+            <label>Age</label>
             <label className="research-filters__preview">{this.state.age.min}-{this.state.age.max}yo</label>
-            <div style={{
-                paddingTop: 40
-              }}>
-              <InputRange maxValue={100} minValue={0} value={this.state.age} onChange={this.handleRangeChange}/>
-            </div>
+          </div>
+          <div className="input-wrapper">
+            <InputRange maxValue={100} minValue={0} value={this.state.age} onChange={this.handleRangeChange}/>
           </div>
         </Col>
       </Row>
@@ -112,9 +110,7 @@ class ResearchFilters extends Component {
             this.props.fixed
             ? null
             : (<Col md="6" xs="12">
-              <button className="bid-btn bid-btn--dark" style={{
-                  marginTop: "25px"
-                }}>Start bidding</button>
+              <button className="bid-btn bid-btn--dark mt-4">Start bidding</button>
             </Col>))
         }
       </Row>

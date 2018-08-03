@@ -16,8 +16,7 @@ class ExportExcelButton extends Component {
     const { title, establishmentId, downloadEstablishment } = this.props;
     return (
       <Button 
-        className="bid-btn d-flex align-items-center justify-content-center" 
-        style={{width: "250px", fontSize: "18px", marginTop: 25}}
+        className="bid-btn bid-btn--fixed d-flex align-items-center justify-content-center" 
         onClick={() => downloadEstablishment(establishmentId)}
       >
         <FontAwesome.FaFileExcelO size={28} className="mr-2" />
