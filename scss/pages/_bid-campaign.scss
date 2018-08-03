@@ -52,7 +52,6 @@
     &__item {
       display: flex;
       padding: 15px 25px;
-      font-size: 0.9rem;
       cursor: pointer;
   
       &.active {
@@ -74,7 +73,7 @@
       > div {
         background-color: $black;
         color: $white;
-        font-size: 1.85rem;
+        font-size: $font-size-big;
         border-radius: 50%;
         padding: 8px;
         width: 55px;
@@ -86,7 +85,7 @@
       }
   
       svg {
-        font-size: 20px;
+        font-size: $font-size-medium;
         color: $g-orange-dark;
         margin-left: -5px;
       }
@@ -105,7 +104,6 @@
     }
   
     &__item-progress-value {
-      font-size: 1.25rem;
       font-weight: bold;
     }
   
@@ -125,7 +123,6 @@
   
       &--main {
         font-weight: bold;
-        font-size: 1.2rem;
       }
   
       &--sub {
@@ -137,7 +134,6 @@
 
 .bid {
     background-color: $white;
-    font-size: 0.9rem;
     position: relative;
   
     &__forbidden {
@@ -172,7 +168,7 @@
     &__forbidden-icon {
       
       i {
-        font-size: 3rem;
+        font-size: $font-size-big;
         background: $bids-forbidden-bg;
         border-radius: 50%;
         padding: 25px;
@@ -180,7 +176,7 @@
     }
   
     &__forbidden-title {
-      font-size: 1.5rem;
+      font-size: $font-size-medium;
     }
   
     &__block {
@@ -192,7 +188,6 @@
   
     &__title {
       font-weight: bold;
-      font-size: 1.2rem;
     }
   
     &__boxes {
@@ -210,13 +205,14 @@
       }
   
       i {
-        font-size: 1.5rem;
+        font-size: $font-size-medium;
       }
     }
   
     &__box-title {
       width: 100px;
       display: inline-block;
+      font-size: $font-size-sm;
     }
   
     &__history {
@@ -244,7 +240,7 @@
       }
   
       i {
-        font-size: 1.5rem;
+        font-size: $font-size-medium;
       }
     }
   
@@ -256,7 +252,7 @@
     }
   
     &__average-price-value {
-      font-size: 2rem;
+      font-size: $font-size-big;
     }
   }
 

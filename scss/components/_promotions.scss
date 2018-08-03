@@ -11,7 +11,6 @@
     width: 100%;
     margin-bottom: 0;
     font-weight: bold;
-    font-size: 1.1rem;
     line-height: normal;
   }
 
@@ -22,14 +21,14 @@
   &__label-right {
     width: 100%;
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: $font-size-medium;
     line-height: normal;
     margin-bottom: 0;
   }
 
   &__span-right {
     font-weight: lighter;
-    font-size: 0.85rem;
+    font-size: $font-size-sm;
   }
 
   &__circle-container {
@@ -49,13 +48,13 @@
     span {
       &:first-child {
           font-weight: bold;
-          font-size: 1.5rem;
+          font-size: $font-size-medium;
       }
 
       &:last-child {
           position: relative;
-          bottom: -4px;
-          font-size: 0.85rem;
+          bottom: -2px;
+          font-size: $font-size-sm;
       }
     }
   }

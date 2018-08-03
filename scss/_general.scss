@@ -1,31 +1,31 @@
 @import '~react-block-ui/style.css';
 
 html {
-  font-size: 16px;
+  font-size: $font-size-base;
 
   // 1199px and down
   @include media-breakpoint-down(lg) {
-    font-size: 15px;
+    font-size: $font-size-md;
   }
 
   // 991px and down
   @include media-breakpoint-down(md) {
-    font-size: 14px;
+    font-size: $font-size-sm;
   }
 
   // 767px and down
   @include media-breakpoint-down(sm) {
-    font-size: 13px;
+    font-size: $font-size-xs;
   }
 
   // 575px and down
   @include media-breakpoint-down(xs) {
-    font-size: 12px;
+    font-size: $font-size-xxs;
   }
 
   // height: 767px and down
   @media(max-height: 767px) {
-    font-size: 12px;
+    font-size: $font-size-xxs;
   }
 }
 
@@ -46,7 +46,7 @@ body {
   font-weight: bold;
   color: $gray-900;
   margin: 10px 0;
-  font-size: 1.5rem;
+  font-size: $font-size-medium;
 }
 
 .input-range__label-container {
@@ -54,7 +54,6 @@ body {
 }
 
 .input-range__label {
-  font-size: 1rem;
   color: $black;
 }
 
@@ -106,7 +105,6 @@ body {
 
   &--fixed {
     max-width: 250px;
-    font-size: 1.12rem;
   }
 
   &:hover {
@@ -128,13 +126,11 @@ body {
   color: $blue;
   padding: 0;
   font-weight: bold;
-  font-size: 1rem;
   display: flex;
   align-items: center;
 
   svg {
     margin-right: 5px;
-    font-size: 1.12rem;
   }
 }
 
