@@ -21,14 +21,14 @@ class ConfigFormulary extends Component {
         <Col>
           <div className="formulary">
             <Col>
-              <h2 className="way-heading" style={{
+              <h2 className="heading" style={{
                     fontSize: "24px",
                     marginBottom: 0,
                     marginTop: "25px"
                 }}>
                 {t("configCampaign.survey.title")}
               </h2>
-              <div className="sep">&nbsp;</div>
+              <div className="separator">&nbsp;</div>
             </Col>
 
             <Col className="formulary-input-wrap">
@@ -51,7 +51,7 @@ class ConfigFormulary extends Component {
             </Col>
 
             <Col>
-              <div className="sep">&nbsp;</div>
+              <div className="separator">&nbsp;</div>
             </Col>
 
             <Col className="formulary-input-wrap">
@@ -69,7 +69,7 @@ class ConfigFormulary extends Component {
             </Col>
 
             <Col>
-              <div className="sep">&nbsp;</div>
+              <div className="separator">&nbsp;</div>
             </Col>
 
             <Col className="formulary-input-wrap">

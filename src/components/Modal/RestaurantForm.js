@@ -86,7 +86,7 @@ class RestaurantForm extends React.Component {
             null
           }
         </div>
-        <button className="modal-body__submit bid-btn bid-btn-dark">
+        <button className="modal-body__submit bid-btn bid-btn--dark">
           {t("addEstablishment.step1.form.submit")}
         </button>
       </form>

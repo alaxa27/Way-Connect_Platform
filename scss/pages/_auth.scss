@@ -1,0 +1,54 @@
+.login {
+    color: $white;
+    font-size: 1.12rem;
+    @include placeholder {
+      color: $white;
+    }
+  
+    h1 {
+      font-size: 2.75rem;
+    }
+  
+    .btn-login {
+      border-radius: 12px;
+      color: $white;
+      height: 35px;
+      border: 0;
+  
+      &:focus {
+        outline: none;
+      }
+    }
+  
+    .btn-app-login {
+      background-color: $login-btn-bg;
+    }
+  
+    &__input {
+      border-radius: 12px;
+      border: 3px solid $white;
+      color: $white;
+      background: transparent;
+      height: 35px;
+  
+      &:focus {
+        outline: none;
+      }
+    }
+  
+    &__link {
+      color: $white;
+  
+      &:active,
+      &:focus,
+      &:hover {
+        color: $white;
+        text-decoration: none;
+      }
+    }
+  
+    &__logo-img {
+      max-width: 200px;
+      max-height: 50vh;
+    }
+  }

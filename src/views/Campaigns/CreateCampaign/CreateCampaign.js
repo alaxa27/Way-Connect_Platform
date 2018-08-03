@@ -42,9 +42,9 @@ class CreateCampaign extends Component {
       <Row>
         <Col>
           <div className="custom-breadcrumb-wrapper">
-            <div className="custom-breadcrumb no-border">
-              <div className="custom-breadcrumb-label">
-                <FontAwesome.FaCircle className="yellow-circle"/>
+            <div className="custom-breadcrumb--no-border">
+              <div className="custom-breadcrumb__label">
+                <FontAwesome.FaCircle className="orange-circle"/>
                 Typologie list
               </div>
             </div>
@@ -55,8 +55,8 @@ class CreateCampaign extends Component {
       <Row>
         <Col>
           <div className="custom-breadcrumb-wrapper">
-            <div className="custom-breadcrumb no-border">
-              <div className="custom-breadcrumb-label">
+            <div className="custom-breadcrumb--no-border">
+              <div className="custom-breadcrumb__label">
                 <FontAwesome.FaCircle className="green-circle"/>
                 Research Filters
               </div>

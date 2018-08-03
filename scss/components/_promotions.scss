@@ -1,0 +1,63 @@
+.promotion {
+  background: $white;
+  overflow: auto;
+  height: 800px;
+  border: 1px solid $promotion-border;
+
+  &__item {
+    border-bottom: 1px solid $promotion-border;
+  }
+
+  &__label-middle {
+    width: 100%;
+    margin-bottom: 0;
+    font-weight: bold;
+    font-size: 1.1rem;
+    line-height: normal;
+  }
+
+  &__span-middle {
+    font-weight: lighter;
+  }
+
+  &__label-right {
+    width: 100%;
+    font-weight: bold;
+    font-size: 1.5rem;
+    line-height: normal;
+    margin-bottom: 0;
+  }
+
+  &__span-right {
+    font-weight: lighter;
+    font-size: 0.85rem;
+  }
+
+  &__circle-container {
+    border-right: 1px solid $promotion-border;
+  }
+
+    &__circle {
+        width: 100px;
+        height: 100px;
+        background: $promotion-circle;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+
+    span {
+            &:first-child {
+                font-weight: bold;
+                font-size: 1.5rem;
+            }
+
+            &:last-child {
+                position: relative;
+                bottom: -4px;
+                font-size: 0.85rem;
+            }
+        }
+    }
+}

@@ -130,7 +130,7 @@ class BidCampaign extends Component {
 
     const history = [1,2,3];
 
-    return (<div className="sub-page-wrapper animated fadeIn my-4">
+    return (<div className="page-bid-campaign sub-page-wrapper animated fadeIn my-4">
       <Row>
         <Col>
           <BidTotal data={topTrackData} />

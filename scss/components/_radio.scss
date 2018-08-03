@@ -1,0 +1,22 @@
+.radio-buttons-container {
+
+  input {
+    display: none;
+  }
+
+  label {
+    width: 48%;
+    color: $white;
+    font-weight: normal;
+    text-transform: lowercase;
+    text-align: center;
+    padding: 5px;
+    border-radius: 10px;
+    background: $radio-label-unactive;
+  }
+
+  input:checked + label {
+    font-weight: bold;
+    background: $radio-label-active;
+  }
+}

@@ -1,0 +1,41 @@
+.mybids-table {
+  width: 100%;
+  margin: 30px 0;
+
+  tr td {
+    padding: 0;
+
+    &:first-child {
+      width: auto;
+
+      label {
+        border-left: 1px solid $bids-border;
+      }
+    }
+
+    &:last-child {
+
+      label {
+        border-right: 1px solid $bids-border;
+      }
+    }
+
+    label {
+      padding: 5px 20px;
+      background-color: #CCCCCC;
+      color: $black;
+      margin-bottom: 5px;
+      width: 100%;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      border-top: 1px solid $bids-border;
+      border-bottom: 1px solid $bids-border;
+      cursor: pointer;
+    }
+
+    img {
+      height: 20px;
+    }
+  }
+}

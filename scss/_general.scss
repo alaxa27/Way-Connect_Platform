@@ -1,0 +1,137 @@
+@import '~react-block-ui/style.css';
+
+html {
+  font-size: 16px;
+
+  // 1199px and down
+  @include media-breakpoint-down(lg) {
+    font-size: 15px;
+  }
+
+  // 991px and down
+  @include media-breakpoint-down(md) {
+    font-size: 14px;
+  }
+
+  // 767px and down
+  @include media-breakpoint-down(sm) {
+    font-size: 13px;
+  }
+
+  // 575px and down
+  @include media-breakpoint-down(xs) {
+    font-size: 12px;
+  }
+
+  // height: 767px and down
+  @media(max-height: 767px) {
+    font-size: 12px;
+  }
+}
+
+body {
+  background-color: $body-bg;
+}
+
+.app {
+
+  &--dark {
+    background: $gray-900 url("../img/login_bg.png") no-repeat;
+    background-position: bottom right;
+    background-size: 40vw;
+  }
+}
+
+.heading {
+  font-weight: bold;
+  color: $gray-900;
+  margin: 10px 0;
+}
+
+.map-wrapper > div {
+  height: 500px !important;
+}
+
+.input-range__label-container {
+  position: static;
+}
+
+.input-range__label {
+  font-size: 1rem;
+  color: $black;
+}
+
+.input-range__label--value {
+  top: 0;
+}
+
+.input-range__track {
+  background: $track-unactive-bg !important;
+}
+
+.input-range__track--active {
+  background: $track-active-bg !important;
+}
+
+.input-range__slider {
+  background: $slider-bg !important;
+  border: 1px solid $slider-bg !important;
+}
+
+.line-through {
+  position: relative;
+
+  &:after {
+    content: '';
+    border-bottom: 3px solid;
+    position: absolute;
+    left: 0;
+    right: 4px;
+    top: 9px;
+  }
+}
+
+.input-wrapper {
+  margin-top: 10px;
+}
+
+.bid-btn {
+  background-color: $bid-btn-light;
+  width: 100%;
+  padding: 10px;
+  color: #fff;
+  border-radius: 12px;
+  border: none;
+
+  &--dark {
+    background-color: $bid-btn-dark;
+  }
+
+  &:hover {
+    background-color: $bid-btn-light;
+    color: $white;
+  }
+}
+
+.separator {
+  height: 1px;
+  width: 100%;
+  background-color: $separator-bg;
+  margin: 15px 0;
+}
+
+.add-btn {
+  border: none;
+  background-color: transparent;
+  color: $blue;
+  padding: 0;
+  font-weight: bold;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+
+  svg {
+    margin-right: 5px;
+    font-size: 1.12rem;
+  }
+}

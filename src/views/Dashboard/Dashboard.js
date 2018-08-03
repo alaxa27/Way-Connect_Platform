@@ -98,9 +98,7 @@ export class Dashboard extends Component {
     const campaignsPlot = stats.campaigns.plot;
     const customersPlot = stats.customers.plot;
 
-    return (<div className="animated fadeIn" style={{
-        marginTop: 20
-      }}>
+    return (<div className="page-dashboard animated fadeIn">
       <Row>
         <Col xs="12" lg="6">
           <DashboardPanel color="#F15A24" plot={establishmentsPlot} title={t("dashboard.kdp.partners.title")} value={stats.establishments.count} type="line1"/>
@@ -120,14 +118,14 @@ export class Dashboard extends Component {
         <Col xs="12" md="6">
           <Row>
             <Col>
-              <h2 className="way-heading" style={{
+              <h2 className="heading" style={{
                   fontSize: "24px"
                 }}>{t("dashboard.ourPartners.title")}</h2>
             </Col>
           </Row>
           <Row>
             <Col>
-              <div className="google-maps-wrapper mt-4">
+              <div className="map-wrapper mt-4">
                 <MyMapComponent isMarkerShown={true} center={selectedEstablishment
                     ? selectedEstablishment.location.coordinates
                     : [0, 0]} markers={markers} zoom={zoom}/>
@@ -135,10 +133,9 @@ export class Dashboard extends Component {
             </Col>
           </Row>
         </Col>
-        <Col xs="12" md="6" className="top-space">
+        <Col xs="12" md="6">
           <EstablishmentList establishments={establishments} selectEstablishment={this.selectEstablishment} selectedEstablishment={selectedEstablishment} establishmentsPage={establishments.page} establishmentsTotalCount={establishments.totalCount} establishmentsLimit={establishments.limit} loadMore={this.loadMoreEstablishments}/>
         </Col>
-        <div className="clearfix"></div>
       </Row>
       <br/><br/>
 

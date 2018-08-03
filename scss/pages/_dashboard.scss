@@ -1,0 +1,33 @@
+.page-dashboard {
+    margin-top: 20px;
+}
+
+.dashboard-panel {
+    height: 220px;
+    border: 0;
+    border-radius: 5px;
+
+    &__chart {
+        height: 120px;
+    }
+}
+
+.establishments {
+    height: 500px;
+    overflow: auto;
+    margin-top: 72px;
+  
+    &__item {
+      padding: 5px 20px;
+      background-color: $establishment-item-bg;
+      color: $black;
+      margin-bottom: 10px;
+      width: 100%;
+      font-weight: bold;
+      opacity: 0.5;
+  
+      &--full-opacity {
+        opacity: 1;
+      }
+    }
+  }

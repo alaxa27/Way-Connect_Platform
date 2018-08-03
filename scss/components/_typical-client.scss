@@ -1,0 +1,29 @@
+.typical-client {
+  &__item {
+    font-size: 0.75rem;
+    color: $typical-client-text;
+  }
+
+  &__color {
+    width: 20px;
+    height: 20px;
+  }
+
+  &__body {
+    flex: 1;
+    border-top: 1px solid $typical-client-border;
+
+    &--last {
+      border-bottom: 1px solid $typical-client-border;
+    }
+  }
+
+  &__prop {
+    flex: 1;
+  }
+
+  &__settings {
+    cursor: pointer;
+    color: $typical-client-border;
+  }
+}

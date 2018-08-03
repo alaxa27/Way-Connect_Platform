@@ -25,29 +25,29 @@ class EstablishmentList extends Component {
         loader={<div className = "loader my-3 text-center clearfix" key = {0} > ...</div>} 
         useWindow={false}
       >
-        {establishments.fetching ?
-          <div className="text-center">
-            ...
-          </div>
-        : establishments.items.length ?
-          <div className="establishments">
-            {_.map(establishments.items, (item, index) => {
-              return (
-                <EstablishmentListItem 
-                  key={item.id}
-                  index={index}
-                  establishment={item}
-                  selectedEstablishment={selectedEstablishment}
-                  selectEstablishment={selectEstablishment}
-                />
-              );
-            })}
-          </div>
-        :
-          <div className="text-center">
-            No establishments found
-          </div>
-        }
+        <div className="establishments">
+          {establishments.fetching ?
+            <div className="text-center">
+              ...
+            </div>
+          : establishments.items.length ?
+              _.map(establishments.items, (item, index) => {
+                return (
+                  <EstablishmentListItem 
+                    key={item.id}
+                    index={index}
+                    establishment={item}
+                    selectedEstablishment={selectedEstablishment}
+                    selectEstablishment={selectEstablishment}
+                  />
+                );
+              })
+          :
+              <div className="text-center">
+              No establishments found
+              </div>
+          }
+        </div>
       </InfiniteScroll>
     );
   }

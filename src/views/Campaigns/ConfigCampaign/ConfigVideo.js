@@ -58,7 +58,7 @@ class ConfigVideo extends Component {
                   offset: 4
                 }}>
               <div className="video__file-upload">
-                <button className="bid-btn bid-btn-dark">
+                <button className="bid-btn bid-btn--dark">
                   {t("configCampaign.video.upload.title")}
                 </button>
               </div>

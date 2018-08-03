@@ -1,0 +1,64 @@
+.tabs {
+
+  ul {
+    border: 1px solid $config-campaign-border;
+    background-color: $config-campaign-nav-bg;
+  }
+
+  .tab-content {
+    border: 1px solid $config-campaign-border;
+  }
+
+  .nav-link {
+    border: 1px solid $config-campaign-border;
+    border-top: none !important;
+  }
+
+  .nav-item .nav-link {
+    border-left: none !important;
+    color: $config-campaign-nav-link;
+
+    &:hover {
+      color: $config-campaign-nav-link;
+    }
+  }
+
+  .bid-btn {
+    margin: 15px 0;
+    max-width: 200px;
+
+    &--dark {
+      max-width: 400px;
+    }
+  }
+}
+
+.video {
+  padding-bottom: 75px;
+
+  &__image {
+    max-width: 200px;
+    margin: 50px 0 75px 0;
+  }
+
+  &__file-upload {
+    margin-top: 75px;
+  }
+
+}
+
+.formulary-input-wrap {
+  margin-bottom: 15px;
+
+  label {
+    font-weight: normal;
+    margin-bottom: 8px;
+    line-height: normal;
+  }
+
+  input[type="text"] {
+    border: 0;
+    border-radius: 12px;
+    background-color: $config-campaign-formulary-input;
+  }
+}

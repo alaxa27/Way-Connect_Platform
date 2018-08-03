@@ -108,19 +108,19 @@ class Campaigns extends Component {
               width: "100%"
             }}>
             <Col xs="4" md="3">
-              <label className="bidding-status-label">
+              <label className="custom-breadcrumb__label">
                 <FontAwesome.FaCircle className={this.renderStatusCircle("bidding")}/>
                 {t("campaigns.bidding.title")}
               </label>
             </Col>
             <Col xs="4" md="3">
-              <label className="bidding-status-label">
+              <label className="custom-breadcrumb__label">
                 <FontAwesome.FaCircle className={this.renderStatusCircle("progress")}/>
                 {t("campaigns.inProgress.title")}
               </label>
             </Col>
             <Col xs="4" md="3">
-              <label className="bidding-status-label">
+              <label className="custom-breadcrumb__label">
                 <FontAwesome.FaCircle className={this.renderStatusCircle("delivered")}/>
                 {t("campaigns.delivered.title")}
               </label>
@@ -132,7 +132,7 @@ class Campaigns extends Component {
               width: "100%"
             }}>
             <Col>
-              <label className="bidding-status-label w-100 d-flex align-items-center justify-content-between" style={{
+              <label className="custom-breadcrumb__label w-100 d-flex align-items-center justify-content-between" style={{
                   color: "#989898"
                 }} onClick={this.showFilter}>
                 <div>

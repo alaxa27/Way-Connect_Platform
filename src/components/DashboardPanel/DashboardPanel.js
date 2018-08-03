@@ -101,7 +101,7 @@ class DashboardPanel extends Component {
       ]
     };
 
-    return (<Card className="text-white dashboard-plot" style={{
+    return (<Card className="text-white dashboard-panel" style={{
         backgroundColor: color
       }}>
       <CardBody className="pb-0">
@@ -110,9 +110,7 @@ class DashboardPanel extends Component {
         </h1>
         <p>{title}</p>
       </CardBody>
-      <div className="chart-wrapper px-3" style={{
-          height: "120px"
-        }}>
+      <div className="dashboard-panel__chart px-3">
         {
           type === "bar"
             ? <Bar data={plotData} options={options} height={120}/>

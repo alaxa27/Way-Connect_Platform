@@ -43,10 +43,10 @@ class ListCampaignType extends Component {
         }}>
         <div className="custom-breadcrumb">
           <div className="d-flex justify-content-between w-100">
-            <label className="bidding-status-label">
+            <label className="custom-breadcrumb__label">
               <FontAwesome.FaCircle className={"mark-" + status}/> {title}
             </label>
-            <div className="arrow-container">
+            <div className="custom-breadcrumb__arrow">
               {
                 this.state.isOpened
                   ? <FontAwesome.FaAngleDown/>
