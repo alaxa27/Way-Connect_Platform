@@ -1,5 +1,5 @@
 .typical-client {
-  
+
   &__item {
     font-size: $font-size-xxs;
     color: $typical-client-text;
@@ -50,7 +50,6 @@
 
   &__image {
     background: $typical-client-image-bg;
-    width: 180px;
-    height: 180px;
+    height: 130px;
   }
 }
