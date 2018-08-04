@@ -20,15 +20,9 @@ const MyMapComponent = compose(withProps({
      * The key "AIzaSyBkNaAGLEVq0YLQMi-PYEMabFeREadYe1Q" can be ONLY used in this sandbox (no forked).
      */
   googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyD_vysGBcAkp6DMhvF0xbubCjhLWdUxrXw&v=3.exp&libraries=geometry,drawing,places",
-  loadingElement: <div style={{
-      height: "100%"
-    }}/>,
-  containerElement: <div style={{
-      height: "400px"
-    }}/>,
-  mapElement: <div style={{
-        height: "100%"
-      }}/>
+  loadingElement: <div className="map__loading-el"/>,
+  containerElement: <div className="map__container-el"/>,
+  mapElement: <div className="map__element"/>
 }), withScriptjs, withGoogleMap)(props => (<GoogleMap zoom={props.zoom} center={{
     lat: props.center[1],
     lng: props.center[0]
@@ -101,16 +95,16 @@ export class Dashboard extends Component {
     return (<div className="page-dashboard animated fadeIn">
       <Row>
         <Col xs="12" lg="6">
-          <DashboardPanel color="#F15A24" plot={establishmentsPlot} title={t("dashboard.kdp.partners.title")} value={stats.establishments.count} type="line1"/>
+          <DashboardPanel id={1} plot={establishmentsPlot} title={t("dashboard.kdp.partners.title")} value={stats.establishments.count} type="line1"/>
         </Col>
         <Col xs="12" lg="6">
-          <DashboardPanel color="#F7931E" plot={connectionsPlot} title={t("dashboard.kdp.communicationDiffusion.title")} value={stats.connections.count} type="line1"/>
+          <DashboardPanel id={2} plot={connectionsPlot} title={t("dashboard.kdp.communicationDiffusion.title")} value={stats.connections.count} type="line1"/>
         </Col>
         <Col xs="12" lg="6">
-          <DashboardPanel color="#FBB03B" plot={campaignsPlot} title={t("dashboard.kdp.campaigns.title")} value={stats.campaigns.count} type="line2"/>
+          <DashboardPanel id={3} plot={campaignsPlot} title={t("dashboard.kdp.campaigns.title")} value={stats.campaigns.count} type="line2"/>
         </Col>
         <Col xs="12" lg="6">
-          <DashboardPanel color="#F9DA23" plot={customersPlot} title={t("dashboard.kdp.clients.title")} value={stats.customers.count} type="bar"/>
+          <DashboardPanel id={4} plot={customersPlot} title={t("dashboard.kdp.clients.title")} value={stats.customers.count} type="bar"/>
         </Col>
       </Row>
 
@@ -118,9 +112,7 @@ export class Dashboard extends Component {
         <Col xs="12" md="6">
           <Row>
             <Col>
-              <h2 className="heading" style={{
-                  fontSize: "24px"
-                }}>{t("dashboard.ourPartners.title")}</h2>
+              <h2 className="heading">{t("dashboard.ourPartners.title")}</h2>
             </Col>
           </Row>
           <Row>

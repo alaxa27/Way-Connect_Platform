@@ -1,12 +1,33 @@
 .typical-client {
+  
   &__item {
-    font-size: 0.75rem;
+    font-size: $font-size-xxs;
     color: $typical-client-text;
   }
 
   &__color {
     width: 20px;
     height: 20px;
+
+    &--1 {
+      background-color: $typical-client-color-1;
+    }
+
+    &--2 {
+      background-color: $typical-client-color-2;
+    }
+
+    &--3 {
+      background-color: $typical-client-color-3
+    }
+
+    &--4 {
+      background-color: $typical-client-color-4;
+    }
+
+    &--5 {
+      background-color: $typical-client-color-5;
+    }
   }
 
   &__body {
@@ -25,5 +46,11 @@
   &__settings {
     cursor: pointer;
     color: $typical-client-border;
+  }
+
+  &__image {
+    background: $typical-client-image-bg;
+    width: 180px;
+    height: 180px;
   }
 }

@@ -92,7 +92,14 @@ $body-bg:                         $gray-100;
 //
 // Font, line-height, and color for body text, headings, and more.
 
-$font-size-base:                  0.875rem;
+$font-size-large:               4rem;
+$font-size-big:                 2rem;
+$font-size-medium:              1.5rem;
+$font-size-base:                1rem;
+$font-size-md:                  0.9375rem;
+$font-size-sm:                  0.875rem;
+$font-size-xs:                  0.8125rem;
+$font-size-xxs:                 0.75rem;
 
 // General colors
 $g-orange-dark:                   #F15A24;
@@ -196,6 +203,12 @@ $panel-4:                         $g-yellow;
 // Typical client
 $typical-client-text:             $gray-800;
 $typical-client-border:           $gray-200;
+$typical-client-image-bg:         $gray-100;
+$typical-client-color-1:          $g-orange-dark;
+$typical-client-color-2:          $g-orange;
+$typical-client-color-3:          $g-orange-light;
+$typical-client-color-4:          $g-yellow;
+$typical-client-color-5:          $g-yellow;
 
 // Auth
 $login-btn-bg:                    $g-grey-dark;
@@ -210,5 +223,5 @@ $config-campaign-formulary-input: $gray-100;
 $create-campaign-orange:          $g-orange-light;
 $create-campaign-green:           $green;  
 
-// Dashboard establishments
-$establishment-item-bg:           $g-light-grey-2;  
+// Dashboard
+$establishment-item-bg:           $g-light-grey-2;

@@ -55,22 +55,19 @@ class ResearchFilters extends Component {
         <Col md="6" xs="12">
           <div className="input-wrapper">
             <label>Gender</label>
-            <div className="radio-buttons-container">
-              <Input type="radio" id="male" name="gender_male" value="male" checked={this.state.gender.male} onClick={this.handleInputChange}/>
-              <label htmlFor="male" className="pull-left">Male</label>
-              <Input type="radio" id="female" name="gender_female" value="female" checked={this.state.gender.female} onClick={this.handleInputChange}/>
-              <label htmlFor="female" className="pull-right">Female</label>
-              <div className="clearfix"></div>
+            <div className="c-radio">
+              <Input type="radio" className="c-radio__item" id="male" name="gender_male" value="male" checked={this.state.gender.male} onClick={this.handleInputChange}/>
+              <label htmlFor="male" className="c-radio__label">Male</label>
+              <Input type="radio" className="c-radio__item" id="female" name="gender_female" value="female" checked={this.state.gender.female} onClick={this.handleInputChange}/>
+              <label htmlFor="female" className="c-radio__label">Female</label>
             </div>
           </div>
-          <div className="input-wrapper">
-            <label className="pull-left">Age</label>
+          <div className="input-wrapper d-flex justify-content-between">
+            <label>Age</label>
             <label className="research-filters__preview">{this.state.age.min}-{this.state.age.max}yo</label>
-            <div style={{
-                paddingTop: 40
-              }}>
-              <InputRange maxValue={100} minValue={0} value={this.state.age} onChange={this.handleRangeChange}/>
-            </div>
+          </div>
+          <div className="input-wrapper">
+            <InputRange maxValue={100} minValue={0} value={this.state.age} onChange={this.handleRangeChange}/>
           </div>
         </Col>
       </Row>
@@ -112,9 +109,7 @@ class ResearchFilters extends Component {
             this.props.fixed
             ? null
             : (<Col md="6" xs="12">
-              <button className="bid-btn bid-btn--dark" style={{
-                  marginTop: "25px"
-                }}>Start bidding</button>
+              <button className="bid-btn bid-btn--dark mt-4">Start bidding</button>
             </Col>))
         }
       </Row>

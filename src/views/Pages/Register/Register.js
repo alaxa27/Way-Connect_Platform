@@ -74,7 +74,7 @@ export class Register extends Component {
               <Col md="6" lg="5">
                 <div className="login d-flex align-items-center justify-content-center flex-column">
                   <img src="../img/newaccount.png" alt="Logo" className="login__logo-img mb-3" />
-                  <h1 className="font-weight-bold text-center m-0">Create an account</h1>
+                  <h1 className="login__heading font-weight-bold text-center m-0">Create an account</h1>
                   <form id="register-form" className="w-100" onSubmit={this.handleRegister}>
                     <div className="login__input-box my-4">
                       {error ?
@@ -100,7 +100,7 @@ export class Register extends Component {
                           password_confirmation: this.errorMessageService.generateErrorMessage("Password confirmation", "password_confirmation")
                       })}
                     </div>
-                    <button type="submit" className="btn-login btn-app-login text-uppercase w-100 mb-1">
+                    <button type="submit" className="btn-app-login text-uppercase w-100 mb-1">
                       Register
                       {fetching ?
                         <span className="loader pl-2">...</span>

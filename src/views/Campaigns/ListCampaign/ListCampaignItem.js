@@ -32,11 +32,7 @@ class ListCampaignItem extends Component {
           <Link to={`/campaigns/${item.id}`}>
             <label className="justify-content-center">
               <img src={Eye} alt="View"/>
-              <span style={{
-                  position: "relative",
-                  left: -5,
-                  fontSize: "16px"
-                }}>$</span>{` ${item.view_price}`}<span className="line-through">WC</span>
+              <span>$</span>{` ${item.view_price}`}<span className="line-through">WC</span>
             </label>
           </Link>
         </td>

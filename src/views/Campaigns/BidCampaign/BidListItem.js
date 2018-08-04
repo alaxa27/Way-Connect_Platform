@@ -29,10 +29,7 @@ class BidListItem extends Component {
             </div>
             <div className="bids__item-box">
               <img src={Eye} alt="View"/>
-              <span className="font-weight-bold mr-2" style={{
-                position: "relative",
-                left: -5,
-              }}>$</span>
+              <span className="font-weight-bold mr-2">$</span>
               <span className="mr-2">
                 {item.bid}
               </span>

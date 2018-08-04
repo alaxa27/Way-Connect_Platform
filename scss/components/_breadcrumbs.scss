@@ -1,21 +1,19 @@
-.custom-breadcrumb-wrapper {
+.c-breadcrumbs {
     margin-left: -30px;
     margin-right: -30px;
-  }
-  
-  .custom-breadcrumb {
-    width: 100%;
-    border-bottom: 1px solid $breadcrumb-border;
-    display: flex;
-    flex-wrap: wrap;
-    padding: 15px 30px;
-    background-color: $white;
-    cursor: pointer;
-  
+
     &--no-border {
       border: none;
     }
-  
+
+    &__item {
+      width: 100%;
+      border-bottom: 1px solid $breadcrumb-border;
+      padding: 15px 30px;
+      background-color: $white;
+      cursor: pointer;
+    }
+
     &__label {
       color: $breadcrumb-label;
       display: flex;
@@ -30,7 +28,7 @@
     &__arrow {
 
       svg {
-        font-size: 1.5em;
+        font-size: $font-size-medium;
       }
     }
-  }
+}

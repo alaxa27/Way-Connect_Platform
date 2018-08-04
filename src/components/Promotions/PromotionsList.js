@@ -4,6 +4,10 @@ import PromotionsListItem from "./PromotionsListItem";
 import InfiniteScroll from "react-infinite-scroller";
 import _ from "underscore";
 import ReduxBlockUi from "react-block-ui/redux";
+import {
+  Card,
+  CardBody,
+} from "reactstrap";
 
 class PromotionsList extends Component {
   constructor(props) {
@@ -27,7 +31,11 @@ class PromotionsList extends Component {
   render() {
     const {data, promotionsPage, promotionsTotalCount, promotionsLimit, loadMore} = this.props;
     return (<ReduxBlockUi tag="div" block="PROMOTIONS" unblock={["PROMOTIONS_FULFILLED", "PROMOTIONS_REJECTED"]}>
-      <div className="promotion px-4 mt-4">{this.renderPromotionList(data, promotionsPage, promotionsTotalCount, promotionsLimit, loadMore)}</div>
+      <Card className="promotion px-4 mt-4">
+        <CardBody className="p-0">
+          {this.renderPromotionList(data, promotionsPage, promotionsTotalCount, promotionsLimit, loadMore)}
+        </CardBody>
+      </Card>
     </ReduxBlockUi>);
   }
 }

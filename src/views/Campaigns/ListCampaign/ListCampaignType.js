@@ -38,15 +38,15 @@ class ListCampaignType extends Component {
       <ListCampaignItem status={status} item={item} key={key}/>);
 
     return (<div className="campaign-type">
-      <div className="custom-breadcrumb-wrapper" onClick={() => {
+      <div className="c-breadcrumbs" onClick={() => {
           this.toggle();
         }}>
-        <div className="custom-breadcrumb">
+        <div className="c-breadcrumbs__item">
           <div className="d-flex justify-content-between w-100">
-            <label className="custom-breadcrumb__label">
+            <label className="c-breadcrumbs__label">
               <FontAwesome.FaCircle className={"mark-" + status}/> {title}
             </label>
-            <div className="custom-breadcrumb__arrow">
+            <div className="c-breadcrumbs__arrow">
               {
                 this.state.isOpened
                   ? <FontAwesome.FaAngleDown/>

@@ -2,7 +2,6 @@
   background: $white;
   overflow: auto;
   height: 800px;
-  border: 1px solid $promotion-border;
 
   &__item {
     border-bottom: 1px solid $promotion-border;
@@ -12,7 +11,6 @@
     width: 100%;
     margin-bottom: 0;
     font-weight: bold;
-    font-size: 1.1rem;
     line-height: normal;
   }
 
@@ -23,41 +21,45 @@
   &__label-right {
     width: 100%;
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: $font-size-medium;
     line-height: normal;
     margin-bottom: 0;
   }
 
   &__span-right {
     font-weight: lighter;
-    font-size: 0.85rem;
+    font-size: $font-size-sm;
   }
 
   &__circle-container {
     border-right: 1px solid $promotion-border;
   }
 
-    &__circle {
-        width: 100px;
-        height: 100px;
-        background: $promotion-circle;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
+  &__circle {
+    width: 100px;
+    height: 100px;
+    background: $promotion-circle;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
 
     span {
-            &:first-child {
-                font-weight: bold;
-                font-size: 1.5rem;
-            }
+      &:first-child {
+          font-weight: bold;
+          font-size: $font-size-medium;
+      }
 
-            &:last-child {
-                position: relative;
-                bottom: -4px;
-                font-size: 0.85rem;
-            }
-        }
+      &:last-child {
+          position: relative;
+          bottom: -2px;
+          font-size: $font-size-sm;
+      }
     }
+  }
+
+  &__body {
+    flex: 1;
+  }
 }

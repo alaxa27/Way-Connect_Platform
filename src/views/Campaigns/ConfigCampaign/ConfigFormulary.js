@@ -21,22 +21,18 @@ class ConfigFormulary extends Component {
         <Col>
           <div className="formulary">
             <Col>
-              <h2 className="heading" style={{
-                    fontSize: "24px",
-                    marginBottom: 0,
-                    marginTop: "25px"
-                }}>
+              <h2 className="heading my-3">
                 {t("configCampaign.survey.title")}
               </h2>
               <div className="separator">&nbsp;</div>
             </Col>
 
-            <Col className="formulary-input-wrap">
+            <Col>
               <label>{t("configCampaign.survey.inputs.name.label")}</label>
               <Input type="text" name="formularyName"/>
             </Col>
 
-            <Col className="formulary-input-wrap">
+            <Col>
               <label>{t("configCampaign.survey.inputs.question1.label")}</label>
               <Input type="text" name="question1"/>
             </Col>
@@ -44,7 +40,7 @@ class ConfigFormulary extends Component {
             <Col xs="12" md={{
                   size: 6,
                   offset: 6
-              }} className="formulary-input-wrap">
+              }}>
               <Input type="text" name="answer1"/>
               <Button className="add-btn"><MdIconPack.MdAddCircleOutline/>
                 {t("configCampaign.survey.addAnswer.title")}</Button>
@@ -54,7 +50,7 @@ class ConfigFormulary extends Component {
               <div className="separator">&nbsp;</div>
             </Col>
 
-            <Col className="formulary-input-wrap">
+            <Col>
               <label>{t("configCampaign.survey.inputs.question1.label")}</label>
               <Input type="text" name="question1"/>
             </Col>
@@ -62,7 +58,7 @@ class ConfigFormulary extends Component {
             <Col xs="12" md={{
                   size: 6,
                   offset: 6
-              }} className="formulary-input-wrap">
+              }}>
               <Input type="text" name="answer1"/>
               <Button className="add-btn"><MdIconPack.MdAddCircleOutline/>
                 {t("configCampaign.survey.addAnswer.title")}</Button>
@@ -72,7 +68,7 @@ class ConfigFormulary extends Component {
               <div className="separator">&nbsp;</div>
             </Col>
 
-            <Col className="formulary-input-wrap">
+            <Col className="mb-3">
               <Button className="add-btn"><MdIconPack.MdAddCircleOutline/>
                 {t("configCampaign.survey.addQuestion.title")}</Button>
             </Col>

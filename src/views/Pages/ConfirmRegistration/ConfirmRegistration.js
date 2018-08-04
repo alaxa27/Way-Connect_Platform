@@ -33,18 +33,18 @@ export class ConfirmRegistration extends Component {
                 <div className="login d-flex align-items-center justify-content-center flex-column">
                   {confirming ?
                     <div className="loader">
-                      <img src="../img/loader.gif" alt="Loader" style={{width: "50px"}} />
+                      <img src="../img/loader.gif" alt="Loader" />
                     </div>
                 : success || error ?
                   <React.Fragment>
                     <img src="../img/login_logo.png" alt="Logo" className="login__logo-img mb-3"/>
-                    <p className="my-3">Congratulations, your account has been confirmed</p>
+                    <p className="my-3 text-center">Congratulations, your account has been confirmed</p>
                     <a id="link-login" className="login__link" href="#login" >Login</a>
                   </React.Fragment>
                 : error ?
                   <React.Fragment>
                     <img src="../img/login_logo.png" alt="Logo" className="login__logo-img mb-3"/>
-                    <p className="my-3">Something went wrong!</p>
+                    <p className="my-3 text-center">Something went wrong!</p>
                   </React.Fragment>
                 :
                     null

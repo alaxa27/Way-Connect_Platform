@@ -18,10 +18,10 @@ class TypicalClientItem extends Component {
     });
   }
   render() {
-    const { id, title, color, label, value, last } = this.props;
+    const { id, title, label, value, last } = this.props;
     return (
       <li className="typical-client__item d-flex align-items-center">
-        <div className="typical-client__color" style={{backgroundColor: color}}></div>
+        <div className={"typical-client__color typical-client__color--" + id}></div>
         <div className={"typical-client__body d-flex align-items-center ml-2 py-2" + (last ? " typical-client__body--last" : "")}>
           <div className="typical-client__prop">
             {title}
@@ -50,7 +50,6 @@ TypicalClientItem.propTypes = {
       PropTypes.string,
       PropTypes.integer
     ]),
-    color: PropTypes.string
 };
 
 export default TypicalClientItem;

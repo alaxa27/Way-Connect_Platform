@@ -6,15 +6,10 @@ import {
 
 class TypicalClientImage extends Component {
   render() {
-    const { width, height, src } = this.props;
+    const { src } = this.props;
     return (
       <Media
-          style={{
-            width: width,
-            height: height,
-            background: "#f0f3f5"
-          }}
-          className="p-3"
+          className="typical-client__image p-3"
           object
           src={src}
           alt="Generic placeholder image"

@@ -102,39 +102,33 @@ class Campaigns extends Component {
     const { t } = this.props;
     return (<div className="sub-page-wrapper animated fadeIn">
 
-      <div className="custom-breadcrumb-wrapper">
-        <div className="custom-breadcrumb">
-          <Row style={{
-              width: "100%"
-            }}>
+      <div className="c-breadcrumbs">
+        <div className="c-breadcrumbs__item">
+          <Row>
             <Col xs="4" md="3">
-              <label className="custom-breadcrumb__label">
+              <label className="c-breadcrumbs__label">
                 <FontAwesome.FaCircle className={this.renderStatusCircle("bidding")}/>
                 {t("campaigns.bidding.title")}
               </label>
             </Col>
             <Col xs="4" md="3">
-              <label className="custom-breadcrumb__label">
+              <label className="c-breadcrumbs__label">
                 <FontAwesome.FaCircle className={this.renderStatusCircle("progress")}/>
                 {t("campaigns.inProgress.title")}
               </label>
             </Col>
             <Col xs="4" md="3">
-              <label className="custom-breadcrumb__label">
+              <label className="c-breadcrumbs__label">
                 <FontAwesome.FaCircle className={this.renderStatusCircle("delivered")}/>
                 {t("campaigns.delivered.title")}
               </label>
             </Col>
           </Row>
         </div>
-        <div className="custom-breadcrumb">
-          <Row style={{
-              width: "100%"
-            }}>
+        <div className="c-breadcrumbs__item">
+          <Row>
             <Col>
-              <label className="custom-breadcrumb__label w-100 d-flex align-items-center justify-content-between" style={{
-                  color: "#989898"
-                }} onClick={this.showFilter}>
+              <label className="c-breadcrumbs__label w-100 d-flex align-items-center justify-content-between" onClick={this.showFilter}>
                 <div>
                   <FontAwesome.FaCircle/>
                   {t("campaigns.fixedFilters.title")}
@@ -147,9 +141,7 @@ class Campaigns extends Component {
               </label>
             </Col>
           </Row>
-          <Collapse isOpen={this.state.filter} style={{
-              width: "100%"
-            }}>
+          <Collapse isOpen={this.state.filter}>
             <ResearchFilters {...this.state}/>
           </Collapse>
         </div>
