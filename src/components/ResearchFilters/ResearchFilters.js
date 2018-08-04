@@ -55,12 +55,11 @@ class ResearchFilters extends Component {
         <Col md="6" xs="12">
           <div className="input-wrapper">
             <label>Gender</label>
-            <div className="radio-buttons-container">
-              <Input type="radio" id="male" name="gender_male" value="male" checked={this.state.gender.male} onClick={this.handleInputChange}/>
-              <label htmlFor="male" className="pull-left">Male</label>
-              <Input type="radio" id="female" name="gender_female" value="female" checked={this.state.gender.female} onClick={this.handleInputChange}/>
-              <label htmlFor="female" className="pull-right">Female</label>
-              <div className="clearfix"></div>
+            <div className="c-radio">
+              <Input type="radio" className="c-radio__item" id="male" name="gender_male" value="male" checked={this.state.gender.male} onClick={this.handleInputChange}/>
+              <label htmlFor="male" className="c-radio__label">Male</label>
+              <Input type="radio" className="c-radio__item" id="female" name="gender_female" value="female" checked={this.state.gender.female} onClick={this.handleInputChange}/>
+              <label htmlFor="female" className="c-radio__label">Female</label>
             </div>
           </div>
           <div className="input-wrapper d-flex justify-content-between">

@@ -1,10 +1,20 @@
-.radio-buttons-container {
+.c-radio {
+  display: flex;
+  justify-content: space-between;
 
-  input {
+  &__item {
     display: none;
+
+    &:checked {
+
+      + label {
+        font-weight: bold;
+        background: $radio-label-active;
+      }
+    }
   }
 
-  label {
+  &__label {
     width: 48%;
     color: $white;
     font-weight: normal;
@@ -13,10 +23,5 @@
     padding: 5px;
     border-radius: 10px;
     background: $radio-label-unactive;
-  }
-
-  input:checked + label {
-    font-weight: bold;
-    background: $radio-label-active;
   }
 }

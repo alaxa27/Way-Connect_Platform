@@ -12,7 +12,7 @@ class Panel extends Component {
     return (
       <ReduxBlockUi tag="div" block="CAMPAIGN_ANALYTICS_KEY_DATA" unblock={["CAMPAIGN_ANALYTICS_KEY_DATA_FULFILLED", "CAMPAIGN_ANALYTICS_KEY_DATA_REJECTED"]}>
         <div className={"stats-panel stats-panel--" + index}>
-          <h2>
+          <h2 className="m-0">
             <CountUp start={0} end={value} duration={3} />
             <span className="currency">
               {" " + currency}

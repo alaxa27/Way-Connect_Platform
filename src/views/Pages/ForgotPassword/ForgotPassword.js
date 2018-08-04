@@ -41,7 +41,7 @@ class ForgotPassword extends Component {
         <Row className="justify-content-center">
           <Col md="6" lg="5">
             <div className="login d-flex align-items-center justify-content-center flex-column">
-              <h1 className="font-weight-bold m-0 text-center">Way-connect</h1>
+              <h1 className="login__heading font-weight-bold m-0 text-center">Way-connect</h1>
               <p className="mt-4 mb-0">
                 {"Enter your email address below and we'll send you a link to reset your password."}
               </p>
@@ -61,7 +61,7 @@ class ForgotPassword extends Component {
                     }
                     <input type="email" className="login__input w-100 py-1 px-3" name="email" placeholder="Email" onChange={this.handleChangeEmail}/>
                   </div>
-                  <button type="submit" className="btn-login btn-app-login text-uppercase w-100 mb-1">
+                  <button type="submit" className="btn-app-login text-uppercase w-100 mb-1">
                     Send Link {
                       fetching
                         ? <span className="pl-2">...</span>

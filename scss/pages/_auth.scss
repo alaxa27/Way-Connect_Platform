@@ -1,26 +1,12 @@
 .login {
     color: $white;
+
     @include placeholder {
       color: $white;
     }
-  
-    h1 {
+
+    &__heading {
       font-size: $font-size-big;
-    }
-  
-    .btn-login {
-      border-radius: 12px;
-      color: $white;
-      height: 35px;
-      border: 0;
-  
-      &:focus {
-        outline: none;
-      }
-    }
-  
-    .btn-app-login {
-      background-color: $login-btn-bg;
     }
   
     &__input {

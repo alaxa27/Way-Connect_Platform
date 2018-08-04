@@ -47,18 +47,18 @@
 
 }
 
-.formulary-input-wrap {
-  margin-bottom: 15px;
-
-  label {
-    font-weight: normal;
-    margin-bottom: 8px;
-    line-height: normal;
-  }
+.formulary {
 
   input[type="text"] {
     border: 0;
     border-radius: 12px;
     background-color: $config-campaign-formulary-input;
+    margin-bottom: 15px;
+  }
+
+  label {
+    font-weight: normal;
+    margin-bottom: 8px;
+    line-height: normal;
   }
 }

@@ -84,7 +84,7 @@ export class Login extends Component {
           <Col md="6" lg="5">
             <div className="login d-flex align-items-center justify-content-center flex-column">
               <img src="../img/login_logo.png" alt="Logo" className="login__logo-img mb-3"/>
-              <h1 className="font-weight-bold text-center m-0">Way-connect</h1>
+              <h1 className="login__heading font-weight-bold text-center m-0">Way-connect</h1>
               <form id="login-form" onSubmit={this.handleLogin}>
                 <div className="login__input-box my-4">
                   {
@@ -102,7 +102,7 @@ export class Login extends Component {
                     <label className="ml-5">Remember me</label>
                   </div>
                 </div>
-                <button type="submit" className="btn-login btn-app-login text-uppercase w-100 mb-2">
+                <button type="submit" className="btn-app-login text-uppercase w-100 mb-2">
                   Login
                   {fetching ?
                     <span className="pl-2 loader">...</span>

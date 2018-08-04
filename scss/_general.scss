@@ -111,6 +111,22 @@ body {
     background-color: $bid-btn-light;
     color: $white;
   }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.btn-app-login {
+  border-radius: 12px;
+  color: $white;
+  height: 35px;
+  border: 0;
+  background-color: $login-btn-bg;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 .separator {

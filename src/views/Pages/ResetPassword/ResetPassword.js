@@ -58,7 +58,7 @@ class ResetPassword extends Component {
         <Row className="justify-content-center">
           <Col md="6" lg="5">
             <div className="login d-flex align-items-center justify-content-center flex-column">
-              <h1 className="font-weight-bold m-0 text-center">Way-connect</h1>
+              <h1 className="login__heading font-weight-bold m-0 text-center">Way-connect</h1>
               <div className="login__form w-100 mt-4">
                 <form onSubmit={this.handleReset}>
                   <div className="login__input-box mb-4">
@@ -72,7 +72,7 @@ class ResetPassword extends Component {
                     <input type="password" className="login__input w-100 py-1 px-3 mb-2" name="password" placeholder="Password" onChange={this.handleChangePassword}/>
                     <input type="password" className="login__input w-100 py-1 px-3" name="passwordConfirmation" placeholder="Repeat password" onChange={this.handleChangePasswordConfirmation}/>
                   </div>
-                  <button type="submit" className="btn-login btn-app-login text-uppercase w-100 mb-2">
+                  <button type="submit" className="btn-app-login text-uppercase w-100 mb-2">
                     Reset Password
                   </button>
                   <a href="https://way-connect.com/" className="login__link mt-4 d-block">Go back to the website</a>

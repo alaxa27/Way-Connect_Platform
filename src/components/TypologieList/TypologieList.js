@@ -41,12 +41,11 @@ class TypologieList extends Component {
 
             <div className="input-wrapper">
               <label>Type of communication</label>
-              <div className="radio-buttons-container">
-                <Input type="radio" id="brand" name="brand" value="brand" checked={this.state.communicationType.brand} onClick={() => this.handleRadioChange("brand") }/>
-                <label htmlFor="brand" className="pull-left">Brand</label>
-                <Input type="radio" id="product" name="product" value="product" checked={this.state.communicationType.product} onClick={() => this.handleRadioChange("product") }/>
-                <label htmlFor="product" className="pull-right">Product</label>
-                <div className="clearfix"></div>
+              <div className="c-radio">
+                <Input type="radio" className="c-radio__item" id="brand" name="brand" value="brand" checked={this.state.communicationType.brand} onClick={() => this.handleRadioChange("brand") }/>
+                <label htmlFor="brand" className="c-radio__label">Brand</label>
+                <Input type="radio" className="c-radio__item" id="product" name="product" value="product" checked={this.state.communicationType.product} onClick={() => this.handleRadioChange("product") }/>
+                <label htmlFor="product" className="c-radio__label">Product</label>
               </div>
             </div>
 

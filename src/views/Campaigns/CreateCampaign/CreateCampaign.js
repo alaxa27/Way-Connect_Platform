@@ -41,9 +41,9 @@ class CreateCampaign extends Component {
     return (<div className="sub-page-wrapper animated fadeIn">
       <Row>
         <Col>
-          <div className="custom-breadcrumb-wrapper">
-            <div className="custom-breadcrumb--no-border">
-              <div className="custom-breadcrumb__label">
+          <div className="c-breadcrumbs">
+            <div className="c-breadcrumbs--no-border">
+              <div className="c-breadcrumbs__label">
                 <FontAwesome.FaCircle className="orange-circle"/>
                 Typologie list
               </div>
@@ -54,9 +54,9 @@ class CreateCampaign extends Component {
       </Row>
       <Row>
         <Col>
-          <div className="custom-breadcrumb-wrapper">
-            <div className="custom-breadcrumb--no-border">
-              <div className="custom-breadcrumb__label">
+          <div className="c-breadcrumbs">
+            <div className="c-breadcrumbs--no-border">
+              <div className="c-breadcrumbs__label">
                 <FontAwesome.FaCircle className="green-circle"/>
                 Research Filters
               </div>
