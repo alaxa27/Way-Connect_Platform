@@ -47,7 +47,7 @@ class Aside extends Component {
             </div>
             {map(history, item => {
               return (
-                <div className="aside-menu__transactions-item px-3 py-1 mb-2">
+                <div className="aside-menu__transactions-item px-2 py-1 mb-2">
                   <div className="aside-menu__transactions-box--small">
                     <div>
                       Cash

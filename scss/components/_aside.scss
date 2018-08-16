@@ -1,13 +1,5 @@
-.aside-menu-hidden {
-
-  .aside-menu {
-    margin-right: -300px;
-  }
-}
-
 .aside-menu {
   height: calc(100% - 50px)!important;
-  width: 300px;
   display: flex;
   flex-direction: column;
 
