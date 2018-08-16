@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import {translate} from "react-i18next";
-import { Progress } from 'reactstrap';
-import { map } from 'underscore';
+import { Progress } from "reactstrap";
+import { map } from "underscore";
 
 class Aside extends Component {
   render() {
