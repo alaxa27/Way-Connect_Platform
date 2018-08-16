@@ -156,3 +156,18 @@ body {
     width: 50px;
   }
 }
+
+.currency-icon {
+  width: 40px;
+  background: $black;
+  color: $white;
+  text-align: center;
+  margin-left: 10px;
+  border-radius: 5px;
+  padding: 2px 0;
+  font-weight: bold;
+
+  i {
+    font-weight: bold;
+  }
+}

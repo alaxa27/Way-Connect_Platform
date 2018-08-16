@@ -222,8 +222,6 @@
     }
   },
   "walletManager": {
-    "top": "Gestionnaire de Portefeuille",
-    "title": "Prochainement",
-    "subtitle": "Vous allez bientôt pouvoir gérer votre portefeuille."
+    "title": "Gestionnaire de Portefeuille"
   }
 }

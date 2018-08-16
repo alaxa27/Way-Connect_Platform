@@ -1,24 +1,80 @@
+.aside-menu-hidden {
+
+  .aside-menu {
+    margin-right: -300px;
+  }
+}
+
 .aside-menu {
+  height: calc(100% - 50px)!important;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
 
-  &__coming-soon {
-
-    img {
-      width: 150px;
-      height: 150px;
-    }
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid $border-color;
+    height: 50px;
   }
 
   &__title {
-    font-size: $font-size-xxs;
+    color: $g-orange;
     font-weight: bold;
-    line-height: 1.1;
+  }
 
-    &--big {
-      font-size: $font-size-big;
+  &__wallet {
+    display: flex;
+    flex-direction: column;
+    flex: auto;
+  }
+
+  &__budget {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__budget-item {
+    width: 10px;
+  }
+
+  &__budget-label {
+    width: 125px;
+
+    &--small {
+      font-size: $font-size-xxs;
     }
 
-    &--colored {
-      color: $g-orange;
+    &--big {
+      font-weight: bold;
+      font-size: $font-size-medium;
+    }
+  }
+
+  &__transactions {
+    background-color: $transactions-bg;
+    overflow-y: auto;
+    max-height: 25vh;
+  }
+
+  &__transactions-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: $white;
+    border-radius: 15px;
+  }
+
+  &__transactions-box {
+
+    &--small {
+      font-size: $font-size-xxs;
+    }
+
+    &--big {
+      font-weight: bold;
     }
   }
 }
