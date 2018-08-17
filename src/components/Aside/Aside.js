@@ -8,6 +8,10 @@ class Aside extends Component {
   render() {
     const { t } = this.props;
     const history = [0,1,2,3,4,5,6,7,8,9];
+    const budget = {
+      total: 4000,
+      immobilise: 4000
+    };
     return (
       <aside className="aside-menu">
         <div className="aside-menu__top my-4 pb-4 mx-3">
@@ -20,26 +24,41 @@ class Aside extends Component {
         </div>
         <div className="aside-menu__wallet">
           <div className="aside-menu__budget px-3 mb-4">
-            <div className="aside-menu__budget-item" style={{flexGrow: "0.5", background: "orange"}}>
-              <div className="aside-menu__budget-label ml-4">
-                <div className="aside-menu__budget-label--small">
-                  Budget total
-                </div>
-                <div className="aside-menu__budget-label--big">
-                  4000 WC
-                </div>
-              </div>
-            </div>
-            <div className="aside-menu__budget-item" style={{flexGrow: "0.5", background: "grey"}}>
-              <div className="aside-menu__budget-label ml-4">
-                <div className="aside-menu__budget-label--small">
-                  Budget total
-                </div>
-                <div className="aside-menu__budget-label--big">
-                  4000 WC
+            {budget.total === budget.immobilise ?
+              <div className="aside-menu__budget-item" style={{flexGrow: "1", background: "grey"}}>
+                <div className="aside-menu__budget-label ml-4">
+                  <div className="aside-menu__budget-label--small">
+                    Budget total
+                  </div>
+                  <div className="aside-menu__budget-label--big">
+                    {budget.total} WC
+                  </div>
                 </div>
               </div>
-            </div>
+            :
+              <React.Fragment>
+                <div className="aside-menu__budget-item" style={{flexGrow: "0.5", background: "orange"}}>
+                  <div className="aside-menu__budget-label ml-4">
+                    <div className="aside-menu__budget-label--small">
+                      Budget total
+                    </div>
+                    <div className="aside-menu__budget-label--big">
+                      {budget.total} WC
+                    </div>
+                  </div>
+                </div>
+                <div className="aside-menu__budget-item" style={{flexGrow: "0.5", background: "grey"}}>
+                  <div className="aside-menu__budget-label ml-4">
+                    <div className="aside-menu__budget-label--small">
+                      Budget immobilise
+                    </div>
+                    <div className="aside-menu__budget-label--big">
+                      {budget.immobilise} WC
+                    </div>
+                  </div>
+                </div>
+              </React.Fragment>
+            }
           </div>
           <div className="aside-menu__transactions p-3">
             <div className="aside-menu__transactions-title mb-2">
