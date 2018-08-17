@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import {translate} from "react-i18next";
-import { Progress } from "reactstrap";
+import { Progress, Button } from "reactstrap";
 import { map } from "underscore";
 
 class Aside extends Component {
@@ -14,7 +14,7 @@ class Aside extends Component {
           <div className="aside-menu__title">
             {t("walletManager.title")}
           </div>
-          <div className="currency-icon">
+          <div className="btn currency-icon">
             +<i className="fa fa-usd"></i>
           </div>
         </div>
