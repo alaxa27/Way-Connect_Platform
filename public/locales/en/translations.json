@@ -222,6 +222,8 @@
   }
   },
   "walletManager": {
-    "title": "Wallet Manager"
+    "top": "Wallet Manager",
+    "title": "Coming Soon",
+    "subtitle": "You will soon be able to manage your wallet."
   }
 }

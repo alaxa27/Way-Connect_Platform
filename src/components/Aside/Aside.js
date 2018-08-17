@@ -12,32 +12,22 @@ class Aside extends Component {
       total: 4000,
       immobilise: 4000
     };
+    const env = process.env.NODE_ENV;
     return (
-      <aside className="aside-menu">
-        <div className="aside-menu__top my-4 pb-4 mx-3">
-          <div className="aside-menu__title">
-            {t("walletManager.title")}
+      env === 'development' ?
+        <aside className="aside-menu">
+          <div className="aside-menu__top my-4 pb-4 mx-3">
+            <div className="aside-menu__title aside-menu__title--colored">
+              {t("walletManager.title")}
+            </div>
+            <div className="btn currency-icon">
+              +<i className="fa fa-usd"></i>
+            </div>
           </div>
-          <div className="btn currency-icon">
-            +<i className="fa fa-usd"></i>
-          </div>
-        </div>
-        <div className="aside-menu__wallet">
-          <div className="aside-menu__budget px-3 mb-4">
-            {budget.total === budget.immobilise ?
-              <div className="aside-menu__budget-item" style={{flexGrow: "1", background: "grey"}}>
-                <div className="aside-menu__budget-label ml-4">
-                  <div className="aside-menu__budget-label--small">
-                    Budget total
-                  </div>
-                  <div className="aside-menu__budget-label--big">
-                    {budget.total} WC
-                  </div>
-                </div>
-              </div>
-            :
-              <React.Fragment>
-                <div className="aside-menu__budget-item" style={{flexGrow: "0.5", background: "orange"}}>
+          <div className="aside-menu__wallet">
+            <div className="aside-menu__budget px-3 mb-4">
+              {budget.total === budget.immobilise ?
+                <div className="aside-menu__budget-item" style={{flexGrow: "1", background: "grey"}}>
                   <div className="aside-menu__budget-label ml-4">
                     <div className="aside-menu__budget-label--small">
                       Budget total
@@ -47,43 +37,70 @@ class Aside extends Component {
                     </div>
                   </div>
                 </div>
-                <div className="aside-menu__budget-item" style={{flexGrow: "0.5", background: "grey"}}>
-                  <div className="aside-menu__budget-label ml-4">
-                    <div className="aside-menu__budget-label--small">
-                      Budget immobilise
-                    </div>
-                    <div className="aside-menu__budget-label--big">
-                      {budget.immobilise} WC
+              :
+                <React.Fragment>
+                  <div className="aside-menu__budget-item" style={{flexGrow: "0.5", background: "orange"}}>
+                    <div className="aside-menu__budget-label ml-4">
+                      <div className="aside-menu__budget-label--small">
+                        Budget total
+                      </div>
+                      <div className="aside-menu__budget-label--big">
+                        {budget.total} WC
+                      </div>
                     </div>
                   </div>
-                </div>
-              </React.Fragment>
-            }
-          </div>
-          <div className="aside-menu__transactions p-3">
-            <div className="aside-menu__transactions-title mb-2">
-              Transaction history
+                  <div className="aside-menu__budget-item" style={{flexGrow: "0.5", background: "grey"}}>
+                    <div className="aside-menu__budget-label ml-4">
+                      <div className="aside-menu__budget-label--small">
+                        Budget immobilise
+                      </div>
+                      <div className="aside-menu__budget-label--big">
+                        {budget.immobilise} WC
+                      </div>
+                    </div>
+                  </div>
+                </React.Fragment>
+              }
             </div>
-            {map(history, (item, key) => {
-              return (
-                <div key={key} className="aside-menu__transactions-item px-2 py-1 mb-2">
-                  <div className="aside-menu__transactions-box--small">
-                    <div>
-                      Cash
+            <div className="aside-menu__transactions p-3">
+              <div className="aside-menu__transactions-title mb-2">
+                Transaction history
+              </div>
+              {map(history, (item, key) => {
+                return (
+                  <div key={key} className="aside-menu__transactions-item px-2 py-1 mb-2">
+                    <div className="aside-menu__transactions-box--small">
+                      <div>
+                        Cash
+                      </div>
+                      <div>
+                        25/08/2018 18:52
+                      </div>
                     </div>
-                    <div>
-                      25/08/2018 18:52
+                    <div className="aside-menu__transactions-box aside-menu__transactions-box--big">
+                      550 WC
                     </div>
                   </div>
-                  <div className="aside-menu__transactions-box aside-menu__transactions-box--big">
-                    550 WC
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </aside>
+        </aside>
+      :
+        <aside className="aside-menu text-center px-2">
+          <div className="aside-menu__title aside-menu__title--colored mt-4">
+            {t("walletManager.top")}
+          </div>
+          <div className="aside-menu__coming-soon">
+            <img src="../img/shiba-01.png" alt="Logo" className="modal-body__img" />
+            <div className="aside-menu__title aside-menu__title--big mb-3">
+              {t("walletManager.title")}
+            </div>
+            <div className="aside-menu__title">
+              {t("walletManager.subtitle")}
+            </div>
+          </div>
+        </aside>
     );
   }
 }
