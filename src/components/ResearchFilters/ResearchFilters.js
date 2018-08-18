@@ -5,6 +5,7 @@ import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
 import SelectBox from "../SelectBox/SelectBox";
 import Map from "../Map";
+import Checkbox from "../Checkbox/";
 
 class ResearchFilters extends Component {
   static propTypes = {
@@ -138,17 +139,25 @@ class ResearchFilters extends Component {
               <div className="research-filters__establishments">
                 <div className="research-filters__establishments-wrapper">
                   <div className="research-filters__establishment-select-all pl-3 mb-2">
-                    <input type="checkbox" className="mr-3" />Select all
+                    <Checkbox 
+                      label={"Select all"}
+                    />
                   </div>
                   <div className="research-filters__establishments-box p-2">
                     <div className="research-filters__establishments-item research-filters__establishments-item--selected p-2">
-                      <input type="checkbox" className="mr-3" /> Establishment 1
+                      <Checkbox 
+                        label={"Establishment 1"}
+                      />
                     </div>
                     <div className="research-filters__establishments-item p-2">
-                      <input type="checkbox" className="mr-3" /> Establishment 2
+                      <Checkbox 
+                        label={"Establishment 2"}
+                      />
                     </div>
                     <div className="research-filters__establishments-item p-2">
-                      <input type="checkbox" className="mr-3" /> Establishment 3
+                      <Checkbox 
+                        label={"Establishment 3"}
+                      />
                     </div>
                   </div>
                 </div>

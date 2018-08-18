@@ -177,7 +177,9 @@ $bids-bg:                         $g-light-grey;
 $bids-forbidden-bg:               $g-grey;
 
 // Custom checkbox
-$checkbox-bg:                     $g-blue;
+$checkbox-checked-bg:             $g-blue;
+$checkbox-small-checked-bg:       $white;
+$checkbox-small-not-checked-bg:   $gray-100;
 
 // Modal
 $modal-outline-bg:                $g-half-black;
