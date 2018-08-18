@@ -101,6 +101,7 @@ const filterDataDefaults = {
     min: 18,
     max: 24
   },
+  recallMarketing: 0
 };
 
 const initialState = {

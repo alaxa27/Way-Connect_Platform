@@ -42,7 +42,7 @@ class CreateCampaign extends Component {
       <Row>
         <Col>
           <div className="c-breadcrumbs">
-            <div className="c-breadcrumbs--no-border">
+            <div className="c-breadcrumbs__item">
               <div className="c-breadcrumbs__label">
                 <FontAwesome.FaCircle className="orange-circle"/>
                 Typologie list
@@ -55,7 +55,7 @@ class CreateCampaign extends Component {
       <Row>
         <Col>
           <div className="c-breadcrumbs">
-            <div className="c-breadcrumbs--no-border">
+            <div className="c-breadcrumbs__item">
               <div className="c-breadcrumbs__label">
                 <FontAwesome.FaCircle className="green-circle"/>
                 Research Filters

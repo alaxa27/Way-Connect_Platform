@@ -108,6 +108,7 @@ $g-orange-light:                  #FBB03B;
 $g-yellow:                        #F9DA23;
 $g-light-grey:                    #e6e6e6;
 $g-light-grey-2:                  #dbdbdb;
+$g-middle-grey:                   #c5c5c5;
 $g-grey:                          #989898;
 $g-grey-dark:                     #333333;
 $g-blue:                          #2196F3;
@@ -228,3 +229,7 @@ $establishment-item-bg:           $g-light-grey-2;
 
 // Wallet Manager
 $transactions-bg:                 $g-light-grey;
+
+// Research Filters
+$establishment-box:               $g-light-grey;
+$establishment-item-selected:     $g-middle-grey;
