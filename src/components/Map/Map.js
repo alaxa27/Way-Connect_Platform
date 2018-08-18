@@ -13,7 +13,7 @@ const Map = compose(withProps({
     lat: props.center[1],
     lng: props.center[0]
   }}>
-  {
+    {
     props.isMarkerShown && (<React.Fragment>
       {
         map(props.markers, (marker, i) => {
@@ -25,6 +25,6 @@ const Map = compose(withProps({
       }
     </React.Fragment>)
   }
-</GoogleMap>));
+  </GoogleMap>));
 
 export default Map;

@@ -4,7 +4,7 @@ import {Row, Col, Input} from "reactstrap";
 import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
 import SelectBox from "../SelectBox/SelectBox";
-import Map from '../Map';
+import Map from "../Map";
 
 class ResearchFilters extends Component {
   static propTypes = {

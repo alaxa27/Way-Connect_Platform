@@ -10,7 +10,7 @@ import {map} from "underscore";
 import * as dashboardActions from "../../actions/dashboardActions";
 import * as establishmentActions from "../../actions/establishmentActions";
 import EstablishmentList from "./EstablishmentList";
-import Map from '../../components/Map';
+import Map from "../../components/Map";
 
 const mapStateToProps = state => ({stats: state.dashboard.stats, zoom: state.dashboard.mapZoom, establishments: state.establishment.establishments, selectedEstablishment: state.establishment.selectedEstablishment});
 
