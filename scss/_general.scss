@@ -171,3 +171,18 @@ body {
     font-weight: bold;
   }
 }
+
+.scrollarea {
+
+  &:hover {
+
+    .scrollbar-container {
+      opacity: .5!important;
+    }
+  }
+  
+  .scrollbar-container {
+    background-color: $scrollbar-color!important;
+    opacity: .5!important;
+  }
+}

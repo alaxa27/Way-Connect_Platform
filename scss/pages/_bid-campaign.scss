@@ -120,6 +120,10 @@
 .bid {
     background-color: $white;
     position: relative;
+
+    &__scrollable-area {
+      height: 250px;
+    }
   
     &__forbidden {
       position: absolute;
@@ -202,8 +206,6 @@
   
     &__history {
       background-color: $bids-bg;
-      height: 250px;
-      overflow: auto;
   
       i {
         color: $bids-bg;

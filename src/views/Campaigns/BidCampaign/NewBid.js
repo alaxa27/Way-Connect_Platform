@@ -7,6 +7,7 @@ import {
   Card,
   CardBody,
 } from "reactstrap";
+import ScrollArea from 'react-scrollbar'
 
 class NewBid extends Component {
   render() {
@@ -62,36 +63,42 @@ class NewBid extends Component {
               <div className="bid__subtitle mb-3">
                 {t("bidCampaign.bid.historyTitle")}
               </div>
-              <div className="bid__history p-2">
-                {map(history, (item, i) => {
-                  return (
-                    <div className={"bid__history-block"} key={i}>
-                      <div className="bid__boxes">
-                        <div className="bid__box bid__box--bordered p-2">
-                          <i className="fa fa-user mr-2"></i>
-                          <span className="bid__box-title mr-2">{t("bidCampaign.bid.users")}</span>
-                          <span className="font-weight-bold">122</span>
-                        </div>
-                        <div className="bid__box bid__box--bordered p-2">
-                          <i className="fa fa-clock-o mr-2"></i>
-                          <span className="bid__box-title mr-2">{t("bidCampaign.bid.currentTime")}</span>
-                          <span className="font-weight-bold">26/05/2018 18:22</span>
-                        </div>
-                        <div className="bid__box p-2">
-                          <i className="fa fa-usd mr-2"></i>
-                          <span className="bid__box-title mr-2">{t("bidCampaign.bid.averagePrice")}</span>
-                          <span className="font-weight-bold">4,5 WC</span>
-                        </div>
-                        <div className="bid__box p-2">
-                          <i className="fa fa-line-chart mr-2"></i>
-                          <span className="bid__box-title mr-2">{t("bidCampaign.bid.boost")}</span>
-                          <span className="font-weight-bold">(+15%)</span>
+              <ScrollArea
+                speed={0.8}
+                className="bid__scrollable-area"
+                horizontal={false}
+              >
+                <div className="bid__history p-2">
+                  {map(history, (item, i) => {
+                    return (
+                      <div className={"bid__history-block"} key={i}>
+                        <div className="bid__boxes">
+                          <div className="bid__box bid__box--bordered p-2">
+                            <i className="fa fa-user mr-2"></i>
+                            <span className="bid__box-title mr-2">{t("bidCampaign.bid.users")}</span>
+                            <span className="font-weight-bold">122</span>
+                          </div>
+                          <div className="bid__box bid__box--bordered p-2">
+                            <i className="fa fa-clock-o mr-2"></i>
+                            <span className="bid__box-title mr-2">{t("bidCampaign.bid.currentTime")}</span>
+                            <span className="font-weight-bold">26/05/2018 18:22</span>
+                          </div>
+                          <div className="bid__box p-2">
+                            <i className="fa fa-usd mr-2"></i>
+                            <span className="bid__box-title mr-2">{t("bidCampaign.bid.averagePrice")}</span>
+                            <span className="font-weight-bold">4,5 WC</span>
+                          </div>
+                          <div className="bid__box p-2">
+                            <i className="fa fa-line-chart mr-2"></i>
+                            <span className="bid__box-title mr-2">{t("bidCampaign.bid.boost")}</span>
+                            <span className="font-weight-bold">(+15%)</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  );
-                })}
-              </div>
+                    );
+                  })}
+                </div>
+              </ScrollArea>
             </div>
             <div className="bid__block p-3">
               <div className="bid__subtitle mb-3">

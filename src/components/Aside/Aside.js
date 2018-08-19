@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {translate} from "react-i18next";
 import { Progress, Button } from "reactstrap";
 import { map } from "underscore";
+import ScrollArea from 'react-scrollbar';
 
 class Aside extends Component {
   render() {
@@ -18,7 +19,7 @@ class Aside extends Component {
         <aside className="aside-menu">
           <div className="aside-menu__top my-4 pb-4 mx-3">
             <div className="aside-menu__title aside-menu__title--colored">
-              {t("walletManager.title")}
+              Wallet manager
             </div>
             <div className="btn currency-icon">
               +<i className="fa fa-usd"></i>
@@ -62,28 +63,34 @@ class Aside extends Component {
                 </React.Fragment>
               }
             </div>
-            <div className="aside-menu__transactions p-3">
-              <div className="aside-menu__transactions-title mb-2">
-                Transaction history
+            <ScrollArea
+              speed={0.8}
+              className="aside-menu__scrollable-area"
+              horizontal={false}
+            >
+              <div className="aside-menu__transactions p-3">
+                <div className="aside-menu__transactions-title mb-2">
+                  Transaction history
+                </div>
+                {map(history, (item, key) => {
+                  return (
+                    <div key={key} className="aside-menu__transactions-item px-2 py-1 mb-2">
+                      <div className="aside-menu__transactions-box--small">
+                        <div>
+                          Cash
+                        </div>
+                        <div>
+                          25/08/2018 18:52
+                        </div>
+                      </div>
+                      <div className="aside-menu__transactions-box aside-menu__transactions-box--big">
+                        550 WC
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
-              {map(history, (item, key) => {
-                return (
-                  <div key={key} className="aside-menu__transactions-item px-2 py-1 mb-2">
-                    <div className="aside-menu__transactions-box--small">
-                      <div>
-                        Cash
-                      </div>
-                      <div>
-                        25/08/2018 18:52
-                      </div>
-                    </div>
-                    <div className="aside-menu__transactions-box aside-menu__transactions-box--big">
-                      550 WC
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+            </ScrollArea>
           </div>
         </aside>
       :
