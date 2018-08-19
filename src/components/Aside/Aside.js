@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {translate} from "react-i18next";
 import { Progress, Button } from "reactstrap";
 import { map } from "underscore";
-import ScrollArea from 'react-scrollbar';
+import ScrollArea from "react-scrollbar";
 
 class Aside extends Component {
   render() {

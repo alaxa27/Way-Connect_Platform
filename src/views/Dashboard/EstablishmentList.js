@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import EstablishmentListItem from "./EstablishmentListItem";
 import InfiniteScroll from "react-infinite-scroller";
 import _ from "underscore";
-import ScrollArea from 'react-scrollbar';
+import ScrollArea from "react-scrollbar";
 
 class EstablishmentList extends Component {
   render() {
