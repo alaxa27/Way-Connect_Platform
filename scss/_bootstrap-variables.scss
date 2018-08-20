@@ -108,6 +108,7 @@ $g-orange-light:                  #FBB03B;
 $g-yellow:                        #F9DA23;
 $g-light-grey:                    #e6e6e6;
 $g-light-grey-2:                  #dbdbdb;
+$g-middle-grey:                   #c5c5c5;
 $g-grey:                          #989898;
 $g-grey-dark:                     #333333;
 $g-blue:                          #2196F3;
@@ -173,10 +174,12 @@ $breadcrumb-label:                $g-grey;
 $bids-border:                     $gray-200;
 $bids-text:                       $gray-800;
 $bids-bg:                         $g-light-grey;
-$bids-forbidden-bg:                  $g-grey;
+$bids-forbidden-bg:               $g-grey;
 
 // Custom checkbox
-$checkbox-bg:                     $g-blue;
+$checkbox-checked-bg:             $g-blue;
+$checkbox-small-checked-bg:       $white;
+$checkbox-small-not-checked-bg:   $gray-100;
 
 // Modal
 $modal-outline-bg:                $g-half-black;
@@ -225,3 +228,13 @@ $create-campaign-green:           $green;
 
 // Dashboard
 $establishment-item-bg:           $g-light-grey-2;
+
+// Wallet Manager
+$transactions-bg:                 $g-light-grey;
+
+// Research Filters
+$establishment-box:               $g-light-grey;
+$establishment-item-selected:     $g-middle-grey;
+
+// Scrollbar
+$scrollbar-color:                 $g-grey;

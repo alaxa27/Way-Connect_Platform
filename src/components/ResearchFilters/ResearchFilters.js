@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 import {Row, Col, Input} from "reactstrap";
 import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
-
 import SelectBox from "../SelectBox/SelectBox";
+import Map from "../Map";
+import Checkbox from "../Checkbox/";
 
 class ResearchFilters extends Component {
   static propTypes = {
@@ -16,12 +17,9 @@ class ResearchFilters extends Component {
     this.state = {
       ...props
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleRangeChange = this.handleRangeChange.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  handleInputChange(event) {
+  handleInputChange = (event) => {
     const val = event.target.value;
     let gender = this.state.gender;
     gender[val] = !gender[val];
@@ -30,13 +28,17 @@ class ResearchFilters extends Component {
     }
   }
 
-  handleRangeChange(age) {
+  handleRangeChange = (age) => {
     if (!this.state.fixed) {
       this.setState({age});
     }
   }
 
-  handleChange(event) {
+  handleRecallMarketingChange = (value) => {
+    this.setState({recallMarketing: value});
+  }
+
+  handleChange = (event) => {
     const data = event.target;
     const value = data.value;
     const name = data.name;
@@ -53,6 +55,7 @@ class ResearchFilters extends Component {
     return (<div className="research-filters">
       <Row>
         <Col md="6" xs="12">
+
           <div className="input-wrapper">
             <label>Gender</label>
             <div className="c-radio">
@@ -67,12 +70,9 @@ class ResearchFilters extends Component {
             <label className="research-filters__preview">{this.state.age.min}-{this.state.age.max}yo</label>
           </div>
           <div className="input-wrapper">
-            <InputRange maxValue={100} minValue={0} value={this.state.age} onChange={this.handleRangeChange}/>
+            <InputRange maxValue={100} minValue={0} value={this.state.age} onChange={this.handleRangeChange} />
           </div>
-        </Col>
-      </Row>
-      <Row>
-        <Col md="6" xs="12">
+
           <div className="input-wrapper">
             <label>Work status</label>
             <SelectBox name="work-status" placeholder="Every status" options={this.state.workStatus} fixed={this.props.fixed}/>
@@ -87,30 +87,103 @@ class ResearchFilters extends Component {
             <label>Nationality</label>
             <SelectBox name="nationality" placeholder="Every status" options={this.state.nationality} fixed={this.props.fixed}/>
           </div>
-        </Col>
-        <Col md="6" xs="12">
+
           <div className="input-wrapper">
             <label>Hobbies</label>
             <SelectBox name="hobbies" placeholder="Every status" options={this.state.hobbies} fixed={this.props.fixed}/>
           </div>
 
+          <div className="input-wrapper d-flex justify-content-between mt-4">
+            <label>Recall marketing</label>
+            <label className="research-filters__preview">
+              {this.state.recallMarketing === 1 ? this.state.recallMarketing + " view in a row" : this.state.recallMarketing + " views in a row"}
+            </label>
+          </div>
           <div className="input-wrapper">
-            <label>Location</label>
-            <SelectBox name="location" placeholder="Every status" options={this.state.workStatus} fixed={this.props.fixed}/>
+            <InputRange maxValue={10} minValue={0} value={this.state.recallMarketing} onChange={this.handleRecallMarketingChange} />
           </div>
 
-          <div className="input-wrapper">
-            <label>Additional Content</label>
-            <SelectBox name="additional-status" placeholder="Every status" options={this.state.workStatus} fixed={this.props.fixed}/>
+          <div className="input-wrapper mt-4 pb-4 research-filters__meta">
+            <div className="research-filters__users">
+              <i className="fa fa-user mr-2"></i>
+              <span className="mr-3">
+                Utilisateurs
+              </span>
+              <span className="font-weight-bold">
+                249
+              </span>
+            </div>
+            <div className="research-filters__price">
+              <i className="fa fa-usd mr-2"></i>
+              <span className="mr-3">
+                Price from
+              </span>
+              <span className="font-weight-bold">
+                2,49 WC
+              </span>
+            </div>
           </div>
+
         </Col>
-        {
-          (
-            this.props.fixed
-            ? null
-            : (<Col md="6" xs="12">
-              <button className="bid-btn bid-btn--dark mt-4">Start bidding</button>
-            </Col>))
+        {this.props.fixed ? 
+          null
+        : 
+          <Col md="6" xs="12">
+            <div className="input-wrapper">
+              <label>Select establishments</label>
+              <div className="map-wrapper">
+                <Map center={[0, 0]} zoom={7} />
+              </div>
+            </div>
+            <div className="input-wrapper mt-4">
+              <div className="research-filters__establishments">
+                <div className="research-filters__establishments-wrapper">
+                  <div className="research-filters__establishment-select-all pl-3 mb-2">
+                    <Checkbox 
+                      label={"Select all"}
+                    />
+                  </div>
+                  <div className="research-filters__establishments-box p-2">
+                    <div className="research-filters__establishments-item research-filters__establishments-item--selected p-2">
+                      <Checkbox 
+                        label={"Establishment 1"}
+                      />
+                    </div>
+                    <div className="research-filters__establishments-item p-2">
+                      <Checkbox 
+                        label={"Establishment 2"}
+                      />
+                    </div>
+                    <div className="research-filters__establishments-item p-2">
+                      <Checkbox 
+                        label={"Establishment 3"}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="research-filters__establishments-choose mx-3">
+                  <i className="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                </div>
+
+                <div className="research-filters__establishments-wrapper">
+                  <div className="research-filters__establishment-remove-all pl-3 mb-2">
+                    <i className="fa fa-trash-o mr-3" aria-hidden="true"></i>Remove all
+                  </div>
+                  <div className="research-filters__establishments-box p-2">
+                    <div className="research-filters__establishments-item p-2">
+                      <i className="fa fa-trash-o mr-3" aria-hidden="true"></i> Establishment 1
+                    </div>
+                    <div className="research-filters__establishments-item p-2">
+                      <i className="fa fa-trash-o mr-3" aria-hidden="true"></i> Establishment 2
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <button className="bid-btn bid-btn--dark mt-4">Start bidding</button>
+          </Col>
         }
       </Row>
     </div>);

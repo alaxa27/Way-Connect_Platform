@@ -1,7 +1,7 @@
 .promotion {
   background: $white;
-  overflow: auto;
   height: 800px;
+  overflow-y: auto;
 
   &__item {
     border-bottom: 1px solid $promotion-border;

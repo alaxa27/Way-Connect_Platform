@@ -2,44 +2,15 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {translate} from "react-i18next";
-import {Row, Col, Input} from "reactstrap";
-import * as FontAwesome from "react-icons/lib/fa";
-import {withScriptjs, withGoogleMap, GoogleMap, Marker} from "react-google-maps";
-import {compose, withProps} from "recompose";
+import {Row, Col} from "reactstrap";
+import {compose} from "recompose";
 import DashboardPanel from "../../components/DashboardPanel/DashboardPanel";
 import {map} from "underscore";
 
 import * as dashboardActions from "../../actions/dashboardActions";
 import * as establishmentActions from "../../actions/establishmentActions";
 import EstablishmentList from "./EstablishmentList";
-
-const MyMapComponent = compose(withProps({
-  /**
-     * Note: create and replace your own key in the Google console.
-     * https://console.developers.google.com/apis/dashboard
-     * The key "AIzaSyBkNaAGLEVq0YLQMi-PYEMabFeREadYe1Q" can be ONLY used in this sandbox (no forked).
-     */
-  googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyD_vysGBcAkp6DMhvF0xbubCjhLWdUxrXw&v=3.exp&libraries=geometry,drawing,places",
-  loadingElement: <div className="map__loading-el"/>,
-  containerElement: <div className="map__container-el"/>,
-  mapElement: <div className="map__element"/>
-}), withScriptjs, withGoogleMap)(props => (<GoogleMap zoom={props.zoom} center={{
-    lat: props.center[1],
-    lng: props.center[0]
-  }}>
-  {
-    props.isMarkerShown && (<React.Fragment>
-      {
-        map(props.markers, (marker, i) => {
-          return (<Marker key={i} position={{
-              lat: marker[1],
-              lng: marker[0]
-            }}/>);
-        })
-      }
-    </React.Fragment>)
-  }
-</GoogleMap>));
+import Map from "../../components/Map";
 
 const mapStateToProps = state => ({stats: state.dashboard.stats, zoom: state.dashboard.mapZoom, establishments: state.establishment.establishments, selectedEstablishment: state.establishment.selectedEstablishment});
 
@@ -118,7 +89,7 @@ export class Dashboard extends Component {
           <Row>
             <Col>
               <div className="map-wrapper mt-4">
-                <MyMapComponent isMarkerShown={true} center={selectedEstablishment
+                <Map isMarkerShown={true} center={selectedEstablishment
                     ? selectedEstablishment.location.coordinates
                     : [0, 0]} markers={markers} zoom={zoom}/>
               </div>

@@ -5,7 +5,7 @@
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none;
+  user-select: none;  
 
   .checkbox {
     position: absolute;
@@ -19,7 +19,7 @@
 
     &:checked {
       ~ .checkmark {
-        background-color: $checkbox-bg;
+        background-color: $checkbox-checked-bg;
 
         &:after {
           display: block;
@@ -50,6 +50,42 @@
       -webkit-transform: rotate(45deg);
       -ms-transform: rotate(45deg);
       transform: rotate(45deg);
+    }
+  }
+
+  &--small {
+
+    label {
+      margin-left: 30px;
+      margin-bottom: 0;
+    }
+
+    .checkbox {
+      width: 18px;
+      height: 18px;
+      top: 2px;
+
+      &:checked {
+        ~ .checkmark {
+          background-color: $checkbox-small-checked-bg;
+        }
+      }
+    }
+
+    .checkmark {
+      top: 2px;
+      width: 18px;
+      height: 18px;
+      border: 1px solid $card-border-color;
+      background-color: $checkbox-small-not-checked-bg;
+
+      &:after {
+        left: 4px;
+        top: 2px;
+        width: 8px;
+        border: solid #F6881C;
+        border-width: 0 3px 3px 0;
+      }
     }
   }
 }
