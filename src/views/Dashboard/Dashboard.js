@@ -51,6 +51,12 @@ export class Dashboard extends Component {
     fetchEstablishmentList({limit: establishments.limit, offset: establishments.offset});
   }
 
+  normalize = (data) => {
+    const max = Math.max.apply(null, data);
+    const coeff = max > 0 ? 1 / max : 0;
+    return map(data, val => Math.floor(val * coeff * 100) / 100);
+  }
+
   render() {
     const {stats, establishments, selectedEstablishment, zoom, t} = this.props;
 
@@ -58,10 +64,10 @@ export class Dashboard extends Component {
       return item.location.coordinates;
     });
 
-    const connectionsPlot = stats.connections.plot;
-    const establishmentsPlot = stats.establishments.plot;
-    const campaignsPlot = stats.campaigns.plot;
-    const customersPlot = stats.customers.plot;
+    const connectionsPlot = this.normalize(stats.connections.plot);
+    const establishmentsPlot = this.normalize(stats.establishments.plot);
+    const campaignsPlot = this.normalize(stats.campaigns.plot);
+    const customersPlot = this.normalize(stats.customers.plot);
 
     return (<div className="page-dashboard animated fadeIn">
       <Row>
