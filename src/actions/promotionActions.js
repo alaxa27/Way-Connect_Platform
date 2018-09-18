@@ -3,7 +3,13 @@ import {
   PROMOTIONS,
   PROMOTIONS_FULFILLED,
   PROMOTIONS_REJECTED,
-  PROMOTIONS_LOAD_MORE
+  PROMOTIONS_LOAD_MORE,
+  PROMOTIONS_SHOW_ACTIVATION_CONFIRMATION,
+  PROMOTIONS_HIDE_ACTIVATION_CONFIRMATION,
+
+  PROMOTIONS_ACTIVATE,
+  PROMOTIONS_ACTIVATE_FULFILLED,
+  PROMOTIONS_ACTIVATE_REJECTED
 } from "../constants/ActionTypes";
 
 export function fetch() {
@@ -66,3 +72,39 @@ export function loadMore() {
         }
     };
 }
+
+export function showActivationConfirmation(payload) {
+    return async dispatch => {
+        dispatch({
+            type: PROMOTIONS_SHOW_ACTIVATION_CONFIRMATION,
+            payload
+        });
+    };
+}
+
+export function hideActivationConfirmation() {
+    return async dispatch => {
+        dispatch({
+            type: PROMOTIONS_HIDE_ACTIVATION_CONFIRMATION,
+        });
+    };
+}
+
+export function activate(payload) {
+    return async (dispatch) => {
+      dispatch({
+        type: PROMOTIONS_ACTIVATE
+      });
+      try {
+        // CALL API
+        dispatch({
+          type: PROMOTIONS_ACTIVATE_FULFILLED,
+        });
+      } catch (error) {
+        dispatch({
+          type: PROMOTIONS_ACTIVATE_REJECTED,
+          payload: error
+        });
+      }
+    };
+  }

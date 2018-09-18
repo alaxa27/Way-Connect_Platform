@@ -12,7 +12,6 @@ export function confirmRegistration(payload) {
       type: CONFIRM_REGISTRATION
     });
     try {
-      console.log(decodeURIComponent(payload));
       await axios({
         method: "get",
         url: decodeURIComponent(payload),

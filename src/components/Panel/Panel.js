@@ -8,13 +8,10 @@ import ReduxBlockUi from "react-block-ui/redux";
 
 class Panel extends Component {
   render() {
-    const { index, title, value, currency = "" } = this.props;
+    const { index, title, value, currency = "", suffix = null } = this.props;
     let decimals = 2;
     switch(index) {
       case 1: 
-        decimals = 0;
-        break;
-      case 4: 
         decimals = 0;
         break;
       default:
@@ -25,7 +22,7 @@ class Panel extends Component {
       <ReduxBlockUi tag="div" block="CAMPAIGN_ANALYTICS_KEY_DATA" unblock={["CAMPAIGN_ANALYTICS_KEY_DATA_FULFILLED", "CAMPAIGN_ANALYTICS_KEY_DATA_REJECTED"]}>
         <div className={"stats-panel stats-panel--" + index}>
           <h2 className="m-0">
-            <CountUp start={0} end={value} duration={3} decimals={decimals} />
+            <CountUp start={0} end={value} duration={3} decimals={decimals} suffix={suffix} />
             <span className="currency">
               {" " + currency}
             </span>
@@ -48,6 +45,7 @@ Panel.propTypes = {
     ]),
     currency: PropTypes.string,
     title: PropTypes.string,
+    suffix: PropTypes.string
 };
 
 export default Panel;

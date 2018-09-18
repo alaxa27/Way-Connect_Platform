@@ -15,7 +15,6 @@ import {fetchFilterData} from "../../../actions/campaignActions";
 
 @connect((store) => {
   let campaignStore = store.campaign;
-  console.log(campaignStore.filterData);
   return {filterData: campaignStore.filterData};
 })
 

@@ -1,11 +1,12 @@
 .modal-outline {
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     background: $modal-outline-bg;
     padding: 75px 50px 0 50px;
+    z-index: 999;
   }
   
   .modal-body {
@@ -75,5 +76,9 @@
         &--active {
           background: $dot-active;
         }
+    }
+
+    &__action {
+      
     }
   }
