@@ -6,11 +6,13 @@ import ReduxBlockUi from "react-block-ui/redux";
 
 import TypicalClient from "../../components/TypicalClient/TypicalClient";
 import Affluence from "../../components/Affluence/Affluence";
-import PromotionsList from "../../components/Promotions/PromotionsList";
+import DiscountsList from "../../components/Discounts/DiscountsList";
 import Panel from "../../components/Panel/Panel";
 import TrafficChart from "../../components/Traffic/TrafficChart";
 import ExportExcelButton from "./ExportExcel/ExportExcelButton";
+import ConfirmationModal from "../../components/Modal/ConfirmationModal";
 import * as actions from "../../actions/establishmentActions";
+import * as promotionActions from "../../actions/promotionActions";
 import {translate} from "react-i18next";
 import {compose} from "recompose";
 
@@ -55,12 +57,16 @@ const mapStateToProps = state => ({
   affluence: state.establishment.affluence,
   typicalCustomer: state.establishment.typicalCustomer,
   promotions: state.establishment.promotions,
+  activationConfirmationShown: state.promotion.activationConfirmationShown,
 });
 
 const mapDispatchToProps = dispatch => ({
   trafficPeriodChange: payload => dispatch(actions.trafficPeriodChange(payload)),
   fetchEstablishmentPageData: payload => dispatch(actions.fetchEstablishmentPageData(payload)),
   fetchPromotions: payload => dispatch(actions.fetchPromotions(payload)),
+  showConfirmationModal: payload => dispatch(promotionActions.showActivationConfirmation(payload)),
+  hideConfirmationModal: () => dispatch(promotionActions.hideActivationConfirmation()),
+  activateDiscount: payload => dispatch(promotionActions.activate(payload)),
 });
 
 export class Establishment extends Component {
@@ -69,6 +75,13 @@ export class Establishment extends Component {
 
     this.fetchData(props);
     this.loadMorePromotions = this.loadMorePromotions.bind(this);
+  }
+
+  onDiscountClick = (promotion) => {
+    const { showConfirmationModal } = this.props;
+    if(!promotion.payed) {
+      showConfirmationModal(promotion.code);
+    }
   }
 
   fetchData(props) {
@@ -99,6 +112,9 @@ export class Establishment extends Component {
       promotions,
       monthlyData,
       trafficPeriodChange,
+      activationConfirmationShown,
+      hideConfirmationModal,
+      activateDiscount,
       t
     } = this.props;
     return (<ReduxBlockUi tag="div" block={["ESTABLISHMENT_PAGE"]} unblock={["ESTABLISHMENT_PAGE_FULFILLED", "ESTABLISHMENT_PAGE_REJECTED"]}>
@@ -114,7 +130,7 @@ export class Establishment extends Component {
             <Panel index={3} value={monthlyData.customer_average_visits} title={t("establishment.panel.revisitAverage.title")} />
           </Col>
           <Col xs="12" md="6" lg="3">
-            <Panel index={4} value={monthlyData.visits_change} title={t("establishment.panel.visitFluctuation.title")} />
+            <Panel index={4} value={(monthlyData.visits_change * 100).toFixed(2)} title={t("establishment.panel.visitFluctuation.title")} suffix="%" />
           </Col>
         </Row>
 
@@ -131,7 +147,7 @@ export class Establishment extends Component {
         </Row>
         <Row>
           <Col lg="6">
-            <PromotionsList data={promotions.data} promotionsLimit={promotions.limit} promotionsPage={promotions.page} promotionsTotalCount={promotions.total_count} loadMore={this.loadMorePromotions}/>
+            <DiscountsList data={promotions.data} promotionsLimit={promotions.limit} promotionsPage={promotions.page} promotionsTotalCount={promotions.total_count} loadMore={this.loadMorePromotions} onDiscountClick={this.onDiscountClick}/>
           </Col>
           <Col lg="6">
             <div className="d-flex flex-column mt-4">
@@ -153,6 +169,14 @@ export class Establishment extends Component {
               />
           </Col>
         </Row>
+
+        {activationConfirmationShown &&
+          <ConfirmationModal
+            proceed={activateDiscount}
+            hide={hideConfirmationModal}
+          />
+        }
+        
       </div>
     </ReduxBlockUi>);
   }
@@ -178,6 +202,13 @@ Establishment.propTypes = {
   trafficPeriodChange: PropTypes.func,
   fetchPromotions: PropTypes.func,
   t: PropTypes.func,
+  showConfirmationModal: PropTypes.func,
+  activationConfirmationShown: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.string
+  ]),
+  hideConfirmationModal: PropTypes.func,
+  activateDiscount: PropTypes.func
 };
 
 export default compose(connect(mapStateToProps, mapDispatchToProps), translate("translations"))(Establishment);

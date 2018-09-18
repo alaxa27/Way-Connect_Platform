@@ -210,14 +210,10 @@ export default function reducer(state = initialState, action) {
       const traffic = action.payload[period].traffic;
       let summedTraffic = getSummedTraffic(period, traffic);
 
-      console.log("dezd", trafficLabels[period].length);
-      console.log("faaa", traffic);
-
       for (var i = 0; i < trafficLabels[period].length; i++) {
         trafficLabels[period][i] = moment(action.payload[period].start_date).add(i, "days").format( "YYYY-MM-DD");
       }
 
-      console.log("dezd", trafficLabels[period]);
       _.first(trafficDatasets).data = traffic; //summedTraffic;
       return {
         ...state,

@@ -5,6 +5,12 @@
 
   &__item {
     border-bottom: 1px solid $promotion-border;
+    cursor: pointer;
+
+    &--activated {
+      background-color: $promotion-activated;
+      cursor: default;
+    }
   }
 
   &__label-middle {
