@@ -14,8 +14,7 @@ class NewBid extends Component {
     const { history, t } = this.props;
     return (
       <Card className="bid">
-        <CardBody className="p-0">
-          <div className="bid">
+        <CardBody className="p-0 d-flex flex-column">
             <div className="bid__forbidden p-3 d-none">
               <div className="bid__forbidden-wrapper"></div>
               <div className="bid__forbidden-info">
@@ -32,97 +31,69 @@ class NewBid extends Component {
                 </div>
               </div>
             </div>
-            <div className="bid__block px-3 pt-3 pb-2">
-              <div className="bid__title mb-3">
-                {t("bidCampaign.bid.bid")}
-              </div>
-              <div className="bid__boxes">
-                <div className="bid__box bid__box--bordered pb-2">
-                  <i className="fa fa-user mr-2"></i>
-                  <span className="bid__box-title mr-2">{t("bidCampaign.bid.users")}</span>
-                  <span className="font-weight-bold">122</span>
-                </div>
-                <div className="bid__box bid__box--bordered pb-2">
-                  <i className="fa fa-clock-o mr-2"></i>
-                  <span className="bid__box-title mr-2">{t("bidCampaign.bid.currentTime")}</span>
-                  <span className="font-weight-bold">26/05/2018 18:22</span>
-                </div>
-                <div className="bid__box pt-2">
-                  <i className="fa fa-usd mr-2"></i>
-                  <span className="bid__box-title mr-2">{t("bidCampaign.bid.averagePrice")}</span>
-                  <span className="font-weight-bold">4,5 WC</span>
-                </div>
-                <div className="bid__box pt-2">
-                  <i className="fa fa-line-chart mr-2"></i>
-                  <span className="bid__box-title mr-2">{t("bidCampaign.bid.boost")}</span>
-                  <span className="font-weight-bold">(+15%)</span>
-                </div>
-              </div>
-            </div>
-            <div className="bid__block p-3">
+            <div className="bid__block bid__block--no-border bid__block--auto d-flex flex-column p-3">
               <div className="bid__subtitle mb-3">
                 {t("bidCampaign.bid.historyTitle")}
               </div>
-              <ScrollArea
-                speed={0.8}
-                className="bid__scrollable-area"
-                horizontal={false}
-              >
-                <div className="bid__history p-2">
-                  {map(history, (item, i) => {
-                    return (
-                      <div className={"bid__history-block"} key={i}>
-                        <div className="bid__boxes">
-                          <div className="bid__box bid__box--bordered p-2">
-                            <i className="fa fa-user mr-2"></i>
-                            <span className="bid__box-title mr-2">{t("bidCampaign.bid.users")}</span>
-                            <span className="font-weight-bold">122</span>
+              <div className="bid__history p-2">
+                {map(history, (item, i) => {
+                  return (
+                    <div className={"bid__history-block"} key={i}>
+                      <div className="bid__boxes bid__boxes--shadow">
+                        <div className="bid__box bid__box--bordered p-3">
+                          <i className="fa fa-user"></i>
+                          <span className="bid__box-title mr-2">{t("bidCampaign.bid.concurrents")}</span>
+                          <span className="font-weight-bold">122</span>
+                        </div>
+                        <div className="bid__box bid__box--bordered p-3">
+                          <i className="fa fa-clock-o mr-2"></i>
+                          <span className="bid__box-title mr-2">{t("bidCampaign.bid.from")}</span>
+                          <span className="w-100 text-right">26/05/2018 18:22</span>
+                        </div>
+                        <div className="bid__box w-100 d-flex align-items-center justify-content-between p-3">
+                          <div className="bid__box-wrapper">
+                            <i className="fa fa-usd"></i>
+                            <span className="bid__box-title mr-2">{t("bidCampaign.bid.maxPrice")}</span>
                           </div>
-                          <div className="bid__box bid__box--bordered p-2">
-                            <i className="fa fa-clock-o mr-2"></i>
-                            <span className="bid__box-title mr-2">{t("bidCampaign.bid.currentTime")}</span>
-                            <span className="font-weight-bold">26/05/2018 18:22</span>
-                          </div>
-                          <div className="bid__box p-2">
-                            <i className="fa fa-usd mr-2"></i>
-                            <span className="bid__box-title mr-2">{t("bidCampaign.bid.averagePrice")}</span>
-                            <span className="font-weight-bold">4,5 WC</span>
-                          </div>
-                          <div className="bid__box p-2">
-                            <i className="fa fa-line-chart mr-2"></i>
-                            <span className="bid__box-title mr-2">{t("bidCampaign.bid.boost")}</span>
-                            <span className="font-weight-bold">(+15%)</span>
-                          </div>
+                          <span className="font-weight-bold">4,5 WC</span>
                         </div>
                       </div>
-                    );
-                  })}
-                </div>
-              </ScrollArea>
-            </div>
-            <div className="bid__block p-3">
-              <div className="bid__subtitle mb-3">
-                {t("bidCampaign.bid.boost")}
-              </div>
-              <div className="bid__boost mb-3">
-                <InputRange maxValue={100} minValue={0} value={15} formatLabel={value => `${value} %`} onChange={(val) => {console.log(val);}}/>
+                    </div>
+                  );
+                })}
               </div>
             </div>
-            <div className="bid__block p-3">
-              <div className="bid__add d-flex align-items-center justify-content-between">
-                <div className="d-flex align-items-center">
-                  <i className="fa fa-usd mr-3"></i>
-                  <div className="bid__average-price">
-                    <div>{t("bidCampaign.bid.averagePrice")}</div>
-                    <div className="bid__average-price-value font-weight-bold">122 {t("bidCampaign.bid.wc")}</div>
+            <div className="bid__block px-3 pb-3">
+              
+              <div className="bid__boxes">
+                <div className="bid__box bid__box--bordered bid__box--separated d-flex align-items-center justify-content-between">
+                  <div className="bid__box-wrapper">
+                    <i className="fa fa-user"></i>
+                    <span className="mr-2">{t("bidCampaign.bid.targetUsers")}</span>
                   </div>
+                  <span className="font-weight-bold">700</span>
                 </div>
-                <button className="bid-btn bid-btn--dark">
-                  {t("bidCampaign.bid.boostAction")}
-                </button>
+                <div className="bid__box py-2">
+                  New price
+                </div>
+                <div className="bid__box bid__box--separated d-flex align-items-center justify-content-between">
+                  <div className="bid__box-wrapper">
+                    <i className="fa fa-usd"></i>
+                    <span className="mr-2">{t("bidCampaign.bid.minPrice")}</span>
+                  </div>
+                  <span className="font-weight-bold">4,5 WC</span>
+                </div>
+                <div className="bid__box bid__box--colored bid__box--new-bid justify-content-center">
+                  5,6 WC
+                </div>
               </div>
+            
             </div>
-          </div>
+            <div className="bid__block p-3 bid__add d-flex align-items-center justify-content-end">
+              <button className="bid-btn bid-btn--dark">
+                {t("bidCampaign.bid.bid")}
+              </button>
+            </div>
         </CardBody>
       </Card>
     );

@@ -42,11 +42,6 @@ class BidListItem extends Component {
               </span>
             </div>
             <div className="bids__item-box">
-              <img className="mr-2" src={Cart} alt="Cart"/>
-              <span className="mr-2">
-                4500
-              </span>
-              <span className="line-through font-weight-bold">{t("bidCampaign.bid.wc")}</span>
             </div>
           </div>
           <div className="bids__item-progress">
