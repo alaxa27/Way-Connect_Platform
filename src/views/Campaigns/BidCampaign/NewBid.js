@@ -8,7 +8,7 @@ import {
   CardBody,
 } from "reactstrap";
 import ScrollArea from "react-scrollbar";
-import { Input } from 'reactstrap';
+import { Input } from "reactstrap";
 
 class NewBid extends Component {
   render() {
