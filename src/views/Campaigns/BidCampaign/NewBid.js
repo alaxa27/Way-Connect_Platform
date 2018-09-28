@@ -8,6 +8,7 @@ import {
   CardBody,
 } from "reactstrap";
 import ScrollArea from "react-scrollbar";
+import { Input } from 'reactstrap';
 
 class NewBid extends Component {
   render() {
@@ -83,9 +84,7 @@ class NewBid extends Component {
                 </div>
                 <span className="font-weight-bold">4,5 WC</span>
               </div>
-              <div className="bid__box bid__box--colored bid__box--new-bid justify-content-center">
-                  5,6 WC
-              </div>
+              <Input className="bid__box bid__box--colored bid__box--new-bid text-center" type="text" name="newBid" />
             </div>
             
           </div>
