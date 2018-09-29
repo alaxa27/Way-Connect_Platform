@@ -15,55 +15,9 @@
     }
   }
 
-  &__users, &__price, &__establishment-select-all {
+  &__users, &__price {
     display: flex;
     align-items: center;
-  }
-
-  &__establishment-remove-all {
-    display: flex;
-    align-items: center;
-  }
-
-  &__establishments {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  &__establishments-wrapper {
-    flex-grow: 1;
-  }
-
-  &__establishments-box {
-    background-color: $establishment-box;
-    height: 175px;
-    overflow-y: auto;
-    border: 1px solid $card-border-color;
-  }
-
-  &__establishments-item {
-    background-color: $white;
-    display: flex;
-    align-items: center;
-    @include boxShadow;
-    border: 1px solid $card-border-color;
-
-    &--selected {
-      background-color: $establishment-item-selected;
-      box-shadow: none;
-    }
-
-    &:not(:last-child) {
-      margin-bottom: 0.5rem;
-    }
-  }
-
-  &__establishments-choose {
-
-    i {
-      font-size: $font-size-big;
-    }
   }
 
   .input-range__label--max {

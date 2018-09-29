@@ -14,8 +14,7 @@ import TypologieList from "../../../components/TypologieList/TypologieList";
 import {fetchFilterData} from "../../../actions/campaignActions";
 
 @connect((store) => {
-  let campaignStore = store.campaign;
-  console.log(campaignStore.filterData);
+  const campaignStore = store.campaign;
   return {filterData: campaignStore.filterData};
 })
 
@@ -62,7 +61,7 @@ class CreateCampaign extends Component {
               </div>
             </div>
           </div>
-          <ResearchFilters fixed={this.state.fixed} {...this.props.filterData}/>
+          <ResearchFilters fixed={this.state.fixed}/>
         </Col>
       </Row>
     </div>);

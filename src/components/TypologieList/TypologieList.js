@@ -11,7 +11,6 @@ class TypologieList extends Component {
       ...this.props,
     };
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleRadioChange = this.handleRadioChange.bind(this);
   }
 
   handleInputChange(name, e) {
@@ -20,13 +19,28 @@ class TypologieList extends Component {
     });
   }
 
-  handleRadioChange(name) {
-    this.setState(prevState => ({
-      communicationType: {
+  handleBrandSelect = () => {
+    this.setState(prevState => {
+      return {
+        communicationType: {
           ...prevState.communicationType,
-          [name]: !prevState.communicationType[name]
-      }
-    }));
+          brand: true,
+          product: false
+        }
+      };
+    });
+  }
+
+  handleProductSelect = () => {
+    this.setState(prevState => {
+      return {
+        communicationType: {
+          ...prevState.communicationType,
+          brand: false,
+          product: true
+        }
+      };
+    });
   }
 
   render() {
@@ -42,9 +56,9 @@ class TypologieList extends Component {
             <div className="input-wrapper">
               <label>Type of communication</label>
               <div className="c-radio">
-                <Input type="radio" className="c-radio__item" id="brand" name="brand" value="brand" checked={this.state.communicationType.brand} onClick={() => this.handleRadioChange("brand") }/>
+                <Input type="radio" className="c-radio__item" id="brand" name="brand" value="brand" checked={this.state.communicationType.brand} onClick={this.handleBrandSelect}/>
                 <label htmlFor="brand" className="c-radio__label">Brand</label>
-                <Input type="radio" className="c-radio__item" id="product" name="product" value="product" checked={this.state.communicationType.product} onClick={() => this.handleRadioChange("product") }/>
+                <Input type="radio" className="c-radio__item" id="product" name="product" value="product" checked={this.state.communicationType.product} onClick={this.handleProductSelect}/>
                 <label htmlFor="product" className="c-radio__label">Product</label>
               </div>
             </div>

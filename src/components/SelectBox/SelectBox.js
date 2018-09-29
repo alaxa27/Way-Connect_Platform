@@ -24,7 +24,9 @@ class SelectBox extends Component {
     options: PropTypes.array.isRequired,
     fixed: PropTypes.bool,
     name: PropTypes.string.isRequired,
-    placeholder: PropTypes.string
+    placeholder: PropTypes.string,
+    onChange: PropTypes.func,
+    value: PropTypes.object
   }
 
   static defaultProps = {
@@ -33,7 +35,7 @@ class SelectBox extends Component {
   }
 
   render() {
-    return (<Select isDisabled={this.props.fixed} isMulti name={this.props.name} placeholder={this.props.placeholder} defaultValue={(this.props.fixed ? this.props.options : [])} options={(this.props.fixed ? [] : this.props.options)} classNamePrefix="select" components={{
+    return (<Select onChange={this.props.onChange} value={this.props.value} isDisabled={this.props.fixed} isMulti name={this.props.name} placeholder={this.props.placeholder} defaultValue={(this.props.fixed ? this.props.options : [])} options={(this.props.fixed ? [] : this.props.options)} classNamePrefix="select" components={{
         DropdownIndicator
       }} styles={selectStyles}/>);
   }
