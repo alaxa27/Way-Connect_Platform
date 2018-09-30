@@ -39,7 +39,7 @@ if (hostname === "way-connect.com") {
 
 if (process.env.STAGE === "production") {
   backendHost = "https://api.way-connect.com";
-} else if(process.env.STAGE === "development") {
+} else {
   backendHost = "https://wayconnect-staging.herokuapp.com";
 }
 export const axiosInstance = axios.create({

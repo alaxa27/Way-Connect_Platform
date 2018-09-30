@@ -15,7 +15,7 @@ class Aside extends Component {
     };
     const env = process.env.STAGE;
     return (
-      env === "development" ?
+      env !== "production" ?
         <aside className="aside-menu">
           <div className="aside-menu__top my-4 pb-4 mx-3">
             <div className="aside-menu__title aside-menu__title--colored">

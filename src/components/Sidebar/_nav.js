@@ -3,11 +3,11 @@ import prodNav from "./_prod-nav";
 
 let nav = null;
 switch(process.env.STAGE) {
-  case "development":
-    nav = devNav;
+  case "production":
+    nav = prodNav;
     break;
   default:
-    nav = prodNav;
+    nav = devNav;
     break;
 }
 
