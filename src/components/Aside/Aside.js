@@ -13,7 +13,7 @@ class Aside extends Component {
       total: 4000,
       immobilise: 4000
     };
-    const env = process.env.NODE_ENV;
+    const env = process.env.STAGE;
     return (
       env === "development" ?
         <aside className="aside-menu">

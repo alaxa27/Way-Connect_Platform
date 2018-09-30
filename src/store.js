@@ -16,7 +16,7 @@ let middlewares = [
   promise(), thunk, reduxMiddleware
 ];
 
-if (process.env.NODE_ENV !== "production") {
+if (process.env.STAGE !== "production") {
   middlewares.push(createLogger());
 }
 
