@@ -8,4 +8,5 @@ const routes = {
   "/campaigns/:id/analytics": "AnalyticsCampaign",
   "/establishment/:id": "Establishment"
 };
+
 export default routes;
