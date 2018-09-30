@@ -36,7 +36,7 @@ jobs:
       - image:        circleci/node:9.11.1
     timeout:          1200
     environment:
-      - HEROKU_APP:   wayconnect-platform
+      - HEROKU_APP:   wayconnect-platform-staging
     steps:
       - checkout
       - restore_cache: # special step to restore the dependency cache
