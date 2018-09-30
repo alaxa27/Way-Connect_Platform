@@ -9,18 +9,26 @@ class BidMeta extends Component {
       <div className="bid-meta my-2">
         <div className="bid-meta__elapsed mr-3 d-inline-block">
           <span className="bid-meta__type mr-2">
-            {t("bidCampaign.bid.timeElapsed")}
+            {t("bidCampaign.bid.timeElapsed")}:
           </span>
           <span className="bid-meta__value">
             10d 11h 12m 13s
           </span>
         </div>
-        <div className="bid-meta__remaining d-inline-block">
+        <div className="bid-meta__concurrents mr-3 d-inline-block">
           <span className="bid-meta__type mr-2">
-            {t("bidCampaign.bid.timeRemaining")}
+            Concurrents:
           </span>
           <span className="bid-meta__value">
-            00d 11h 12m 13s
+            122
+          </span>
+        </div>
+        <div className="bid-meta__views d-inline-block">
+          <span className="bid-meta__type mr-2">
+            Views:
+          </span>
+          <span className="bid-meta__value">
+            700
           </span>
         </div>
       </div>

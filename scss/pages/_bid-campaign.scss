@@ -25,6 +25,10 @@
     &__type {
       color: $bids-text;
     }
+
+    &__value {
+      font-weight: 500;
+    }
   }
 
   .bids {
@@ -38,20 +42,21 @@
       display: flex;
       padding: 15px 25px;
       cursor: pointer;
+      height: 125px;
   
       &.active {
         background: $white;
       }
   
       &:not(:last-child) {
-        border-bottom: 1px solid $bids-border;
+        border-bottom: 2px solid $bids-border;
       }
     }
   
     &__item-nr {
       padding-right: 15px;
       position: relative;
-      border-right: 1px solid $bids-border;
+      border-right: 2px solid $bids-border;
       display: flex;
       align-items: center;
   
@@ -90,6 +95,7 @@
   
     &__item-progress-value {
       font-weight: bold;
+      font-size: $font-size-medium;
     }
   
     &__item-info {
@@ -108,6 +114,7 @@
   
       &--main {
         font-weight: bold;
+        font-size: $font-size-medium;
       }
   
       &--sub {
@@ -120,10 +127,7 @@
 .bid {
     background-color: $white;
     position: relative;
-
-    &__scrollable-area {
-      height: 250px;
-    }
+    height: 100%;
   
     &__forbidden {
       position: absolute;
@@ -173,6 +177,14 @@
       &:not(:last-child) {
         border-bottom: 1px solid $bids-border;
       }
+
+      &--no-border {
+        border-bottom: none!important;
+      }
+
+      &--auto {
+        flex: auto;
+      }
     }
   
     &__title {
@@ -182,33 +194,58 @@
     &__boxes {
       display: flex;
       flex-wrap: wrap;
+
+      &--shadow {
+        @include boxShadow;
+      }
     }
   
     &__box {
       width: 50%;
       display: flex;
       align-items: center;
+
+      &--separated {
+        width: calc(50% - 1rem);
+        margin-right: 1rem;
+      }
   
       &--bordered {
         border-bottom: 1px solid $bids-border;
       }
+
+      &--colored {
+        background-color: $bids-bg;
+      }
+
+      &--new-bid {
+        font-size: $font-size-big;
+        font-weight: bold;
+      }
   
       i {
         font-size: $font-size-medium;
+        width: 30px;
       }
+    }
+
+    &__box-wrapper {
+      display: flex;
+      align-items: center;
     }
   
     &__box-title {
       width: 100px;
       display: inline-block;
-      font-size: $font-size-sm;
     }
   
     &__history {
       background-color: $bids-bg;
+      flex: auto;
+      border: 1px solid $card-border;
   
       i {
-        color: $bids-bg;
+        color: $bids-history-icon;
       }
     }
   
@@ -221,25 +258,11 @@
     }
   
     &__add {
+      height: 125px;
   
       button {
         width: 250px;
       }
-  
-      i {
-        font-size: $font-size-medium;
-      }
-    }
-  
-    &__boost {
-  
-      .input-range__label--value {
-        top: 5px;
-      }
-    }
-  
-    &__average-price-value {
-      font-size: $font-size-big;
     }
   }
 

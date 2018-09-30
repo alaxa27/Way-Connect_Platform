@@ -110,6 +110,7 @@ $g-light-grey:                    #e6e6e6;
 $g-light-grey-2:                  #dbdbdb;
 $g-middle-grey:                   #c5c5c5;
 $g-grey:                          #989898;
+$g-grey-mid-dark:                 rgba(136,136,136,0.62);
 $g-grey-dark:                     #333333;
 $g-blue:                          #2196F3;
 $g-half-black:                    rgba(0,0,0,.5);
@@ -123,7 +124,7 @@ $breadcrumb-margin-bottom:        1.5rem;
 
 // Cards
 
-$card-border-color:               $gray-200;
+$card-border:               $g-grey-mid-dark;
 $card-cap-bg:                     $gray-100;
 
 // Dropdowns
@@ -152,7 +153,7 @@ $input-border-color:              $gray-200;
 $input-group-addon-border-color:  $gray-200;
 
 // Input range
-$track-unactive-bg:               #999;
+$track-unactive-bg:               $g-grey-mid-dark;
 $track-active-bg:                 $g-gradient;
 $slider-bg:                       $gray-900;
 
@@ -171,10 +172,11 @@ $breadcrumb-border:               $gray-200;
 $breadcrumb-label:                $g-grey;
 
 // Bid campaign
-$bids-border:                     $gray-200;
+$bids-border:                     $g-grey-mid-dark;
 $bids-text:                       $gray-800;
 $bids-bg:                         $g-light-grey;
 $bids-forbidden-bg:               $g-grey;
+$bids-history-icon:               $g-grey-mid-dark;
 
 // Custom checkbox
 $checkbox-checked-bg:             $g-blue;

@@ -4,7 +4,7 @@
   margin-bottom: 2 * $card-spacer-y;
   text-align: center;
   background: #fff;
-  border: $card-border-width solid $card-border-color;
+  border: $card-border-width solid $card-border;
   @include border-radius($card-border-radius);
 
   i {
