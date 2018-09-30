@@ -3,6 +3,8 @@ import {
   FETCH_FILTER_DATA_FULFILLED,
   FETCH_FILTER_DATA_REJECTED,
 
+  RESEARCH_FILTER_CHANGE,
+
   FETCH_CAMPAIGN,
   FETCH_CAMPAIGN_FULFILLED,
   FETCH_CAMPAIGN_REJECTED,
@@ -104,6 +106,22 @@ const filterDataDefaults = {
   recallMarketing: 0
 };
 
+const researchFilterDefaults = {
+  male: false,
+  female: false,
+  age: {
+    min: 18,
+    max: 24
+  },
+  workStatus: [],
+  relationshipStatus: [],
+  nationality: [],
+  hobbies: [],
+  recallMarketing: 0,
+  users: 249,
+  priceFrom: "2,49 WC"
+};
+
 const initialState = {
   fetching: false,
   success: false,
@@ -114,7 +132,9 @@ const initialState = {
   traffic: trafficDefaults,
   keyData: keyDataDefaults,
   typicalCustomer: typicalCustomerDefaults,
-  affluence: null
+  affluence: null,
+
+  researchFilters: researchFilterDefaults
 };
 
 export default function reducer(state = initialState, action) {
@@ -233,6 +253,14 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         keyData: action.payload
+      };
+    case RESEARCH_FILTER_CHANGE:
+      return {
+        ...state,
+        researchFilters: {
+          ...state.researchFilters,
+          [action.payload.name]: action.payload.value
+        }
       };
     default:
       return { ...state

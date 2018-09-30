@@ -8,6 +8,8 @@ import {
   FETCH_FILTER_DATA_FULFILLED,
   FETCH_FILTER_DATA_REJECTED,
 
+  RESEARCH_FILTER_CHANGE,
+
   FETCH_CAMPAIGN,
   FETCH_CAMPAIGN_FULFILLED,
   FETCH_CAMPAIGN_REJECTED,
@@ -265,5 +267,14 @@ function fetchTypicalCustomer(payload) {
         payload: error
       });
     }
+  };
+}
+
+export function changeResearchFilter(payload) {
+  return async (dispatch, getState) => {
+    dispatch({
+      type: RESEARCH_FILTER_CHANGE,
+      payload
+    });
   };
 }
