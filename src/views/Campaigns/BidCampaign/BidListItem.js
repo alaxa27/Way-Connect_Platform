@@ -8,9 +8,9 @@ import PropTypes from "prop-types";
 
 class BidListItem extends Component {
   render() {
-    const { item, index, t } = this.props;
+    const { item, current, t } = this.props;
     return (
-      <div className={"bids__item" + (index === 4 ? " active": "")} key={index}>
+      <div className={"bids__item" + (current ? " bids__item--current" : "")}>
         <div className="bids__item-nr">
           <div>
             #{item.rank}
@@ -61,7 +61,8 @@ class BidListItem extends Component {
 BidListItem.propTypes = {
   item: PropTypes.object,
   index: PropTypes.number,
-  t: PropTypes.func
+  t: PropTypes.func,
+  current: PropTypes.bool
 };
 
 export default translate("translations")(BidListItem);

@@ -33,23 +33,28 @@
 
   .bids {
     background-color: $bids-bg;
+
+    &__empty-space {
+      height: 125px;
+    }
   
     img {
       height: 20px;
+    }
+
+    &__list {
+      height: 1000px;
+      overflow-y: auto;
     }
   
     &__item {
       display: flex;
       padding: 15px 25px;
-      cursor: pointer;
       height: 125px;
+      border-bottom: 2px solid $bids-border;
   
-      &.active {
+      &--current {
         background: $white;
-      }
-  
-      &:not(:last-child) {
-        border-bottom: 2px solid $bids-border;
       }
     }
   
@@ -91,6 +96,7 @@
     &__item-progress {
       width: 100%;
       display: flex;
+      align-items: center;
     }
   
     &__item-progress-value {

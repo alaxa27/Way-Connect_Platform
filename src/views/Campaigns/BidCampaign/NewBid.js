@@ -11,6 +11,17 @@ import ScrollArea from "react-scrollbar";
 import { Input } from "reactstrap";
 
 class NewBid extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      bidValue: ""
+    };
+  }
+  onBidChange = (value) => {
+    this.setState({
+      bidValue: value.replace(/[^0-9,]/g, "").replace(/(\,.*)\,/g, "$1")
+    });
+  }
   render() {
     const { history, t } = this.props;
     return (
@@ -84,7 +95,7 @@ class NewBid extends Component {
                 </div>
                 <span className="font-weight-bold">4,5 WC</span>
               </div>
-              <Input className="bid__box bid__box--colored bid__box--new-bid text-center" type="text" name="newBid" />
+              <Input className="bid__box bid__box--colored bid__box--new-bid text-center" type="text" name="newBid" value={this.state.bidValue} onChange={e => { this.onBidChange(e.target.value); }}/>
             </div>
             
           </div>
