@@ -91,17 +91,6 @@ export function fetchCampaign(payload) {
 
       campaign = campaign[0];
 
-      switch (campaign.id) {
-        case 43:
-          campaign.status = "bidding";
-          break;
-        case 20:
-          campaign.status = "delivered";
-          break;
-        default:
-          campaign.status = "progress";
-          break;
-      }
       ////////////////
       dispatch({
         type: FETCH_CAMPAIGN_FULFILLED,

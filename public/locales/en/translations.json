@@ -75,15 +75,6 @@
     "start": {
       "text": "Start a new campaign"
     },
-    "bidding": {
-      "title": "Bidding"
-    },
-    "inProgress": {
-      "title": "In progress"
-    },
-    "delivered": {
-      "title": "Delivered"
-    },
     "comingSoon": {
       "countDown": {
         "days": "Days",

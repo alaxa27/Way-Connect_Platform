@@ -70,32 +70,8 @@ class Campaigns extends Component {
     });
   }
 
-  renderStatusCircle(status) {
-    if (status === this.props.campaign.status) {
-      return "mark-" + status;
-    } else {
-      return null;
-    }
-  }
-
   renderRedirect() {
-    let target = "";
-
-    switch (this.props.campaign.status) {
-      case "bidding":
-        target = "bid";
-        break;
-      case "progress":
-        target = "analytics";
-        break;
-      case "delivered":
-        target = "analytics";
-        break;
-      default:
-        return null;
-    }
-
-    return <Redirect to={`/campaigns/${this.props.match.params.id}/${target}`}/>;
+    return <Redirect to={`/campaigns/${this.props.match.params.id}/analytics`}/>;
   }
 
   render() {
@@ -103,28 +79,6 @@ class Campaigns extends Component {
     return (<div className="sub-page-wrapper animated fadeIn">
 
       <div className="c-breadcrumbs">
-        <div className="c-breadcrumbs__item">
-          <Row>
-            <Col xs="4" md="3">
-              <label className="c-breadcrumbs__label">
-                <FontAwesome.FaCircle className={this.renderStatusCircle("bidding")}/>
-                {t("campaigns.bidding.title")}
-              </label>
-            </Col>
-            <Col xs="4" md="3">
-              <label className="c-breadcrumbs__label">
-                <FontAwesome.FaCircle className={this.renderStatusCircle("progress")}/>
-                {t("campaigns.inProgress.title")}
-              </label>
-            </Col>
-            <Col xs="4" md="3">
-              <label className="c-breadcrumbs__label">
-                <FontAwesome.FaCircle className={this.renderStatusCircle("delivered")}/>
-                {t("campaigns.delivered.title")}
-              </label>
-            </Col>
-          </Row>
-        </div>
         <div className="c-breadcrumbs__item">
           <Row>
             <Col>

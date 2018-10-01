@@ -2,10 +2,13 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchCampaigns } from "../../../actions/listCampaignsActions";
-import CampaignType from "./ListCampaignType";
 import ComingSoon from "../../../components/Modal/ComingSoon";
 import {translate} from "react-i18next";
-import moment from "moment";
+import ListCampaignItem from "./ListCampaignItem";
+import {Link} from "react-router-dom";
+import {Button} from "reactstrap";
+import {MdAddCircleOutline} from "react-icons/lib/md";
+import moment from 'moment';
 
 @connect((store) => {
   let listCampaignsStore = store.listCampaigns;
@@ -24,12 +27,23 @@ class ListCampaign extends Component {
   }
 
   render() {
-    const { t } = this.props;
+    const { t, campaigns } = this.props;
+
+    const items = campaigns.map((item, key) =>
+      <ListCampaignItem item={item} key={key}/>);
+
     return (
       <div className="sub-page-wrapper animated fadeIn">
-        <CampaignType title={t("campaigns.bidding.title")} campaigns={this.props.campaigns} status="bidding" canAddNew/>
-        <CampaignType title={t("campaigns.inProgress.title")} campaigns={this.props.campaigns} status="progress"/>
-        <CampaignType title={t("campaigns.delivered.title")} campaigns={this.props.campaigns} status="delivered"/>
+        <table className="mybids-table">
+          <tbody>
+            {items}
+          </tbody>
+        </table>
+        <Link to="/campaigns/create">
+          <Button className="add-btn"><MdAddCircleOutline/>
+            {t("campaigns.start.text")}
+          </Button>
+        </Link>
         <ComingSoon 
           title={t("listCampaign.comingSoon.title")}
           description={t("listCampaign.comingSoon.description")}
@@ -41,5 +55,6 @@ class ListCampaign extends Component {
 }
 ListCampaign.propTypes = {
   t: PropTypes.func,
+  campaigns: PropTypes.array
 };
 export default translate("translations")(ListCampaign);

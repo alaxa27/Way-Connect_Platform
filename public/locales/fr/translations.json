@@ -75,15 +75,6 @@
     "start": {
       "text": "Démarrer une nouvelle campagne"
     },
-    "bidding": {
-      "title": "Enchère"
-    },
-    "inProgress": {
-      "title": "En cours"
-    },
-    "delivered": {
-      "title": "Délivrée"
-    },
     "comingSoon": {
       "title": "Prochainement",
       "description": "Vous allez bientôt pouvoir créer votre propre campagne publicitaire.",
