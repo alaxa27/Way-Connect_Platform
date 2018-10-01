@@ -8,7 +8,7 @@ import ListCampaignItem from "./ListCampaignItem";
 import {Link} from "react-router-dom";
 import {Button} from "reactstrap";
 import {MdAddCircleOutline} from "react-icons/lib/md";
-import moment from 'moment';
+import moment from "moment";
 
 @connect((store) => {
   let listCampaignsStore = store.listCampaigns;
