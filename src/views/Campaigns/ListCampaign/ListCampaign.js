@@ -29,7 +29,7 @@ class ListCampaign extends Component {
         <CampaignType title={t("campaigns.bidding.title")} campaigns={this.props.campaigns} status="bidding" canAddNew/>
         <CampaignType title={t("campaigns.inProgress.title")} campaigns={this.props.campaigns} status="progress"/>
         <CampaignType title={t("campaigns.delivered.title")} campaigns={this.props.campaigns} status="delivered"/>
-        <ComingSoon />
+        {(process.env.STAGE === "production" ? <ComingSoon /> : null)}
       </div>
     );
   }

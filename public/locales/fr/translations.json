@@ -201,7 +201,8 @@
   "breadcrumbs": {
     "home": "Home",
     "dashboard": "Dashboard",
-    "listCampaign": "Campaigns list"
+    "listCampaign": "Campaigns list",
+    "createCampaign": "Création de campagne"
   },
   "addEstablishment": {
     "step1": {
