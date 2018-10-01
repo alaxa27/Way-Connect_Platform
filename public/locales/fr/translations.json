@@ -168,6 +168,18 @@
       }
     }
   },
+  "createCampaign": {
+    "comingSoon": {
+      "title": "Coming Soon",
+      "description": "You will soon be able to add establishments to map."
+    }
+  },
+  "listCampaign": {
+    "comingSoon": {
+      "title": "Coming Soon",
+      "description": "You will soon be able to create your own advertising campaign."
+    }
+  },
   "establishment": {
     "panel": {
       "visits": {

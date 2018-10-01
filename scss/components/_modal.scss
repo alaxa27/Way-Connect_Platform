@@ -6,12 +6,21 @@
     right: 0;
     background: $modal-outline-bg;
     padding: 75px 50px 0 50px;
+    z-index: 1;
+
+    &--minified {
+      padding: 20px;
+    }
   }
   
   .modal-body {
     background: $white;
     max-width: 900px;
     margin: auto;
+
+    &--transparent {
+      background: transparent;
+    }
   
     &__heading {
       text-align: center;

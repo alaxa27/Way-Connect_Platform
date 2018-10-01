@@ -5,6 +5,7 @@ import { fetchCampaigns } from "../../../actions/listCampaignsActions";
 import CampaignType from "./ListCampaignType";
 import ComingSoon from "../../../components/Modal/ComingSoon";
 import {translate} from "react-i18next";
+import moment from "moment";
 
 @connect((store) => {
   let listCampaignsStore = store.listCampaigns;
@@ -29,7 +30,11 @@ class ListCampaign extends Component {
         <CampaignType title={t("campaigns.bidding.title")} campaigns={this.props.campaigns} status="bidding" canAddNew/>
         <CampaignType title={t("campaigns.inProgress.title")} campaigns={this.props.campaigns} status="progress"/>
         <CampaignType title={t("campaigns.delivered.title")} campaigns={this.props.campaigns} status="delivered"/>
-        <ComingSoon />
+        <ComingSoon 
+          title={t("listCampaign.comingSoon.title")}
+          description={t("listCampaign.comingSoon.description")}
+          launchDate={moment("2018-09-28")}
+        />
       </div>
     );
   }

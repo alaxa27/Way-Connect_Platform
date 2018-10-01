@@ -6,6 +6,12 @@ import "react-input-range/lib/css/index.css";
 import SelectBox from "../SelectBox/SelectBox";
 import { connect } from "react-redux";
 import * as actions from "../../actions/campaignActions";
+import Map from "../Map";
+import Checkbox from "../Checkbox/";
+import ComingSoon from "../../components/Modal/ComingSoon";
+import {translate} from "react-i18next";
+import {compose} from "recompose";
+import moment from "moment";
 
 const mapStateToProps = state => ({
   researchFilters: state.campaign.researchFilters,
@@ -18,7 +24,7 @@ const mapDispatchToProps = dispatch => ({
 
 class ResearchFilters extends Component {
   render() {
-    const { changeResearchFilter, filterData, researchFilters } = this.props;
+    const { changeResearchFilter, filterData, researchFilters, t } = this.props;
     return (<div className="research-filters">
       <Row>
         <Col md="6" xs="12">
@@ -60,14 +66,22 @@ class ResearchFilters extends Component {
             <SelectBox name="hobbies" placeholder="Every status" options={filterData.hobbies} fixed={this.props.fixed} onChange={value => {changeResearchFilter({name: "hobbies",  value});}} value={researchFilters.hobbies}/>
           </div>
 
-          <div className="input-wrapper d-flex justify-content-between mt-4">
-            <label>Recall marketing</label>
-            <label className="research-filters__preview">
-              {researchFilters.recallMarketing === 1 ? researchFilters.recallMarketing + " view in a row" : researchFilters.recallMarketing + " views in a row"}
-            </label>
-          </div>
           <div className="input-wrapper">
-            <InputRange maxValue={10} minValue={0} value={researchFilters.recallMarketing} onChange={value => {changeResearchFilter({name: "recallMarketing",  value});}} />
+            <div className="feature-coming-soon">
+              <ComingSoon 
+                  title={t("createCampaign.comingSoon.title")}
+                  minified
+              />
+              <div className="d-flex justify-content-between mt-4">
+                <label>Recall marketing</label>
+                <label className="research-filters__preview">
+                  {researchFilters.recallMarketing === 1 ? researchFilters.recallMarketing + " view in a row" : researchFilters.recallMarketing + " views in a row"}
+                </label>
+              </div>
+              <div className="input-wrapper">
+                <InputRange maxValue={10} minValue={0} value={researchFilters.recallMarketing} onChange={value => {changeResearchFilter({name: "recallMarketing",  value});}} />
+              </div>
+            </div>
           </div>
 
           <div className="input-wrapper mt-4 pb-4 research-filters__meta">
@@ -96,7 +110,67 @@ class ResearchFilters extends Component {
           null
         : 
           <Col md="6" xs="12">
-            <button className="bid-btn bid-btn--dark mt-4">Start bidding</button>
+            <div className="feature-coming-soon">
+              <ComingSoon 
+                title={t("createCampaign.comingSoon.title")}
+                description={t("createCampaign.comingSoon.description")}
+                launchDate={moment("2018-10-28")}
+              />
+              <div className="input-wrapper">
+                <label>Select establishments</label>
+                <div className="map-wrapper">
+                  <Map center={[0, 0]} zoom={7} />
+                </div>
+              </div>
+              <div className="input-wrapper mt-4">
+                <div className="research-filters__establishments">
+                  <div className="research-filters__establishments-wrapper">
+                    <div className="research-filters__establishment-select-all pl-3 mb-2">
+                      <Checkbox 
+                        label={"Select all"}
+                      />
+                    </div>
+                    <div className="research-filters__establishments-box p-2">
+                      <div className="research-filters__establishments-item research-filters__establishments-item--selected p-2">
+                        <Checkbox 
+                          label={"Establishment 1"}
+                        />
+                      </div>
+                      <div className="research-filters__establishments-item p-2">
+                        <Checkbox 
+                          label={"Establishment 2"}
+                        />
+                      </div>
+                      <div className="research-filters__establishments-item p-2">
+                        <Checkbox 
+                          label={"Establishment 3"}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="research-filters__establishments-choose mx-3">
+                    <i className="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                  </div>
+
+                  <div className="research-filters__establishments-wrapper">
+                    <div className="research-filters__establishment-remove-all pl-3 mb-2">
+                      <i className="fa fa-trash-o mr-3" aria-hidden="true"></i>Remove all
+                    </div>
+                    <div className="research-filters__establishments-box p-2">
+                      <div className="research-filters__establishments-item p-2">
+                        <i className="fa fa-trash-o mr-3" aria-hidden="true"></i> Establishment 1
+                      </div>
+                      <div className="research-filters__establishments-item p-2">
+                        <i className="fa fa-trash-o mr-3" aria-hidden="true"></i> Establishment 2
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <button className="bid-btn bid-btn--dark mt-4">Start bidding</button>
+            </div>
           </Col>
         }
       </Row>
@@ -105,10 +179,11 @@ class ResearchFilters extends Component {
 }
 
 ResearchFilters.propTypes = {
+  t: PropTypes.func,
   fixed: PropTypes.bool,
   changeResearchFilter: PropTypes.func,
   filterData: PropTypes.object,
   researchFilters: PropTypes.object
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ResearchFilters);
+export default compose(connect(mapStateToProps, mapDispatchToProps), translate("translations"))(ResearchFilters);
