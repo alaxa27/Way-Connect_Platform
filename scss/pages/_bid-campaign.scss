@@ -35,7 +35,7 @@
     background-color: $bids-bg;
 
     &__empty-space {
-      height: 125px;
+      height: 100px;
     }
   
     img {
@@ -43,18 +43,19 @@
     }
 
     &__list {
-      height: 1000px;
+      height: 700px;
       overflow-y: auto;
     }
   
     &__item {
       display: flex;
       padding: 15px 25px;
-      height: 125px;
+      height: 100px;
       border-bottom: 2px solid $bids-border;
   
       &--current {
         background: $white;
+        border-bottom: none;
       }
     }
   
@@ -68,7 +69,7 @@
       > div {
         background-color: $black;
         color: $white;
-        font-size: $font-size-big;
+        font-size: $font-size-medium;
         border-radius: 50%;
         padding: 8px;
         width: 55px;
@@ -101,7 +102,7 @@
   
     &__item-progress-value {
       font-weight: bold;
-      font-size: $font-size-medium;
+      font-size: $font-size-pre-medium;
     }
   
     &__item-info {
@@ -120,7 +121,7 @@
   
       &--main {
         font-weight: bold;
-        font-size: $font-size-medium;
+        font-size: $font-size-pre-medium;
       }
   
       &--sub {
@@ -133,7 +134,7 @@
 .bid {
     background-color: $white;
     position: relative;
-    height: 100%;
+    height: 800px;
   
     &__forbidden {
       position: absolute;
@@ -186,10 +187,6 @@
 
       &--no-border {
         border-bottom: none!important;
-      }
-
-      &--auto {
-        flex: auto;
       }
     }
   
@@ -247,7 +244,8 @@
   
     &__history {
       background-color: $bids-bg;
-      flex: auto;
+      height: 510px;
+      overflow-y: auto;
       border: 1px solid $card-border;
   
       i {
@@ -264,7 +262,7 @@
     }
   
     &__add {
-      height: 125px;
+      height: 100px;
   
       button {
         width: 250px;

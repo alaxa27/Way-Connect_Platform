@@ -6,6 +6,7 @@ import {
   Card,
   CardBody,
 } from "reactstrap";
+import ScrollArea from "react-scrollbar";
 
 class BidList extends Component {
   render() {
@@ -15,13 +16,17 @@ class BidList extends Component {
       <React.Fragment>
         <Card className="bids mb-4 mb-lg-0">
           <CardBody className="p-0">
-            <div className="bids__list">
+            <ScrollArea
+              speed={0.8}
+              className="bids__list"
+              horizontal={false}
+            >
               {map(data, (item, index) => {
                 return (
-                  <BidListItem item={item} key={index} />
+                  <BidListItem item={item} key={item.rank} />
                 );
               })}
-            </div>
+            </ScrollArea>
             {isCampaignDeep && 
               <div className="bids__current">
                 <BidListItem item={data[0]} key={"index"} current />

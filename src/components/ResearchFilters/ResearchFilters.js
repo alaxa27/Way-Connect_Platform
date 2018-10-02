@@ -169,8 +169,8 @@ class ResearchFilters extends Component {
 
                 </div>
               </div>
-              <button className="bid-btn bid-btn--dark mt-4">Start bidding</button>
             </div>
+            <button className="bid-btn bid-btn--dark mt-4">Start bidding</button>
           </Col>
         }
       </Row>

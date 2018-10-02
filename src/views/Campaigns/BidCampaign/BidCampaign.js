@@ -121,7 +121,7 @@ class BidCampaign extends Component {
       value: 6000
     };
 
-    const history = [1,2,3];
+    const history = [1,2,3,4,5,6,7];
 
     return (<div className="page-bid-campaign sub-page-wrapper animated fadeIn my-4">
       <Row>
