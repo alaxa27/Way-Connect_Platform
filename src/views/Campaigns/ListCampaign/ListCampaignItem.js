@@ -8,21 +8,13 @@ import Cart from "./shopping_cart_ok.png";
 
 class ListCampaignItem extends Component {
   static propTypes = {
-    history: PropTypes.shape({push: PropTypes.func}),
     item: PropTypes.shape({id: PropTypes.number}),
-    status: PropTypes.string
-  }
-
-  constructor(props) {
-    super(props);
-    this.state = {};
   }
 
   render() {
-    const {item, status} = this.props;
+    const {item} = this.props;
 
-    if (item.status === status) {
-      return (<tr onClick={this.redirectToCampaign}>
+      return (<tr>
         <td>
           <Link to={`/campaigns/${item.id}`}>
             <label>{item.name}</label>
@@ -53,9 +45,6 @@ class ListCampaignItem extends Component {
           </Link>
         </td>
       </tr>);
-    } else {
-      return null;
-    }
   }
 }
 export default ListCampaignItem;

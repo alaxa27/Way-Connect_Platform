@@ -75,18 +75,7 @@
     "start": {
       "text": "Start a new campaign"
     },
-    "bidding": {
-      "title": "Bidding"
-    },
-    "inProgress": {
-      "title": "In progress"
-    },
-    "delivered": {
-      "title": "Delivered"
-    },
     "comingSoon": {
-      "title": "Coming Soon",
-      "description": "You will soon be able to create your own advertising campaign.",
       "countDown": {
         "days": "Days",
         "hours": "Hours",
@@ -166,6 +155,18 @@
       "clicks": {
         "title": "Clicks"
       }
+    }
+  },
+  "createCampaign": {
+    "comingSoon": {
+      "title": "Coming Soon",
+      "description": "You will soon be able to add establishments to map."
+    }
+  },
+  "listCampaign": {
+    "comingSoon": {
+      "title": "Coming Soon",
+      "description": "You will soon be able to create your own advertising campaign."
     }
   },
   "establishment": {

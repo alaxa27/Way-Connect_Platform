@@ -54,7 +54,6 @@ class BidCampaign extends Component {
         view: 600,
         bid: 6,
         cart: 200,
-        status: t("campaigns.bidding.title")
       }, {
         rank: 2,
         name: "Teads.tv",
@@ -62,7 +61,6 @@ class BidCampaign extends Component {
         view: 600,
         bid: 6,
         cart: 200,
-        status: t("campaigns.bidding.title")
       }, {
         rank: 3,
         name: "Teads.tv",
@@ -70,7 +68,6 @@ class BidCampaign extends Component {
         view: 600,
         bid: 6,
         cart: 200,
-        status: t("campaigns.bidding.title")
       }, {
         rank: 4,
         name: "Teads.tv",
@@ -78,7 +75,6 @@ class BidCampaign extends Component {
         view: 600,
         bid: 6,
         cart: 200,
-        status: t("campaigns.inProgress.title")
       }, {
         rank: 5,
         name: "Teads.tv",
@@ -86,7 +82,6 @@ class BidCampaign extends Component {
         view: 600,
         bid: 6,
         cart: 200,
-        status: t("campaigns.inProgress.title")
       }, {
         rank: 6,
         name: "Teads.tv",
@@ -94,7 +89,6 @@ class BidCampaign extends Component {
         view: 600,
         bid: 6,
         cart: 200,
-        status: t("campaigns.bidding.title")
       }, {
         rank: 7,
         name: "Teads.tv",
@@ -102,7 +96,6 @@ class BidCampaign extends Component {
         view: 600,
         bid: 6,
         cart: 200,
-        status: t("campaigns.inProgress.title")
       }, {
         rank: 8,
         name: "Teads.tv",
@@ -128,7 +121,7 @@ class BidCampaign extends Component {
       value: 6000
     };
 
-    const history = [1,2,3];
+    const history = [1,2,3,4,5,6,7];
 
     return (<div className="page-bid-campaign sub-page-wrapper animated fadeIn my-4">
       <Row>

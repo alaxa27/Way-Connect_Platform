@@ -11,6 +11,17 @@ import ScrollArea from "react-scrollbar";
 import { Input } from "reactstrap";
 
 class NewBid extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      bidValue: ""
+    };
+  }
+  onBidChange = (value) => {
+    this.setState({
+      bidValue: value.replace(/[^0-9,]/g, "").replace(/(\,.*)\,/g, "$1")
+    });
+  }
   render() {
     const { history, t } = this.props;
     return (
@@ -32,14 +43,19 @@ class NewBid extends Component {
               </div>
             </div>
           </div>
-          <div className="bid__block bid__block--no-border bid__block--auto d-flex flex-column p-3">
+          <div className="bid__block bid__block--no-border d-flex flex-column p-3">
             <div className="bid__subtitle mb-3">
               {t("bidCampaign.bid.historyTitle")}
             </div>
-            <div className="bid__history p-2">
+            <ScrollArea
+              speed={0.8}
+              className="bid__history"
+              contentClassName="p-2"
+              horizontal={false}
+            >
               {map(history, (item, i) => {
                   return (
-                    <div className={"bid__history-block"} key={i}>
+                    <div className={"bid__history-block"} key={item}>
                       <div className="bid__boxes bid__boxes--shadow">
                         <div className="bid__box bid__box--bordered p-3">
                           <i className="fa fa-user"></i>
@@ -62,7 +78,7 @@ class NewBid extends Component {
                     </div>
                   );
                 })}
-            </div>
+            </ScrollArea>
           </div>
           <div className="bid__block px-3 pb-3">
               
@@ -84,7 +100,7 @@ class NewBid extends Component {
                 </div>
                 <span className="font-weight-bold">4,5 WC</span>
               </div>
-              <Input className="bid__box bid__box--colored bid__box--new-bid text-center" type="text" name="newBid" />
+              <Input className="bid__box bid__box--colored bid__box--new-bid text-center" type="text" name="newBid" value={this.state.bidValue} onChange={e => { this.onBidChange(e.target.value); }}/>
             </div>
             
           </div>

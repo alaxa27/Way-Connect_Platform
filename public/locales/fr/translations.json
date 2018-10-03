@@ -75,15 +75,6 @@
     "start": {
       "text": "Démarrer une nouvelle campagne"
     },
-    "bidding": {
-      "title": "Enchère"
-    },
-    "inProgress": {
-      "title": "En cours"
-    },
-    "delivered": {
-      "title": "Délivrée"
-    },
     "comingSoon": {
       "title": "Prochainement",
       "description": "Vous allez bientôt pouvoir créer votre propre campagne publicitaire.",
@@ -166,6 +157,18 @@
       "clicks": {
         "title": "Clicks"
       }
+    }
+  },
+  "createCampaign": {
+    "comingSoon": {
+      "title": "Coming Soon",
+      "description": "You will soon be able to add establishments to map."
+    }
+  },
+  "listCampaign": {
+    "comingSoon": {
+      "title": "Coming Soon",
+      "description": "You will soon be able to create your own advertising campaign."
     }
   },
   "establishment": {
