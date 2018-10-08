@@ -21,6 +21,8 @@ import "../scss/style.scss";
 import "../scss/core/_dropdown-menu-right.scss";
 // React InputRange
 import "react-input-range/lib/css/index.css";
+// React Placeholder
+import "react-placeholder/lib/reactPlaceholder.css";
 
 // Containers
 import Full from "./containers/Full/";
