@@ -44,11 +44,11 @@ class ListCampaign extends Component {
             {t("campaigns.start.text")}
           </Button>
         </Link>
-        <ComingSoon 
+        {(process.env.STAGE !== "production" ? null : <ComingSoon 
           title={t("listCampaign.comingSoon.title")}
           description={t("listCampaign.comingSoon.description")}
           launchDate={moment("2018-09-28")}
-        />
+        />)}
       </div>
     );
   }

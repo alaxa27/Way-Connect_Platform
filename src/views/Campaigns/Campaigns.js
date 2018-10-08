@@ -12,7 +12,6 @@ import {
   Collapse
 } from "reactstrap";
 import InputRange from "react-input-range";
-import "react-input-range/lib/css/index.css";
 
 import ConfigCampaign from "./ConfigCampaign/";
 import BidCampaign from "./BidCampaign/";
@@ -71,7 +70,7 @@ class Campaigns extends Component {
   }
 
   renderRedirect() {
-    return <Redirect to={`/campaigns/${this.props.match.params.id}/analytics`}/>;
+    return <Redirect to={`/campaigns/${this.props.match.params.id}/bid`}/>;
   }
 
   render() {

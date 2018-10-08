@@ -5,7 +5,6 @@ import * as FontAwesome from "react-icons/lib/fa";
 import Eye from "./view.png";
 import Cart from "./shopping_cart_ok.png";
 import InputRange from "react-input-range";
-import "react-input-range/lib/css/index.css";
 import {Row, Col, Button, Input} from "reactstrap";
 
 import ResearchFilters from "../../../components/ResearchFilters/ResearchFilters";

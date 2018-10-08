@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {Row, Col, Input} from "reactstrap";
 import InputRange from "react-input-range";
-import "react-input-range/lib/css/index.css";
 import SelectBox from "../SelectBox/SelectBox";
 import { connect } from "react-redux";
 import * as actions from "../../actions/campaignActions";
@@ -68,7 +67,7 @@ class ResearchFilters extends Component {
 
           <div className="input-wrapper">
             <div className="feature-coming-soon">
-              <ComingSoon 
+              <ComingSoon
                   title={t("createCampaign.comingSoon.title")}
                   minified
               />
@@ -106,12 +105,12 @@ class ResearchFilters extends Component {
           </div>
 
         </Col>
-        {this.props.fixed ? 
+        {this.props.fixed ?
           null
-        : 
+        :
           <Col md="6" xs="12">
             <div className="feature-coming-soon">
-              <ComingSoon 
+              <ComingSoon
                 title={t("createCampaign.comingSoon.title")}
                 description={t("createCampaign.comingSoon.description")}
                 launchDate={moment("2018-10-28")}
@@ -126,23 +125,23 @@ class ResearchFilters extends Component {
                 <div className="research-filters__establishments">
                   <div className="research-filters__establishments-wrapper">
                     <div className="research-filters__establishment-select-all pl-3 mb-2">
-                      <Checkbox 
+                      <Checkbox
                         label={"Select all"}
                       />
                     </div>
                     <div className="research-filters__establishments-box p-2">
                       <div className="research-filters__establishments-item research-filters__establishments-item--selected p-2">
-                        <Checkbox 
+                        <Checkbox
                           label={"Establishment 1"}
                         />
                       </div>
                       <div className="research-filters__establishments-item p-2">
-                        <Checkbox 
+                        <Checkbox
                           label={"Establishment 2"}
                         />
                       </div>
                       <div className="research-filters__establishments-item p-2">
-                        <Checkbox 
+                        <Checkbox
                           label={"Establishment 3"}
                         />
                       </div>

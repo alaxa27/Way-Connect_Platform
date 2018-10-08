@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import {Row, Col} from "reactstrap";
-import "react-input-range/lib/css/index.css";
 import {translate} from "react-i18next";
 import PropTypes from "prop-types";
 import BidList from "./BidList";
@@ -133,7 +132,7 @@ class BidCampaign extends Component {
         <Col xs="12">
           <BidMeta />
         </Col>
-        <Col lg="6">            
+        <Col lg="6">
           <BidList data={data} />
         </Col>
         <Col lg="6">

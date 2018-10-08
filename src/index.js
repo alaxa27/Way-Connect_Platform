@@ -19,6 +19,8 @@ import "simple-line-icons/css/simple-line-icons.css";
 import "../scss/style.scss";
 // Temp fix for reactstrap
 import "../scss/core/_dropdown-menu-right.scss";
+// React InputRange
+import "react-input-range/lib/css/index.css";
 
 // Containers
 import Full from "./containers/Full/";
