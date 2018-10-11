@@ -6,7 +6,7 @@
     right: 0;
     background: $modal-outline-bg;
     padding: 75px 50px 0 50px;
-    z-index: 1;
+    z-index: 100;
 
     &--minified {
       padding: 20px;
@@ -19,12 +19,43 @@
     margin: auto;
     border-radius: 8px;
 
+    &__close {
+
+      i {
+        font-size: $font-size-medium;
+        color: $modal-close-color;
+      }
+    }
+
+    &__range {
+
+      .input-range__label-container {
+        font-size: $font-size-pre-medium;
+        font-weight: 500;
+      }
+    }
+
+    &__title {
+
+      &--mid {
+        font-size: $font-size-medium;
+        font-weight: 500;
+      }
+    }
+
     &--transparent {
       background: transparent;
     }
   
     &__heading {
       text-align: center;
+
+      &--with-actions {
+        text-align: left;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
     }
   
     &__img {

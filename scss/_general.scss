@@ -184,6 +184,7 @@ body {
   .scrollbar-container {
     background-color: $scrollbar-color!important;
     opacity: .5!important;
+    z-index: 99!important;
   }
 }
 

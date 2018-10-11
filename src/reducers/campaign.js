@@ -24,7 +24,11 @@ import {
   CAMPAIGN_ANALYTICS_TYPICAL_CUSTOMER_REJECTED,
 
   CAMPAIGN_ANALYTICS_KEY_DATA,
-  CAMPAIGN_ANALYTICS_KEY_DATA_FULFILLED
+  CAMPAIGN_ANALYTICS_KEY_DATA_FULFILLED,
+
+  CAMPAIGN_CREDIT_MODAL_TOGGLE,
+
+  CAMPAIGN_CREDIT_VALUE_CHANGE,
 } from "../constants/ActionTypes";
 import _ from "underscore";
 
@@ -134,7 +138,14 @@ const initialState = {
   typicalCustomer: typicalCustomerDefaults,
   affluence: null,
 
-  researchFilters: researchFilterDefaults
+  researchFilters: researchFilterDefaults,
+
+  creditModalShown: false,
+  credit: {
+    min: 0,
+    max: 7500,
+    current: 750
+  },
 };
 
 export default function reducer(state = initialState, action) {
@@ -260,6 +271,19 @@ export default function reducer(state = initialState, action) {
         researchFilters: {
           ...state.researchFilters,
           [action.payload.name]: action.payload.value
+        }
+      };
+    case CAMPAIGN_CREDIT_MODAL_TOGGLE:
+      return {
+        ...state,
+        creditModalShown: !state.creditModalShown
+      };
+    case CAMPAIGN_CREDIT_VALUE_CHANGE:
+      return {
+        ...state,
+        credit: {
+          ...state.credit,
+          current: action.payload
         }
       };
     default:
