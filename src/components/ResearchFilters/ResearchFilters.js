@@ -99,7 +99,7 @@ class ResearchFilters extends Component {
                 Price from
               </span>
               <span className="font-weight-bold">
-                {researchFilters.priceFrom}
+                {researchFilters.price} WC
               </span>
             </div>
           </div>

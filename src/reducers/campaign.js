@@ -5,6 +5,10 @@ import {
 
   RESEARCH_FILTER_CHANGE,
 
+  AUCTION_ESTIMATE,
+  AUCTION_ESTIMATE_FULFILLED,
+  AUCTION_ESTIMATE_REJECTED,
+
   FETCH_CAMPAIGN,
   FETCH_CAMPAIGN_FULFILLED,
   FETCH_CAMPAIGN_REJECTED,
@@ -122,8 +126,8 @@ const researchFilterDefaults = {
   nationality: [],
   hobbies: [],
   recallMarketing: 0,
-  users: 249,
-  priceFrom: "2,49 WC"
+  users: 0,
+  price: 0
 };
 
 const initialState = {
@@ -273,6 +277,25 @@ export default function reducer(state = initialState, action) {
           [action.payload.name]: action.payload.value
         }
       };
+
+    case AUCTION_ESTIMATE:
+      return {
+        ...state,
+      };
+    case AUCTION_ESTIMATE_FULFILLED:
+      return {
+        ...state,
+        researchFilters: {
+          ...state.researchFilters,
+          users: action.payload.customer_count,
+          price: action.payload.price
+        }
+      };
+    case AUCTION_ESTIMATE_REJECTED:
+      return {
+        ...state,
+      };
+
     case CAMPAIGN_CREDIT_MODAL_TOGGLE:
       return {
         ...state,

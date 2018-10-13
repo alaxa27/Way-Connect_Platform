@@ -10,6 +10,10 @@ import {
 
   RESEARCH_FILTER_CHANGE,
 
+  AUCTION_ESTIMATE,
+  AUCTION_ESTIMATE_FULFILLED,
+  AUCTION_ESTIMATE_REJECTED,
+
   FETCH_CAMPAIGN,
   FETCH_CAMPAIGN_FULFILLED,
   FETCH_CAMPAIGN_REJECTED,
@@ -269,6 +273,47 @@ export function changeResearchFilter(payload) {
       type: RESEARCH_FILTER_CHANGE,
       payload
     });
+    const filters = getState().campaign.researchFilters;
+    const data = {
+      price: '1.0',
+      filters: {
+        gender: filters.male ? 'M' : 'F',
+        relationship_status: filters.relationship_status,
+        work_status: filters.work_status,
+        hobbies: filters.hobbies,
+        nationality: filters.nationality,
+        age_min: filters.age.min,
+        age_max: filters.age.max
+      },
+    };
+    dispatch(estimateAuction(data));
+  };
+}
+
+export function estimateAuction(payload) {
+  return async (dispatch, getState) => {
+    dispatch({
+      type: AUCTION_ESTIMATE,
+    });
+    try {
+      const response = await axiosInstance({
+        method: "post",
+        url: `/auctions/estimate/`,
+        data: payload
+      });
+      dispatch({
+        type: AUCTION_ESTIMATE_FULFILLED,
+        payload: response.data
+      });
+    } catch (error) {
+      dispatch({
+        type: AUCTION_ESTIMATE_FULFILLED,
+        payload: {
+          "price": "1.23",
+          "customer_count": 456
+        }
+      });
+    }
   };
 }
 
