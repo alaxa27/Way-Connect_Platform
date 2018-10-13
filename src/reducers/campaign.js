@@ -145,6 +145,7 @@ const initialState = {
     name: "",
     companyName: "",
     communicationType: "",
+    created: false,
   },
   campaign: campaignDefaults,
   filterData: filterDataDefaults,
@@ -310,14 +311,26 @@ export default function reducer(state = initialState, action) {
     case CREATE_CAMPAIGN:
       return {
         ...state,
+        newCampaign: {
+          ...state.newCampaign,
+          created: false,
+        }
       };
     case CREATE_CAMPAIGN_FULFILLED:
       return {
         ...state,
+        newCampaign: {
+          ...state.newCampaign,
+          created: true,
+        }
       };
     case CREATE_CAMPAIGN_REJECTED:
       return {
         ...state,
+        newCampaign: {
+          ...state.newCampaign,
+          created: false,
+        }
       };
 
     case CAMPAIGN_CREDIT_MODAL_TOGGLE:
