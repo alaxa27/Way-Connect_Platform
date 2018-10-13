@@ -10,6 +10,9 @@ import ValidatorService from "../../../services/ValidatorService";
 
 const mapStateToProps = state => ({
   filterData: state.campaign.filterData,
+  name: state.campaign.newCampaign.name,
+  communicationType: state.campaign.newCampaign.communicationType,
+  companyName: state.campaign.newCampaign.companyName,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -22,15 +25,7 @@ class CreateCampaign extends Component {
     super(props);
     this.state = {
       fixed: false,
-      additional: "",
-      location: "chandigarh",
-      hobbies: "traveling",
-      communicationType: {
-        brand: false,
-        product: false
-      },
-      name: "",
-      companyName: ""
+      validationError: false,
     };
     const { fetchFilterData } = this.props;
     fetchFilterData();
@@ -38,16 +33,18 @@ class CreateCampaign extends Component {
   }
 
   handleCreateCampaign = () => {
-    const { createCampaign } = this.props;
+    const { createCampaign, name, communicationType, companyName } = this.props;
     if(this.validator.allValid()){
       createCampaign({
-        name: "",
-        company_name: "",
-        type: ""
+        name,
+        company_name: companyName,
+        type: communicationType,
       });
     } else {
         this.validator.showMessages();
-        this.forceUpdate();
+        this.setState({
+          validationError: true
+        });
     }
   }
 
@@ -63,7 +60,7 @@ class CreateCampaign extends Component {
               </div>
             </div>
           </div>
-          <TypologieList {...this.state} validator={this.validator}/>
+          <TypologieList validator={this.validator} validationError={this.state.validationError} />
         </Col>
       </Row>
       <Row>
@@ -88,5 +85,9 @@ CreateCampaign.propTypes = {
   filterData: PropTypes.object.isRequired,
   fetchFilterData: PropTypes.func,
   createCampaign: PropTypes.func,
+  name: PropTypes.string,
+  communicationType: PropTypes.string,
+  companyName: PropTypes.string,
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(CreateCampaign);

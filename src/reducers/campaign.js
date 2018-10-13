@@ -37,6 +37,8 @@ import {
   CAMPAIGN_CREDIT_MODAL_TOGGLE,
 
   CAMPAIGN_CREDIT_VALUE_CHANGE,
+
+  CAMPAIGN_PROPERTY_UPDATE,
 } from "../constants/ActionTypes";
 import _ from "underscore";
 
@@ -139,6 +141,11 @@ const initialState = {
   success: false,
   error: null,
 
+  newCampaign: {
+    name: '',
+    companyName: '',
+    communicationType: '',
+  },
   campaign: campaignDefaults,
   filterData: filterDataDefaults,
   traffic: trafficDefaults,
@@ -326,6 +333,14 @@ export default function reducer(state = initialState, action) {
           current: action.payload
         }
       };
+    case CAMPAIGN_PROPERTY_UPDATE:
+      return {
+        ...state,
+        newCampaign: {
+          ...state.newCampaign,
+          [action.payload.name]: action.payload.value
+        }
+      }
     default:
       return { ...state
       };

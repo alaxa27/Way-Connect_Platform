@@ -39,6 +39,8 @@ import {
 
   CAMPAIGN_CREDIT_VALUE_CHANGE,
 
+  CAMPAIGN_PROPERTY_UPDATE,
+
   CREATE_CAMPAIGN,
   CREATE_CAMPAIGN_FULFILLED,
   CREATE_CAMPAIGN_REJECTED,
@@ -359,5 +361,14 @@ export function createCampaign(payload) {
         payload: error
       });
     }
+  };
+}
+
+export function updateCampaignProperty(payload) {
+  return async (dispatch, getState) => {
+    dispatch({
+      type: CAMPAIGN_PROPERTY_UPDATE,
+      payload
+    });
   };
 }
