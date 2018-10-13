@@ -38,9 +38,9 @@ class TypologieList extends Component {
             <div className="input-wrapper">
               <label>Type of communication</label>
               <div className="c-radio">
-                <Input type="radio" className="c-radio__item" id="brand" name="brand" value="BR" checked={communicationType === 'BR'} onClick={e => { updateCampaignProperty({name: "communicationType", value: e.target.value}) }}/>
+                <Input type="radio" className="c-radio__item" id="brand" name="brand" value="BR" checked={communicationType === "BR"} onClick={e => { updateCampaignProperty({name: "communicationType", value: e.target.value}); }}/>
                 <label htmlFor="brand" className="c-radio__label">Brand</label>
-                <Input type="radio" className="c-radio__item" id="product" name="product" value="PR" checked={communicationType === 'PR'} onClick={e => { updateCampaignProperty({name: "communicationType", value: e.target.value}) }}/>
+                <Input type="radio" className="c-radio__item" id="product" name="product" value="PR" checked={communicationType === "PR"} onClick={e => { updateCampaignProperty({name: "communicationType", value: e.target.value}); }}/>
                 <label htmlFor="product" className="c-radio__label">Product</label>
               </div>
               {validator.message("communicationType", communicationType, "required|communicationType", "text-danger", {

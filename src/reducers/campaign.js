@@ -142,9 +142,9 @@ const initialState = {
   error: null,
 
   newCampaign: {
-    name: '',
-    companyName: '',
-    communicationType: '',
+    name: "",
+    companyName: "",
+    communicationType: "",
   },
   campaign: campaignDefaults,
   filterData: filterDataDefaults,
@@ -340,7 +340,7 @@ export default function reducer(state = initialState, action) {
           ...state.newCampaign,
           [action.payload.name]: action.payload.value
         }
-      }
+      };
     default:
       return { ...state
       };
