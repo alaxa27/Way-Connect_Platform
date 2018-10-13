@@ -30,6 +30,10 @@ import {
 
   CAMPAIGN_ANALYTICS_KEY_DATA,
   CAMPAIGN_ANALYTICS_KEY_DATA_FULFILLED,
+
+  CAMPAIGN_CREDIT_MODAL_TOGGLE,
+
+  CAMPAIGN_CREDIT_VALUE_CHANGE,
 } from "../constants/ActionTypes";
 
 const STATUS = require("../data/status");
@@ -263,6 +267,23 @@ export function changeResearchFilter(payload) {
   return async (dispatch, getState) => {
     dispatch({
       type: RESEARCH_FILTER_CHANGE,
+      payload
+    });
+  };
+}
+
+export function toggleCreditCampaignModal() {
+  return async (dispatch, getState) => {
+    dispatch({
+      type: CAMPAIGN_CREDIT_MODAL_TOGGLE,
+    });
+  };
+}
+
+export function changeCreditCampaignValue(payload) {
+  return async (dispatch, getState) => {
+    dispatch({
+      type: CAMPAIGN_CREDIT_VALUE_CHANGE,
       payload
     });
   };

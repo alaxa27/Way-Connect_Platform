@@ -9,12 +9,19 @@ import {
 } from "reactstrap";
 import ScrollArea from "react-scrollbar";
 import { Input } from "reactstrap";
+import { toggleCreditCampaignModal } from "../../../actions/campaignActions";
+import {connect} from "react-redux";
+import {compose} from "recompose";
+
+const mapDispatchToProps = dispatch => ({
+  toggleCreditCampaignModal: () => dispatch(toggleCreditCampaignModal()),
+});
 
 class NewBid extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      bidValue: ""
+      bidValue: "",
     };
   }
   onBidChange = (value) => {
@@ -22,12 +29,16 @@ class NewBid extends Component {
       bidValue: value.replace(/[^0-9,]/g, "").replace(/(\,.*)\,/g, "$1")
     });
   }
+  onCreditCampaignClick = () => {
+    const { toggleCreditCampaignModal } = this.props;
+    toggleCreditCampaignModal();
+  }
   render() {
     const { history, t } = this.props;
     return (
       <Card className="bid">
         <CardBody className="p-0 d-flex flex-column">
-          <div className="bid__forbidden p-3 d-none">
+          <div className="bid__forbidden p-3">
             <div className="bid__forbidden-wrapper"></div>
             <div className="bid__forbidden-info">
               <div className="bid__forbidden-icon mb-3">
@@ -37,7 +48,7 @@ class NewBid extends Component {
                 {t("bidCampaign.bid.notAvailable")}
               </div>
               <div className="bid__forbidden-action">
-                <button className="bid-btn bid-btn--dark">
+                <button className="bid-btn bid-btn--dark" onClick={this.onCreditCampaignClick}>
                   {t("bidCampaign.bid.creditCampaign")}
                 </button>
               </div>
@@ -117,7 +128,8 @@ class NewBid extends Component {
 
 NewBid.propTypes = {
   history: PropTypes.array,
-  t: PropTypes.func
+  toggleCreditCampaignModal: PropTypes.func,
+  t: PropTypes.func,
 };
 
-export default translate("translations")(NewBid);
+export default compose(connect(null, mapDispatchToProps), translate("translations"))(NewBid);

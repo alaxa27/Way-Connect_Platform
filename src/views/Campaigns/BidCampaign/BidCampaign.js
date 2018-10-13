@@ -6,6 +6,13 @@ import BidList from "./BidList";
 import NewBid from "./NewBid";
 import BidMeta from "./BidMeta";
 import BidTotal from "./BidTotal";
+import {connect} from "react-redux";
+import {compose} from "recompose";
+import CreditCampaign from "../../../components/Modal/CreditCampaign";
+
+const mapStateToProps = state => ({
+  creditModalShown: state.campaign.creditModalShown,
+});
 
 class BidCampaign extends Component {
   constructor(props) {
@@ -44,7 +51,7 @@ class BidCampaign extends Component {
   }
 
   render() {
-    const { t } = this.props;
+    const { creditModalShown, t } = this.props;
     const data = [
       {
         rank: 1,
@@ -120,9 +127,15 @@ class BidCampaign extends Component {
       value: 6000
     };
 
-    const history = [1,2,3,4,5,6,7];
+    const history = [1,2,3];
 
     return (<div className="page-bid-campaign sub-page-wrapper animated fadeIn my-4">
+      {creditModalShown &&
+        <CreditCampaign
+          title={t("createCampaign.comingSoon.title")}
+          description={t("createCampaign.comingSoon.description")}
+        />
+      }
       <Row>
         <Col>
           <BidTotal data={topTrackData} />
@@ -145,6 +158,6 @@ class BidCampaign extends Component {
 
 BidCampaign.propTypes = {
   t: PropTypes.func,
+  creditModalShown: PropTypes.bool,
 };
-
-export default translate("translations")(BidCampaign);
+export default compose(connect(mapStateToProps, null), translate("translations"))(BidCampaign);
