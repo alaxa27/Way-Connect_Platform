@@ -2,10 +2,10 @@ import React, {Component} from "react";
 import {Row, Col} from "reactstrap";
 import {translate} from "react-i18next";
 import PropTypes from "prop-types";
-import BidList from "./BidList";
-import NewBid from "./NewBid";
-import BidMeta from "./BidMeta";
-import BidTotal from "./BidTotal";
+import AuctionList from "./AuctionList";
+import NewAuction from "./NewAuction";
+import AuctionMeta from "./AuctionMeta";
+import AuctionTotal from "./AuctionTotal";
 import {connect} from "react-redux";
 import {compose} from "recompose";
 import CreditCampaign from "../../../components/Modal/CreditCampaign";
@@ -14,7 +14,7 @@ const mapStateToProps = state => ({
   creditModalShown: state.campaign.creditModalShown,
 });
 
-class BidCampaign extends Component {
+class CampaignAuction extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -138,26 +138,27 @@ class BidCampaign extends Component {
       }
       <Row>
         <Col>
-          <BidTotal data={topTrackData} />
+          <AuctionTotal data={topTrackData} />
         </Col>
       </Row>
       <Row>
         <Col xs="12">
-          <BidMeta />
+          <AuctionMeta />
         </Col>
         <Col lg="6">
-          <BidList data={data} />
+          <AuctionList data={data} />
         </Col>
         <Col lg="6">
-          <NewBid history={history} />
+          <NewAuction history={history} />
         </Col>
       </Row>
     </div>);
   }
 }
 
-BidCampaign.propTypes = {
+CampaignAuction.propTypes = {
   t: PropTypes.func,
   creditModalShown: PropTypes.bool,
 };
-export default compose(connect(mapStateToProps, null), translate("translations"))(BidCampaign);
+
+export default compose(connect(mapStateToProps, null), translate("translations"))(CampaignAuction);

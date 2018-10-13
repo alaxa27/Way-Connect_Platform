@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 import InputRange from "react-input-range";
 
-class BidTotal extends Component {
+class AuctionTotal extends Component {
   render() {
     const { data } = this.props;
     return (
@@ -16,8 +16,8 @@ class BidTotal extends Component {
   }
 }
 
-BidTotal.propTypes = {
+AuctionTotal.propTypes = {
   data: PropTypes.object
 };
 
-export default BidTotal;
+export default AuctionTotal;

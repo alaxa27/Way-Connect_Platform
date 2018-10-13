@@ -1,14 +1,14 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import { map } from "underscore";
-import BidListItem from "./BidListItem";
+import AuctionListItem from "./AuctionListItem";
 import {
   Card,
   CardBody,
 } from "reactstrap";
 import ScrollArea from "react-scrollbar";
 
-class BidList extends Component {
+class AuctionList extends Component {
   render() {
     const { data } = this.props;
     const isCampaignDeep = true;
@@ -23,13 +23,13 @@ class BidList extends Component {
             >
               {map(data, (item, index) => {
                 return (
-                  <BidListItem item={item} key={item.rank} />
+                  <AuctionListItem item={item} key={item.rank} />
                 );
               })}
             </ScrollArea>
             {isCampaignDeep && 
               <div className="bids__current">
-                <BidListItem item={data[0]} key={"index"} current />
+                <AuctionListItem item={data[0]} key={"index"} current />
               </div>
             }
           </CardBody>
@@ -40,8 +40,8 @@ class BidList extends Component {
   }
 }
 
-BidList.propTypes = {
+AuctionList.propTypes = {
   data: PropTypes.array
 };
 
-export default BidList;
+export default AuctionList;

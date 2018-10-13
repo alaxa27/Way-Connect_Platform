@@ -17,7 +17,7 @@ const mapDispatchToProps = dispatch => ({
   toggleCreditCampaignModal: () => dispatch(toggleCreditCampaignModal()),
 });
 
-class NewBid extends Component {
+class NewAuction extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -45,18 +45,18 @@ class NewBid extends Component {
                 <i className="fa fa-exclamation-triangle" aria-hidden="true"></i>
               </div>
               <div className="bid__forbidden-title mb-5">
-                {t("bidCampaign.bid.notAvailable")}
+                {t("campaignAuction.bid.notAvailable")}
               </div>
               <div className="bid__forbidden-action">
                 <button className="bid-btn bid-btn--dark" onClick={this.onCreditCampaignClick}>
-                  {t("bidCampaign.bid.creditCampaign")}
+                  {t("campaignAuction.bid.creditCampaign")}
                 </button>
               </div>
             </div>
           </div>
           <div className="bid__block bid__block--no-border d-flex flex-column p-3">
             <div className="bid__subtitle mb-3">
-              {t("bidCampaign.bid.historyTitle")}
+              {t("campaignAuction.bid.historyTitle")}
             </div>
             <ScrollArea
               speed={0.8}
@@ -70,18 +70,18 @@ class NewBid extends Component {
                       <div className="bid__boxes bid__boxes--shadow">
                         <div className="bid__box bid__box--bordered p-3">
                           <i className="fa fa-user"></i>
-                          <span className="bid__box-title mr-2">{t("bidCampaign.bid.concurrents")}</span>
+                          <span className="bid__box-title mr-2">{t("campaignAuction.bid.concurrents")}</span>
                           <span className="font-weight-bold">122</span>
                         </div>
                         <div className="bid__box bid__box--bordered p-3">
                           <i className="fa fa-clock-o mr-2"></i>
-                          <span className="bid__box-title mr-2">{t("bidCampaign.bid.from")}</span>
+                          <span className="bid__box-title mr-2">{t("campaignAuction.bid.from")}</span>
                           <span className="w-100 text-right">26/05/2018 18:22</span>
                         </div>
                         <div className="bid__box w-100 d-flex align-items-center justify-content-between p-3">
                           <div className="bid__box-wrapper">
                             <i className="fa fa-usd"></i>
-                            <span className="bid__box-title mr-2">{t("bidCampaign.bid.maxPrice")}</span>
+                            <span className="bid__box-title mr-2">{t("campaignAuction.bid.maxPrice")}</span>
                           </div>
                           <span className="font-weight-bold">4,5 WC</span>
                         </div>
@@ -97,7 +97,7 @@ class NewBid extends Component {
               <div className="bid__box bid__box--bordered bid__box--separated d-flex align-items-center justify-content-between">
                 <div className="bid__box-wrapper">
                   <i className="fa fa-user"></i>
-                  <span className="mr-2">{t("bidCampaign.bid.targetUsers")}</span>
+                  <span className="mr-2">{t("campaignAuction.bid.targetUsers")}</span>
                 </div>
                 <span className="font-weight-bold">700</span>
               </div>
@@ -107,7 +107,7 @@ class NewBid extends Component {
               <div className="bid__box bid__box--separated d-flex align-items-center justify-content-between">
                 <div className="bid__box-wrapper">
                   <i className="fa fa-usd"></i>
-                  <span className="mr-2">{t("bidCampaign.bid.minPrice")}</span>
+                  <span className="mr-2">{t("campaignAuction.bid.minPrice")}</span>
                 </div>
                 <span className="font-weight-bold">4,5 WC</span>
               </div>
@@ -117,7 +117,7 @@ class NewBid extends Component {
           </div>
           <div className="bid__block p-3 bid__add d-flex align-items-center justify-content-end">
             <button className="bid-btn bid-btn--dark">
-              {t("bidCampaign.bid.bid")}
+              {t("campaignAuction.bid.bid")}
             </button>
           </div>
         </CardBody>
@@ -126,10 +126,10 @@ class NewBid extends Component {
   }
 }
 
-NewBid.propTypes = {
+NewAuction.propTypes = {
   history: PropTypes.array,
   toggleCreditCampaignModal: PropTypes.func,
   t: PropTypes.func,
 };
 
-export default compose(connect(null, mapDispatchToProps), translate("translations"))(NewBid);
+export default compose(connect(null, mapDispatchToProps), translate("translations"))(NewAuction);

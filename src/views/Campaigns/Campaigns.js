@@ -14,7 +14,7 @@ import {
 import InputRange from "react-input-range";
 
 import ConfigCampaign from "./ConfigCampaign/";
-import BidCampaign from "./BidCampaign/";
+import CampaignAuction from "./CampaignAuction/";
 import AnalyticsCampaign from "./AnalyticsCampaign/";
 
 import ResearchFilters from "../../components/ResearchFilters/ResearchFilters";
@@ -70,7 +70,7 @@ class Campaigns extends Component {
   }
 
   renderRedirect() {
-    return <Redirect to={`/campaigns/${this.props.match.params.id}/bid`}/>;
+    return <Redirect to={`/campaigns/${this.props.match.params.id}/auction`}/>;
   }
 
   render() {
@@ -101,7 +101,7 @@ class Campaigns extends Component {
       </div>
 
       <Route exact path="/campaigns/:id/config" name="ConfigCampaign" component={ConfigCampaign}/>
-      <Route exact path="/campaigns/:id/bid" name="BidCampaign" component={BidCampaign}/>
+      <Route exact path="/campaigns/:id/auction" name="CampaignAuction" component={CampaignAuction}/>
       <Route exact path="/campaigns/:id/analytics" name="AnalyticsCampaign" component={AnalyticsCampaign}/> {this.renderRedirect()}
     </div>);
   }
