@@ -9,6 +9,10 @@ import {
   AUCTION_ESTIMATE_FULFILLED,
   AUCTION_ESTIMATE_REJECTED,
 
+  CREATE_CAMPAIGN,
+  CREATE_CAMPAIGN_FULFILLED,
+  CREATE_CAMPAIGN_REJECTED,
+
   FETCH_CAMPAIGN,
   FETCH_CAMPAIGN_FULFILLED,
   FETCH_CAMPAIGN_REJECTED,
@@ -292,6 +296,19 @@ export default function reducer(state = initialState, action) {
         }
       };
     case AUCTION_ESTIMATE_REJECTED:
+      return {
+        ...state,
+      };
+
+    case CREATE_CAMPAIGN:
+      return {
+        ...state,
+      };
+    case CREATE_CAMPAIGN_FULFILLED:
+      return {
+        ...state,
+      };
+    case CREATE_CAMPAIGN_REJECTED:
       return {
         ...state,
       };

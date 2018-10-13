@@ -2,20 +2,20 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import * as FontAwesome from "react-icons/lib/fa";
-import Eye from "./view.png";
-import Cart from "./shopping_cart_ok.png";
-import InputRange from "react-input-range";
-import {Row, Col, Button, Input} from "reactstrap";
-
+import {Row, Col} from "reactstrap";
 import ResearchFilters from "../../../components/ResearchFilters/ResearchFilters";
 import TypologieList from "../../../components/TypologieList/TypologieList";
+import {fetchFilterData, createCampaign} from "../../../actions/campaignActions";
+import ValidatorService from "../../../services/ValidatorService";
 
-import {fetchFilterData} from "../../../actions/campaignActions";
+const mapStateToProps = state => ({
+  filterData: state.campaign.filterData,
+});
 
-@connect((store) => {
-  const campaignStore = store.campaign;
-  return {filterData: campaignStore.filterData};
-})
+const mapDispatchToProps = dispatch => ({
+  fetchFilterData: payload => dispatch(fetchFilterData(payload)),
+  createCampaign: payload => dispatch(createCampaign(payload)),
+});
 
 class CreateCampaign extends Component {
   constructor(props) {
@@ -30,9 +30,25 @@ class CreateCampaign extends Component {
         product: false
       },
       name: "",
-      description: ""
+      companyName: ""
     };
-    this.props.dispatch(fetchFilterData());
+    const { fetchFilterData } = this.props;
+    fetchFilterData();
+    this.validator = new ValidatorService().getValidator();
+  }
+
+  handleCreateCampaign = () => {
+    const { createCampaign } = this.props;
+    if(this.validator.allValid()){
+      createCampaign({
+        name: "",
+        company_name: "",
+        type: ""
+      });
+    } else {
+        this.validator.showMessages();
+        this.forceUpdate();
+    }
   }
 
   render() {
@@ -47,7 +63,7 @@ class CreateCampaign extends Component {
               </div>
             </div>
           </div>
-          <TypologieList {...this.state}/>
+          <TypologieList {...this.state} validator={this.validator}/>
         </Col>
       </Row>
       <Row>
@@ -60,7 +76,7 @@ class CreateCampaign extends Component {
               </div>
             </div>
           </div>
-          <ResearchFilters fixed={this.state.fixed}/>
+          <ResearchFilters fixed={this.state.fixed} handleCreateCampaign={this.handleCreateCampaign} />
         </Col>
       </Row>
     </div>);
@@ -69,6 +85,8 @@ class CreateCampaign extends Component {
 
 CreateCampaign.propTypes = {
   dispatch: PropTypes.func,
-  filterData: PropTypes.object.isRequired
+  filterData: PropTypes.object.isRequired,
+  fetchFilterData: PropTypes.func,
+  createCampaign: PropTypes.func,
 };
-export default CreateCampaign;
+export default connect(mapStateToProps, mapDispatchToProps)(CreateCampaign);

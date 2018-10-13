@@ -1,7 +1,7 @@
 import React, {Component} from "react";
-import PropTypes from "prop-types";
 import {Row, Col, Input} from "reactstrap";
-import InputRange from "react-input-range";
+import ErrorMessageService from "../../services/ErrorMessageService";
+import PropTypes from "prop-types";
 
 class TypologieList extends Component {
   constructor(props) {
@@ -10,6 +10,7 @@ class TypologieList extends Component {
       ...this.props,
     };
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.errorMessageService = new ErrorMessageService();
   }
 
   handleInputChange(name, e) {
@@ -43,6 +44,7 @@ class TypologieList extends Component {
   }
 
   render() {
+    const { validator } = this.props;
     return (
       <div className="typologie-list">
         <Row>
@@ -50,6 +52,9 @@ class TypologieList extends Component {
             <div className="input-wrapper">
               <label>The name of your campaign</label>
               <Input type="text" id="name" className="typologie-list__input" name="name" value={this.state.name} onChange={(e) => this.handleInputChange("name", e) }/>
+              {validator.message("name", this.state.name, "required", "text-danger", {
+                required: this.errorMessageService.generateErrorMessage("Name", "required"),
+              })}
             </div>
 
             <div className="input-wrapper">
@@ -60,11 +65,17 @@ class TypologieList extends Component {
                 <Input type="radio" className="c-radio__item" id="product" name="product" value="product" checked={this.state.communicationType.product} onClick={this.handleProductSelect}/>
                 <label htmlFor="product" className="c-radio__label">Product</label>
               </div>
+              {validator.message("communicationType", this.state.communicationType, "required|communicationType", "text-danger", {
+                communicationType: this.errorMessageService.generateErrorMessage("Communication type", "required")
+              })}
             </div>
 
             <div className="input-wrapper">
-              <label>Product description</label>
-              <Input type="text" id="description" className="typologie-list__input" name="description" value={this.state.description} onChange={(e) => this.handleInputChange("description", e) }/>
+              <label>Name of the company</label>
+              <Input type="text" id="companyName" className="typologie-list__input" name="companyName" value={this.state.companyName} onChange={(e) => this.handleInputChange("companyName", e) }/>
+              {validator.message("companyName", this.state.companyName, "required", "text-danger", {
+                required: this.errorMessageService.generateErrorMessage("Company name", "required"),
+              })}
             </div>
           </Col>
         </Row>
@@ -72,5 +83,9 @@ class TypologieList extends Component {
     );
   }
 }
+
+TypologieList.propTypes = {
+  validator: PropTypes.object,
+};
 
 export default TypologieList;

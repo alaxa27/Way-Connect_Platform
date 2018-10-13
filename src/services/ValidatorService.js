@@ -8,7 +8,12 @@ export default class ValidatorService {
                 rule: function(confirmation, password){
                     return password[0] === confirmation;
                 }
-            }
+            },
+            communicationType: {
+                rule: function(object){
+                    return object.product || object.brand;
+                }
+            },
         });
     }
 }

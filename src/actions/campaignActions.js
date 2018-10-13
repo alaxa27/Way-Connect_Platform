@@ -38,6 +38,10 @@ import {
   CAMPAIGN_CREDIT_MODAL_TOGGLE,
 
   CAMPAIGN_CREDIT_VALUE_CHANGE,
+
+  CREATE_CAMPAIGN,
+  CREATE_CAMPAIGN_FULFILLED,
+  CREATE_CAMPAIGN_REJECTED,
 } from "../constants/ActionTypes";
 
 const STATUS = require("../data/status");
@@ -275,9 +279,9 @@ export function changeResearchFilter(payload) {
     });
     const filters = getState().campaign.researchFilters;
     const data = {
-      price: '1.0',
+      price: "1.0",
       filters: {
-        gender: filters.male ? 'M' : 'F',
+        gender: filters.male ? "M" : "F",
         relationship_status: filters.relationship_status,
         work_status: filters.work_status,
         hobbies: filters.hobbies,
@@ -298,7 +302,7 @@ export function estimateAuction(payload) {
     try {
       const response = await axiosInstance({
         method: "post",
-        url: `/auctions/estimate/`,
+        url: "/auctions/estimate/",
         data: payload
       });
       dispatch({
@@ -331,5 +335,29 @@ export function changeCreditCampaignValue(payload) {
       type: CAMPAIGN_CREDIT_VALUE_CHANGE,
       payload
     });
+  };
+}
+
+export function createCampaign(payload) {
+  return async (dispatch, getState) => {
+    dispatch({
+      type: CREATE_CAMPAIGN,
+    });
+    try {
+      const response = await axiosInstance({
+        method: "post",
+        url: "/campaigns/",
+        data: payload
+      });
+      dispatch({
+        type: CREATE_CAMPAIGN_FULFILLED,
+        payload: response.data
+      });
+    } catch (error) {
+      dispatch({
+        type: CREATE_CAMPAIGN_REJECTED,
+        payload: error
+      });
+    }
   };
 }
