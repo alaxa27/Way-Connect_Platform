@@ -205,6 +205,10 @@ export default function reducer(state = initialState, action) {
         }
       };
     case FETCH_CAMPAIGN_FULFILLED:
+      let filters = {};
+      if(action.payload.filters !== "{}") {
+        filters = action.payload.filters;
+      }
       return {
         ...state,
         campaign: {
@@ -213,6 +217,10 @@ export default function reducer(state = initialState, action) {
           fetching: false,
           success: true,
           error: null
+        },
+        researchFilters: {
+          ...state.researchFilters,
+          ...filters,
         }
       };
     case FETCH_CAMPAIGN_REJECTED:

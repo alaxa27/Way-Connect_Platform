@@ -23,21 +23,6 @@ class Campaigns extends Component {
     super(props);
     this.state = {
       filter: false,
-      fixed: true,
-      gender: {
-        male: true,
-        female: false
-      },
-      proStatus: "salary",
-      nationality: "indian",
-      relationaship: "married",
-      additional: "",
-      location: "chandigarh",
-      hobbies: "traveling",
-      age: {
-        min: 18,
-        max: 24
-      }
     };
     this.showFilter = this.showFilter.bind(this);
   }
@@ -70,7 +55,7 @@ class Campaigns extends Component {
             </Col>
           </Row>
           <Collapse isOpen={this.state.filter}>
-            <ResearchFilters {...this.state}/>
+            <ResearchFilters/>
           </Collapse>
         </div>
       </div>
