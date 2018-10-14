@@ -33,6 +33,10 @@
         font-size: $font-size-pre-medium;
         font-weight: 500;
       }
+
+      .input-range__label--value {
+        display: none;
+      }
     }
 
     &__title {

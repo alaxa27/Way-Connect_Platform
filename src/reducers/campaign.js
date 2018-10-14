@@ -344,11 +344,19 @@ export default function reducer(state = initialState, action) {
         creditModalShown: !state.creditModalShown
       };
     case CAMPAIGN_CREDIT_VALUE_CHANGE:
+      let value = action.payload;
+      const { max, min } = state.credit;
+      if(value > max) {
+        value = max;
+      }
+      if(value < min) {
+        value = min;
+      }
       return {
         ...state,
         credit: {
           ...state.credit,
-          current: action.payload
+          current: value
         }
       };
     case CAMPAIGN_PROPERTY_UPDATE:
