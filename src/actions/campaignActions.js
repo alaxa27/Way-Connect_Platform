@@ -94,25 +94,13 @@ export function fetchCampaign(payload) {
     try {
       const response = await axiosInstance({
         method: "get",
-        url: "/campaigns/"
-        // url: `/campaigns/${payload.campaignId}/`,
+        url: "/campaigns/" + payload
       });
-      // DEMO PURPOSES
-      //This block will disappear when backend /campaign/:id/ will be working
-      let campaign = response.data.filter(function(campaign) {
-        return campaign.id.toString() === payload.campaignId;
-      });
-
-      campaign = campaign[0];
-
-      ////////////////
       dispatch({
         type: FETCH_CAMPAIGN_FULFILLED,
-        payload: campaign
+        payload: response.data
       });
-
     } catch (error) {
-      // If error 404 should go back to /campaign/list
       dispatch({
         type: FETCH_CAMPAIGN_REJECTED,
         payload: error

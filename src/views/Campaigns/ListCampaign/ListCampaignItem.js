@@ -13,15 +13,16 @@ class ListCampaignItem extends Component {
 
   render() {
     const {item} = this.props;
+    const link = `/campaigns/${item.id}/auction`;
 
       return (<tr>
         <td>
-          <Link to={`/campaigns/${item.id}`}>
+          <Link to={link}>
             <label>{item.name}</label>
           </Link>
         </td>
         <td>
-          <Link to={`/campaigns/${item.id}`}>
+          <Link to={link}>
             <label className="justify-content-center">
               <img src={Eye} alt="View"/>
               <span>$</span>{` ${item.view_price}`}<span className="line-through">WC</span>
@@ -29,18 +30,18 @@ class ListCampaignItem extends Component {
           </Link>
         </td>
         <td>
-          <Link to={`/campaigns/${item.id}`}>
+          <Link to={link}>
             <label className="justify-content-center">
               <img src={Eye} alt="View"/>{` ${item.viewed}`}</label>
           </Link>
         </td>
         <td>
-          <Link to={`/campaigns/${item.id}`}>
+          <Link to={link}>
             <label className="justify-content-center"><FontAwesome.FaUser/>{` ${item.viewers}`}</label>
           </Link>
         </td>
         <td>
-          <Link to={`/campaigns/${item.id}`}>
+          <Link to={link}>
             <label className="justify-content-end"><img src={Cart} alt="Cart"/>{` ${item.bought}`}</label>
           </Link>
         </td>

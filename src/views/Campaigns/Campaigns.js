@@ -1,38 +1,20 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-import {connect} from "react-redux";
-import {Switch, Route, Redirect} from "react-router-dom";
+import {Route, Redirect} from "react-router-dom";
 import * as FontAwesome from "react-icons/lib/fa";
 import {
-  Container,
   Row,
   Col,
-  Button,
-  Input,
   Collapse
 } from "reactstrap";
-import InputRange from "react-input-range";
-
 import ConfigCampaign from "./ConfigCampaign/";
 import CampaignAuction from "./CampaignAuction/";
 import AnalyticsCampaign from "./AnalyticsCampaign/";
-
 import ResearchFilters from "../../components/ResearchFilters/ResearchFilters";
-
-import {fetchCampaign} from "../../actions/campaignActions";
 import {translate} from "react-i18next";
-
-@connect((store) => {
-  let campaignStore = store.campaign;
-  return {campaign: campaignStore.campaign};
-})
 
 class Campaigns extends Component {
   static propTypes = {
-    dispatch: PropTypes.func,
-    campaign: PropTypes.shape({
-      status: PropTypes.string
-    }),
     match: PropTypes.shape({
       params: PropTypes.shape({id: PropTypes.string})
     })
@@ -58,19 +40,12 @@ class Campaigns extends Component {
       }
     };
     this.showFilter = this.showFilter.bind(this);
-    this.renderRedirect = this.renderRedirect.bind(this);
-
-    this.props.dispatch(fetchCampaign({campaignId: this.props.match.params.id}));
   }
 
   showFilter() {
     this.setState({
       filter: !this.state.filter
     });
-  }
-
-  renderRedirect() {
-    return <Redirect to={`/campaigns/${this.props.match.params.id}/auction`}/>;
   }
 
   render() {
@@ -102,7 +77,7 @@ class Campaigns extends Component {
 
       <Route exact path="/campaigns/:id/config" name="ConfigCampaign" component={ConfigCampaign}/>
       <Route exact path="/campaigns/:id/auction" name="CampaignAuction" component={CampaignAuction}/>
-      <Route exact path="/campaigns/:id/analytics" name="AnalyticsCampaign" component={AnalyticsCampaign}/> {this.renderRedirect()}
+      <Route exact path="/campaigns/:id/analytics" name="AnalyticsCampaign" component={AnalyticsCampaign}/>
     </div>);
   }
 }

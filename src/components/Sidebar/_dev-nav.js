@@ -17,7 +17,7 @@ export default {
         children: [
           {
             name: "CampaignAuction",
-            url: "/campaigns/46/bid",
+            url: "/campaigns/46/auction",
             icon: "icon-layers",
           },
           {

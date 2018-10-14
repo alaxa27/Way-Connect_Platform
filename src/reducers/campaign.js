@@ -46,7 +46,10 @@ const campaignDefaults = {
   id: null,
   filters: "",
   owner: "",
-  status: ""
+  status: "",
+  fetching: false,
+  success: false,
+  error: null,
 };
 
 const keyDataDefaults = {
@@ -194,6 +197,7 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         campaign: {
+          ...state.campaign,
           ...action.payload,
           fetching: true,
           success: false,
@@ -204,6 +208,7 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         campaign: {
+          ...state.campaign,
           ...action.payload,
           fetching: false,
           success: true,

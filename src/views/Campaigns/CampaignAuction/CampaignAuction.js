@@ -9,9 +9,16 @@ import AuctionTotal from "./AuctionTotal";
 import {connect} from "react-redux";
 import {compose} from "recompose";
 import CreditCampaign from "../../../components/Modal/CreditCampaign";
+import { fetchCampaign } from "../../../actions/campaignActions";
+import { Redirect } from "react-router-dom";
 
 const mapStateToProps = state => ({
   creditModalShown: state.campaign.creditModalShown,
+  campaign: state.campaign.campaign,
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchCampaign: payload => dispatch(fetchCampaign(payload)),
 });
 
 class CampaignAuction extends Component {
@@ -27,6 +34,11 @@ class CampaignAuction extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.hit = this.hit.bind(this);
+  }
+
+  componentDidMount() {
+    const { fetchCampaign, match } = this.props;
+    fetchCampaign(match.params.id);
   }
 
   hit() {
@@ -51,7 +63,10 @@ class CampaignAuction extends Component {
   }
 
   render() {
-    const { creditModalShown, t } = this.props;
+    const { creditModalShown, campaign, t } = this.props;
+    if(campaign.error) {
+      return <Redirect to="/campaigns/list" />;
+    }
     const data = [
       {
         rank: 1,
@@ -159,6 +174,13 @@ class CampaignAuction extends Component {
 CampaignAuction.propTypes = {
   t: PropTypes.func,
   creditModalShown: PropTypes.bool,
+  fetchCampaign: PropTypes.func,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+        id: PropTypes.string
+    }),
+  }),
+  campaign: PropTypes.object,
 };
 
-export default compose(connect(mapStateToProps, null), translate("translations"))(CampaignAuction);
+export default compose(connect(mapStateToProps, mapDispatchToProps), translate("translations"))(CampaignAuction);
