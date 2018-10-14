@@ -22,46 +22,10 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class CampaignAuction extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: 30,
-      period: 1,
-      number: 78,
-      bidWrap: false
-    };
-    this.toggleBid = this.toggleBid.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.hit = this.hit.bind(this);
-  }
-
   componentDidMount() {
     const { fetchCampaign, match } = this.props;
     fetchCampaign(match.params.id);
   }
-
-  hit() {
-    this.setState({bidWrap: false});
-  }
-
-  handleInputChange(event) {
-    this.setState({gender: event.target.value});
-  }
-
-  handleChange(event) {
-    const data = event.target;
-    const value = data.value;
-    const name = data.name;
-    this.setState({[name]: value});
-  }
-
-  toggleBid() {
-    this.setState({
-      bidWrap: !this.state.bidWrap
-    });
-  }
-
   render() {
     const { creditModalShown, campaign, t } = this.props;
     if(campaign.error) {
