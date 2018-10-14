@@ -15,6 +15,7 @@ const mapStateToProps = state => ({
   name: state.campaign.newCampaign.name,
   communicationType: state.campaign.newCampaign.communicationType,
   companyName: state.campaign.newCampaign.companyName,
+  productDescription: state.campaign.newCampaign.productDescription,
   created: state.campaign.newCampaign.created,
 });
 
@@ -36,11 +37,12 @@ class CreateCampaign extends Component {
   }
 
   handleCreateCampaign = () => {
-    const { createCampaign, name, communicationType, companyName } = this.props;
+    const { createCampaign, name, communicationType, companyName, productDescription } = this.props;
     if(this.validator.allValid()){
       createCampaign({
         name,
         company_name: companyName,
+        description: productDescription,
         type: communicationType,
       });
     } else {
@@ -99,6 +101,7 @@ CreateCampaign.propTypes = {
   name: PropTypes.string,
   communicationType: PropTypes.string,
   companyName: PropTypes.string,
+  productDescription: PropTypes.string,
   created: PropTypes.string,
 };
 

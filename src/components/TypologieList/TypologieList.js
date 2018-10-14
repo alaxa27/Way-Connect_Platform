@@ -9,6 +9,7 @@ const mapStateToProps = state => ({
   name: state.campaign.newCampaign.name,
   communicationType: state.campaign.newCampaign.communicationType,
   companyName: state.campaign.newCampaign.companyName,
+  productDescription: state.campaign.newCampaign.productDescription,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -22,7 +23,7 @@ class TypologieList extends Component {
   }
 
   render() {
-    const { validator, updateCampaignProperty, name, communicationType, companyName } = this.props;
+    const { validator, updateCampaignProperty, name, communicationType, companyName, productDescription } = this.props;
     return (
       <div className="typologie-list">
         <Row>
@@ -55,6 +56,14 @@ class TypologieList extends Component {
                 required: this.errorMessageService.generateErrorMessage("Company name", "required"),
               })}
             </div>
+
+            <div className="input-wrapper">
+              <label>Product description</label>
+              <Input type="text" id="productDescription" className="typologie-list__input" name="productDescription" value={productDescription} onChange={(e) => updateCampaignProperty({ name: "productDescription", value: e.target.value}) }/>
+              {validator.message("productDescription", productDescription, "required", "text-danger", {
+                required: this.errorMessageService.generateErrorMessage("Product description", "required"),
+              })}
+            </div>
           </Col>
         </Row>
       </div>
@@ -68,6 +77,7 @@ TypologieList.propTypes = {
   name: PropTypes.string,
   communicationType: PropTypes.string,
   companyName: PropTypes.string,
+  productDescription: PropTypes.string,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TypologieList);

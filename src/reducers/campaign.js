@@ -147,6 +147,7 @@ const initialState = {
   newCampaign: {
     name: "",
     companyName: "",
+    productDescription: "",
     communicationType: "",
     created: false,
   },
