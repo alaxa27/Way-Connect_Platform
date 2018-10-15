@@ -9,7 +9,7 @@ import AuctionTotal from "./AuctionTotal";
 import {connect} from "react-redux";
 import {compose} from "recompose";
 import CreditCampaign from "../../../components/Modal/CreditCampaign";
-import { fetchCampaign } from "../../../actions/campaignActions";
+import { fetchCampaign, fetchAuction } from "../../../actions/campaignActions";
 import { Redirect } from "react-router-dom";
 
 const mapStateToProps = state => ({
@@ -19,12 +19,14 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchCampaign: payload => dispatch(fetchCampaign(payload)),
+  fetchAuction: () => dispatch(fetchAuction()),
 });
 
 class CampaignAuction extends Component {
   componentDidMount() {
-    const { fetchCampaign, match } = this.props;
+    const { fetchCampaign, fetchAuction, match } = this.props;
     fetchCampaign(match.params.id);
+    fetchAuction();
   }
   render() {
     const { creditModalShown, campaign, t } = this.props;
@@ -139,6 +141,7 @@ CampaignAuction.propTypes = {
   t: PropTypes.func,
   creditModalShown: PropTypes.bool,
   fetchCampaign: PropTypes.func,
+  fetchAuction: PropTypes.func,
   match: PropTypes.shape({
     params: PropTypes.shape({
         id: PropTypes.string

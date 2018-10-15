@@ -2,9 +2,7 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import * as FontAwesome from "react-icons/lib/fa";
-
 import Eye from "./view.png";
-import Cart from "./shopping_cart_ok.png";
 
 class ListCampaignItem extends Component {
   static propTypes = {
@@ -25,24 +23,19 @@ class ListCampaignItem extends Component {
           <Link to={link}>
             <label className="justify-content-center">
               <img src={Eye} alt="View"/>
-              <span>$</span>{` ${item.view_price}`}<span className="line-through">WC</span>
+              <span>$</span>{item.price}<span className="line-through">WC</span>
             </label>
           </Link>
         </td>
         <td>
           <Link to={link}>
             <label className="justify-content-center">
-              <img src={Eye} alt="View"/>{` ${item.viewed}`}</label>
+              <img src={Eye} alt="View"/>{item.views ? item.views : 100}</label>
           </Link>
         </td>
         <td>
           <Link to={link}>
-            <label className="justify-content-center"><FontAwesome.FaUser/>{` ${item.viewers}`}</label>
-          </Link>
-        </td>
-        <td>
-          <Link to={link}>
-            <label className="justify-content-end"><img src={Cart} alt="Cart"/>{` ${item.bought}`}</label>
+            <label className="justify-content-center"><FontAwesome.FaUser/>{item.competitor ? item.competitor : 100}</label>
           </Link>
         </td>
       </tr>);

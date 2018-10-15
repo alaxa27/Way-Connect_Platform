@@ -5,6 +5,10 @@ import {
 
   RESEARCH_FILTER_CHANGE,
 
+  FETCH_AUCTION,
+  FETCH_AUCTION_FULFILLED,
+  FETCH_AUCTION_REJECTED,
+
   AUCTION_ESTIMATE,
   AUCTION_ESTIMATE_FULFILLED,
   AUCTION_ESTIMATE_REJECTED,
@@ -376,6 +380,20 @@ export default function reducer(state = initialState, action) {
           [action.payload.name]: action.payload.value
         }
       };
+
+    case FETCH_AUCTION:
+      return {
+        ...state,
+      };
+    case FETCH_AUCTION_FULFILLED:
+      return {
+        ...state,
+      };
+    case FETCH_AUCTION_REJECTED:
+      return {
+        ...state,
+      };
+
     default:
       return { ...state
       };

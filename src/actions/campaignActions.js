@@ -14,6 +14,10 @@ import {
   AUCTION_ESTIMATE_FULFILLED,
   AUCTION_ESTIMATE_REJECTED,
 
+  FETCH_AUCTION,
+  FETCH_AUCTION_FULFILLED,
+  FETCH_AUCTION_REJECTED,
+
   FETCH_CAMPAIGN,
   FETCH_CAMPAIGN_FULFILLED,
   FETCH_CAMPAIGN_REJECTED,
@@ -358,5 +362,28 @@ export function updateCampaignProperty(payload) {
       type: CAMPAIGN_PROPERTY_UPDATE,
       payload
     });
+  };
+}
+
+export function fetchAuction() {
+  return async (dispatch, getState) => {
+    dispatch({
+      type: FETCH_AUCTION
+    });
+    try {
+      const response = await axiosInstance({
+        method: "get",
+        url: "/auctions/top/"
+      });
+      dispatch({
+        type: FETCH_AUCTION_FULFILLED,
+        payload: response.data
+      });
+    } catch (error) {
+      dispatch({
+        type: FETCH_AUCTION_REJECTED,
+        payload: error
+      });
+    }
   };
 }
