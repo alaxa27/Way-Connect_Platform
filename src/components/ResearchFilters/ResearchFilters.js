@@ -23,7 +23,7 @@ const mapDispatchToProps = dispatch => ({
 
 class ResearchFilters extends Component {
   render() {
-    const { changeResearchFilter, filterData, researchFilters, t } = this.props;
+    const { changeResearchFilter, filterData, researchFilters, t, handleCreateCampaign } = this.props;
     return (<div className="research-filters">
       <Row>
         <Col md="6" xs="12">
@@ -99,7 +99,7 @@ class ResearchFilters extends Component {
                 Price from
               </span>
               <span className="font-weight-bold">
-                {researchFilters.priceFrom}
+                {researchFilters.price} WC
               </span>
             </div>
           </div>
@@ -169,7 +169,7 @@ class ResearchFilters extends Component {
                 </div>
               </div>
             </div>
-            <button className="bid-btn bid-btn--dark mt-4">Start bidding</button>
+            <button className="bid-btn bid-btn--dark mt-4" onClick={handleCreateCampaign}>Start bidding</button>
           </Col>
         }
       </Row>
@@ -182,7 +182,8 @@ ResearchFilters.propTypes = {
   fixed: PropTypes.bool,
   changeResearchFilter: PropTypes.func,
   filterData: PropTypes.object,
-  researchFilters: PropTypes.object
+  researchFilters: PropTypes.object,
+  handleCreateCampaign: PropTypes.func,
 };
 
 export default compose(connect(mapStateToProps, mapDispatchToProps), translate("translations"))(ResearchFilters);

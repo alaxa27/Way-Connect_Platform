@@ -16,8 +16,8 @@ export default {
         icon: "fa fa-list",
         children: [
           {
-            name: "BidCampaign",
-            url: "/campaigns/46/bid",
+            name: "CampaignAuction",
+            url: "/campaigns/46/auction",
             icon: "icon-layers",
           },
           {

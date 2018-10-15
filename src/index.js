@@ -9,8 +9,6 @@ import i18n from "./constants/i18n";
 import store from "./store";
 
 // Styles
-// Import Flag Icons Set
-import "flag-icon-css/css/flag-icon.min.css";
 // Import Font Awesome Icons Set
 import "font-awesome/css/font-awesome.min.css";
 // Import Simple Line Icons Set

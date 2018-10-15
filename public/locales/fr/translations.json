@@ -89,7 +89,7 @@
       "title": "Filtres fixés"
     }
   },
-  "bidCampaign": {
+  "campaignAuction": {
     "bid": {
       "title": "last bid at",
       "wc": "WC",
@@ -194,7 +194,7 @@
     "dashboard": "Dashboard",
     "campaigns": "Campagnes",
     "campaignsDev": "CampaignsDev",
-    "bidCampaign": "BidCampaign",
+    "campaignAuction": "CampaignAuction",
     "configCampaign": "ConfigCampaign",
     "analyticsCampaign": "AnalyticsCampaign",
     "establishments": "Établissements",

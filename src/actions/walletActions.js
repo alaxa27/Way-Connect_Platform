@@ -1,0 +1,39 @@
+import {
+    axiosInstance
+  } from "../constants/ApiConfig";
+  import _ from "underscore";
+  
+  import {
+    WALLET,
+    WALLET_FULFILLED,
+    WALLET_REJECTED,
+  } from "../constants/ActionTypes";
+  
+  export function fetchWallet() {
+    return async (dispatch, getState) => {
+      dispatch({
+        type: WALLET
+      });
+      try {
+        const response = await axiosInstance({
+          method: "get",
+          url: "/wallets/",
+        });
+        dispatch({
+          type: WALLET_FULFILLED,
+          payload: {
+              value: response.data.value,
+              fixedValue: response.data.fixed_value,
+          },
+        });
+      } catch (error) {
+        dispatch({
+          type: WALLET_FULFILLED,
+          payload: {
+              value: 100,
+              fixedValue: 1000,
+          }
+        });
+      }
+    };
+  }

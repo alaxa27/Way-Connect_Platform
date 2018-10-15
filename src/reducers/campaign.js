@@ -5,6 +5,14 @@ import {
 
   RESEARCH_FILTER_CHANGE,
 
+  AUCTION_ESTIMATE,
+  AUCTION_ESTIMATE_FULFILLED,
+  AUCTION_ESTIMATE_REJECTED,
+
+  CREATE_CAMPAIGN,
+  CREATE_CAMPAIGN_FULFILLED,
+  CREATE_CAMPAIGN_REJECTED,
+
   FETCH_CAMPAIGN,
   FETCH_CAMPAIGN_FULFILLED,
   FETCH_CAMPAIGN_REJECTED,
@@ -29,6 +37,8 @@ import {
   CAMPAIGN_CREDIT_MODAL_TOGGLE,
 
   CAMPAIGN_CREDIT_VALUE_CHANGE,
+
+  CAMPAIGN_PROPERTY_UPDATE,
 } from "../constants/ActionTypes";
 import _ from "underscore";
 
@@ -36,7 +46,10 @@ const campaignDefaults = {
   id: null,
   filters: "",
   owner: "",
-  status: ""
+  status: "",
+  fetching: false,
+  success: false,
+  error: null,
 };
 
 const keyDataDefaults = {
@@ -122,8 +135,8 @@ const researchFilterDefaults = {
   nationality: [],
   hobbies: [],
   recallMarketing: 0,
-  users: 249,
-  priceFrom: "2,49 WC"
+  users: 0,
+  price: 0
 };
 
 const initialState = {
@@ -131,6 +144,13 @@ const initialState = {
   success: false,
   error: null,
 
+  newCampaign: {
+    name: "",
+    companyName: "",
+    productDescription: "",
+    communicationType: "",
+    created: false,
+  },
   campaign: campaignDefaults,
   filterData: filterDataDefaults,
   traffic: trafficDefaults,
@@ -178,6 +198,7 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         campaign: {
+          ...state.campaign,
           ...action.payload,
           fetching: true,
           success: false,
@@ -185,13 +206,22 @@ export default function reducer(state = initialState, action) {
         }
       };
     case FETCH_CAMPAIGN_FULFILLED:
+      let filters = {};
+      if(action.payload.filters !== "{}") {
+        filters = action.payload.filters;
+      }
       return {
         ...state,
         campaign: {
+          ...state.campaign,
           ...action.payload,
           fetching: false,
           success: true,
           error: null
+        },
+        researchFilters: {
+          ...state.researchFilters,
+          ...filters,
         }
       };
     case FETCH_CAMPAIGN_REJECTED:
@@ -273,17 +303,77 @@ export default function reducer(state = initialState, action) {
           [action.payload.name]: action.payload.value
         }
       };
+
+    case AUCTION_ESTIMATE:
+      return {
+        ...state,
+      };
+    case AUCTION_ESTIMATE_FULFILLED:
+      return {
+        ...state,
+        researchFilters: {
+          ...state.researchFilters,
+          users: action.payload.customer_count,
+          price: action.payload.price
+        }
+      };
+    case AUCTION_ESTIMATE_REJECTED:
+      return {
+        ...state,
+      };
+
+    case CREATE_CAMPAIGN:
+      return {
+        ...state,
+        newCampaign: {
+          ...state.newCampaign,
+          created: false,
+        }
+      };
+    case CREATE_CAMPAIGN_FULFILLED:
+      return {
+        ...state,
+        newCampaign: {
+          ...state.newCampaign,
+          created: true,
+        }
+      };
+    case CREATE_CAMPAIGN_REJECTED:
+      return {
+        ...state,
+        newCampaign: {
+          ...state.newCampaign,
+          created: false,
+        }
+      };
+
     case CAMPAIGN_CREDIT_MODAL_TOGGLE:
       return {
         ...state,
         creditModalShown: !state.creditModalShown
       };
     case CAMPAIGN_CREDIT_VALUE_CHANGE:
+      let value = action.payload;
+      const { max, min } = state.credit;
+      if(value > max) {
+        value = max;
+      }
+      if(value < min) {
+        value = min;
+      }
       return {
         ...state,
         credit: {
           ...state.credit,
-          current: action.payload
+          current: value
+        }
+      };
+    case CAMPAIGN_PROPERTY_UPDATE:
+      return {
+        ...state,
+        newCampaign: {
+          ...state.newCampaign,
+          [action.payload.name]: action.payload.value
         }
       };
     default:

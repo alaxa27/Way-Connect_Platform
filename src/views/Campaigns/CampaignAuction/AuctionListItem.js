@@ -6,7 +6,7 @@ import InputRange from "react-input-range";
 import {translate} from "react-i18next";
 import PropTypes from "prop-types";
 
-class BidListItem extends Component {
+class AuctionListItem extends Component {
   render() {
     const { item, current, t } = this.props;
     return (
@@ -24,7 +24,7 @@ class BidListItem extends Component {
                 {item.name}
               </div>
               <div className="bids__item-title--sub">
-                {t("bidCampaign.bid.title")} {item.lastBid}
+                {t("campaignAuction.bid.title")} {item.lastBid}
               </div>
             </div>
             <div className="bids__item-box">
@@ -33,7 +33,7 @@ class BidListItem extends Component {
               <span className="mr-2">
                 {item.bid}
               </span>
-              <span className="line-through font-weight-bold">{t("bidCampaign.bid.wc")}</span>
+              <span className="line-through font-weight-bold">{t("campaignAuction.bid.wc")}</span>
             </div>
             <div className="bids__item-box">
               <img className="mr-2" src={Eye} alt="View"/>
@@ -58,11 +58,11 @@ class BidListItem extends Component {
   }
 }
 
-BidListItem.propTypes = {
+AuctionListItem.propTypes = {
   item: PropTypes.object,
   index: PropTypes.number,
   t: PropTypes.func,
   current: PropTypes.bool
 };
 
-export default translate("translations")(BidListItem);
+export default translate("translations")(AuctionListItem);

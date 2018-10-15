@@ -31,9 +31,11 @@ html {
 
 body {
   background-color: $body-bg;
+  font-family: "Roboto";
 }
 
 .app {
+  position: relative;
 
   &--dark {
     background: $gray-900 url("../img/login_bg.png") no-repeat;
@@ -55,6 +57,7 @@ body {
 
 .input-range__label {
   color: $black;
+  font-family: inherit;
 }
 
 .input-range__label--value {

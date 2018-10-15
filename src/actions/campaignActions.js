@@ -10,6 +10,10 @@ import {
 
   RESEARCH_FILTER_CHANGE,
 
+  AUCTION_ESTIMATE,
+  AUCTION_ESTIMATE_FULFILLED,
+  AUCTION_ESTIMATE_REJECTED,
+
   FETCH_CAMPAIGN,
   FETCH_CAMPAIGN_FULFILLED,
   FETCH_CAMPAIGN_REJECTED,
@@ -34,6 +38,12 @@ import {
   CAMPAIGN_CREDIT_MODAL_TOGGLE,
 
   CAMPAIGN_CREDIT_VALUE_CHANGE,
+
+  CAMPAIGN_PROPERTY_UPDATE,
+
+  CREATE_CAMPAIGN,
+  CREATE_CAMPAIGN_FULFILLED,
+  CREATE_CAMPAIGN_REJECTED,
 } from "../constants/ActionTypes";
 
 const STATUS = require("../data/status");
@@ -84,25 +94,13 @@ export function fetchCampaign(payload) {
     try {
       const response = await axiosInstance({
         method: "get",
-        url: "/campaigns/"
-        // url: `/campaigns/${payload.campaignId}/`,
+        url: "/campaigns/" + payload
       });
-      // DEMO PURPOSES
-      //This block will disappear when backend /campaign/:id/ will be working
-      let campaign = response.data.filter(function(campaign) {
-        return campaign.id.toString() === payload.campaignId;
-      });
-
-      campaign = campaign[0];
-
-      ////////////////
       dispatch({
         type: FETCH_CAMPAIGN_FULFILLED,
-        payload: campaign
+        payload: response.data
       });
-
     } catch (error) {
-      // If error 404 should go back to /campaign/list
       dispatch({
         type: FETCH_CAMPAIGN_REJECTED,
         payload: error
@@ -269,6 +267,47 @@ export function changeResearchFilter(payload) {
       type: RESEARCH_FILTER_CHANGE,
       payload
     });
+    const filters = getState().campaign.researchFilters;
+    const data = {
+      price: "1.0",
+      filters: {
+        gender: filters.male ? "M" : "F",
+        relationship_status: filters.relationship_status,
+        work_status: filters.work_status,
+        hobbies: filters.hobbies,
+        nationality: filters.nationality,
+        age_min: filters.age.min,
+        age_max: filters.age.max
+      },
+    };
+    dispatch(estimateAuction(data));
+  };
+}
+
+export function estimateAuction(payload) {
+  return async (dispatch, getState) => {
+    dispatch({
+      type: AUCTION_ESTIMATE,
+    });
+    try {
+      const response = await axiosInstance({
+        method: "post",
+        url: "/auctions/estimate/",
+        data: payload
+      });
+      dispatch({
+        type: AUCTION_ESTIMATE_FULFILLED,
+        payload: response.data
+      });
+    } catch (error) {
+      dispatch({
+        type: AUCTION_ESTIMATE_FULFILLED,
+        payload: {
+          "price": "1.23",
+          "customer_count": 456
+        }
+      });
+    }
   };
 }
 
@@ -284,6 +323,39 @@ export function changeCreditCampaignValue(payload) {
   return async (dispatch, getState) => {
     dispatch({
       type: CAMPAIGN_CREDIT_VALUE_CHANGE,
+      payload
+    });
+  };
+}
+
+export function createCampaign(payload) {
+  return async (dispatch, getState) => {
+    dispatch({
+      type: CREATE_CAMPAIGN,
+    });
+    try {
+      const response = await axiosInstance({
+        method: "post",
+        url: "/campaigns/",
+        data: payload
+      });
+      dispatch({
+        type: CREATE_CAMPAIGN_FULFILLED,
+        payload: response.data
+      });
+    } catch (error) {
+      dispatch({
+        type: CREATE_CAMPAIGN_REJECTED,
+        payload: error
+      });
+    }
+  };
+}
+
+export function updateCampaignProperty(payload) {
+  return async (dispatch, getState) => {
+    dispatch({
+      type: CAMPAIGN_PROPERTY_UPDATE,
       payload
     });
   };

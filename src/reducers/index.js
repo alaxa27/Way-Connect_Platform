@@ -10,6 +10,7 @@ import listCampaigns from "./listCampaigns";
 import promotion from "./promotion";
 import establishment from "./establishment";
 import campaign from "./campaign";
+import wallet from "./wallet";
 
 export default combineReducers({
     login,
@@ -21,5 +22,6 @@ export default combineReducers({
     promotion,
     establishment,
     listCampaigns,
-    campaign
+    campaign,
+    wallet,
 });

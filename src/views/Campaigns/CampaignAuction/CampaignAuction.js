@@ -2,56 +2,35 @@ import React, {Component} from "react";
 import {Row, Col} from "reactstrap";
 import {translate} from "react-i18next";
 import PropTypes from "prop-types";
-import BidList from "./BidList";
-import NewBid from "./NewBid";
-import BidMeta from "./BidMeta";
-import BidTotal from "./BidTotal";
+import AuctionList from "./AuctionList";
+import NewAuction from "./NewAuction";
+import AuctionMeta from "./AuctionMeta";
+import AuctionTotal from "./AuctionTotal";
 import {connect} from "react-redux";
 import {compose} from "recompose";
 import CreditCampaign from "../../../components/Modal/CreditCampaign";
+import { fetchCampaign } from "../../../actions/campaignActions";
+import { Redirect } from "react-router-dom";
 
 const mapStateToProps = state => ({
   creditModalShown: state.campaign.creditModalShown,
+  campaign: state.campaign.campaign,
 });
 
-class BidCampaign extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: 30,
-      period: 1,
-      number: 78,
-      bidWrap: false
-    };
-    this.toggleBid = this.toggleBid.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.hit = this.hit.bind(this);
-  }
+const mapDispatchToProps = dispatch => ({
+  fetchCampaign: payload => dispatch(fetchCampaign(payload)),
+});
 
-  hit() {
-    this.setState({bidWrap: false});
+class CampaignAuction extends Component {
+  componentDidMount() {
+    const { fetchCampaign, match } = this.props;
+    fetchCampaign(match.params.id);
   }
-
-  handleInputChange(event) {
-    this.setState({gender: event.target.value});
-  }
-
-  handleChange(event) {
-    const data = event.target;
-    const value = data.value;
-    const name = data.name;
-    this.setState({[name]: value});
-  }
-
-  toggleBid() {
-    this.setState({
-      bidWrap: !this.state.bidWrap
-    });
-  }
-
   render() {
-    const { creditModalShown, t } = this.props;
+    const { creditModalShown, campaign, t } = this.props;
+    if(campaign.error) {
+      return <Redirect to="/campaigns/list" />;
+    }
     const data = [
       {
         rank: 1,
@@ -138,26 +117,34 @@ class BidCampaign extends Component {
       }
       <Row>
         <Col>
-          <BidTotal data={topTrackData} />
+          <AuctionTotal data={topTrackData} />
         </Col>
       </Row>
       <Row>
         <Col xs="12">
-          <BidMeta />
+          <AuctionMeta />
         </Col>
         <Col lg="6">
-          <BidList data={data} />
+          <AuctionList data={data} />
         </Col>
         <Col lg="6">
-          <NewBid history={history} />
+          <NewAuction history={history} />
         </Col>
       </Row>
     </div>);
   }
 }
 
-BidCampaign.propTypes = {
+CampaignAuction.propTypes = {
   t: PropTypes.func,
   creditModalShown: PropTypes.bool,
+  fetchCampaign: PropTypes.func,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+        id: PropTypes.string
+    }),
+  }),
+  campaign: PropTypes.object,
 };
-export default compose(connect(mapStateToProps, null), translate("translations"))(BidCampaign);
+
+export default compose(connect(mapStateToProps, mapDispatchToProps), translate("translations"))(CampaignAuction);
