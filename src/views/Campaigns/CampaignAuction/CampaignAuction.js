@@ -110,6 +110,8 @@ class CampaignAuction extends Component {
 
     const history = [1,2,3];
 
+    console.log(this.props);
+
     return (<div className="page-bid-campaign sub-page-wrapper animated fadeIn my-4">
       {creditModalShown &&
         <CreditCampaign

@@ -48,6 +48,12 @@ import {
   CREATE_CAMPAIGN,
   CREATE_CAMPAIGN_FULFILLED,
   CREATE_CAMPAIGN_REJECTED,
+
+  BID_CAMPAIGN,
+  BID_CAMPAIGN_FULFILLED,
+  BID_CAMPAIGN_REJECTED,
+
+  BID_CHANGE,
 } from "../constants/ActionTypes";
 
 const STATUS = require("../data/status");
@@ -385,5 +391,41 @@ export function fetchAuction() {
         payload: error
       });
     }
+  };
+}
+
+export function bidCampaign(payload) {
+  return async (dispatch, getState) => {
+    dispatch({
+      type: BID_CAMPAIGN
+    });
+    try {
+      const response = await axiosInstance({
+        method: "post",
+        url: `/campaigns/${payload.campaignId}/bid/`,
+        data: {
+          price: payload.price
+        }
+      });
+      dispatch({
+        type: BID_CAMPAIGN_FULFILLED,
+        payload: response.data
+      });
+    } catch (error) {
+      dispatch({
+        type: BID_CAMPAIGN_REJECTED,
+        payload: error
+      });
+    }
+  };
+}
+
+export function changeBid(payload) {
+  return async (dispatch, getState) => {
+    const value = payload.replace(/[^0-9,]/g, "").replace(/(\,.*)\,/g, "$1");
+    dispatch({
+      type: BID_CHANGE,
+      payload: value
+    });
   };
 }

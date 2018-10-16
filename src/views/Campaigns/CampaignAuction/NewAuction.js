@@ -9,36 +9,29 @@ import {
 } from "reactstrap";
 import ScrollArea from "react-scrollbar";
 import { Input } from "reactstrap";
-import { toggleCreditCampaignModal } from "../../../actions/campaignActions";
+import { toggleCreditCampaignModal, bidCampaign, changeBid } from "../../../actions/campaignActions";
 import {connect} from "react-redux";
 import {compose} from "recompose";
+import { Alert } from "reactstrap";
+
+const mapStateToProps = state => ({
+  campaign: state.campaign.campaign,
+  bid: state.campaign.bid,
+});
 
 const mapDispatchToProps = dispatch => ({
   toggleCreditCampaignModal: () => dispatch(toggleCreditCampaignModal()),
+  bidCampaign: (payload) => dispatch(bidCampaign(payload)),
+  changeBid: (payload) => dispatch(changeBid(payload)),
 });
 
 class NewAuction extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      bidValue: "",
-    };
-  }
-  onBidChange = (value) => {
-    this.setState({
-      bidValue: value.replace(/[^0-9,]/g, "").replace(/(\,.*)\,/g, "$1")
-    });
-  }
-  onCreditCampaignClick = () => {
-    const { toggleCreditCampaignModal } = this.props;
-    toggleCreditCampaignModal();
-  }
   render() {
-    const { history, t } = this.props;
+    const { history, bidCampaign, campaign, toggleCreditCampaignModal, changeBid, bid, t } = this.props;
     return (
       <Card className="bid">
         <CardBody className="p-0 d-flex flex-column">
-          <div className="bid__forbidden p-3">
+          <div className="bid__forbidden p-3 d-none">
             <div className="bid__forbidden-wrapper"></div>
             <div className="bid__forbidden-info">
               <div className="bid__forbidden-icon mb-3">
@@ -48,7 +41,7 @@ class NewAuction extends Component {
                 {t("campaignAuction.bid.notAvailable")}
               </div>
               <div className="bid__forbidden-action">
-                <button className="bid-btn bid-btn--dark" onClick={this.onCreditCampaignClick}>
+                <button className="bid-btn bid-btn--dark" onClick={() => { toggleCreditCampaignModal(); }}>
                   {t("campaignAuction.bid.creditCampaign")}
                 </button>
               </div>
@@ -111,12 +104,12 @@ class NewAuction extends Component {
                 </div>
                 <span className="font-weight-bold">4,5 WC</span>
               </div>
-              <Input className="bid__box bid__box--colored bid__box--new-bid text-center" type="text" name="newBid" value={this.state.bidValue} onChange={e => { this.onBidChange(e.target.value); }}/>
+              <Input className="bid__box bid__box--colored bid__box--new-bid text-center" type="text" name="newBid" value={bid} onChange={e => { changeBid(e.target.value); }}/>
             </div>
             
           </div>
           <div className="bid__block p-3 bid__add d-flex align-items-center justify-content-end">
-            <button className="bid-btn bid-btn--dark">
+            <button className="bid-btn bid-btn--dark" onClick={() => { bidCampaign({campaignId: campaign.id, price: bid});} }>
               {t("campaignAuction.bid.bid")}
             </button>
           </div>
@@ -129,7 +122,11 @@ class NewAuction extends Component {
 NewAuction.propTypes = {
   history: PropTypes.array,
   toggleCreditCampaignModal: PropTypes.func,
+  bidCampaign: PropTypes.func,
+  campaign: PropTypes.object,
+  changeBid: PropTypes.func,
+  bid: PropTypes.number,
   t: PropTypes.func,
 };
 
-export default compose(connect(null, mapDispatchToProps), translate("translations"))(NewAuction);
+export default compose(connect(mapStateToProps, mapDispatchToProps), translate("translations"))(NewAuction);

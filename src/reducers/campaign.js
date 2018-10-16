@@ -43,6 +43,12 @@ import {
   CAMPAIGN_CREDIT_VALUE_CHANGE,
 
   CAMPAIGN_PROPERTY_UPDATE,
+
+  BID_CAMPAIGN,
+  BID_CAMPAIGN_FULFILLED,
+  BID_CAMPAIGN_REJECTED,
+
+  BID_CHANGE,
 } from "../constants/ActionTypes";
 import _ from "underscore";
 
@@ -170,6 +176,8 @@ const initialState = {
     max: 7500,
     current: 750
   },
+
+  bid: 0,
 };
 
 export default function reducer(state = initialState, action) {
@@ -392,6 +400,25 @@ export default function reducer(state = initialState, action) {
     case FETCH_AUCTION_REJECTED:
       return {
         ...state,
+      };
+
+    case BID_CAMPAIGN:
+      return {
+        ...state,
+      };
+    case BID_CAMPAIGN_FULFILLED:
+      return {
+        ...state,
+      };
+    case BID_CAMPAIGN_REJECTED:
+      return {
+        ...state,
+      };
+
+    case BID_CHANGE:
+      return {
+        ...state,
+        bid: action.payload,
       };
 
     default:
