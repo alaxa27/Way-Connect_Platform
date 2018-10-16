@@ -141,7 +141,7 @@ Aside.propTypes = {
   wallet: PropTypes.object,
   history: PropTypes.array,
   fetchWalletTransactions: PropTypes.func,
-  transactions: PropTypes.object,
+  transactions: PropTypes.array,
 };
 
 export default compose(connect(mapStateToProps, mapDispatchToProps), translate("translations"))(Aside);
