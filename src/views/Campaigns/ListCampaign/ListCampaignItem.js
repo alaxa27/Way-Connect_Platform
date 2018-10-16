@@ -35,7 +35,7 @@ class ListCampaignItem extends Component {
         </td>
         <td>
           <Link to={link}>
-            <label className="justify-content-center"><FontAwesome.FaUser/>{item.competitor ? item.competitor : 100}</label>
+            <label className="justify-content-center"><span>$</span>{item.budget ? item.budget : 100}</label>
           </Link>
         </td>
       </tr>);
