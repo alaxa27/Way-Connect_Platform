@@ -5,30 +5,33 @@ import { map } from "underscore";
 import ScrollArea from "react-scrollbar";
 import {compose} from "recompose";
 import {connect} from "react-redux";
-import { fetchWallet } from "../../actions/walletActions";
+import { fetchWallet, fetchWalletTransactions } from "../../actions/walletActions";
 import ReduxBlockUi from "react-block-ui/redux";
+import moment from "moment";
 
 const mapStateToProps = state => ({
   fetching: state.wallet.fetching,
   error: state.wallet.error,
   wallet: state.wallet.wallet,
-  history: state.wallet.history,
+  transactions: state.wallet.transactions.items,
 });
 
 const mapDispatchToProps = dispatch => ({
   fetchWallet: () => dispatch(fetchWallet()),
+  fetchWalletTransactions: () => dispatch(fetchWalletTransactions()),
 });
 
 class Aside extends Component {
   componentDidMount() {
-    const { fetchWallet } = this.props;
+    const { fetchWallet, fetchWalletTransactions } = this.props;
     fetchWallet();
+    fetchWalletTransactions();
   }
   render() {
-    const { t, wallet, history } = this.props;
+    const { t, wallet, transactions } = this.props;
     const env = process.env.STAGE;
     return (
-      <ReduxBlockUi tag="div" block="WALLET" unblock={["WALLET_FULFILLED", "WALLET_REJECTED"]}>
+      <ReduxBlockUi tag="div" block={["WALLET", "WALLET_TRANSACTIONS"]} unblock={["WALLET_FULFILLED", "WALLET_REJECTED", "WALLET_TRANSACTIONS_FULFILLED", "WALLET_TRANSACTIONS_REJECTED"]}>
         {env !== "production" ?
           <aside className="aside-menu">
             <div className="aside-menu__top my-4 pb-4 mx-3">
@@ -86,8 +89,8 @@ class Aside extends Component {
                   <div className="aside-menu__transactions-title mb-2">
                     Transaction history
                   </div>
-                  {history.length > 0 ?
-                    map(history, (item, key) => {
+                  {transactions.length > 0 ?
+                    map(transactions, (item, key) => {
                       return (
                         <div key={key} className="aside-menu__transactions-item px-2 py-1 mb-2">
                           <div className="aside-menu__transactions-box--small">
@@ -95,11 +98,11 @@ class Aside extends Component {
                               Cash
                             </div>
                             <div>
-                              25/08/2018 18:52
+                              {moment(item.created_at).format("DD/MM/YYYY HH:MM")}
                             </div>
                           </div>
                           <div className="aside-menu__transactions-box aside-menu__transactions-box--big">
-                            550 WC
+                            {item.price} WC
                           </div>
                         </div>
                       );
@@ -137,6 +140,8 @@ Aside.propTypes = {
   fetchWallet: PropTypes.func,
   wallet: PropTypes.object,
   history: PropTypes.array,
+  fetchWalletTransactions: PropTypes.func,
+  transactions: PropTypes.object,
 };
 
 export default compose(connect(mapStateToProps, mapDispatchToProps), translate("translations"))(Aside);
