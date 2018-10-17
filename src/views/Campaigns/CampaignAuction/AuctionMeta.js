@@ -57,7 +57,7 @@ class AuctionMeta extends Component {
 AuctionMeta.propTypes = {
   t: PropTypes.func,
   campaign: PropTypes.object,
-  competitors: number,
+  competitors: PropTypes.number,
 };
 
 export default compose(connect(mapStateToProps, null), translate("translations"))(AuctionMeta);
