@@ -206,7 +206,7 @@ const initialState = {
   auction: {
     error: null,
     fetching: true,
-    items: []
+    data: {}
   }
 };
 
@@ -435,7 +435,7 @@ export default function reducer(state = initialState, action) {
           ...state.auction,
           fetching: false,
           error: null,
-          items: action.payload
+          data: action.payload
         }
       };
     case FETCH_AUCTION_REJECTED:
@@ -445,7 +445,7 @@ export default function reducer(state = initialState, action) {
           ...state.auction,
           fetching: false,
           error: action.payload,
-          items: []
+          data: []
         }
       };
 

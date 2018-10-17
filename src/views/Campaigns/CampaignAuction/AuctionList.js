@@ -11,7 +11,7 @@ import {connect} from "react-redux";
 import ReduxBlockUi from "react-block-ui/redux";
 
 const mapStateToProps = state => ({
-  auction: state.campaign.auction.items,
+  auction: state.campaign.auction.data,
 });
 
 class AuctionList extends Component {

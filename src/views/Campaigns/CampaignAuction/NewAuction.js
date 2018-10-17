@@ -20,7 +20,7 @@ const mapStateToProps = state => ({
   campaign: state.campaign.campaign,
   bid: state.campaign.bid,
   bidHistory: state.campaign.bidHistory.items,
-  minPrice: state.campaign.auction.items.min_price,
+  minPrice: state.campaign.auction.data.min_price,
   bidAttempt: state.campaign.bidAttempt,
 });
 

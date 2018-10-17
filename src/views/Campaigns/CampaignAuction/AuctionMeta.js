@@ -7,7 +7,7 @@ import moment from "moment";
 
 const mapStateToProps = state => ({
   campaign: state.campaign.campaign,
-  competitors: state.campaign.auction.items.competitors,
+  competitors: state.campaign.auction.data.competitors,
 });
 
 class AuctionMeta extends Component {
