@@ -58,9 +58,20 @@ import _ from "underscore";
 
 const campaignDefaults = {
   id: null,
+  name: "",
+  company_name: "",
+  description: "",
+  type: "",
+  created_at: "",
+  updated_at: "",
   filters: "",
-  owner: "",
-  status: "",
+  price: 0,
+  repetitions: 0,
+  budget: 0,
+  targeted_customers: 0,
+  spent_budget: 0,
+  views: 0,
+
   fetching: false,
   success: false,
   error: null,

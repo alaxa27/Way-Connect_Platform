@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import * as FontAwesome from "react-icons/lib/fa";
 import Eye from "./view.png";
-import Cart from "./shopping_cart_ok.png";
 import InputRange from "react-input-range";
 import {translate} from "react-i18next";
 import PropTypes from "prop-types";
@@ -10,6 +9,7 @@ import { formatDate } from "../../../services/DateFormatterService";
 class AuctionListItem extends Component {
   render() {
     const { item, current, t } = this.props;
+    const averageRank = Math.ceil(1 / item.average_rank * 100);
     return (
       <div className={"bids__item" + (current ? " bids__item--current" : "")}>
         <div className="bids__item-nr">
@@ -47,10 +47,10 @@ class AuctionListItem extends Component {
           </div>
           <div className="bids__item-progress">
             <div className="bid-progress-bar mr-3">
-              <InputRange maxValue={100} minValue={0} value={70} disabled={true} onChange={(val) => {console.log(val);}} />
+              <InputRange maxValue={100} minValue={0} value={averageRank} disabled={true} onChange={(val) => {console.log(val);}} />
             </div>
             <div className="bids__item-progress-value">
-              70%
+              {averageRank}%
             </div>
           </div>
         </div>

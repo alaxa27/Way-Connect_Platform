@@ -116,8 +116,26 @@ export function fetchCampaign(payload) {
       });
     } catch (error) {
       dispatch({
-        type: FETCH_CAMPAIGN_REJECTED,
-        payload: error
+        type: FETCH_CAMPAIGN_FULFILLED,
+        payload: {
+          "name": "foo",
+          "company_name": "bar",
+          "description": "Lorem ipsum dolor sit amet.",
+          "type": "BR",
+      
+          "created_at": "2018-01-29T12:34:56.000000Z",
+          "updated_at": "2018-01-29T12:34:56.000000Z",
+      
+          "filters": "{'age_max': 30}",
+      
+          "price": "2.34",
+          "repetitions": 1,
+          "budget": "10.00",
+          "targeted_customers": 5426,
+      
+          "spent_budget": "13.25",
+          "views": 12345
+        }
       });
     }
   };

@@ -7,11 +7,12 @@ import moment from "moment";
 
 const mapStateToProps = state => ({
   campaign: state.campaign.campaign,
+  competitors: state.campaign.auction.items.competitors,
 });
 
 class AuctionMeta extends Component {
   render() {
-    const { campaign, t } = this.props;
+    const { campaign, competitors, t } = this.props;
     const createdAt = moment(campaign.created_at);
     const now = moment();
     
@@ -37,7 +38,7 @@ class AuctionMeta extends Component {
             Concurrents:
           </span>
           <span className="bid-meta__value">
-            122
+            {competitors}
           </span>
         </div>
         <div className="bid-meta__views d-inline-block">
@@ -45,7 +46,7 @@ class AuctionMeta extends Component {
             Views:
           </span>
           <span className="bid-meta__value">
-            700
+            {campaign.views}
           </span>
         </div>
       </div>
@@ -56,6 +57,7 @@ class AuctionMeta extends Component {
 AuctionMeta.propTypes = {
   t: PropTypes.func,
   campaign: PropTypes.object,
+  competitors: number,
 };
 
 export default compose(connect(mapStateToProps, null), translate("translations"))(AuctionMeta);
