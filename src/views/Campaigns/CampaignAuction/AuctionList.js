@@ -7,13 +7,20 @@ import {
   CardBody,
 } from "reactstrap";
 import ScrollArea from "react-scrollbar";
+import {connect} from "react-redux";
+import ReduxBlockUi from "react-block-ui/redux";
+
+const mapStateToProps = state => ({
+  auction: state.campaign.auction.items,
+});
 
 class AuctionList extends Component {
   render() {
-    const { data } = this.props;
+    const { auction } = this.props;
     const isCampaignDeep = true;
+    const { top, current } = auction;
     return (
-      <React.Fragment>
+      <ReduxBlockUi tag="div" block="FETCH_AUCTION" unblock={["FETCH_AUCTION_FULFILLED", "FETCH_AUCTION_REJECTED"]}>
         <Card className="bids mb-4 mb-lg-0">
           <CardBody className="p-0">
             <ScrollArea
@@ -21,27 +28,27 @@ class AuctionList extends Component {
               className="bids__list"
               horizontal={false}
             >
-              {map(data, (item, index) => {
+              {map(top, item => {
                 return (
-                  <AuctionListItem item={item} key={item.rank} />
+                  <AuctionListItem item={item} key={item.id} />
                 );
               })}
             </ScrollArea>
-            {isCampaignDeep && 
+            {isCampaignDeep && current &&
               <div className="bids__current">
-                <AuctionListItem item={data[0]} key={"index"} current />
+                <AuctionListItem item={current} key={"index"} current />
               </div>
             }
           </CardBody>
         </Card>
         {!isCampaignDeep && <div className="bids__empty-space"></div>}        
-      </React.Fragment>
+      </ReduxBlockUi>
     );
   }
 }
 
 AuctionList.propTypes = {
-  data: PropTypes.array
+  auction: PropTypes.object
 };
 
-export default AuctionList;
+export default connect(mapStateToProps, null)(AuctionList);

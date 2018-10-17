@@ -5,6 +5,7 @@ import Cart from "./shopping_cart_ok.png";
 import InputRange from "react-input-range";
 import {translate} from "react-i18next";
 import PropTypes from "prop-types";
+import { formatDate } from "../../../services/DateFormatterService";
 
 class AuctionListItem extends Component {
   render() {
@@ -13,7 +14,7 @@ class AuctionListItem extends Component {
       <div className={"bids__item" + (current ? " bids__item--current" : "")}>
         <div className="bids__item-nr">
           <div>
-            #{item.rank}
+            #{item.id}
           </div>
           <FontAwesome.FaStar/>
         </div>
@@ -21,24 +22,24 @@ class AuctionListItem extends Component {
           <div className="bids__item-info">
             <div className="bids__item-title">
               <div className="bids__item-title--main">
-                {item.name}
+                {item.company_name}
               </div>
               <div className="bids__item-title--sub">
-                {t("campaignAuction.bid.title")} {item.lastBid}
+                {t("campaignAuction.bid.title")} {formatDate(item.last_bid)}
               </div>
             </div>
             <div className="bids__item-box">
               <img src={Eye} alt="View"/>
               <span className="font-weight-bold mr-2">$</span>
               <span className="mr-2">
-                {item.bid}
+                {item.price}
               </span>
               <span className="line-through font-weight-bold">{t("campaignAuction.bid.wc")}</span>
             </div>
             <div className="bids__item-box">
               <img className="mr-2" src={Eye} alt="View"/>
               <span>
-                {item.cart}
+                {item.views}
               </span>
             </div>
             <div className="bids__item-box">

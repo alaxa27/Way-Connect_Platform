@@ -7,7 +7,7 @@ import {compose} from "recompose";
 import {connect} from "react-redux";
 import { fetchWallet, fetchWalletTransactions } from "../../actions/walletActions";
 import ReduxBlockUi from "react-block-ui/redux";
-import moment from "moment";
+import { formatDate } from "../../services/DateFormatterService";
 
 const mapStateToProps = state => ({
   fetching: state.wallet.fetching,
@@ -98,7 +98,7 @@ class Aside extends Component {
                               Cash
                             </div>
                             <div>
-                              {moment(item.created_at).format("DD/MM/YYYY HH:MM")}
+                              {formatDate(item.created_at)}
                             </div>
                           </div>
                           <div className="aside-menu__transactions-box aside-menu__transactions-box--big">

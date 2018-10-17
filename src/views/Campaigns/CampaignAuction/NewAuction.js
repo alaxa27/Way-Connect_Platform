@@ -13,10 +13,13 @@ import { toggleCreditCampaignModal, bidCampaign, changeBid } from "../../../acti
 import {connect} from "react-redux";
 import {compose} from "recompose";
 import { Alert } from "reactstrap";
+import ReduxBlockUi from "react-block-ui/redux";
+import { formatDate } from "../../../services/DateFormatterService";
 
 const mapStateToProps = state => ({
   campaign: state.campaign.campaign,
   bid: state.campaign.bid,
+  bidHistory: state.campaign.bidHistory.items,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -27,7 +30,7 @@ const mapDispatchToProps = dispatch => ({
 
 class NewAuction extends Component {
   render() {
-    const { history, bidCampaign, campaign, toggleCreditCampaignModal, changeBid, bid, t } = this.props;
+    const { bidCampaign, campaign, toggleCreditCampaignModal, changeBid, bid, bidHistory, t } = this.props;
     return (
       <Card className="bid">
         <CardBody className="p-0 d-flex flex-column">
@@ -47,43 +50,45 @@ class NewAuction extends Component {
               </div>
             </div>
           </div>
-          <div className="bid__block bid__block--no-border d-flex flex-column p-3">
-            <div className="bid__subtitle mb-3">
-              {t("campaignAuction.bid.historyTitle")}
-            </div>
-            <ScrollArea
-              speed={0.8}
-              className="bid__history"
-              contentClassName="p-2"
-              horizontal={false}
-            >
-              {map(history, (item, i) => {
-                  return (
-                    <div className={"bid__history-block"} key={item}>
-                      <div className="bid__boxes bid__boxes--shadow">
-                        <div className="bid__box bid__box--bordered p-3">
-                          <i className="fa fa-user"></i>
-                          <span className="bid__box-title mr-2">{t("campaignAuction.bid.concurrents")}</span>
-                          <span className="font-weight-bold">122</span>
-                        </div>
-                        <div className="bid__box bid__box--bordered p-3">
-                          <i className="fa fa-clock-o mr-2"></i>
-                          <span className="bid__box-title mr-2">{t("campaignAuction.bid.from")}</span>
-                          <span className="w-100 text-right">26/05/2018 18:22</span>
-                        </div>
-                        <div className="bid__box w-100 d-flex align-items-center justify-content-between p-3">
-                          <div className="bid__box-wrapper">
-                            <i className="fa fa-usd"></i>
-                            <span className="bid__box-title mr-2">{t("campaignAuction.bid.maxPrice")}</span>
+          <ReduxBlockUi tag="div" block="BID_HISTORY" unblock={["BID_HISTORY_FULFILLED", "BID_HISTORY_REJECTED"]}>
+            <div className="bid__block bid__block--no-border d-flex flex-column p-3">
+              <div className="bid__subtitle mb-3">
+                {t("campaignAuction.bid.historyTitle")}
+              </div>
+              <ScrollArea
+                speed={0.8}
+                className="bid__history"
+                contentClassName="p-2"
+                horizontal={false}
+              >
+                {map(bidHistory, (item, i) => {
+                    return (
+                      <div className={"bid__history-block"} key={item.id}>
+                        <div className="bid__boxes bid__boxes--shadow">
+                          <div className="bid__box bid__box--bordered p-3">
+                            <i className="fa fa-user"></i>
+                            <span className="bid__box-title mr-2">{t("campaignAuction.bid.concurrents")}</span>
+                            <span className="font-weight-bold">{item.competitors}</span>
                           </div>
-                          <span className="font-weight-bold">4,5 WC</span>
+                          <div className="bid__box bid__box--bordered p-3">
+                            <i className="fa fa-clock-o mr-2"></i>
+                            <span className="bid__box-title mr-2">{t("campaignAuction.bid.from")}</span>
+                            <span className="w-100 text-right">{formatDate(item.created_at)}</span>
+                          </div>
+                          <div className="bid__box w-100 d-flex align-items-center justify-content-between p-3">
+                            <div className="bid__box-wrapper">
+                              <i className="fa fa-usd"></i>
+                              <span className="bid__box-title mr-2">{t("campaignAuction.bid.maxPrice")}</span>
+                            </div>
+                            <span className="font-weight-bold">{item.price} WC</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  );
-                })}
-            </ScrollArea>
-          </div>
+                    );
+                  })}
+              </ScrollArea>
+            </div>
+          </ReduxBlockUi>
           <div className="bid__block px-3 pb-3">
               
             <div className="bid__boxes">
@@ -120,7 +125,7 @@ class NewAuction extends Component {
 }
 
 NewAuction.propTypes = {
-  history: PropTypes.array,
+  bidHistory: PropTypes.array,
   toggleCreditCampaignModal: PropTypes.func,
   bidCampaign: PropTypes.func,
   campaign: PropTypes.object,

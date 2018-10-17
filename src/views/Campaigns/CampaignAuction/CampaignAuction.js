@@ -9,7 +9,7 @@ import AuctionTotal from "./AuctionTotal";
 import {connect} from "react-redux";
 import {compose} from "recompose";
 import CreditCampaign from "../../../components/Modal/CreditCampaign";
-import { fetchCampaign, fetchAuction } from "../../../actions/campaignActions";
+import { fetchCampaign, fetchAuction, fetchBidHistory } from "../../../actions/campaignActions";
 import { Redirect } from "react-router-dom";
 
 const mapStateToProps = state => ({
@@ -19,99 +19,28 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchCampaign: payload => dispatch(fetchCampaign(payload)),
-  fetchAuction: () => dispatch(fetchAuction()),
+  fetchAuction: campaignId => dispatch(fetchAuction(campaignId)),
+  fetchBidHistory: campaignId => dispatch(fetchBidHistory(campaignId)),
 });
 
 class CampaignAuction extends Component {
   componentDidMount() {
-    const { fetchCampaign, fetchAuction, match } = this.props;
-    fetchCampaign(match.params.id);
-    fetchAuction();
+    const { fetchCampaign, fetchAuction, fetchBidHistory, match } = this.props;
+    const campaignId = match.params.id;
+    fetchCampaign(campaignId);
+    fetchAuction(campaignId);
+    fetchBidHistory(campaignId);
   }
   render() {
     const { creditModalShown, campaign, t } = this.props;
     if(campaign.error) {
       return <Redirect to="/campaigns/list" />;
     }
-    const data = [
-      {
-        rank: 1,
-        name: "Teads.tv",
-        lastBid: "18:22",
-        view: 600,
-        bid: 6,
-        cart: 200,
-      }, {
-        rank: 2,
-        name: "Teads.tv",
-        lastBid: "18:22",
-        view: 600,
-        bid: 6,
-        cart: 200,
-      }, {
-        rank: 3,
-        name: "Teads.tv",
-        lastBid: "18:22",
-        view: 600,
-        bid: 6,
-        cart: 200,
-      }, {
-        rank: 4,
-        name: "Teads.tv",
-        lastBid: "18:22",
-        view: 600,
-        bid: 6,
-        cart: 200,
-      }, {
-        rank: 5,
-        name: "Teads.tv",
-        lastBid: "18:22",
-        view: 600,
-        bid: 6,
-        cart: 200,
-      }, {
-        rank: 6,
-        name: "Teads.tv",
-        lastBid: "18:22",
-        view: 600,
-        bid: 6,
-        cart: 200,
-      }, {
-        rank: 7,
-        name: "Teads.tv",
-        lastBid: "18:22",
-        view: 600,
-        bid: 6,
-        cart: 200,
-      }, {
-        rank: 8,
-        name: "Teads.tv",
-        lastBid: "18:22",
-        view: 600,
-        bid: 6,
-        cart: 200,
-        status: t("campaigns.inProgress.title")
-      }, {
-        rank: 9,
-        name: "Teads.tv",
-        lastBid: "18:22",
-        view: 600,
-        bid: 6,
-        cart: 200,
-        status: t("campaigns.inProgress.title")
-      }
-    ];
-
     const topTrackData = {
       min: 0,
       max: 10000,
       value: 6000
     };
-
-    const history = [1,2,3];
-
-    console.log(this.props);
-
     return (<div className="page-bid-campaign sub-page-wrapper animated fadeIn my-4">
       {creditModalShown &&
         <CreditCampaign
@@ -129,10 +58,10 @@ class CampaignAuction extends Component {
           <AuctionMeta />
         </Col>
         <Col lg="6">
-          <AuctionList data={data} />
+          <AuctionList />
         </Col>
         <Col lg="6">
-          <NewAuction history={history} />
+          <NewAuction />
         </Col>
       </Row>
     </div>);
@@ -150,6 +79,7 @@ CampaignAuction.propTypes = {
     }),
   }),
   campaign: PropTypes.object,
+  fetchBidHistory: PropTypes.func,
 };
 
 export default compose(connect(mapStateToProps, mapDispatchToProps), translate("translations"))(CampaignAuction);

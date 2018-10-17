@@ -49,6 +49,10 @@ import {
   BID_CAMPAIGN_REJECTED,
 
   BID_CHANGE,
+
+  BID_HISTORY,
+  BID_HISTORY_FULFILLED,
+  BID_HISTORY_REJECTED,
 } from "../constants/ActionTypes";
 import _ from "underscore";
 
@@ -178,6 +182,16 @@ const initialState = {
   },
 
   bid: 0,
+  bidHistory: {
+    error: null,
+    fetching: false,
+    items: []
+  },
+  auction: {
+    error: null,
+    fetching: true,
+    items: []
+  }
 };
 
 export default function reducer(state = initialState, action) {
@@ -392,14 +406,31 @@ export default function reducer(state = initialState, action) {
     case FETCH_AUCTION:
       return {
         ...state,
+        auction: {
+          ...state.auction,
+          fetching: true,
+          error: null
+        }
       };
     case FETCH_AUCTION_FULFILLED:
       return {
         ...state,
+        auction: {
+          ...state.auction,
+          fetching: false,
+          error: null,
+          items: action.payload
+        }
       };
     case FETCH_AUCTION_REJECTED:
       return {
         ...state,
+        auction: {
+          ...state.auction,
+          fetching: false,
+          error: action.payload,
+          items: []
+        }
       };
 
     case BID_CAMPAIGN:
@@ -419,6 +450,36 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         bid: action.payload,
+      };
+
+    case BID_HISTORY:
+      return {
+        ...state,
+        bidHistory: {
+          ...state.bidHistory,
+          fetching: true,
+          error: null,
+        }
+      };
+    case BID_HISTORY_FULFILLED:
+      return {
+        ...state,
+        bidHistory: {
+          ...state.bidHistory,
+          fetching: false,
+          error: null,
+          items: action.payload
+        }
+      };
+    case BID_HISTORY_REJECTED:
+      return {
+        ...state,
+        bidHistory: {
+          ...state.bidHistory,
+          fetching: false,
+          error: action.payload,
+          items: []
+        }
       };
 
     default:

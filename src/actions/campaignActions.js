@@ -54,6 +54,10 @@ import {
   BID_CAMPAIGN_REJECTED,
 
   BID_CHANGE,
+
+  BID_HISTORY,
+  BID_HISTORY_FULFILLED,
+  BID_HISTORY_REJECTED,
 } from "../constants/ActionTypes";
 
 const STATUS = require("../data/status");
@@ -371,7 +375,7 @@ export function updateCampaignProperty(payload) {
   };
 }
 
-export function fetchAuction() {
+export function fetchAuction(campaignId) {
   return async (dispatch, getState) => {
     dispatch({
       type: FETCH_AUCTION
@@ -379,7 +383,7 @@ export function fetchAuction() {
     try {
       const response = await axiosInstance({
         method: "get",
-        url: "/auctions/top/"
+        url: `/campaigns/${campaignId}/auction/`
       });
       dispatch({
         type: FETCH_AUCTION_FULFILLED,
@@ -387,8 +391,36 @@ export function fetchAuction() {
       });
     } catch (error) {
       dispatch({
-        type: FETCH_AUCTION_REJECTED,
-        payload: error
+        type: FETCH_AUCTION_FULFILLED,
+        payload: {
+          "top": [
+            {
+              "id": 1,
+              "company_name": "first",
+              "price": "3.00",
+              "last_bid": "2018-01-29T12:34:56.000000Z",
+              "average_rank": 1.25,
+              "views": 456,
+            },{
+              "id": 2,
+              "company_name": "second",
+              "price": "2.34",
+              "last_bid": "2018-01-27T12:34:56.000000Z",
+              "average_rank": 2.33,
+              "views": 324,
+            }
+          ],
+          "current": {
+            "id": 3,
+            "company_name": "foo",
+            "price": "3.00",
+            "global_rank": 11,
+            "average_rank": 1.25,
+            "views": 456
+          },
+          "competitors": 2,
+          "min_price": "1.02"
+        }
       });
     }
   };
@@ -427,5 +459,40 @@ export function changeBid(payload) {
       type: BID_CHANGE,
       payload: value
     });
+  };
+}
+
+export function fetchBidHistory(campaignId) {
+  return async (dispatch, getState) => {
+    dispatch({
+      type: BID_HISTORY
+    });
+    try {
+      const response = await axiosInstance({
+        method: "get",
+        url: `/campaigns/${campaignId}/bids/`,
+      });
+      dispatch({
+        type: BID_HISTORY_FULFILLED,
+        payload: response.data
+      });
+    } catch (error) {
+      dispatch({
+        type: BID_HISTORY_FULFILLED,
+        payload: [
+          {
+            "id": 1,
+            "price": "1.00",
+            "created_at": "2018-01-29T12:34:56.000000Z",
+            "competitors": 25
+          }, {
+            "id": 2,
+            "price": "3.32",
+            "created_at": "2018-01-29T12:34:56.000000Z",
+            "competitors": 34
+          }
+        ]
+      });
+    }
   };
 }
