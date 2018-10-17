@@ -12,7 +12,6 @@ import { Input } from "reactstrap";
 import { toggleCreditCampaignModal, bidCampaign, changeBid } from "../../../actions/campaignActions";
 import {connect} from "react-redux";
 import {compose} from "recompose";
-import { Alert } from "reactstrap";
 import ReduxBlockUi from "react-block-ui/redux";
 import { formatDate } from "../../../services/DateFormatterService";
 
@@ -21,7 +20,6 @@ const mapStateToProps = state => ({
   bid: state.campaign.bid,
   bidHistory: state.campaign.bidHistory.items,
   minPrice: state.campaign.auction.data.min_price,
-  bidAttempt: state.campaign.bidAttempt,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -32,7 +30,7 @@ const mapDispatchToProps = dispatch => ({
 
 class NewAuction extends Component {
   render() {
-    const { bidCampaign, campaign, toggleCreditCampaignModal, changeBid, bid, bidHistory, minPrice, bidAttempt, t } = this.props;
+    const { bidCampaign, campaign, toggleCreditCampaignModal, changeBid, bid, bidHistory, minPrice, t } = this.props;
     return (
       <Card className="bid">
         <CardBody className="p-0 d-flex flex-column">
@@ -116,17 +114,6 @@ class NewAuction extends Component {
               <Input className="bid__box bid__box--colored bid__box--new-bid text-center" type="text" name="newBid" value={bid} onChange={e => { changeBid(e.target.value); }}/>
             </div>
           </div>
-          {bidAttempt.success ?
-            <Alert color="success">
-              Error!
-            </Alert>
-          : bidAttempt.error ?
-            <Alert color="danger">
-              Error!
-            </Alert>
-          :
-            null
-          }
           <div className="bid__block p-3 bid__add d-flex align-items-center justify-content-end">
             
             <button className="bid-btn bid-btn--dark" onClick={() => { bidCampaign({campaignId: campaign.id, price: bid});} }>
@@ -147,7 +134,6 @@ NewAuction.propTypes = {
   changeBid: PropTypes.func,
   bid: PropTypes.number,
   minPrice: PropTypes.string,
-  bidAttempt: PropTypes.object,
   t: PropTypes.func,
 };
 
