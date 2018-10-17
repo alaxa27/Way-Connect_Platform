@@ -461,6 +461,8 @@ export function bidCampaign(payload) {
         type: BID_CAMPAIGN_FULFILLED,
         payload: response.data
       });
+      dispatch(fetchCampaign(payload.campaignId));
+      dispatch(fetchAuction(payload.campaignId));
     } catch (error) {
       dispatch({
         type: BID_CAMPAIGN_REJECTED,

@@ -20,6 +20,8 @@ const mapStateToProps = state => ({
   campaign: state.campaign.campaign,
   bid: state.campaign.bid,
   bidHistory: state.campaign.bidHistory.items,
+  minPrice: state.campaign.auction.items.min_price,
+  bidAttempt: state.campaign.bidAttempt,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -30,7 +32,7 @@ const mapDispatchToProps = dispatch => ({
 
 class NewAuction extends Component {
   render() {
-    const { bidCampaign, campaign, toggleCreditCampaignModal, changeBid, bid, bidHistory, t } = this.props;
+    const { bidCampaign, campaign, toggleCreditCampaignModal, changeBid, bid, bidHistory, minPrice, bidAttempt, t } = this.props;
     return (
       <Card className="bid">
         <CardBody className="p-0 d-flex flex-column">
@@ -97,7 +99,9 @@ class NewAuction extends Component {
                   <i className="fa fa-user"></i>
                   <span className="mr-2">{t("campaignAuction.bid.targetUsers")}</span>
                 </div>
-                <span className="font-weight-bold">700</span>
+                <span className="font-weight-bold">
+                  {campaign.targeted_customers}
+                </span>
               </div>
               <div className="bid__box py-2">
                   New price
@@ -107,13 +111,24 @@ class NewAuction extends Component {
                   <i className="fa fa-usd"></i>
                   <span className="mr-2">{t("campaignAuction.bid.minPrice")}</span>
                 </div>
-                <span className="font-weight-bold">4,5 WC</span>
+                <span className="font-weight-bold">{minPrice} WC</span>
               </div>
               <Input className="bid__box bid__box--colored bid__box--new-bid text-center" type="text" name="newBid" value={bid} onChange={e => { changeBid(e.target.value); }}/>
             </div>
-            
           </div>
+          {bidAttempt.success ?
+            <Alert color="success">
+              Error!
+            </Alert>
+          : bidAttempt.error ?
+            <Alert color="danger">
+              Error!
+            </Alert>
+          :
+            null
+          }
           <div className="bid__block p-3 bid__add d-flex align-items-center justify-content-end">
+            
             <button className="bid-btn bid-btn--dark" onClick={() => { bidCampaign({campaignId: campaign.id, price: bid});} }>
               {t("campaignAuction.bid.bid")}
             </button>
@@ -131,6 +146,8 @@ NewAuction.propTypes = {
   campaign: PropTypes.object,
   changeBid: PropTypes.func,
   bid: PropTypes.number,
+  minPrice: PropTypes.string,
+  bidAttempt: PropTypes.object,
   t: PropTypes.func,
 };
 

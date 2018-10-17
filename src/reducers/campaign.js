@@ -193,6 +193,11 @@ const initialState = {
   },
 
   bid: 0,
+  bidAttempt: {
+    executing: false,
+    error: null,
+    success: false,
+  },
   bidHistory: {
     error: null,
     fetching: false,
@@ -447,14 +452,32 @@ export default function reducer(state = initialState, action) {
     case BID_CAMPAIGN:
       return {
         ...state,
+        bidAttempt: {
+          ...state.bidAttempt,
+          executing: true,
+          error: null,
+          success: false
+        }
       };
     case BID_CAMPAIGN_FULFILLED:
       return {
         ...state,
+        bidAttempt: {
+          ...state.bidAttempt,
+          executing: false,
+          error: null,
+          success: true
+        }
       };
     case BID_CAMPAIGN_REJECTED:
       return {
         ...state,
+        bidAttempt: {
+          ...state.bidAttempt,
+          executing: false,
+          error: action.payload,
+          success: false
+        }
       };
 
     case BID_CHANGE:
