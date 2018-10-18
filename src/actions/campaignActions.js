@@ -529,7 +529,7 @@ export function uploadVideo(payload) {
     try {
       const response = await axiosInstance({
         method: "post",
-        url: `/campaigns/communications/videos`,
+        url: "/campaigns/communications/videos",
         data: {
           campaign: payload.campaign,
           video: payload.video,

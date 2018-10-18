@@ -9,7 +9,7 @@ import {
 import {translate} from "react-i18next";
 import PropTypes from "prop-types";
 import ComingSoon from "../../../components/Modal/ComingSoon";
-import moment from 'moment';
+import moment from "moment";
 
 class ConfigFormulary extends Component {
   constructor(props) {
