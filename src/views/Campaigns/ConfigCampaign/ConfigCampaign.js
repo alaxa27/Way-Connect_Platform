@@ -79,11 +79,7 @@ class ConfigCampaign extends Component {
 
               <TabPane tabId="2" className="p-0">
                 <ConfigFormulary/>
-              </TabPane>
-
-              <Col className="text-right border-top">
-                <Button className="bid-btn">{t("configCampaign.tabs.submit.title")}</Button>
-              </Col>
+              </TabPane>              
 
             </TabContent>
           </div>

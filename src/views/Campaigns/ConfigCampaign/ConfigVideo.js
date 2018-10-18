@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {
   Row,
   Col,
+  Button,
 } from "reactstrap";
 import {translate} from "react-i18next";
 import PropTypes from "prop-types";
@@ -27,44 +28,53 @@ class ConfigVideo extends Component {
       addedfile: (file) => console.log(file)
     };
     return (
-      <div className="video text-center">
-        <div className="container-fluid">
-          <Row>
-            <Col>
-              {/*<DropzoneComponent config={componentConfig}
-                   eventHandlers={eventHandlers}
-                   djsConfig={djsConfig} />*/
-                  }
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <img src="../img/video-size-01.png" alt="Image" className="video__image"/>
-            </Col>
-          </Row>
-          <Row>
-            <Col lg={{
-                  size: 8,
-                  offset: 2
-                }}>
-              <div className="video__teaser">
-                {t("configCampaign.video.description")}
-              </div>
-            </Col>
-          </Row>
-          <Row>
-            <Col lg={{
-                  size: 4,
-                  offset: 4
-                }}>
-              <div className="video__file-upload">
-                <button className="bid-btn bid-btn--dark">
-                  {t("configCampaign.video.upload.title")}
-                </button>
-              </div>
-            </Col>
-          </Row>
+      <div>
+        <div className="video text-center">
+          <div className="container-fluid">
+            <Row>
+              <Col>
+                {/*<DropzoneComponent config={componentConfig}
+                    eventHandlers={eventHandlers}
+                    djsConfig={djsConfig} />*/
+                    }
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <img src="../img/video-size-01.png" alt="Image" className="video__image"/>
+              </Col>
+            </Row>
+            <Row>
+              <Col lg={{
+                    size: 8,
+                    offset: 2
+                  }}>
+                <div className="video__teaser">
+                  {t("configCampaign.video.description")}
+                </div>
+              </Col>
+            </Row>
+            <Row>
+              <Col lg={{
+                    size: 4,
+                    offset: 4
+                  }}>
+                <div className="video__file-upload">
+                  <button className="bid-btn bid-btn--dark">
+                    {t("configCampaign.video.upload.title")}
+                  </button>
+                </div>
+              </Col>
+            </Row>
+          </div>
         </div>
+        <Row>
+          <Col>
+            <div className="border-top text-right px-3">
+              <Button className="bid-btn">{t("configCampaign.tabs.submit.title")}</Button>
+            </div>
+          </Col>
+        </Row>
       </div>
     );
   }

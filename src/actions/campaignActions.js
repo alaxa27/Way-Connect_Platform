@@ -58,6 +58,10 @@ import {
   BID_HISTORY,
   BID_HISTORY_FULFILLED,
   BID_HISTORY_REJECTED,
+
+  CAMPAIGN_UPLOAD_VIDEO,
+  CAMPAIGN_UPLOAD_VIDEO_FULFILLED,
+  CAMPAIGN_UPLOAD_VIDEO_REJECTED,
 } from "../constants/ActionTypes";
 
 const STATUS = require("../data/status");
@@ -512,6 +516,34 @@ export function fetchBidHistory(campaignId) {
             "competitors": 34
           }
         ]
+      });
+    }
+  };
+}
+
+export function uploadVideo(payload) {
+  return async (dispatch, getState) => {
+    dispatch({
+      type: CAMPAIGN_UPLOAD_VIDEO
+    });
+    try {
+      const response = await axiosInstance({
+        method: "post",
+        url: `/campaigns/communications/videos`,
+        data: {
+          campaign: payload.campaign,
+          video: payload.video,
+          redirection: payload.redirection,
+        }
+      });
+      dispatch({
+        type: CAMPAIGN_UPLOAD_VIDEO_FULFILLED,
+        payload: response.data
+      });
+    } catch (error) {
+      dispatch({
+        type: CAMPAIGN_UPLOAD_VIDEO_REJECTED,
+        payload: error
       });
     }
   };
