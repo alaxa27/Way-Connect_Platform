@@ -117,6 +117,7 @@ $g-blue:                          #2196F3;
 $g-half-black:                    rgba(0,0,0,.5);
 
 $g-gradient:                      linear-gradient(to right, $g-orange-dark, $g-orange-light);
+$g-gradient-to-bottom:            linear-gradient(to bottom, $g-orange-dark, $g-orange-light);
 
 // Breadcrumbs
 
@@ -235,6 +236,8 @@ $establishment-item-bg:           $g-light-grey-2;
 
 // Wallet Manager
 $transactions-bg:                 $g-light-grey;
+$budget-active:                   $g-gradient-to-bottom;
+$budget-inactive:                 $g-grey;
 
 // Research Filters
 $establishment-box:               $g-light-grey;

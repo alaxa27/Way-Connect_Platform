@@ -1,5 +1,5 @@
 import React from "react";
-import {Row, Col, Input} from "reactstrap";
+import {Modal, Row, Col, Input} from "reactstrap";
 import {translate} from "react-i18next";
 import PropTypes from "prop-types";
 import InputRange from "react-input-range";
@@ -20,7 +20,7 @@ const mapDispatchToProps = dispatch => ({
 
 const CreditCampaign = ({ creditMin, creditMax, creditCurrent, changeCreditCampaignValue, toggleCreditCampaignModal }) => {
   return (
-    <div className="modal-outline">
+    <Modal isOpen={true} toggle={toggleCreditCampaignModal} className="credit-campaign-modal">
       <div className="modal-body p-4">
         <div className="modal-body__heading modal-body__heading--with-actions mb-4">
           <div className="modal-body__title--mid">
@@ -58,7 +58,7 @@ const CreditCampaign = ({ creditMin, creditMax, creditCurrent, changeCreditCampa
           </Row>
         </div>
       </div>
-    </div>    
+    </Modal>
   );
 };
 

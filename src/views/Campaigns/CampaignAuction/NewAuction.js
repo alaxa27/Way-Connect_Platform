@@ -34,7 +34,7 @@ class NewAuction extends Component {
     return (
       <Card className="bid">
         <CardBody className="p-0 d-flex flex-column">
-          <div className="bid__forbidden p-3 d-none">
+          <div className="bid__forbidden p-3">
             <div className="bid__forbidden-wrapper"></div>
             <div className="bid__forbidden-info">
               <div className="bid__forbidden-icon mb-3">

@@ -47,6 +47,15 @@
 
   &__budget-item {
     width: 10px;
+    flex-grow: 0.5;
+
+    &--active {
+      background: $budget-active;
+    }
+
+    &--inactive {
+      background: $budget-inactive;
+    }
   }
 
   &__budget-label {

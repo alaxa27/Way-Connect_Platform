@@ -45,7 +45,7 @@ class Aside extends Component {
             <div className="aside-menu__wallet">
               <div className="aside-menu__budget px-3 mb-4">
                 {wallet.value === wallet.fixedValue ?
-                  <div className="aside-menu__budget-item" style={{flexGrow: "1", background: "grey"}}>
+                  <div className="aside-menu__budget-item aside-menu__budget-item--active">
                     <div className="aside-menu__budget-label ml-4">
                       <div className="aside-menu__budget-label--small">
                         Budget total
@@ -57,7 +57,7 @@ class Aside extends Component {
                   </div>
                 :
                   <React.Fragment>
-                    <div className="aside-menu__budget-item" style={{flexGrow: "0.5", background: "orange"}}>
+                    <div className="aside-menu__budget-item aside-menu__budget-item--active">
                       <div className="aside-menu__budget-label ml-4">
                         <div className="aside-menu__budget-label--small">
                           Budget total
@@ -67,7 +67,7 @@ class Aside extends Component {
                         </div>
                       </div>
                     </div>
-                    <div className="aside-menu__budget-item" style={{flexGrow: "0.5", background: "grey"}}>
+                    <div className="aside-menu__budget-item aside-menu__budget-item--inactive">
                       <div className="aside-menu__budget-label ml-4">
                         <div className="aside-menu__budget-label--small">
                           Budget immobilise
