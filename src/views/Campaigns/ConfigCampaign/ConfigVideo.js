@@ -57,7 +57,7 @@ class ConfigVideo extends Component {
   }
 
   handleTriggerVideoUpload = () => {
-    document.getElementById('fileInput').click();
+    document.getElementById("fileInput").click();
   }
 
   render() {
