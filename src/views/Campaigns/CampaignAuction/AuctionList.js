@@ -28,20 +28,20 @@ class AuctionList extends Component {
               className="bids__list"
               horizontal={false}
             >
-              {map(top, item => {
+              {map(top, (item, key) => {
                 return (
-                  <AuctionListItem item={item} key={item.id} />
+                  <AuctionListItem item={item} index={key + 1} key={key + 1} />
                 );
               })}
             </ScrollArea>
             {isCampaignDeep && current &&
               <div className="bids__current">
-                <AuctionListItem item={current} key={"index"} current />
+                <AuctionListItem item={current} index={Math.floor(current.average_rank)} current={true} />
               </div>
             }
           </CardBody>
         </Card>
-        {!isCampaignDeep && <div className="bids__empty-space"></div>}        
+        {!isCampaignDeep && <div className="bids__empty-space"></div>}
       </ReduxBlockUi>
     );
   }

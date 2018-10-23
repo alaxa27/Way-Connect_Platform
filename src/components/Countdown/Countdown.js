@@ -47,7 +47,7 @@ class Countdown extends Component {
     this.stop();
   }
 
-  calculateCountdown() {
+  calculateCountdown(endDate) {
     let diff = (Date.parse(new Date(endDate)) - Date.parse(new Date())) / 1000;
 
     // clear countdown when date is reached

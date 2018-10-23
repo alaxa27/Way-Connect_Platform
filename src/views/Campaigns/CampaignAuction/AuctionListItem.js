@@ -14,9 +14,9 @@ class AuctionListItem extends Component {
       <div className={"bids__item" + (current ? " bids__item--current" : "")}>
         <div className="bids__item-nr">
           <div>
-            #{item.id}
+            {this.props.index}
           </div>
-          <FontAwesome.FaStar/>
+          {(this.props.index === 1 ? <FontAwesome.FaStar/> : null)}
         </div>
         <div className="bids__item-body">
           <div className="bids__item-info">
@@ -54,7 +54,7 @@ class AuctionListItem extends Component {
             </div>
           </div>
         </div>
-      </div>  
+      </div>
     );
   }
 }

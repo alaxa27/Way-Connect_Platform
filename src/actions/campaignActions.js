@@ -446,7 +446,7 @@ export function fetchBidHistory(campaignId) {
       });
       dispatch({
         type: BID_HISTORY_FULFILLED,
-        payload: response.data
+        payload: response.data.reverse()
       });
     } catch (error) {
       dispatch({

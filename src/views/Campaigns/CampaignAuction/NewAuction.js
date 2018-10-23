@@ -22,7 +22,7 @@ const mapDispatchToProps = dispatch => ({
 
 class NewAuction extends Component {
   _renderForbidden() {
-    if (this.props.campaign.budget > 0) {
+    if (parseFloat(this.props.campaign.budget) > 0) {
       return (null);
     } else {
       return (<div className="bid__forbidden p-3">
@@ -59,7 +59,7 @@ class NewAuction extends Component {
     } = this.props;
     return (<Card className="bid">
       <CardBody className="p-0 d-flex flex-column">
-        {this._renderForbidden.bind(this)}
+        {this._renderForbidden.bind(this)()}
         <ReduxBlockUi tag="div" block="BID_HISTORY" unblock={["BID_HISTORY_FULFILLED", "BID_HISTORY_REJECTED"]}>
           <div className="bid__block bid__block--no-border d-flex flex-column p-3">
             <div className="bid__subtitle mb-3">
@@ -67,8 +67,8 @@ class NewAuction extends Component {
             </div>
             <ScrollArea speed={0.8} className="bid__history" contentClassName="p-2" horizontal={false}>
               {
-                map(bidHistory, (item, i) => {
-                  return (<div className={"bid__history-block"} key={item.id}>
+                map(bidHistory, (item, key) => {
+                  return (<div className={"bid__history-block"} key={key}>
                     <div className="bid__boxes bid__boxes--shadow">
                       <div className="bid__box bid__box--bordered p-3">
                         <i className="fa fa-user"></i>
@@ -140,9 +140,7 @@ NewAuction.propTypes = {
   bidHistory: PropTypes.array,
   toggleCreditCampaignModal: PropTypes.func,
   bidCampaign: PropTypes.func,
-  campaign: PropTypes.shape({
-    budget: PropTypes.number
-  }),
+  campaign: PropTypes.object,
   changeBid: PropTypes.func,
   bid: PropTypes.number,
   minPrice: PropTypes.string,
