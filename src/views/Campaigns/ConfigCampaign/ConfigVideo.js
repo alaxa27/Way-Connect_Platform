@@ -6,14 +6,65 @@ import {
 } from "reactstrap";
 import {translate} from "react-i18next";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {uploadVideo} from "../../../actions/campaignActions";
+import {compose} from "recompose";
+import { Redirect } from "react-router-dom";
+
+const mapStateToProps = state => ({
+  videoUpload: state.campaign.videoUpload
+});
+
+const mapDispatchToProps = dispatch => ({
+  uploadVideo: payload => dispatch(uploadVideo(payload)),
+});
 
 class ConfigVideo extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      minAllowedLength: 15,
+      lengthError: null
+    };
+  }
+
+  handleVideoUpload = (e) => {
+    const { campaignId, uploadVideo } = this.props;
+
+    const file = e.target.files[0];
+    const that = this;
+
+    const formData = new FormData();
+    formData.append("video", file);
+    formData.append("campaign", campaignId);
+    formData.append("redirection", "");
+
+    var video = document.createElement("video");
+    video.preload = "metadata";
+
+    video.onloadedmetadata = function() {
+      window.URL.revokeObjectURL(video.src);
+      var duration = video.duration;
+      if(duration < that.state.minAllowedLength) {
+        that.setState({
+          lengthError: `Video should have length more than ${that.state.minAllowedLength} seconds`
+        });
+      } else {
+        uploadVideo(formData);
+      }
+    };
+    video.src = URL.createObjectURL(file);
+  }
+
+  handleTriggerVideoUpload = () => {
+    document.getElementById("fileInput").click();
   }
 
   render() {
-    const { t } = this.props;
+    const { t, videoUpload, campaignId } = this.props;
+    if(videoUpload.success) {
+      return <Redirect to={`/campaigns/${campaignId}/auction`} />;
+    }
     const componentConfig = {
       iconFiletypes: [
         ".mp4", ".m4v", ".avi", ".flv"
@@ -60,9 +111,15 @@ class ConfigVideo extends Component {
                     offset: 4
                   }}>
                 <div className="video__file-upload">
-                  <button className="bid-btn bid-btn--dark">
+                  <button className="bid-btn bid-btn--dark" onClick={this.handleTriggerVideoUpload}>
                     {t("configCampaign.video.upload.title")}
                   </button>
+                  {this.state.lengthError &&
+                    <div className="alert alert-danger">
+                      {this.state.lengthError}
+                    </div>
+                  }
+                  <input id="fileInput" type="file" onChange={this.handleVideoUpload} className="d-none"/>
                 </div>
               </Col>
             </Row>
@@ -81,5 +138,9 @@ class ConfigVideo extends Component {
 }
 ConfigVideo.propTypes = {
   t: PropTypes.func,
+  campaignId: PropTypes.string,
+  videoUpload: PropTypes.object,
+  uploadVideo: PropTypes.func,
 };
-export default translate("translations")(ConfigVideo);
+
+export default compose(connect(mapStateToProps, mapDispatchToProps), translate("translations"))(ConfigVideo);
