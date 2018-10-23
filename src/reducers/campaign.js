@@ -53,6 +53,10 @@ import {
   BID_HISTORY,
   BID_HISTORY_FULFILLED,
   BID_HISTORY_REJECTED,
+
+  CAMPAIGN_UPLOAD_VIDEO,
+  CAMPAIGN_UPLOAD_VIDEO_FULFILLED,
+  CAMPAIGN_UPLOAD_VIDEO_REJECTED,
 } from "../constants/ActionTypes";
 import _ from "underscore";
 
@@ -207,6 +211,11 @@ const initialState = {
     error: null,
     fetching: true,
     data: {}
+  },
+  videoUpload: {
+    executing: false,
+    error: null,
+    success: false,
   }
 };
 
@@ -245,6 +254,10 @@ export default function reducer(state = initialState, action) {
           fetching: true,
           success: false,
           error: null
+        },
+        videoUpload: {
+          ...state.videoUpload,
+          success: false,
         }
       };
     case FETCH_CAMPAIGN_FULFILLED:
@@ -513,6 +526,37 @@ export default function reducer(state = initialState, action) {
           fetching: false,
           error: action.payload,
           items: []
+        }
+      };
+
+    case CAMPAIGN_UPLOAD_VIDEO:
+      return {
+        ...state,
+        videoUpload: {
+          ...state.videoUpload,
+          executing: true,
+          success: false,
+          error: null,
+        }
+      };
+    case CAMPAIGN_UPLOAD_VIDEO_FULFILLED:
+      return {
+        ...state,
+        videoUpload: {
+          ...state.videoUpload,
+          executing: false,
+          success: true,
+          error: null,
+        }
+      };
+    case CAMPAIGN_UPLOAD_VIDEO_REJECTED:
+      return {
+        ...state,
+        videoUpload: {
+          ...state.videoUpload,
+          executing: false,
+          success: false,
+          error: action.payload,
         }
       };
 
