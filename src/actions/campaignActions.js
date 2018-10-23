@@ -120,26 +120,7 @@ export function fetchCampaign(payload) {
       });
     } catch (error) {
       dispatch({
-        type: FETCH_CAMPAIGN_FULFILLED,
-        payload: {
-          "name": "foo",
-          "company_name": "bar",
-          "description": "Lorem ipsum dolor sit amet.",
-          "type": "BR",
-      
-          "created_at": "2018-01-29T12:34:56.000000Z",
-          "updated_at": "2018-01-29T12:34:56.000000Z",
-      
-          "filters": "{'age_max': 30}",
-      
-          "price": "2.34",
-          "repetitions": 1,
-          "budget": "10.00",
-          "targeted_customers": 5426,
-      
-          "spent_budget": "13.25",
-          "views": 12345
-        }
+        type: FETCH_CAMPAIGN_REJECTED
       });
     }
   };
@@ -311,7 +292,7 @@ export function changeResearchFilter(payload) {
         relationship_status: filters.relationship_status,
         work_status: filters.work_status,
         hobbies: filters.hobbies,
-        nationality: filters.nationality,
+        country: filters.nationality,
         age_min: filters.age.min,
         age_max: filters.age.max
       },
@@ -337,11 +318,7 @@ export function estimateAuction(payload) {
       });
     } catch (error) {
       dispatch({
-        type: AUCTION_ESTIMATE_FULFILLED,
-        payload: {
-          "price": "1.23",
-          "customer_count": 456
-        }
+        type: AUCTION_ESTIMATE_REJECTED
       });
     }
   };
@@ -413,36 +390,7 @@ export function fetchAuction(campaignId) {
       });
     } catch (error) {
       dispatch({
-        type: FETCH_AUCTION_FULFILLED,
-        payload: {
-          "top": [
-            {
-              "id": 1,
-              "company_name": "first",
-              "price": "3.00",
-              "last_bid": "2018-01-29T12:34:56.000000Z",
-              "average_rank": 1.25,
-              "views": 456,
-            },{
-              "id": 2,
-              "company_name": "second",
-              "price": "2.34",
-              "last_bid": "2018-01-27T12:34:56.000000Z",
-              "average_rank": 2.33,
-              "views": 324,
-            }
-          ],
-          "current": {
-            "id": 3,
-            "company_name": "foo",
-            "price": "3.00",
-            "global_rank": 11,
-            "average_rank": 1.25,
-            "views": 456
-          },
-          "competitors": 2,
-          "min_price": "1.02"
-        }
+        type: FETCH_AUCTION_REJECTED
       });
     }
   };
@@ -494,7 +442,7 @@ export function fetchBidHistory(campaignId) {
     try {
       const response = await axiosInstance({
         method: "get",
-        url: `/campaigns/${campaignId}/bids/`,
+        url: `/campaigns/${campaignId}/bid/`,
       });
       dispatch({
         type: BID_HISTORY_FULFILLED,
@@ -502,20 +450,7 @@ export function fetchBidHistory(campaignId) {
       });
     } catch (error) {
       dispatch({
-        type: BID_HISTORY_FULFILLED,
-        payload: [
-          {
-            "id": 1,
-            "price": "1.00",
-            "created_at": "2018-01-29T12:34:56.000000Z",
-            "competitors": 25
-          }, {
-            "id": 2,
-            "price": "3.32",
-            "created_at": "2018-01-29T12:34:56.000000Z",
-            "competitors": 34
-          }
-        ]
+        type: BID_HISTORY_REJECTED
       });
     }
   };

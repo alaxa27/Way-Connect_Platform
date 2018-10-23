@@ -2,7 +2,7 @@ import {
     axiosInstance
   } from "../constants/ApiConfig";
   import _ from "underscore";
-  
+
   import {
     WALLET,
     WALLET_FULFILLED,
@@ -12,7 +12,7 @@ import {
     WALLET_TRANSACTIONS_FULFILLED,
     WALLET_TRANSACTIONS_REJECTED,
   } from "../constants/ActionTypes";
-  
+
   export function fetchWallet() {
     return async (dispatch, getState) => {
       dispatch({
@@ -52,22 +52,15 @@ import {
           method: "get",
           url: "/wallets/transactions/",
         });
+
+        const items = response.data.reverse();
         dispatch({
           type: WALLET_TRANSACTIONS_FULFILLED,
-          payload: response.data,
+          payload: items
         });
       } catch (error) {
         dispatch({
-          type: WALLET_TRANSACTIONS_FULFILLED,
-          payload: [
-            {
-                "value": "1.00",
-                "created_at": "2018-01-29T12:34:56.000000Z"
-            }, {
-                "value": "3.32",
-                "created_at": "2018-01-29T12:34:56.000000Z"
-            },
-          ]
+          type: WALLET_TRANSACTIONS_REJECTED
         });
       }
     };

@@ -102,7 +102,7 @@ class Aside extends Component {
                             </div>
                           </div>
                           <div className="aside-menu__transactions-box aside-menu__transactions-box--big">
-                            {item.price} WC
+                            {item.value} WC
                           </div>
                         </div>
                       );
