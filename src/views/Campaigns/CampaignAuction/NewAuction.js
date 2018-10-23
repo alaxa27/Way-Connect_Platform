@@ -3,9 +3,15 @@ import InputRange from "react-input-range";
 import {translate} from "react-i18next";
 import PropTypes from "prop-types";
 import {map} from "underscore";
-import {Card, CardBody} from "reactstrap";
+import {
+  Card,
+  CardBody,
+  Input,
+  InputGroup,
+  InputGroupAddon,
+  InputGroupText
+} from "reactstrap";
 import ScrollArea from "react-scrollbar";
-import {Input} from "reactstrap";
 import {toggleCreditCampaignModal, bidCampaign, changeBid} from "../../../actions/campaignActions";
 import {connect} from "react-redux";
 import {compose} from "recompose";
@@ -118,9 +124,14 @@ class NewAuction extends Component {
               <span className="font-weight-bold">{minPrice}
                 WC</span>
             </div>
-            <Input className="bid__box bid__box--colored bid__box--new-bid text-center" type="text" name="newBid" value={bid} onChange={e => {
-                changeBid(e.target.value);
-              }}/>
+            <InputGroup className="bid__box bid__box--colored bid__box--new-bid">
+              <Input className="bid__box bid__box--colored bid__box--new-bid text-center" type="text" name="newBid" value={bid} onChange={e => {
+                  changeBid(e.target.value);
+                }}/>
+              <InputGroupAddon addonType="append">
+                <InputGroupText>WC</InputGroupText>
+              </InputGroupAddon>
+            </InputGroup>
           </div>
         </div>
         <div className="bid__block p-3 bid__add d-flex align-items-center justify-content-end">

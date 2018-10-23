@@ -426,7 +426,7 @@ export function bidCampaign(payload) {
 
 export function changeBid(payload) {
   return async (dispatch, getState) => {
-    const value = payload.replace(/[^0-9,]/g, "").replace(/(\,.*)\,/g, "$1");
+    const value = payload.replace(/[^0-9.]/g, "").replace(/(\,.*)\,/g, "$1");
     dispatch({
       type: BID_CHANGE,
       payload: value
