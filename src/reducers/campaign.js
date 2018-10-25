@@ -40,8 +40,6 @@ import {
 
   CAMPAIGN_CREDIT_MODAL_TOGGLE,
 
-  CAMPAIGN_CREDIT_VALUE_CHANGE,
-
   CAMPAIGN_PROPERTY_UPDATE,
 
   BID_CAMPAIGN,
@@ -188,11 +186,6 @@ const initialState = {
   researchFilters: researchFilterDefaults,
 
   creditModalShown: false,
-  credit: {
-    min: 0,
-    max: 7500,
-    current: 750
-  },
 
   bidAttempt: {
     executing: false,
@@ -403,22 +396,6 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         creditModalShown: !state.creditModalShown
-      };
-    case CAMPAIGN_CREDIT_VALUE_CHANGE:
-      let value = action.payload;
-      const { max, min } = state.credit;
-      if(value > max) {
-        value = max;
-      }
-      if(value < min) {
-        value = min;
-      }
-      return {
-        ...state,
-        credit: {
-          ...state.credit,
-          current: value
-        }
       };
     case CAMPAIGN_PROPERTY_UPDATE:
       return {

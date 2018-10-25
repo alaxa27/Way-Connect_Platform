@@ -41,8 +41,6 @@ import {
 
   CAMPAIGN_CREDIT_MODAL_TOGGLE,
 
-  CAMPAIGN_CREDIT_VALUE_CHANGE,
-
   CAMPAIGN_PROPERTY_UPDATE,
 
   CREATE_CAMPAIGN,
@@ -328,15 +326,6 @@ export function toggleCreditCampaignModal() {
   return async (dispatch, getState) => {
     dispatch({
       type: CAMPAIGN_CREDIT_MODAL_TOGGLE,
-    });
-  };
-}
-
-export function changeCreditCampaignValue(payload) {
-  return async (dispatch, getState) => {
-    dispatch({
-      type: CAMPAIGN_CREDIT_VALUE_CHANGE,
-      payload
     });
   };
 }
