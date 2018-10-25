@@ -53,8 +53,6 @@ import {
   BID_CAMPAIGN_FULFILLED,
   BID_CAMPAIGN_REJECTED,
 
-  BID_CHANGE,
-
   BID_HISTORY,
   BID_HISTORY_FULFILLED,
   BID_HISTORY_REJECTED,
@@ -116,7 +114,9 @@ export function fetchCampaign(payload) {
       });
       dispatch({
         type: FETCH_CAMPAIGN_FULFILLED,
-        payload: response.data
+        payload: { ...response.data,
+          id: payload
+        }
       });
     } catch (error) {
       dispatch({
@@ -415,22 +415,13 @@ export function bidCampaign(payload) {
       });
       dispatch(fetchCampaign(payload.campaignId));
       dispatch(fetchAuction(payload.campaignId));
+      dispatch(fetchBidHistory(payload.campaignId));
     } catch (error) {
       dispatch({
         type: BID_CAMPAIGN_REJECTED,
         payload: error
       });
     }
-  };
-}
-
-export function changeBid(payload) {
-  return async (dispatch, getState) => {
-    const value = payload.replace(/[^0-9.]/g, "").replace(/(\,.*)\,/g, "$1");
-    dispatch({
-      type: BID_CHANGE,
-      payload: value
-    });
   };
 }
 

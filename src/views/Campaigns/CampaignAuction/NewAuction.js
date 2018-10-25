@@ -12,21 +12,40 @@ import {
   InputGroupText
 } from "reactstrap";
 import ScrollArea from "react-scrollbar";
-import {toggleCreditCampaignModal, bidCampaign, changeBid} from "../../../actions/campaignActions";
+import {toggleCreditCampaignModal, bidCampaign} from "../../../actions/campaignActions";
 import {connect} from "react-redux";
 import {compose} from "recompose";
 import ReduxBlockUi from "react-block-ui/redux";
 import {formatDate} from "../../../services/DateFormatterService";
 
-const mapStateToProps = state => ({campaign: state.campaign.campaign, bid: state.campaign.bid, bidHistory: state.campaign.bidHistory.items, minPrice: state.campaign.auction.data.min_price});
+const mapStateToProps = store => ({campaign: store.campaign.campaign, bidHistory: store.campaign.bidHistory.items, minPrice: store.campaign.auction.data.min_price});
 
 const mapDispatchToProps = dispatch => ({
   toggleCreditCampaignModal: () => dispatch(toggleCreditCampaignModal()),
-  bidCampaign: (payload) => dispatch(bidCampaign(payload)),
-  changeBid: (payload) => dispatch(changeBid(payload))
+  bidCampaign: (payload) => dispatch(bidCampaign(payload))
 });
 
 class NewAuction extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      bid: 0
+    };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.campaign.price !== prevProps.campaign.price) {
+      this.setState({bid: this.props.campaign.price});
+    }
+  }
+
+  changeBid(value) {
+    let regexValue = value.replace(/[^0-9.]/g, "").replace(/(\,.*)\,/g, "$1");
+    this.setState({bid: regexValue});
+  }
+
   _renderForbidden() {
     if (parseFloat(this.props.campaign.budget) > 0) {
       return (null);
@@ -57,8 +76,6 @@ class NewAuction extends Component {
       bidCampaign,
       campaign,
       toggleCreditCampaignModal,
-      changeBid,
-      bid,
       bidHistory,
       minPrice,
       t
@@ -125,8 +142,8 @@ class NewAuction extends Component {
                 WC</span>
             </div>
             <InputGroup className="bid__box bid__box--colored bid__box--new-bid">
-              <Input className="bid__box bid__box--colored bid__box--new-bid text-center" type="text" name="newBid" value={bid} onChange={e => {
-                  changeBid(e.target.value);
+              <Input className="bid__box bid__box--colored bid__box--new-bid text-center" type="text" name="newBid" value={this.state.bid} onChange={e => {
+                  this.changeBid(e.target.value);
                 }}/>
               <InputGroupAddon addonType="append">
                 <InputGroupText>WC</InputGroupText>
@@ -137,7 +154,7 @@ class NewAuction extends Component {
         <div className="bid__block p-3 bid__add d-flex align-items-center justify-content-end">
 
           <button className="bid-btn bid-btn--dark" onClick={() => {
-              bidCampaign({campaignId: campaign.id, price: bid});
+              bidCampaign({campaignId: campaign.id, price: this.state.bid});
             }}>
             {t("campaignAuction.bid.bid")}
           </button>
@@ -152,8 +169,6 @@ NewAuction.propTypes = {
   toggleCreditCampaignModal: PropTypes.func,
   bidCampaign: PropTypes.func,
   campaign: PropTypes.object,
-  changeBid: PropTypes.func,
-  bid: PropTypes.number,
   minPrice: PropTypes.string,
   t: PropTypes.func
 };

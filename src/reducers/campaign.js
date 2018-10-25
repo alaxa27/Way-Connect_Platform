@@ -48,8 +48,6 @@ import {
   BID_CAMPAIGN_FULFILLED,
   BID_CAMPAIGN_REJECTED,
 
-  BID_CHANGE,
-
   BID_HISTORY,
   BID_HISTORY_FULFILLED,
   BID_HISTORY_REJECTED,
@@ -156,8 +154,8 @@ const researchFilterDefaults = {
   male: false,
   female: false,
   age: {
-    min: 18,
-    max: 24
+    min: 0,
+    max: 100
   },
   workStatus: [],
   relationshipStatus: [],
@@ -196,7 +194,6 @@ const initialState = {
     current: 750
   },
 
-  bid: 0,
   bidAttempt: {
     executing: false,
     error: null,
@@ -449,6 +446,10 @@ export default function reducer(state = initialState, action) {
           fetching: false,
           error: null,
           data: action.payload
+        },
+        campaign: {
+          ...state.campaign,
+          targeted_customers: action.payload.targeted_customers
         }
       };
     case FETCH_AUCTION_REJECTED:
@@ -491,12 +492,6 @@ export default function reducer(state = initialState, action) {
           error: action.payload,
           success: false
         }
-      };
-
-    case BID_CHANGE:
-      return {
-        ...state,
-        bid: action.payload,
       };
 
     case BID_HISTORY:
