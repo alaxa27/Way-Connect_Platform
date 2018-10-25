@@ -5,15 +5,17 @@ import PropTypes from "prop-types";
 import InputRange from "react-input-range";
 import {connect} from "react-redux";
 import {compose} from "recompose";
-import {toggleCreditCampaignModal} from "../../actions/campaignActions";
+import {toggleCreditCampaignModal, creditCampaign} from "../../actions/campaignActions";
 
 const mapStateToProps = store => ({
+  campaignID: store.campaign.campaign.id,
   budget: parseFloat(store.campaign.campaign.budget),
   walletValue: parseFloat(store.wallet.wallet.value)
 });
 
 const mapDispatchToProps = dispatch => ({
-  toggleCreditCampaignModal: () => dispatch(toggleCreditCampaignModal())
+  toggleCreditCampaignModal: () => dispatch(toggleCreditCampaignModal()),
+  creditCampaign: (payload) => dispatch(creditCampaign(payload))
 });
 
 class CreditCampaign extends Component {
@@ -21,7 +23,7 @@ class CreditCampaign extends Component {
     super(props);
     this.state = {
       credit: this.props.budget
-    }
+    };
   }
 
   componentDidUpdate(prevProps) {
@@ -31,7 +33,9 @@ class CreditCampaign extends Component {
   }
 
   changeCreditCampaignValue(value, max) {
-    let regexValue = value.replace(/[^0-9.]/g, "").replace(/(\,.*)\,/g, "$1");
+    let regexValue = value.toString().replace(/[^0-9.]/g, "").replace(/(\,.*)\,/g, "$1");
+
+    regexValue = parseFloat(regexValue);
 
     if (regexValue > max) {
       regexValue = max;
@@ -39,7 +43,7 @@ class CreditCampaign extends Component {
     if (regexValue < 0) {
       regexValue = 0;
     }
-    this.setState({credit: regexValue})
+    this.setState({credit: regexValue});
   }
 
   render() {
@@ -70,7 +74,7 @@ class CreditCampaign extends Component {
             <Col sm="8" xs="12">
               <div className="modal-body__range mt-3">
                 <InputRange maxValue={creditMax} minValue={0} value={this.state.credit} onChange={val => {
-                    changeCreditCampaignValue(val, creditMax);
+                    this.changeCreditCampaignValue(val, creditMax);
                   }} formatLabel={value => `${value} WC`}/>
               </div>
             </Col>
@@ -78,7 +82,7 @@ class CreditCampaign extends Component {
             <Col sm="4" xs="12">
               <div className="modal-body__range-value">
                 <Input className="bid__box--colored bid__box--new-bid text-center" type="text" name="newBid" value={this.state.credit} onChange={e => {
-                    changeCreditCampaignValue(e.target.value, creditMax);
+                    this.changeCreditCampaignValue(e.target.value, creditMax);
                   }}/>
               </div>
             </Col>
@@ -88,7 +92,12 @@ class CreditCampaign extends Component {
                 size: 4,
                 offset: 8
               }} xs="12">
-              <button className="modal-body__submit bid-btn bid-btn--dark btn-block">
+              <button className="modal-body__submit bid-btn bid-btn--dark btn-block" onClick={() => {
+                  this.props.creditCampaign({
+                    amount: this.state.credit - this.props.budget,
+                    campaignID: this.props.campaignID
+                  })
+                }}>
                 Credit
               </button>
             </Col>
@@ -101,9 +110,11 @@ class CreditCampaign extends Component {
 
 CreditCampaign.propTypes = {
   t: PropTypes.func,
+  campaignID: PropTypes.string,
   budget: PropTypes.number,
   walletValue: PropTypes.number,
-  toggleCreditCampaignModal: PropTypes.func
+  toggleCreditCampaignModal: PropTypes.func,
+  creditCampaign: PropTypes.func
 };
 
 export default compose(connect(mapStateToProps, mapDispatchToProps), translate("translations"))(CreditCampaign);

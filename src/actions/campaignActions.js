@@ -41,6 +41,10 @@ import {
 
   CAMPAIGN_CREDIT_MODAL_TOGGLE,
 
+  CREDIT_CAMPAIGN,
+  CREDIT_CAMPAIGN_FULFILLED,
+  CREDIT_CAMPAIGN_REJECTED,
+
   CAMPAIGN_PROPERTY_UPDATE,
 
   CREATE_CAMPAIGN,
@@ -327,6 +331,34 @@ export function toggleCreditCampaignModal() {
     dispatch({
       type: CAMPAIGN_CREDIT_MODAL_TOGGLE,
     });
+  };
+}
+
+export function creditCampaign(payload) {
+  return async (dispatch, getState) => {
+    dispatch({
+      type: CREDIT_CAMPAIGN
+    });
+    try {
+      const response = await axiosInstance({
+        method: "post",
+        url: `/campaigns/${payload.campaignID}/deposit/`,
+        data: {
+          amount: payload.amount
+        }
+      });
+      dispatch({
+        type: CREDIT_CAMPAIGN_FULFILLED,
+        payload: response.data
+      });
+      dispatch(fetchCampaign(payload.campaignID));
+      dispatch(toggleCreditCampaignModal())
+    } catch (error) {
+      dispatch({
+        type: CREDIT_CAMPAIGN_REJECTED,
+        payload: error
+      });
+    }
   };
 }
 
