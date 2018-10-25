@@ -49,6 +49,7 @@ class CreditCampaign extends Component {
     }
 
     this.setState({credit: regexValue});
+    console.log(regexValue);
   }
 
   render() {

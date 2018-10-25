@@ -352,7 +352,7 @@ export function creditCampaign(payload) {
         method: "post",
         url: `/campaigns/${payload.campaignID}/deposit/`,
         data: {
-          amount: payload.amount
+          amount: Math.round(payload.amount * 100) / 100
         }
       });
       dispatch({
