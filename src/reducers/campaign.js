@@ -1,4 +1,6 @@
 import {
+  CLEAN_CAMPAIGN_CACHE,
+
   FETCH_FILTER_DATA,
   FETCH_FILTER_DATA_FULFILLED,
   FETCH_FILTER_DATA_REJECTED,
@@ -71,6 +73,10 @@ const campaignDefaults = {
   targeted_customers: 0,
   spent_budget: 0,
   views: 0,
+  communication: {
+    id: 0,
+    video: ""
+  },
 
   fetching: false,
   success: false,
@@ -211,6 +217,9 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
+    case CLEAN_CAMPAIGN_CACHE:
+      return {...initialState};
+
     case FETCH_FILTER_DATA:
       return { ...state,
         filterData: {

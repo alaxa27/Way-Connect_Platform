@@ -4,6 +4,8 @@ import {
 import _ from "underscore";
 
 import {
+  CLEAN_CAMPAIGN_CACHE,
+
   FETCH_FILTER_DATA,
   FETCH_FILTER_DATA_FULFILLED,
   FETCH_FILTER_DATA_REJECTED,
@@ -65,6 +67,14 @@ import {
 } from "../constants/ActionTypes";
 
 const STATUS = require("../data/status");
+
+export function cleanCampaignCache(payload) {
+  return async (dispatch, getState) => {
+    dispatch({
+      type: CLEAN_CAMPAIGN_CACHE
+    });
+  };
+}
 
 export function fetchFilterData(payload) {
   return async (dispatch, getState) => {
@@ -288,13 +298,9 @@ export function changeResearchFilter(payload) {
     });
     const filters = getState().campaign.researchFilters;
     const data = {
-      price: "1.0",
+      price: "1.00",
       filters: {
-        gender: filters.male ? "M" : "F",
-        relationship_status: filters.relationship_status,
-        work_status: filters.work_status,
-        hobbies: filters.hobbies,
-        country: filters.nationality,
+        gender: filters.male ? "M" : filters.female ? "F" : "",
         age_min: filters.age.min,
         age_max: filters.age.max
       },

@@ -24,7 +24,6 @@ class CampaignAuction extends Component {
   componentDidMount() {
     const {fetchCampaign, fetchAuction, fetchBidHistory, match} = this.props;
     const campaignId = match.params.id;
-    fetchCampaign(campaignId);
     fetchAuction(campaignId);
     fetchBidHistory(campaignId);
   }

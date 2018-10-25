@@ -20,7 +20,7 @@ export function fetchCampaigns(payload) {
       });
       dispatch({
         type: FETCH_CAMPAIGNS_FULFILLED,
-        payload: response.data
+        payload: response.data.reverse()
       });
     } catch (error) {
       dispatch({
