@@ -30,6 +30,9 @@ class Aside extends Component {
   render() {
     const { t, wallet, transactions } = this.props;
     const env = process.env.STAGE;
+    const value = parseFloat(wallet.value);
+    const fixedValue = parseFloat(wallet.fixedValue);
+    const activePortion = value / (value + fixedValue);
     return (
       <ReduxBlockUi tag="div" block={["WALLET", "WALLET_TRANSACTIONS"]} unblock={["WALLET_FULFILLED", "WALLET_REJECTED", "WALLET_TRANSACTIONS_FULFILLED", "WALLET_TRANSACTIONS_REJECTED"]}>
         {env !== "production" ?
@@ -57,7 +60,7 @@ class Aside extends Component {
                   </div>
                 :
                   <React.Fragment>
-                    <div className="aside-menu__budget-item aside-menu__budget-item--active">
+                    <div className="aside-menu__budget-item aside-menu__budget-item--active" style={{flexGrow: activePortion}}>
                       <div className="aside-menu__budget-label ml-4">
                         <div className="aside-menu__budget-label--small">
                           Budget total
@@ -67,7 +70,7 @@ class Aside extends Component {
                         </div>
                       </div>
                     </div>
-                    <div className="aside-menu__budget-item aside-menu__budget-item--inactive">
+                    <div className="aside-menu__budget-item aside-menu__budget-item--inactive" style={{flexGrow: 1 - activePortion}}>
                       <div className="aside-menu__budget-label ml-4">
                         <div className="aside-menu__budget-label--small">
                           Budget immobilise
