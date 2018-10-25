@@ -22,7 +22,7 @@ class CreditCampaign extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      credit: this.props.budget
+      credit: this.props.budget.toString()
     };
   }
 
@@ -33,16 +33,21 @@ class CreditCampaign extends Component {
   }
 
   changeCreditCampaignValue(value, max) {
-    let regexValue = value.toString().replace(/[^0-9.]/g, "").replace(/(\,.*)\,/g, "$1");
+    value = value.toString();
 
-    regexValue = parseFloat(regexValue);
+    let regexValue = value.replace(/[^0-9.]/g, "");
 
-    if (regexValue > max) {
+    if (regexValue.length === 0) {
+      regexValue = "0";
+    }
+
+    if (parseFloat(regexValue) > max) {
       regexValue = max;
     }
-    if (regexValue < 0) {
+    if (parseFloat(regexValue) < 0) {
       regexValue = 0;
     }
+
     this.setState({credit: regexValue});
   }
 
@@ -73,7 +78,7 @@ class CreditCampaign extends Component {
           <Row className="mb-4">
             <Col sm="8" xs="12">
               <div className="modal-body__range mt-3">
-                <InputRange maxValue={creditMax} minValue={0} value={this.state.credit} onChange={val => {
+                <InputRange maxValue={creditMax} minValue={0} value={parseFloat(this.state.credit)} onChange={val => {
                     this.changeCreditCampaignValue(val, creditMax);
                   }} formatLabel={value => `${value} WC`}/>
               </div>
@@ -96,7 +101,7 @@ class CreditCampaign extends Component {
                   this.props.creditCampaign({
                     amount: this.state.credit - this.props.budget,
                     campaignID: this.props.campaignID
-                  })
+                  });
                 }}>
                 Credit
               </button>

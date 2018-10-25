@@ -352,7 +352,7 @@ export function creditCampaign(payload) {
         payload: response.data
       });
       dispatch(fetchCampaign(payload.campaignID));
-      dispatch(toggleCreditCampaignModal())
+      dispatch(toggleCreditCampaignModal());
     } catch (error) {
       dispatch({
         type: CREDIT_CAMPAIGN_REJECTED,
