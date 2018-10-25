@@ -66,6 +66,8 @@ import {
   CAMPAIGN_UPLOAD_VIDEO_REJECTED,
 } from "../constants/ActionTypes";
 
+import { fetchWallet } from "./walletActions";
+
 const STATUS = require("../data/status");
 
 export function cleanCampaignCache(payload) {
@@ -358,6 +360,7 @@ export function creditCampaign(payload) {
         payload: response.data
       });
       dispatch(fetchCampaign(payload.campaignID));
+      dispatch(fetchWallet());
       dispatch(toggleCreditCampaignModal());
     } catch (error) {
       dispatch({
