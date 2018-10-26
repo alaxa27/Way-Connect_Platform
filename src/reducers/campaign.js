@@ -176,6 +176,7 @@ const initialState = {
   error: null,
 
   newCampaign: {
+    id: "",
     name: "",
     companyName: "",
     productDescription: "",
@@ -390,6 +391,7 @@ export default function reducer(state = initialState, action) {
         newCampaign: {
           ...state.newCampaign,
           created: true,
+          id: action.payload
         }
       };
     case CREATE_CAMPAIGN_REJECTED:

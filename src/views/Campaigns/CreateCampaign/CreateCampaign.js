@@ -8,7 +8,7 @@ import TypologieList from "../../../components/TypologieList/TypologieList";
 import {fetchFilterData, createCampaign} from "../../../actions/campaignActions";
 import ValidatorService from "../../../services/ValidatorService";
 import ReduxBlockUi from "react-block-ui/redux";
-import { Redirect } from "react-router-dom";
+import {Redirect} from "react-router-dom";
 
 const mapStateToProps = state => ({
   filterData: state.campaign.filterData,
@@ -16,12 +16,12 @@ const mapStateToProps = state => ({
   communicationType: state.campaign.newCampaign.communicationType,
   companyName: state.campaign.newCampaign.companyName,
   productDescription: state.campaign.newCampaign.productDescription,
-  created: state.campaign.newCampaign.created,
+  newCampaign: state.campaign.newCampaign
 });
 
 const mapDispatchToProps = dispatch => ({
   fetchFilterData: payload => dispatch(fetchFilterData(payload)),
-  createCampaign: payload => dispatch(createCampaign(payload)),
+  createCampaign: payload => dispatch(createCampaign(payload))
 });
 
 class CreateCampaign extends Component {
@@ -29,67 +29,63 @@ class CreateCampaign extends Component {
     super(props);
     this.state = {
       fixed: false,
-      validationError: false,
+      validationError: false
     };
-    const { fetchFilterData } = this.props;
+    const {fetchFilterData} = this.props;
     fetchFilterData();
     this.validator = new ValidatorService().getValidator();
   }
 
   handleCreateCampaign = () => {
-    const { createCampaign, name, communicationType, companyName, productDescription } = this.props;
-    if(this.validator.allValid()){
-      createCampaign({
-        name,
-        company_name: companyName,
-        description: productDescription,
-        type: communicationType,
-      });
+    const {createCampaign, name, communicationType, companyName, productDescription} = this.props;
+    if (this.validator.allValid()) {
+      createCampaign({name, company_name: companyName, description: productDescription, type: communicationType});
     } else {
-        this.validator.showMessages();
-        this.setState({
-          validationError: true
-        });
+      this.validator.showMessages();
+      this.setState({validationError: true});
     }
   }
 
   render() {
-    const { created } = this.props;
-    if(created) {
-      return <Redirect to="/campaigns/2/bid"/>;
+    if (this.props.newCampaign.created) {
+      return <Redirect to={`/campaigns/${this.props.newCampaign.id}/config`}/>;
     }
-    return (
-      <ReduxBlockUi tag="div" block="CREATE_CAMPAIGN" unblock={["CREATE_CAMPAIGN_FULFILLED", "CREATE_CAMPAIGN_REJECTED"]}>
-        <div className="sub-page-wrapper animated fadeIn">
-          <Row>
-            <Col>
-              <div className="c-breadcrumbs">
-                <div className="c-breadcrumbs__item">
-                  <div className="c-breadcrumbs__label">
-                    <FontAwesome.FaCircle className="orange-circle"/>
-                    Typologie list
-                  </div>
+    return (<ReduxBlockUi tag="div" block="CREATE_CAMPAIGN" unblock={["CREATE_CAMPAIGN_FULFILLED", "CREATE_CAMPAIGN_REJECTED"]}>
+      <div className="sub-page-wrapper animated fadeIn">
+        <Row>
+          <Col>
+            <div className="c-breadcrumbs">
+              <div className="c-breadcrumbs__item">
+                <div className="c-breadcrumbs__label">
+                  <FontAwesome.FaCircle className="orange-circle"/>
+                  Typologie list
                 </div>
               </div>
-              <TypologieList validator={this.validator} validationError={this.state.validationError} />
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <div className="c-breadcrumbs">
-                <div className="c-breadcrumbs__item">
-                  <div className="c-breadcrumbs__label">
-                    <FontAwesome.FaCircle className="green-circle"/>
-                    Research Filters
-                  </div>
+            </div>
+            <TypologieList validator={this.validator} validationError={this.state.validationError}/>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <div className="c-breadcrumbs">
+              <div className="c-breadcrumbs__item">
+                <div className="c-breadcrumbs__label">
+                  <FontAwesome.FaCircle className="green-circle"/>
+                  Research Filters
                 </div>
               </div>
-              <ResearchFilters fixed={this.state.fixed} handleCreateCampaign={this.handleCreateCampaign} />
-            </Col>
-          </Row>
-        </div>
-      </ReduxBlockUi>
-    );
+            </div>
+            <ResearchFilters fixed={this.state.fixed} />
+          </Col>
+        </Row>
+        <Row>
+          <Col md={{size: 6, offset: 6}}>
+            <button className="bid-btn bid-btn--dark mt-4" onClick={this.handleCreateCampaign}>Start bidding</button>
+          </Col>
+        </Row>
+
+      </div>
+    </ReduxBlockUi>);
   }
 }
 
@@ -102,7 +98,10 @@ CreateCampaign.propTypes = {
   communicationType: PropTypes.string,
   companyName: PropTypes.string,
   productDescription: PropTypes.string,
-  created: PropTypes.string,
+  newCampaign: PropTypes.shape({
+    created: PropTypes.boolean,
+    id: PropTypes.string
+  })
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateCampaign);

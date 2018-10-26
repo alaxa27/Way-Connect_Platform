@@ -386,7 +386,7 @@ export function createCampaign(payload) {
       });
       dispatch({
         type: CREATE_CAMPAIGN_FULFILLED,
-        payload: response.data
+        payload: response.data.id
       });
     } catch (error) {
       dispatch({
