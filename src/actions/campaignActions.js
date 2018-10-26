@@ -66,7 +66,9 @@ import {
   CAMPAIGN_UPLOAD_VIDEO_REJECTED,
 } from "../constants/ActionTypes";
 
-import { fetchWallet } from "./walletActions";
+import {
+  fetchWallet
+} from "./walletActions";
 
 const STATUS = require("../data/status");
 
@@ -103,7 +105,7 @@ export function fetchFilterData(payload) {
           hobbies: hobbies,
           workStatus: STATUS["PROFESSIONAL"],
           relationshipStatus: STATUS["RELATIONSHIP"],
-          nationality: STATUS["NATIONALITY"],
+          country: STATUS["NATIONALITY"],
         }
       });
     } catch (error) {
@@ -126,9 +128,13 @@ export function fetchCampaign(payload) {
         method: "get",
         url: "/campaigns/" + payload
       });
+
+      let res_filters = JSON.parse(response.data.filters);
+
       dispatch({
         type: FETCH_CAMPAIGN_FULFILLED,
         payload: { ...response.data,
+          filters: res_filters,
           id: payload
         }
       });
@@ -303,8 +309,8 @@ export function changeResearchFilter(payload) {
       price: "1.00",
       filters: {
         gender: filters.male ? "M" : filters.female ? "F" : "",
-        age_min: filters.age.min,
-        age_max: filters.age.max
+        age_min: filters.age_min,
+        age_max: filters.age_max
       },
     };
     dispatch(estimateAuction(data));

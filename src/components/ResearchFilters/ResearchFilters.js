@@ -2,9 +2,10 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {Row, Col, Input} from "reactstrap";
 import InputRange from "react-input-range";
+import _ from "underscore";
 import SelectBox from "../SelectBox/SelectBox";
-import { connect } from "react-redux";
-import * as actions from "../../actions/campaignActions";
+import {connect} from "react-redux";
+import {fetchFilterData, changeResearchFilter} from "../../actions/campaignActions";
 import Map from "../Map";
 import Checkbox from "../Checkbox/";
 import ComingSoon from "../../components/Modal/ComingSoon";
@@ -12,18 +13,74 @@ import {translate} from "react-i18next";
 import {compose} from "recompose";
 import moment from "moment";
 
-const mapStateToProps = state => ({
-  researchFilters: state.campaign.researchFilters,
-  filterData: state.campaign.filterData
-});
+const mapStateToProps = state => ({researchFilters: state.campaign.researchFilters, filterData: state.campaign.filterData});
 
 const mapDispatchToProps = dispatch => ({
-  changeResearchFilter: payload => dispatch(actions.changeResearchFilter(payload))
+  fetchFilterData: () => dispatch(fetchFilterData()),
+  changeResearchFilter: payload => dispatch(changeResearchFilter(payload))
 });
 
 class ResearchFilters extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      filterData: {
+        workStatus: [
+          {
+            value: "F",
+            label: "dapoiw"
+          }
+        ]
+      }
+    };
+    props.fetchFilterData();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.researchFilters !== this.props.researchFilters || prevProps.filterData !== this.props.filterData && this.props.fixed) {
+      const filterData = {
+        workStatus: this._compareValueAndKeep(this.props.researchFilters.work_status, this.props.filterData.workStatus),
+        relationshipStatus: this._compareValueAndKeep(this.props.researchFilters.relationship_status, this.props.filterData.relationshipStatus)
+      };
+
+      this.setState({filterData});
+    } else if (!this.props.fixed && prevProps.filterData !== this.props.filterData) {
+      this.setState({filterData: this.props.filterData});
+    }
+  }
+
+  _compareValueAndKeep(filters, status) {
+    return _.filter(status, e => _.contains(filters, e.value));
+  }
+
+  _changeGender(gender, state) {
+    const anti_gender = (
+      gender === "M"
+      ? "F"
+      : "M");
+    const both = "";
+
+    switch (state) {
+      case gender:
+        return anti_gender;
+      case anti_gender:
+        return both;
+      case both:
+        return anti_gender;
+    }
+  }
+
   render() {
-    const { changeResearchFilter, filterData, researchFilters, t} = this.props;
+    const {researchFilters, t} = this.props;
+
+    const changeResearchFilter = (obj) => (
+      this.props.fixed
+      ? null
+      : this.props.changeResearchFilter(obj));
+
+    console.log(this.state);
+
     return (<div className="research-filters">
       <Row>
         <Col md="6" xs="12">
@@ -31,54 +88,81 @@ class ResearchFilters extends Component {
           <div className="input-wrapper">
             <label>Gender</label>
             <div className="c-radio">
-              <Input type="radio" className="c-radio__item" id="male" name="gender_male" value="male" checked={researchFilters.male} onClick={() => {changeResearchFilter({name: "male", value: !researchFilters.male});}}/>
+              <Input type="radio" className="c-radio__item" id="male" name="gender_male" value="male" checked={(researchFilters.gender === "M" || researchFilters.gender === "")} onClick={() => {
+                  changeResearchFilter({
+                    name: "gender",
+                    value: this._changeGender("M", researchFilters.gender)
+                  });
+                }}/>
               <label htmlFor="male" className="c-radio__label">Male</label>
-              <Input type="radio" className="c-radio__item" id="female" name="gender_female" value="female" checked={researchFilters.female} onClick={() => {changeResearchFilter({name: "female",  value: !researchFilters.female});}}/>
+              <Input type="radio" className="c-radio__item" id="female" name="gender_female" value="female" checked={(researchFilters.gender === "F" || researchFilters.gender === "")} onClick={() => {
+                  changeResearchFilter({
+                    name: "gender",
+                    value: this._changeGender("F", researchFilters.gender)
+                  });
+                }}/>
               <label htmlFor="female" className="c-radio__label">Female</label>
             </div>
           </div>
           <div className="input-wrapper d-flex justify-content-between">
             <label>Age</label>
-            <label className="research-filters__preview">{researchFilters.age.min}-{researchFilters.age.max}yo</label>
+            <label className="research-filters__preview">{researchFilters.age_min}-{researchFilters.age_max}yo</label>
           </div>
           <div className="input-wrapper">
-            <InputRange maxValue={100} minValue={0} value={researchFilters.age} onChange={value => {changeResearchFilter({name: "age",  value});}}/>
+            <InputRange maxValue={100} minValue={0} value={{
+                min: researchFilters.age_min,
+                max: researchFilters.age_max
+              }} onChange={value => {
+                changeResearchFilter({name: "age_min", value: value.min});
+                changeResearchFilter({name: "age_max", value: value.max});
+              }}/>
           </div>
 
           <div className="input-wrapper">
             <label>Work status</label>
-            <SelectBox name="work-status" placeholder="Every status" options={filterData.workStatus} fixed={this.props.fixed} onChange={value => {changeResearchFilter({name: "workStatus",  value});}} value={researchFilters.workStatus} />
+            <SelectBox name="work-status" placeholder="Every status" options={this.state.filterData.workStatus} fixed={this.props.fixed} onChange={value => {
+                changeResearchFilter({name: "work_status", value});
+              }} value={researchFilters.work_status}/>
           </div>
 
           <div className="input-wrapper">
             <label>Relationship status</label>
-            <SelectBox name="relationship-status" placeholder="Every status" options={filterData.relationshipStatus} fixed={this.props.fixed} onChange={value => {changeResearchFilter({name: "relationshipStatus",  value});}} value={researchFilters.relationshipStatus}/>
+            <SelectBox name="relationship-status" placeholder="Every status" options={this.state.filterData.relationshipStatus} fixed={this.props.fixed} onChange={value => {
+                changeResearchFilter({name: "relationship_status", value});
+              }} value={researchFilters.relationship_status}/>
           </div>
 
           <div className="input-wrapper">
             <label>Nationality</label>
-            <SelectBox name="nationality" placeholder="Every status" options={filterData.nationality} fixed={this.props.fixed} onChange={value => {changeResearchFilter({name: "nationality",  value});}} value={researchFilters.nationality}/>
+            <SelectBox name="nationality" placeholder="Every status" options={this.state.filterData.country} fixed={this.props.fixed} onChange={value => {
+                changeResearchFilter({name: "country", value});
+              }} value={researchFilters.country}/>
           </div>
 
           <div className="input-wrapper">
             <label>Hobbies</label>
-            <SelectBox name="hobbies" placeholder="Every status" options={filterData.hobbies} fixed={this.props.fixed} onChange={value => {changeResearchFilter({name: "hobbies",  value});}} value={researchFilters.hobbies}/>
+            <SelectBox name="hobbies" placeholder="Every status" options={this.state.filterData.hobbies} fixed={this.props.fixed} onChange={value => {
+                changeResearchFilter({name: "hobbies", value});
+              }} value={researchFilters.hobbies}/>
           </div>
 
           <div className="input-wrapper">
             <div className="feature-coming-soon">
-              <ComingSoon
-                  title={t("createCampaign.comingSoon.title")}
-                  minified
-              />
+              <ComingSoon title={t("createCampaign.comingSoon.title")} minified="minified"/>
               <div className="d-flex justify-content-between mt-4">
                 <label>Recall marketing</label>
                 <label className="research-filters__preview">
-                  {researchFilters.recallMarketing === 1 ? researchFilters.recallMarketing + " view in a row" : researchFilters.recallMarketing + " views in a row"}
+                  {
+                    researchFilters.recallMarketing === 1
+                      ? researchFilters.recallMarketing + " view in a row"
+                      : researchFilters.recallMarketing + " views in a row"
+                  }
                 </label>
               </div>
               <div className="input-wrapper">
-                <InputRange maxValue={10} minValue={0} value={researchFilters.recallMarketing} onChange={value => {changeResearchFilter({name: "recallMarketing",  value});}} />
+                <InputRange maxValue={10} minValue={0} value={researchFilters.recallMarketing} onChange={value => {
+                    changeResearchFilter({name: "recallMarketing", value});
+                  }}/>
               </div>
             </div>
           </div>
@@ -99,77 +183,68 @@ class ResearchFilters extends Component {
                 Price from
               </span>
               <span className="font-weight-bold">
-                {researchFilters.price} WC
+                {researchFilters.price}
+                WC
               </span>
             </div>
           </div>
 
         </Col>
-        {this.props.fixed ?
-          null
-        :
-          <Col md="6" xs="12">
-            <div className="feature-coming-soon">
-              <ComingSoon
-                title={t("createCampaign.comingSoon.title")}
-                description={t("createCampaign.comingSoon.description")}
-                launchDate={moment("2018-10-28")}
-              />
-              <div className="input-wrapper">
-                <label>Select establishments</label>
-                <div className="map-wrapper">
-                  <Map center={[0, 0]} zoom={7} />
+        {
+          this.props.fixed
+            ? null
+            : <Col md="6" xs="12">
+              <div className="feature-coming-soon">
+                <ComingSoon title={t("createCampaign.comingSoon.title")} description={t("createCampaign.comingSoon.description")} launchDate={moment("2018-10-28")}/>
+                <div className="input-wrapper">
+                  <label>Select establishments</label>
+                  <div className="map-wrapper">
+                    <Map center={[0, 0]} zoom={7}/>
+                  </div>
+                </div>
+                <div className="input-wrapper mt-4">
+                  <div className="research-filters__establishments">
+                    <div className="research-filters__establishments-wrapper">
+                      <div className="research-filters__establishment-select-all pl-3 mb-2">
+                        <Checkbox label={"Select all"}/>
+                      </div>
+                      <div className="research-filters__establishments-box p-2">
+                        <div className="research-filters__establishments-item research-filters__establishments-item--selected p-2">
+                          <Checkbox label={"Establishment 1"}/>
+                        </div>
+                        <div className="research-filters__establishments-item p-2">
+                          <Checkbox label={"Establishment 2"}/>
+                        </div>
+                        <div className="research-filters__establishments-item p-2">
+                          <Checkbox label={"Establishment 3"}/>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="research-filters__establishments-choose mx-3">
+                      <i className="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                    </div>
+
+                    <div className="research-filters__establishments-wrapper">
+                      <div className="research-filters__establishment-remove-all pl-3 mb-2">
+                        <i className="fa fa-trash-o mr-3" aria-hidden="true"></i>Remove all
+                      </div>
+                      <div className="research-filters__establishments-box p-2">
+                        <div className="research-filters__establishments-item p-2">
+                          <i className="fa fa-trash-o mr-3" aria-hidden="true"></i>
+                            Establishment 1
+                        </div>
+                        <div className="research-filters__establishments-item p-2">
+                          <i className="fa fa-trash-o mr-3" aria-hidden="true"></i>
+                            Establishment 2
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
                 </div>
               </div>
-              <div className="input-wrapper mt-4">
-                <div className="research-filters__establishments">
-                  <div className="research-filters__establishments-wrapper">
-                    <div className="research-filters__establishment-select-all pl-3 mb-2">
-                      <Checkbox
-                        label={"Select all"}
-                      />
-                    </div>
-                    <div className="research-filters__establishments-box p-2">
-                      <div className="research-filters__establishments-item research-filters__establishments-item--selected p-2">
-                        <Checkbox
-                          label={"Establishment 1"}
-                        />
-                      </div>
-                      <div className="research-filters__establishments-item p-2">
-                        <Checkbox
-                          label={"Establishment 2"}
-                        />
-                      </div>
-                      <div className="research-filters__establishments-item p-2">
-                        <Checkbox
-                          label={"Establishment 3"}
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="research-filters__establishments-choose mx-3">
-                    <i className="fa fa-arrow-circle-right" aria-hidden="true"></i>
-                  </div>
-
-                  <div className="research-filters__establishments-wrapper">
-                    <div className="research-filters__establishment-remove-all pl-3 mb-2">
-                      <i className="fa fa-trash-o mr-3" aria-hidden="true"></i>Remove all
-                    </div>
-                    <div className="research-filters__establishments-box p-2">
-                      <div className="research-filters__establishments-item p-2">
-                        <i className="fa fa-trash-o mr-3" aria-hidden="true"></i> Establishment 1
-                      </div>
-                      <div className="research-filters__establishments-item p-2">
-                        <i className="fa fa-trash-o mr-3" aria-hidden="true"></i> Establishment 2
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </Col>
+            </Col>
         }
       </Row>
     </div>);
@@ -179,6 +254,7 @@ class ResearchFilters extends Component {
 ResearchFilters.propTypes = {
   t: PropTypes.func,
   fixed: PropTypes.bool,
+  fetchFilterData: PropTypes.func,
   changeResearchFilter: PropTypes.func,
   filterData: PropTypes.object,
   researchFilters: PropTypes.object

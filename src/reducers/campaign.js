@@ -141,7 +141,7 @@ const filterDataDefaults = {
   fetched: false,
   workStatus: [],
   relationshipStatus: [],
-  nationality: [],
+  country: [],
   hobbies: [],
   gender: {
     male: false,
@@ -155,15 +155,12 @@ const filterDataDefaults = {
 };
 
 const researchFilterDefaults = {
-  male: false,
-  female: false,
-  age: {
-    min: 0,
-    max: 100
-  },
-  workStatus: [],
-  relationshipStatus: [],
-  nationality: [],
+  gender: "",
+  age_min: 0,
+  age_max: 100,
+  work_status: [],
+  relationship_status: [],
+  country: [],
   hobbies: [],
   recallMarketing: 0,
   users: 0,
@@ -261,10 +258,6 @@ export default function reducer(state = initialState, action) {
         }
       };
     case FETCH_CAMPAIGN_FULFILLED:
-      let filters = {};
-      if(action.payload.filters !== "{}") {
-        filters = action.payload.filters;
-      }
       return {
         ...state,
         campaign: {
@@ -276,7 +269,7 @@ export default function reducer(state = initialState, action) {
         },
         researchFilters: {
           ...state.researchFilters,
-          ...filters,
+          ...action.payload.filters
         }
       };
     case FETCH_CAMPAIGN_REJECTED:

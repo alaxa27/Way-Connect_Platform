@@ -81,14 +81,14 @@ class Campaigns extends Component {
             </Col>
           </Row>
           <Collapse isOpen={this.state.filter}>
-            <ResearchFilters/>
+            <ResearchFilters fixed={true} />
           </Collapse>
         </div>
       </div>
 
-      <Route exact="exact" path="/campaigns/:id/config" name="ConfigCampaign" component={ConfigCampaign}/>
-      <Route exact="exact" path="/campaigns/:id/auction" name="CampaignAuction" component={CampaignAuction}/>
-      <Route exact="exact" path="/campaigns/:id/analytics" name="AnalyticsCampaign" component={AnalyticsCampaign}/>
+      <Route exact={true} path="/campaigns/:id/config" name="ConfigCampaign" component={ConfigCampaign}/>
+      <Route exact={true} path="/campaigns/:id/auction" name="CampaignAuction" component={CampaignAuction}/>
+      <Route exact={true} path="/campaigns/:id/analytics" name="AnalyticsCampaign" component={AnalyticsCampaign}/>
     </div>);
   }
 }

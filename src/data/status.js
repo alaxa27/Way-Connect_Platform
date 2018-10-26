@@ -85,19 +85,19 @@ exports.PROFESSIONAL = [{
 ];
 
 exports.RELATIONSHIP = [{
-    value: 1,
+    value: "SI",
     label: "Single"
   },
   {
-    value: 2,
+    value: "CO",
     label: "In a Relationship"
   },
   {
-    value: 3,
+    value: "EN",
     label: "Engaged"
   },
   {
-    value: 4,
+    value: "MA",
     label: "Married"
   }
 ];
