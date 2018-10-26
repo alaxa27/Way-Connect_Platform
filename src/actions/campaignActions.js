@@ -348,11 +348,13 @@ export function creditCampaign(payload) {
       type: CREDIT_CAMPAIGN
     });
     try {
+      const action = (payload.amount > 0 ? "deposit" : "withdraw");
+      const amount = (payload.amount > 0 ? payload.amount : -payload.amount);
       const response = await axiosInstance({
         method: "post",
-        url: `/campaigns/${payload.campaignID}/deposit/`,
+        url: `/campaigns/${payload.campaignID}/${action}/`,
         data: {
-          amount: Math.round(payload.amount * 100) / 100
+          amount: Math.round(amount * 100) / 100
         }
       });
       dispatch({
