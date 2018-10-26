@@ -61,7 +61,7 @@ class NewAuction extends Component {
           </div>
           <div className="bid__forbidden-action">
             <div className="btn bid-btn bid-btn--dark" onClick={() => {
-                toggleCreditCampaignModal();
+                this.props.toggleCreditCampaignModal();
               }}>
               {this.props.t("campaignAuction.bid.creditCampaign")}
             </div>
