@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {compose} from "recompose";
 import moment from "moment";
+import { Link } from 'react-router-dom';
 
 const mapStateToProps = state => ({
   campaign: state.campaign.campaign,
@@ -41,13 +42,16 @@ class AuctionMeta extends Component {
             {competitors}
           </span>
         </div>
-        <div className="bid-meta__views d-inline-block">
+        <div className="bid-meta__views mr-3 d-inline-block">
           <span className="bid-meta__type mr-2">
             Views:
           </span>
           <span className="bid-meta__value">
             {campaign.views}
           </span>
+        </div>
+        <div className="bid-meta__analytics d-inline-block">
+          <Link to={`/campaigns/${campaign.id}/analytics`} className="bid-btn bid-btn--orange d-block">Analytics</Link>
         </div>
       </div>
     );

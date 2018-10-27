@@ -106,10 +106,6 @@ body {
     background-color: $bid-btn-dark;
   }
 
-  &--fixed {
-    max-width: 250px;
-  }
-
   &:hover {
     background-color: $bid-btn-light;
     color: $white;
@@ -117,6 +113,18 @@ body {
 
   &:focus {
     outline: none;
+  }
+
+  &--fixed {
+    max-width: 250px;
+  }
+
+  &--orange {
+    background-color: $bid-btn-orange;
+
+    &:hover {
+      background-color: $bid-btn-orange;
+    }
   }
 }
 
