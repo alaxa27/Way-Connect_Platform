@@ -25,28 +25,25 @@ class ResearchFilters extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      filterData: {
-        workStatus: [
-          {
-            value: "F",
-            label: "dapoiw"
-          }
-        ]
+      filterOpts: {
       }
     };
     props.fetchFilterData();
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.researchFilters !== this.props.researchFilters || prevProps.filterData !== this.props.filterData && this.props.fixed) {
-      const filterData = {
-        workStatus: this._compareValueAndKeep(this.props.researchFilters.work_status, this.props.filterData.workStatus),
-        relationshipStatus: this._compareValueAndKeep(this.props.researchFilters.relationship_status, this.props.filterData.relationshipStatus)
+    if ((prevProps.researchFilters !== this.props.researchFilters || prevProps.filterData !== this.props.filterData) && this.props.fixed) {
+      const filterOpts = {
+        work_status: this._compareValueAndKeep(this.props.researchFilters.filters.work_status, this.props.filterData.filters.work_status),
+        relationship_status: this._compareValueAndKeep(this.props.researchFilters.filters.relationship_status, this.props.filterData.filters.relationship_status),
+        hobbies: this._compareValueAndKeep(this.props.researchFilters.filters.hobbies, this.props.filterData.filters.hobbies),
+        country: this._compareValueAndKeep(this.props.researchFilters.filters.country, this.props.filterData.filters.country)
       };
+      console.log("SDFGLKHGFDFGHJKLKJHGFDFghj");
 
-      this.setState({filterData});
+      this.setState({filterOpts});
     } else if (!this.props.fixed && prevProps.filterData !== this.props.filterData) {
-      this.setState({filterData: this.props.filterData});
+      this.setState({filterOpts: this.props.filterData.filters});
     }
   }
 
@@ -72,6 +69,7 @@ class ResearchFilters extends Component {
   }
 
   render() {
+    console.log(this.state.filterOpts);
     const {researchFilters, t} = this.props;
     const filters = researchFilters.filters;
 
@@ -119,28 +117,28 @@ class ResearchFilters extends Component {
 
           <div className="input-wrapper">
             <label>Work status</label>
-            <SelectBox name="work-status" placeholder="Every status" options={this.state.filterData.workStatus} fixed={this.props.fixed} onChange={value => {
+            <SelectBox name="work-status" placeholder="Every status" options={this.state.filterOpts.work_status} fixed={this.props.fixed} onChange={value => {
                 changeResearchFilter({name: "work_status", value});
               }} value={filters.work_status}/>
           </div>
 
           <div className="input-wrapper">
             <label>Relationship status</label>
-            <SelectBox name="relationship-status" placeholder="Every status" options={this.state.filterData.relationshipStatus} fixed={this.props.fixed} onChange={value => {
+            <SelectBox name="relationship-status" placeholder="Every status" options={this.state.filterOpts.relationship_status} fixed={this.props.fixed} onChange={value => {
                 changeResearchFilter({name: "relationship_status", value});
               }} value={filters.relationship_status}/>
           </div>
 
           <div className="input-wrapper">
             <label>Nationality</label>
-            <SelectBox name="nationality" placeholder="Every status" options={this.state.filterData.country} fixed={this.props.fixed} onChange={value => {
+            <SelectBox name="nationality" placeholder="Every status" options={this.state.filterOpts.country} fixed={this.props.fixed} onChange={value => {
                 changeResearchFilter({name: "country", value});
               }} value={filters.country}/>
           </div>
 
           <div className="input-wrapper">
             <label>Hobbies</label>
-            <SelectBox name="hobbies" placeholder="Every status" options={this.state.filterData.hobbies} fixed={this.props.fixed} onChange={value => {
+            <SelectBox name="hobbies" placeholder="Every status" options={this.state.filterOpts.hobbies} fixed={this.props.fixed} onChange={value => {
                 changeResearchFilter({name: "hobbies", value});
               }} value={filters.hobbies}/>
           </div>

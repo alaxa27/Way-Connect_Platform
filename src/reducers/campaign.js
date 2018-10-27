@@ -136,34 +136,25 @@ const trafficDefaults = {
   ]
 };
 
+const filtersDefaults = {
+  gender: "",
+  age_min: 0,
+  age_max: 100,
+  work_status: [],
+  relationship_status: [],
+  country: [],
+  hobbies: []
+};
+
 const filterDataDefaults = {
   fetching: false,
   fetched: false,
-  workStatus: [],
-  relationshipStatus: [],
-  country: [],
-  hobbies: [],
-  gender: {
-    male: false,
-    female: false
-  },
-  age: {
-    min: 18,
-    max: 24
-  },
+  filters: filtersDefaults,
   recallMarketing: 0
 };
 
 const researchFilterDefaults = {
-  filters: {
-    gender: "",
-    age_min: 0,
-    age_max: 100,
-    work_status: [],
-    relationship_status: [],
-    country: [],
-    hobbies: [],
-  },
+  filters: filtersDefaults,
   recallMarketing: 0,
   users: 0,
   price: 0
@@ -232,9 +223,12 @@ export default function reducer(state = initialState, action) {
     case FETCH_FILTER_DATA_FULFILLED:
       return { ...state,
         filterData: { ...state.filterData,
-          ...action.payload,
           fetching: false,
-          fetched: true
+          fetched: true,
+          filters: {
+            ...state.filterData.filters,
+            ...action.payload
+          }
         }
       };
     case FETCH_FILTER_DATA_REJECTED:
@@ -272,7 +266,10 @@ export default function reducer(state = initialState, action) {
         },
         researchFilters: {
           ...state.researchFilters,
-          ...action.payload.filters
+          filters: {
+            ...state.researchFilters.filters,
+            ...action.payload.filters
+          }
         }
       };
     case FETCH_CAMPAIGN_REJECTED:
