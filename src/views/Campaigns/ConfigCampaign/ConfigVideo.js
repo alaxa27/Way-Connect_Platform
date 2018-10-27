@@ -92,7 +92,7 @@ class ConfigVideo extends Component {
                     <Col sm={10}>
                       <Input type="file" name="file" id="exampleFile" onChange={this.handleVideoUpload} />
                       <FormText color="muted">
-                        {'This is some placeholder block-level help text for the above input. It is a bit lighter and easily wraps to a new line.'}
+                        {"This is some placeholder block-level help text for the above input. It is a bit lighter and easily wraps to a new line."}
                       </FormText>
                     </Col>
                   </FormGroup>
