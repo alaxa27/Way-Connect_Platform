@@ -32,11 +32,7 @@ import {
         });
       } catch (error) {
         dispatch({
-          type: WALLET_FULFILLED,
-          payload: {
-              value: 100,
-              fixedValue: 1000,
-          }
+          type: WALLET_REJECTED
         });
       }
     };

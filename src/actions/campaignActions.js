@@ -129,17 +129,17 @@ export function fetchCampaign(payload) {
         url: "/campaigns/" + payload
       });
 
-      const filterData = getState().campaign.filterData;
+      // const filterData = getState().campaign.filterData;
+      //
+      // let res_filters = JSON.parse(response.data.filters);
+      // const { relationship_status, work_status } = res_filters;
+      // res_filters.relationship_status = _.find(filterData.relationshipStatus, item => item.value === relationship_status[0]);
+      // res_filters.work_status = _.find(filterData.workStatus, item => item.value === work_status[0]);
 
-      let res_filters = JSON.parse(response.data.filters);
-      const { relationship_status, work_status } = res_filters;
-      res_filters.relationship_status = _.find(filterData.relationshipStatus, item => item.value === relationship_status[0]);
-      res_filters.work_status = _.find(filterData.workStatus, item => item.value === work_status[0]);
-
+      // filters: res_filters,
       dispatch({
         type: FETCH_CAMPAIGN_FULFILLED,
         payload: { ...response.data,
-          filters: res_filters,
           id: payload
         }
       });
@@ -309,13 +309,11 @@ export function changeResearchFilter(payload) {
       type: RESEARCH_FILTER_CHANGE,
       payload
     });
-    const filters = getState().campaign.researchFilters;
+    const filters = getState().campaign.researchFilters.filters;
     const data = {
       price: "1.00",
       filters: {
-        gender: filters.male ? "M" : filters.female ? "F" : "",
-        age_min: filters.age_min,
-        age_max: filters.age_max
+        ...filters
       },
     };
     dispatch(estimateAuction(data));

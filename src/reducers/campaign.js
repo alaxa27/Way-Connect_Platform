@@ -155,13 +155,15 @@ const filterDataDefaults = {
 };
 
 const researchFilterDefaults = {
-  gender: "",
-  age_min: 0,
-  age_max: 100,
-  work_status: [],
-  relationship_status: [],
-  country: [],
-  hobbies: [],
+  filters: {
+    gender: "",
+    age_min: 0,
+    age_max: 100,
+    work_status: [],
+    relationship_status: [],
+    country: [],
+    hobbies: [],
+  },
   recallMarketing: 0,
   users: 0,
   price: 0
@@ -216,7 +218,8 @@ const initialState = {
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case CLEAN_CAMPAIGN_CACHE:
-      return {...initialState};
+      return { ...initialState
+      };
 
     case FETCH_FILTER_DATA:
       return { ...state,
@@ -348,7 +351,10 @@ export default function reducer(state = initialState, action) {
         ...state,
         researchFilters: {
           ...state.researchFilters,
-          [action.payload.name]: action.payload.value
+          filters: {
+            ...state.researchFilters.filters,
+            [action.payload.name]: action.payload.value
+          }
         }
       };
 

@@ -73,13 +73,12 @@ class ResearchFilters extends Component {
 
   render() {
     const {researchFilters, t} = this.props;
+    const filters = researchFilters.filters;
 
     const changeResearchFilter = (obj) => (
       this.props.fixed
       ? null
       : this.props.changeResearchFilter(obj));
-
-    console.log(this.state);
 
     return (<div className="research-filters">
       <Row>
@@ -88,17 +87,17 @@ class ResearchFilters extends Component {
           <div className="input-wrapper">
             <label>Gender</label>
             <div className="c-radio">
-              <Input type="radio" className="c-radio__item" id="male" name="gender_male" value="male" checked={(researchFilters.gender === "M" || researchFilters.gender === "")} onClick={() => {
+              <Input type="radio" className="c-radio__item" id="male" name="gender_male" value="male" checked={(filters.gender === "M" || filters.gender === "")} onClick={() => {
                   changeResearchFilter({
                     name: "gender",
-                    value: this._changeGender("M", researchFilters.gender)
+                    value: this._changeGender("M", filters.gender)
                   });
                 }}/>
               <label htmlFor="male" className="c-radio__label">Male</label>
-              <Input type="radio" className="c-radio__item" id="female" name="gender_female" value="female" checked={(researchFilters.gender === "F" || researchFilters.gender === "")} onClick={() => {
+              <Input type="radio" className="c-radio__item" id="female" name="gender_female" value="female" checked={(filters.gender === "F" || filters.gender === "")} onClick={() => {
                   changeResearchFilter({
                     name: "gender",
-                    value: this._changeGender("F", researchFilters.gender)
+                    value: this._changeGender("F", filters.gender)
                   });
                 }}/>
               <label htmlFor="female" className="c-radio__label">Female</label>
@@ -106,12 +105,12 @@ class ResearchFilters extends Component {
           </div>
           <div className="input-wrapper d-flex justify-content-between">
             <label>Age</label>
-            <label className="research-filters__preview">{researchFilters.age_min}-{researchFilters.age_max}yo</label>
+            <label className="research-filters__preview">{filters.age_min}-{filters.age_max}yo</label>
           </div>
           <div className="input-wrapper">
             <InputRange maxValue={100} minValue={0} value={{
-                min: researchFilters.age_min,
-                max: researchFilters.age_max
+                min: filters.age_min,
+                max: filters.age_max
               }} onChange={value => {
                 changeResearchFilter({name: "age_min", value: value.min});
                 changeResearchFilter({name: "age_max", value: value.max});
@@ -122,28 +121,28 @@ class ResearchFilters extends Component {
             <label>Work status</label>
             <SelectBox name="work-status" placeholder="Every status" options={this.state.filterData.workStatus} fixed={this.props.fixed} onChange={value => {
                 changeResearchFilter({name: "work_status", value});
-              }} value={researchFilters.work_status}/>
+              }} value={filters.work_status}/>
           </div>
 
           <div className="input-wrapper">
             <label>Relationship status</label>
             <SelectBox name="relationship-status" placeholder="Every status" options={this.state.filterData.relationshipStatus} fixed={this.props.fixed} onChange={value => {
                 changeResearchFilter({name: "relationship_status", value});
-              }} value={researchFilters.relationship_status}/>
+              }} value={filters.relationship_status}/>
           </div>
 
           <div className="input-wrapper">
             <label>Nationality</label>
             <SelectBox name="nationality" placeholder="Every status" options={this.state.filterData.country} fixed={this.props.fixed} onChange={value => {
                 changeResearchFilter({name: "country", value});
-              }} value={researchFilters.country}/>
+              }} value={filters.country}/>
           </div>
 
           <div className="input-wrapper">
             <label>Hobbies</label>
             <SelectBox name="hobbies" placeholder="Every status" options={this.state.filterData.hobbies} fixed={this.props.fixed} onChange={value => {
                 changeResearchFilter({name: "hobbies", value});
-              }} value={researchFilters.hobbies}/>
+              }} value={filters.hobbies}/>
           </div>
 
           <div className="input-wrapper">
