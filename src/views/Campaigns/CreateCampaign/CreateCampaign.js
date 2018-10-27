@@ -5,7 +5,7 @@ import * as FontAwesome from "react-icons/lib/fa";
 import {Row, Col} from "reactstrap";
 import ResearchFilters from "../../../components/ResearchFilters/ResearchFilters";
 import TypologieList from "../../../components/TypologieList/TypologieList";
-import {fetchFilterData, createCampaign} from "../../../actions/campaignActions";
+import {createCampaign, clearResearchFilterCache} from "../../../actions/campaignActions";
 import ValidatorService from "../../../services/ValidatorService";
 import ReduxBlockUi from "react-block-ui/redux";
 import {Redirect} from "react-router-dom";
@@ -20,7 +20,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchFilterData: payload => dispatch(fetchFilterData(payload)),
+  clearResearchFilterCache: () => dispatch(clearResearchFilterCache()),
   createCampaign: payload => dispatch(createCampaign(payload))
 });
 
@@ -31,8 +31,7 @@ class CreateCampaign extends Component {
       fixed: false,
       validationError: false
     };
-    const {fetchFilterData} = this.props;
-    fetchFilterData();
+    props.clearResearchFilterCache();
     this.validator = new ValidatorService().getValidator();
   }
 
@@ -92,7 +91,7 @@ class CreateCampaign extends Component {
 CreateCampaign.propTypes = {
   dispatch: PropTypes.func,
   filterData: PropTypes.object.isRequired,
-  fetchFilterData: PropTypes.func,
+  clearResearchFilterCache: PropTypes.func,
   createCampaign: PropTypes.func,
   name: PropTypes.string,
   communicationType: PropTypes.string,

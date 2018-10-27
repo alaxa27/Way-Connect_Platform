@@ -1,5 +1,6 @@
 import {
-  CLEAN_CAMPAIGN_CACHE,
+  CLEAR_CAMPAIGN_CACHE,
+  CLEAR_RESEARCH_FILTER_CACHE,
 
   FETCH_FILTER_DATA,
   FETCH_FILTER_DATA_FULFILLED,
@@ -208,8 +209,14 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case CLEAN_CAMPAIGN_CACHE:
+    case CLEAR_CAMPAIGN_CACHE:
       return { ...initialState
+      };
+    case CLEAR_RESEARCH_FILTER_CACHE:
+      return { ...state,
+        researchFilters: {
+          ...researchFilterDefaults
+        }
       };
 
     case FETCH_FILTER_DATA:

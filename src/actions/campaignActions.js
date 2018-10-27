@@ -4,7 +4,8 @@ import {
 import _ from "underscore";
 
 import {
-  CLEAN_CAMPAIGN_CACHE,
+  CLEAR_CAMPAIGN_CACHE,
+  CLEAR_RESEARCH_FILTER_CACHE,
 
   FETCH_FILTER_DATA,
   FETCH_FILTER_DATA_FULFILLED,
@@ -72,10 +73,18 @@ import {
 
 const STATUS = require("../data/status");
 
-export function cleanCampaignCache(payload) {
+export function clearCampaignCache (payload) {
   return async (dispatch, getState) => {
     dispatch({
-      type: CLEAN_CAMPAIGN_CACHE
+      type: CLEAR_CAMPAIGN_CACHE
+    });
+  };
+}
+
+export function clearResearchFilterCache (payload) {
+  return async (dispatch, getState) => {
+    dispatch({
+      type: CLEAR_RESEARCH_FILTER_CACHE
     });
   };
 }

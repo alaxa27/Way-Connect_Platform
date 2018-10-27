@@ -39,7 +39,6 @@ class ResearchFilters extends Component {
         hobbies: this._compareValueAndKeep(this.props.researchFilters.filters.hobbies, this.props.filterData.filters.hobbies),
         country: this._compareValueAndKeep(this.props.researchFilters.filters.country, this.props.filterData.filters.country)
       };
-      console.log("SDFGLKHGFDFGHJKLKJHGFDFghj");
 
       this.setState({filterOpts});
     } else if (!this.props.fixed && prevProps.filterData !== this.props.filterData) {
@@ -69,7 +68,6 @@ class ResearchFilters extends Component {
   }
 
   render() {
-    console.log(this.state.filterOpts);
     const {researchFilters, t} = this.props;
     const filters = researchFilters.filters;
 

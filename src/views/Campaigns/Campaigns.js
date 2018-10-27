@@ -11,12 +11,12 @@ import CampaignAuction from "./CampaignAuction/";
 import AnalyticsCampaign from "./AnalyticsCampaign/";
 import ResearchFilters from "../../components/ResearchFilters/ResearchFilters";
 import {translate} from "react-i18next";
-import {fetchCampaign, cleanCampaignCache} from "../../actions/campaignActions";
+import {fetchCampaign, clearCampaignCache} from "../../actions/campaignActions";
 
 const mapStateToProps = store => ({campaign: store.campaign.campaign});
 
 const mapDispatchToProps = dispatch => ({
-  cleanCampaignCache: payload => dispatch(cleanCampaignCache(payload)),
+  clearCampaignCache: payload => dispatch(clearCampaignCache(payload)),
   fetchCampaign: payload => dispatch(fetchCampaign(payload))
 });
 
@@ -34,7 +34,7 @@ class Campaigns extends Component {
     };
     this.showFilter = this.showFilter.bind(this);
 
-    this.props.cleanCampaignCache();
+    this.props.clearCampaignCache();
     const campaignID = props.match.params.id;
     this.props.fetchCampaign(campaignID);
   }
@@ -94,7 +94,7 @@ class Campaigns extends Component {
 }
 Campaigns.propTypes = {
   t: PropTypes.func,
-  cleanCampaignCache: PropTypes.func,
+  clearCampaignCache: PropTypes.func,
   fetchCampaign: PropTypes.func,
   campaign: PropTypes.shape({
     communication: PropTypes.object
