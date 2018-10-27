@@ -25,7 +25,10 @@ class ResearchFilters extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      filterOpts: {
+      filterOpts: {},
+      age: {
+        min: 0,
+        max: 100
       }
     };
     props.fetchFilterData();
@@ -43,6 +46,15 @@ class ResearchFilters extends Component {
       this.setState({filterOpts});
     } else if (!this.props.fixed && prevProps.filterData !== this.props.filterData) {
       this.setState({filterOpts: this.props.filterData.filters});
+    }
+
+    if (prevProps.researchFilters !== this.props.researchFilters) {
+      this.setState({
+        age: {
+          min: this.props.researchFilters.filters.age_min,
+          max: this.props.researchFilters.filters.age_max
+        }
+      });
     }
   }
 
@@ -64,6 +76,12 @@ class ResearchFilters extends Component {
         return both;
       case both:
         return anti_gender;
+    }
+  }
+
+  _changeAge(age) {
+    if (!this.props.fixed) {
+      this.setState({age});
     }
   }
 
@@ -101,13 +119,15 @@ class ResearchFilters extends Component {
           </div>
           <div className="input-wrapper d-flex justify-content-between">
             <label>Age</label>
-            <label className="research-filters__preview">{filters.age_min}-{filters.age_max}yo</label>
+            <label className="research-filters__preview">{this.state.age.min}-{this.state.age.max}yo</label>
           </div>
           <div className="input-wrapper">
             <InputRange maxValue={100} minValue={0} value={{
-                min: filters.age_min,
-                max: filters.age_max
+                min: this.state.age.min,
+                max: this.state.age.max
               }} onChange={value => {
+                this._changeAge(value);
+              }} onChangeComplete={value => {
                 changeResearchFilter({name: "age_min", value: value.min});
                 changeResearchFilter({name: "age_max", value: value.max});
               }}/>
