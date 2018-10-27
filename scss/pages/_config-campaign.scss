@@ -26,10 +26,6 @@
   .bid-btn {
     margin: 15px 0;
     max-width: 200px;
-
-    &--dark {
-      max-width: 400px;
-    }
   }
 }
 
@@ -41,10 +37,14 @@
     margin: 50px 0 75px 0;
   }
 
-  &__file-upload {
-    margin-top: 75px;
+  input[type="text"] {
+    border: 0;
+    border-radius: 12px;
+    background-color: $config-campaign-formulary-input;
+    margin-bottom: 15px;
+    max-width: 400px;
+    margin: 0 auto;
   }
-
 }
 
 .formulary {

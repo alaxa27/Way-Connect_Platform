@@ -3,6 +3,11 @@ import {
   Row,
   Col,
   Button,
+  Input,
+  FormGroup, 
+  Label, 
+  FormText,
+  Form
 } from "reactstrap";
 import {translate} from "react-i18next";
 import PropTypes from "prop-types";
@@ -22,42 +27,17 @@ const mapDispatchToProps = dispatch => ({
 class ConfigVideo extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      minAllowedLength: 15,
-      lengthError: null
-    };
+    this.handleVideoUpload = this.handleVideoUpload.bind(this);
   }
 
-  handleVideoUpload = (e) => {
+  handleVideoUpload(e) {
     const { campaignId, uploadVideo } = this.props;
-
     const file = e.target.files[0];
-    const that = this;
-
     const formData = new FormData();
     formData.append("video", file);
     formData.append("campaign", campaignId);
     formData.append("redirection", "");
-
-    var video = document.createElement("video");
-    video.preload = "metadata";
-
-    video.onloadedmetadata = function() {
-      window.URL.revokeObjectURL(video.src);
-      var duration = video.duration;
-      if(duration < that.state.minAllowedLength) {
-        that.setState({
-          lengthError: `Video should have length more than ${that.state.minAllowedLength} seconds`
-        });
-      } else {
-        uploadVideo(formData);
-      }
-    };
-    video.src = URL.createObjectURL(file);
-  }
-
-  handleTriggerVideoUpload = () => {
-    document.getElementById("fileInput").click();
+    uploadVideo(formData);
   }
 
   render() {
@@ -84,14 +64,6 @@ class ConfigVideo extends Component {
           <div className="container-fluid">
             <Row>
               <Col>
-                {/*<DropzoneComponent config={componentConfig}
-                    eventHandlers={eventHandlers}
-                    djsConfig={djsConfig} />*/
-                    }
-              </Col>
-            </Row>
-            <Row>
-              <Col>
                 <img src="../img/video-size-01.png" alt="Image" className="video__image"/>
               </Col>
             </Row>
@@ -107,20 +79,24 @@ class ConfigVideo extends Component {
             </Row>
             <Row>
               <Col lg={{
-                    size: 4,
-                    offset: 4
-                  }}>
-                <div className="video__file-upload">
-                  <button className="bid-btn bid-btn--dark" onClick={this.handleTriggerVideoUpload}>
-                    {t("configCampaign.video.upload.title")}
-                  </button>
-                  {this.state.lengthError &&
-                    <div className="alert alert-danger">
-                      {this.state.lengthError}
-                    </div>
-                  }
-                  <input id="fileInput" type="file" onChange={this.handleVideoUpload} className="d-none"/>
-                </div>
+                size: 4,
+                offset: 4
+              }}>
+                <Form className="mt-3" encType="multipart/form-data">
+                  <FormGroup>
+                    <Label for="phone">Phone number</Label>
+                    <Input type="text" name="phone" id="phone" placeholder="Enter your phone" />
+                  </FormGroup>
+                  <FormGroup>
+                    <Label for="exampleFile" sm={2}>File</Label>
+                    <Col sm={10}>
+                      <Input type="file" name="file" id="exampleFile" onChange={this.handleVideoUpload} />
+                      <FormText color="muted">
+                        {'This is some placeholder block-level help text for the above input. It is a bit lighter and easily wraps to a new line.'}
+                      </FormText>
+                    </Col>
+                  </FormGroup>
+                </Form>
               </Col>
             </Row>
           </div>

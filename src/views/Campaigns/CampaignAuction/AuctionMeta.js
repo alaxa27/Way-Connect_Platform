@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {compose} from "recompose";
 import moment from "moment";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const mapStateToProps = state => ({
   campaign: state.campaign.campaign,
