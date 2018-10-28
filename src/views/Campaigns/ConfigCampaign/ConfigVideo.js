@@ -4,8 +4,8 @@ import {
   Col,
   Button,
   Input,
-  FormGroup, 
-  Label, 
+  FormGroup,
+  Label,
   FormText,
   Form,
   Progress,
@@ -28,7 +28,17 @@ const mapDispatchToProps = dispatch => ({
 class ConfigVideo extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      phone: ""
+    };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
     this.handleVideoUpload = this.handleVideoUpload.bind(this);
+  }
+
+  handleInputChange(e) {
+    this.setState({phone: e.target.value});
   }
 
   handleVideoUpload(e) {
@@ -37,7 +47,7 @@ class ConfigVideo extends Component {
     const formData = new FormData();
     formData.append("video", file);
     formData.append("campaign", campaignId);
-    formData.append("redirection", "");
+    formData.append("redirection", `tel:${this.state.phone}`);
     uploadVideo(formData);
   }
 
@@ -73,7 +83,7 @@ class ConfigVideo extends Component {
                 <Form className="mt-3" encType="multipart/form-data">
                   <FormGroup>
                     <Label for="phone">Phone number</Label>
-                    <Input type="text" name="phone" id="phone" placeholder="Enter your phone" />
+                    <Input type="text" name="phone" value={this.state.phone} onChange={this.handleInputChange} id="phone" placeholder="Enter your phone" />
                   </FormGroup>
                   <FormGroup>
                     <Label for="exampleFile" sm={2}>File</Label>
