@@ -557,7 +557,7 @@ export default function reducer(state = initialState, action) {
           ...state.videoUpload,
           progress: action.payload,
         }
-      }
+      };
 
     default:
       return { ...state

@@ -510,7 +510,7 @@ export function uploadVideo(payload) {
         url: "/campaigns/communications/videos/",
         data: payload,
         headers: {
-          'Content-Type': 'multipart/form-data'
+          "Content-Type": "multipart/form-data"
         },
         onUploadProgress: progressEvent => {
           const progress = parseInt(Math.round((progressEvent.loaded * 100 ) / progressEvent.total), 10);
