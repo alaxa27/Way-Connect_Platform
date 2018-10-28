@@ -56,6 +56,8 @@ import {
   CAMPAIGN_UPLOAD_VIDEO,
   CAMPAIGN_UPLOAD_VIDEO_FULFILLED,
   CAMPAIGN_UPLOAD_VIDEO_REJECTED,
+
+  CAMPAIGN_UPLOAD_VIDEO_PROGRESS_CHANGE,
 } from "../constants/ActionTypes";
 import _ from "underscore";
 
@@ -204,6 +206,7 @@ const initialState = {
     executing: false,
     error: null,
     success: false,
+    progress: 0,
   }
 };
 
@@ -523,6 +526,7 @@ export default function reducer(state = initialState, action) {
           executing: true,
           success: false,
           error: null,
+          progress: 0,
         }
       };
     case CAMPAIGN_UPLOAD_VIDEO_FULFILLED:
@@ -543,8 +547,17 @@ export default function reducer(state = initialState, action) {
           executing: false,
           success: false,
           error: action.payload,
+          progress: 0,
         }
       };
+    case CAMPAIGN_UPLOAD_VIDEO_PROGRESS_CHANGE:
+      return {
+        ...state,
+        videoUpload: {
+          ...state.videoUpload,
+          progress: action.payload,
+        }
+      }
 
     default:
       return { ...state

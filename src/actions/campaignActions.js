@@ -65,6 +65,8 @@ import {
   CAMPAIGN_UPLOAD_VIDEO,
   CAMPAIGN_UPLOAD_VIDEO_FULFILLED,
   CAMPAIGN_UPLOAD_VIDEO_REJECTED,
+
+  CAMPAIGN_UPLOAD_VIDEO_PROGRESS_CHANGE,
 } from "../constants/ActionTypes";
 
 import {
@@ -505,11 +507,17 @@ export function uploadVideo(payload) {
     try {
       const response = await axiosInstance({
         method: "post",
-        url: "/campaigns/communications/videos",
-        data: {
-          campaign: payload.campaign,
-          video: payload.video,
-          redirection: payload.redirection,
+        url: "/campaigns/communications/videos/",
+        data: payload,
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        },
+        onUploadProgress: progressEvent => {
+          const progress = parseInt(Math.round((progressEvent.loaded * 100 ) / progressEvent.total), 10);
+          dispatch({
+            type: CAMPAIGN_UPLOAD_VIDEO_PROGRESS_CHANGE,
+            payload: progress
+          });
         }
       });
       dispatch({

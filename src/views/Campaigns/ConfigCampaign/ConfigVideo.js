@@ -7,7 +7,8 @@ import {
   FormGroup, 
   Label, 
   FormText,
-  Form
+  Form,
+  Progress,
 } from "reactstrap";
 import {translate} from "react-i18next";
 import PropTypes from "prop-types";
@@ -45,19 +46,6 @@ class ConfigVideo extends Component {
     if(videoUpload.success) {
       return <Redirect to={`/campaigns/${campaignId}/auction`} />;
     }
-    const componentConfig = {
-      iconFiletypes: [
-        ".mp4", ".m4v", ".avi", ".flv"
-      ],
-      showFiletypeIcon: true,
-      postUrl: "/uploadHandler"
-    };
-    var djsConfig = {
-      autoProcessQueue: false
-    };
-    var eventHandlers = {
-      addedfile: (file) => console.log(file)
-    };
     return (
       <div>
         <div className="video text-center">
@@ -95,6 +83,10 @@ class ConfigVideo extends Component {
                         {"This is some placeholder block-level help text for the above input. It is a bit lighter and easily wraps to a new line."}
                       </FormText>
                     </Col>
+                  </FormGroup>
+                  <FormGroup>
+                    <Label>Upload progress</Label>
+                    <Progress animated value={videoUpload.progress} />
                   </FormGroup>
                 </Form>
               </Col>
