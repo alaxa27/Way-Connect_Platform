@@ -25,6 +25,8 @@ class PromotionsList extends Component {
           })
         }
       </InfiniteScroll>);
+    } else {
+      return <div className="promotion__empty">Sorry, no discounts found</div>
     }
   }
 

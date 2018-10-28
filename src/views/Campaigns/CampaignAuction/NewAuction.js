@@ -75,14 +75,13 @@ class NewAuction extends Component {
     const {
       bidCampaign,
       campaign,
-      toggleCreditCampaignModal,
       bidHistory,
       minPrice,
       t
     } = this.props;
     return (<Card className="bid">
       <CardBody className="p-0 d-flex flex-column">
-        {this._renderForbidden.bind(this)()}
+        {bidHistory.length === 0 && this._renderForbidden.bind(this)()}        
         <ReduxBlockUi tag="div" block="BID_HISTORY" unblock={["BID_HISTORY_FULFILLED", "BID_HISTORY_REJECTED"]}>
           <div className="bid__block bid__block--no-border d-flex flex-column p-3">
             <div className="bid__subtitle mb-3">

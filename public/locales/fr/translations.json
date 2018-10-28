@@ -93,7 +93,7 @@
     "bid": {
       "title": "last bid at",
       "wc": "WC",
-      "notAvailable": "You cannot bid if your funds are empty",
+      "notAvailable": "You need to bid to check on your competitors",
       "creditCampaign": "Credit campaign",
       "bid": "Bid",
       "concurrents": "Concurrents",
@@ -205,7 +205,11 @@
     "home": "Home",
     "dashboard": "Dashboard",
     "listCampaign": "Campaigns list",
-    "createCampaign": "Création de campagne"
+    "createCampaign": "Création de campagne",
+    "analyticsCampaign": "Campaign Analytics",
+    "configCampaign": "Campaign Config",
+    "campaignAuction": "Campaign Auction",
+    "establishment": "Establishment"
   },
   "addEstablishment": {
     "step1": {

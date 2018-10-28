@@ -210,14 +210,10 @@ export default function reducer(state = initialState, action) {
       const traffic = action.payload[period].traffic;
       let summedTraffic = getSummedTraffic(period, traffic);
 
-      console.log("dezd", trafficLabels[period].length);
-      console.log("faaa", traffic);
-
       for (var i = 0; i < trafficLabels[period].length; i++) {
         trafficLabels[period][i] = moment(action.payload[period].start_date).add(i, "days").format( "YYYY-MM-DD");
       }
 
-      console.log("dezd", trafficLabels[period]);
       _.first(trafficDatasets).data = traffic; //summedTraffic;
       return {
         ...state,
@@ -232,7 +228,7 @@ export default function reducer(state = initialState, action) {
       const changedPeriod = action.payload;
       const changedTraffic = state.trafficRaw[changedPeriod].traffic;
       let changedAverageTraffic = getSummedTraffic(changedPeriod, changedTraffic);
-      for (var i = 0; i < trafficLabels[period].length - 1; i++) {
+      for (var i = 0; i < trafficLabels[changedPeriod].length - 1; i++) {
         trafficLabels[changedPeriod][i] = moment(state.trafficRaw[changedPeriod].start_date, "YYYY-MM-DD").add(i, "days");
       }
 
