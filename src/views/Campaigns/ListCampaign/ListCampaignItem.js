@@ -2,32 +2,20 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 import Eye from "./view.png";
 import { formatDate } from "../../../services/DateFormatterService";
-import { Redirect } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 class ListCampaignItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      redirect: false,
-      link: null
-    };
-  }
   static propTypes = {
     item: PropTypes.shape({id: PropTypes.number}),
+    history: PropTypes.object,
   }
 
   redirectToAuction = (item) => {
     const link = `/campaigns/${item.id}/auction`;
-    this.setState({
-      redirect: true,
-      link
-    });
+    this.props.history.push(link);
   }
 
   render() {
-    if(this.state.redirect) {
-      return <Redirect to={this.state.link} />;
-    }
     const {item} = this.props;
       return (<tr onClick={() => { this.redirectToAuction(item); }}>
         <td>
@@ -51,4 +39,4 @@ class ListCampaignItem extends Component {
       </tr>);
   }
 }
-export default ListCampaignItem;
+export default withRouter(ListCampaignItem);

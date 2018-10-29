@@ -10,15 +10,10 @@ import ScrollArea from "react-scrollbar";
 import {connect} from "react-redux";
 import ReduxBlockUi from "react-block-ui/redux";
 import Forbidden from "./Forbidden";
-import {toggleCreditCampaignModal} from "../../../actions/campaignActions";
 
 const mapStateToProps = state => ({
   auction: state.campaign.auction.data,
   bidHistory: state.campaign.bidHistory.items,
-});
-
-const mapDispatchToProps = dispatch => ({
-  toggleCreditCampaignModal: () => dispatch(toggleCreditCampaignModal()),
 });
 
 class AuctionList extends Component {
@@ -52,7 +47,7 @@ class AuctionList extends Component {
                 </Fragment>
               :
                 <Forbidden
-                  toggleCreditCampaignModal={this.props.toggleCreditCampaignModal}
+                  hideCredit
                 />
               }
               
@@ -68,7 +63,6 @@ class AuctionList extends Component {
 AuctionList.propTypes = {
   auction: PropTypes.object,
   bidHistory: PropTypes.array,
-  toggleCreditCampaignModal: PropTypes.func,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AuctionList);
+export default connect(mapStateToProps, null)(AuctionList);
