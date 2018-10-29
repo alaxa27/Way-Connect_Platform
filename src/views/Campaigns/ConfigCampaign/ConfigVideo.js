@@ -47,7 +47,7 @@ class ConfigVideo extends Component {
     const formData = new FormData();
     formData.append("video", file);
     formData.append("campaign", campaignId);
-    formData.append("redirection", `tel:${this.state.phone}`);
+    formData.append("redirection", (this.state.phone.length > 0 ? `tel:${this.state.phone}` : ""));
     uploadVideo(formData);
   }
 

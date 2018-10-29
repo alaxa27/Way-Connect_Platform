@@ -35,13 +35,10 @@ class SelectBox extends Component {
   }
 
   render() {
-    return (<Select onChange={this.props.onChange} value={(this.props.fixed ? this.props.options : this.props.value)} isDisabled={this.props.fixed} isMulti="isMulti" name={this.props.name} placeholder={this.props.placeholder} defaultValue={(
+    return (<Select onChange={this.props.onChange} value={this.props.value} isDisabled={this.props.fixed} isMulti="isMulti" name={this.props.name} placeholder={this.props.placeholder} defaultValue={(
         this.props.fixed
-        ? this.props.options
-        : [])} options={(
-        this.props.fixed
-        ? []
-        : this.props.options)} classNamePrefix="select" components={{
+        ? this.props.value
+        : [])} options={this.props.options} classNamePrefix="select" components={{
         DropdownIndicator
       }} styles={selectStyles}/>);
   }
