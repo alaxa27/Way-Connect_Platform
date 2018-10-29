@@ -26,25 +26,21 @@ class ResearchFilters extends Component {
     super(props);
     this.state = {
       filterOpts: {},
+      gender: "",
       age: {
         min: 0,
         max: 100
-      }
+      },
+      workStatus: [],
+      relationshipStatus: [],
+      country: [],
+      hobbies: []
     };
     props.fetchFilterData();
   }
 
   componentDidUpdate(prevProps) {
-    if ((prevProps.researchFilters !== this.props.researchFilters || prevProps.filterData !== this.props.filterData) && this.props.fixed) {
-      const filterOpts = {
-        work_status: this._compareValueAndKeep(this.props.researchFilters.filters.work_status, this.props.filterData.filters.work_status),
-        relationship_status: this._compareValueAndKeep(this.props.researchFilters.filters.relationship_status, this.props.filterData.filters.relationship_status),
-        hobbies: this._compareValueAndKeep(this.props.researchFilters.filters.hobbies, this.props.filterData.filters.hobbies),
-        country: this._compareValueAndKeep(this.props.researchFilters.filters.country, this.props.filterData.filters.country)
-      };
-
-      this.setState({filterOpts});
-    } else if (!this.props.fixed && prevProps.filterData !== this.props.filterData) {
+    if (prevProps.filterData !== this.props.filterData) {
       this.setState({filterOpts: this.props.filterData.filters});
     }
 
@@ -60,6 +56,34 @@ class ResearchFilters extends Component {
 
   _compareValueAndKeep(filters, status) {
     return _.filter(status, e => _.contains(filters, e.value));
+  }
+
+  _standardizeArray(values) {
+    let array = [];
+    for (var i = 0; i < values.length; i++) {
+      array.push(values[i].value);
+    }
+    return array;
+  }
+
+  _standardizeString(values) {
+    let string = "";
+    for (var i = 0; i < values.length; i++) {
+      string += `${ (
+        i === 0
+        ? ""
+        : ",")}${values[i].value}`;
+    }
+    return string;
+  }
+
+  _destandardizeArray(array, status) {
+    return this._compareValueAndKeep(array, status);
+  }
+
+  _destandardizeString(string, status) {
+    let array = string.split(",");
+    return this._destandardizeArray(array, status);
   }
 
   _changeGender(gender, state) {
@@ -136,29 +160,29 @@ class ResearchFilters extends Component {
           <div className="input-wrapper">
             <label>Work status</label>
             <SelectBox name="work-status" placeholder="Every status" options={this.state.filterOpts.work_status} fixed={this.props.fixed} onChange={value => {
-                changeResearchFilter({name: "work_status", value});
-              }} value={filters.work_status}/>
+                changeResearchFilter({name: "work_status__in", value: this._standardizeString(value)});
+              }} value={this._destandardizeString(filters.work_status__in, this.state.filterOpts.work_status)}/>
           </div>
 
           <div className="input-wrapper">
             <label>Relationship status</label>
             <SelectBox name="relationship-status" placeholder="Every status" options={this.state.filterOpts.relationship_status} fixed={this.props.fixed} onChange={value => {
-                changeResearchFilter({name: "relationship_status", value});
-              }} value={filters.relationship_status}/>
+                changeResearchFilter({name: "relationship_status__in", value: this._standardizeString(value)});
+              }} value={this._destandardizeString(filters.relationship_status__in, this.state.filterOpts.relationship_status)}/>
           </div>
 
           <div className="input-wrapper">
             <label>Nationality</label>
             <SelectBox name="nationality" placeholder="Every status" options={this.state.filterOpts.country} fixed={this.props.fixed} onChange={value => {
-                changeResearchFilter({name: "country", value});
-              }} value={filters.country}/>
+                changeResearchFilter({name: "country__in", value: this._standardizeString(value)});
+              }} value={this._destandardizeString(filters.country__in, this.state.filterOpts.country)}/>
           </div>
 
           <div className="input-wrapper">
             <label>Hobbies</label>
             <SelectBox name="hobbies" placeholder="Every status" options={this.state.filterOpts.hobbies} fixed={this.props.fixed} onChange={value => {
-                changeResearchFilter({name: "hobbies", value});
-              }} value={filters.hobbies}/>
+                changeResearchFilter({name: "hobbies", value: this._standardizeArray(value)});
+              }} value={this._destandardizeArray(filters.hobbies, this.state.filterOpts.hobbies)}/>
           </div>
 
           <div className="input-wrapper">
