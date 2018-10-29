@@ -1,42 +1,52 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-import {Link} from "react-router-dom";
-import * as FontAwesome from "react-icons/lib/fa";
 import Eye from "./view.png";
+import { formatDate } from "../../../services/DateFormatterService";
+import { Redirect } from "react-router-dom";
 
 class ListCampaignItem extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      redirect: false,
+      link: null
+    };
+  }
   static propTypes = {
     item: PropTypes.shape({id: PropTypes.number}),
   }
 
-  render() {
-    const {item} = this.props;
+  redirectToAuction = (item) => {
     const link = `/campaigns/${item.id}/auction`;
+    this.setState({
+      redirect: true,
+      link
+    });
+  }
 
-      return (<tr>
+  render() {
+    if(this.state.redirect) {
+      return <Redirect to={this.state.link} />;
+    }
+    const {item} = this.props;
+      return (<tr onClick={() => { this.redirectToAuction(item); }}>
         <td>
-          <Link to={link}>
-            <label>{item.name}</label>
-          </Link>
+          {item.name}
         </td>
         <td>
-          <Link to={link}>
-            <label className="justify-content-center">
-              <img src={Eye} alt="View"/>
-              <span>$</span>{item.price}<span className="line-through">WC</span>
-            </label>
-          </Link>
+          {item.company_name}
         </td>
         <td>
-          <Link to={link}>
-            <label className="justify-content-center">
-              <img src={Eye} alt="View"/>{item.views ? item.views : 100}</label>
-          </Link>
+          <div className="justify-content-center">
+            <img src={Eye} alt="View"/>
+            <span>$</span>{item.budget}<span className="line-through">WC</span>
+          </div>
         </td>
         <td>
-          <Link to={link}>
-            <label className="justify-content-center"><span>$</span>{item.budget ? item.budget : 100}</label>
-          </Link>
+          <span>$</span>{item.budget}
+        </td>
+        <td>
+          {formatDate(item.created_at)}
         </td>
       </tr>);
   }

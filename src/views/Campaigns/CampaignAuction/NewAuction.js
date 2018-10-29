@@ -17,6 +17,7 @@ import {connect} from "react-redux";
 import {compose} from "recompose";
 import ReduxBlockUi from "react-block-ui/redux";
 import {formatDate} from "../../../services/DateFormatterService";
+import Forbidden from "./Forbidden";
 
 const mapStateToProps = store => ({campaign: store.campaign.campaign, bidHistory: store.campaign.bidHistory.items, minPrice: store.campaign.auction.data.min_price});
 
@@ -50,24 +51,9 @@ class NewAuction extends Component {
     if (parseFloat(this.props.campaign.budget) > 0) {
       return (null);
     } else {
-      return (<div className="bid__forbidden p-3">
-        <div className="bid__forbidden-wrapper"></div>
-        <div className="bid__forbidden-info">
-          <div className="bid__forbidden-icon mb-3">
-            <i className="fa fa-exclamation-triangle" aria-hidden="true"></i>
-          </div>
-          <div className="bid__forbidden-title mb-5">
-            {this.props.t("campaignAuction.bid.notAvailable")}
-          </div>
-          <div className="bid__forbidden-action">
-            <div className="btn bid-btn bid-btn--dark" onClick={() => {
-                this.props.toggleCreditCampaignModal();
-              }}>
-              {this.props.t("campaignAuction.bid.creditCampaign")}
-            </div>
-          </div>
-        </div>
-      </div>);
+      return <Forbidden 
+        toggleCreditCampaignModal={this.props.toggleCreditCampaignModal}
+      />;
     }
   }
 
@@ -81,7 +67,7 @@ class NewAuction extends Component {
     } = this.props;
     return (<Card className="bid">
       <CardBody className="p-0 d-flex flex-column">
-        {bidHistory.length === 0 && this._renderForbidden.bind(this)()}        
+        {this._renderForbidden.bind(this)()}        
         <ReduxBlockUi tag="div" block="BID_HISTORY" unblock={["BID_HISTORY_FULFILLED", "BID_HISTORY_REJECTED"]}>
           <div className="bid__block bid__block--no-border d-flex flex-column p-3">
             <div className="bid__subtitle mb-3">

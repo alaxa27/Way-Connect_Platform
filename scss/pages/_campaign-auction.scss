@@ -35,8 +35,12 @@
     height: 20px;
   }
 
-  &__list {
+  &__wrapper {
     height: 700px;
+  }
+
+  &__list {
+    height: 100%;
     overflow-y: auto;
   }
 
@@ -148,11 +152,11 @@
     left: 0;
     bottom: 0;
     opacity: 0.9;
-    z-index: 1;
+    z-index: 999;
   }
 
   &__forbidden-info {
-    z-index: 2;
+    z-index: 1000;
     width: 100%;
     text-align: center;
   }
