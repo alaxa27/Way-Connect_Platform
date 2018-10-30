@@ -75,7 +75,7 @@ import {
 
 const STATUS = require("../data/status");
 
-export function clearCampaignCache (payload) {
+export function clearCampaignCache(payload) {
   return async (dispatch, getState) => {
     dispatch({
       type: CLEAR_CAMPAIGN_CACHE
@@ -83,7 +83,7 @@ export function clearCampaignCache (payload) {
   };
 }
 
-export function clearResearchFilterCache (payload) {
+export function clearResearchFilterCache(payload) {
   return async (dispatch, getState) => {
     dispatch({
       type: CLEAR_RESEARCH_FILTER_CACHE
@@ -322,10 +322,7 @@ export function changeResearchFilter(payload) {
     });
     const filters = getState().campaign.researchFilters.filters;
     const data = {
-      price: "1.00",
-      filters: {
-        ...filters
-      },
+      ...filters
     };
     dispatch(estimateAuction(data));
   };
@@ -399,10 +396,14 @@ export function createCampaign(payload) {
       type: CREATE_CAMPAIGN,
     });
     try {
+      const filters = { ...getState().campaign.researchFilters.filters
+      };
       const response = await axiosInstance({
         method: "post",
         url: "/campaigns/",
-        data: payload
+        data: { ...payload,
+          filters: filters
+        }
       });
       dispatch({
         type: CREATE_CAMPAIGN_FULFILLED,
@@ -513,7 +514,7 @@ export function uploadVideo(payload) {
           "Content-Type": "multipart/form-data"
         },
         onUploadProgress: progressEvent => {
-          const progress = parseInt(Math.round((progressEvent.loaded * 100 ) / progressEvent.total), 10);
+          const progress = parseInt(Math.round((progressEvent.loaded * 100) / progressEvent.total), 10);
           dispatch({
             type: CAMPAIGN_UPLOAD_VIDEO_PROGRESS_CHANGE,
             payload: progress
