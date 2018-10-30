@@ -108,7 +108,7 @@ $g-orange:                        #F6881C;
 $g-orange-light:                  #FBB03B;
 $g-yellow:                        #F9DA23;
 $g-light-grey:                    #e6e6e6;
-$g-light-grey-2:                  #dbdbdb;
+$g-light-grey-2:                  #cbcbcb;
 $g-middle-grey:                   #c5c5c5;
 $g-grey:                          #989898;
 $g-grey-mid-dark:                 rgba(136,136,136,0.62);
@@ -117,6 +117,7 @@ $g-blue:                          #2196F3;
 $g-half-black:                    rgba(0,0,0,.5);
 
 $g-gradient:                      linear-gradient(to right, $g-orange-dark, $g-orange-light);
+$g-gradient-to-bottom:            linear-gradient(to bottom, $g-orange-dark, $g-orange-light);
 
 // Breadcrumbs
 
@@ -161,6 +162,7 @@ $slider-bg:                       $gray-900;
 // Bid button
 $bid-btn-light:                   $g-grey;
 $bid-btn-dark:                    $gray-900;
+$bid-btn-orange:                  $g-orange;
 
 // Line separator color
 $separator-bg:                    $gray-300;
@@ -228,13 +230,15 @@ $config-campaign-formulary-input: $gray-100;
 
 // Create campaign
 $create-campaign-orange:          $g-orange-light;
-$create-campaign-green:           $green;  
+$create-campaign-green:           $green;
 
 // Dashboard
 $establishment-item-bg:           $g-light-grey-2;
 
 // Wallet Manager
 $transactions-bg:                 $g-light-grey;
+$budget-active:                   $g-gradient-to-bottom;
+$budget-inactive:                 $g-grey;
 
 // Research Filters
 $establishment-box:               $g-light-grey;

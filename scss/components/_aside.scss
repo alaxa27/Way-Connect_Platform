@@ -3,14 +3,6 @@
   display: flex;
   flex-direction: column;
 
-  &__coming-soon {
-
-    img {
-      width: 150px;
-      height: 150px;
-    }
-  }
-
   &__title {
     font-size: $font-size-xxs;
     font-weight: bold;
@@ -47,6 +39,15 @@
 
   &__budget-item {
     width: 10px;
+    flex-grow: 0.5;
+
+    &--active {
+      background: $budget-active;
+    }
+
+    &--inactive {
+      background: $budget-inactive;
+    }
   }
 
   &__budget-label {

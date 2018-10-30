@@ -4,6 +4,9 @@ import {
 import _ from "underscore";
 
 import {
+  CLEAR_CAMPAIGN_CACHE,
+  CLEAR_RESEARCH_FILTER_CACHE,
+
   FETCH_FILTER_DATA,
   FETCH_FILTER_DATA_FULFILLED,
   FETCH_FILTER_DATA_REJECTED,
@@ -13,6 +16,10 @@ import {
   AUCTION_ESTIMATE,
   AUCTION_ESTIMATE_FULFILLED,
   AUCTION_ESTIMATE_REJECTED,
+
+  FETCH_AUCTION,
+  FETCH_AUCTION_FULFILLED,
+  FETCH_AUCTION_REJECTED,
 
   FETCH_CAMPAIGN,
   FETCH_CAMPAIGN_FULFILLED,
@@ -37,16 +44,52 @@ import {
 
   CAMPAIGN_CREDIT_MODAL_TOGGLE,
 
-  CAMPAIGN_CREDIT_VALUE_CHANGE,
+  CREDIT_CAMPAIGN,
+  CREDIT_CAMPAIGN_FULFILLED,
+  CREDIT_CAMPAIGN_REJECTED,
 
   CAMPAIGN_PROPERTY_UPDATE,
 
   CREATE_CAMPAIGN,
   CREATE_CAMPAIGN_FULFILLED,
   CREATE_CAMPAIGN_REJECTED,
+
+  BID_CAMPAIGN,
+  BID_CAMPAIGN_FULFILLED,
+  BID_CAMPAIGN_REJECTED,
+
+  BID_HISTORY,
+  BID_HISTORY_FULFILLED,
+  BID_HISTORY_REJECTED,
+
+  CAMPAIGN_UPLOAD_VIDEO,
+  CAMPAIGN_UPLOAD_VIDEO_FULFILLED,
+  CAMPAIGN_UPLOAD_VIDEO_REJECTED,
+
+  CAMPAIGN_UPLOAD_VIDEO_PROGRESS_CHANGE,
 } from "../constants/ActionTypes";
 
+import {
+  fetchWallet
+} from "./walletActions";
+
 const STATUS = require("../data/status");
+
+export function clearCampaignCache(payload) {
+  return async (dispatch, getState) => {
+    dispatch({
+      type: CLEAR_CAMPAIGN_CACHE
+    });
+  };
+}
+
+export function clearResearchFilterCache(payload) {
+  return async (dispatch, getState) => {
+    dispatch({
+      type: CLEAR_RESEARCH_FILTER_CACHE
+    });
+  };
+}
 
 export function fetchFilterData(payload) {
   return async (dispatch, getState) => {
@@ -71,9 +114,9 @@ export function fetchFilterData(payload) {
         type: FETCH_FILTER_DATA_FULFILLED,
         payload: {
           hobbies: hobbies,
-          workStatus: STATUS["PROFESSIONAL"],
-          relationshipStatus: STATUS["RELATIONSHIP"],
-          nationality: STATUS["NATIONALITY"],
+          work_status: STATUS["PROFESSIONAL"],
+          relationship_status: STATUS["RELATIONSHIP"],
+          country: STATUS["NATIONALITY"],
         }
       });
     } catch (error) {
@@ -96,14 +139,24 @@ export function fetchCampaign(payload) {
         method: "get",
         url: "/campaigns/" + payload
       });
+
+      // const filterData = getState().campaign.filterData;
+      //
+      let res_filters = JSON.parse(response.data.filters);
+      // const { relationship_status, work_status } = res_filters;
+      // res_filters.relationship_status = _.find(filterData.relationshipStatus, item => item.value === relationship_status[0]);
+      // res_filters.work_status = _.find(filterData.workStatus, item => item.value === work_status[0]);
+
       dispatch({
         type: FETCH_CAMPAIGN_FULFILLED,
-        payload: response.data
+        payload: { ...response.data,
+          filters: res_filters,
+          id: payload
+        }
       });
     } catch (error) {
       dispatch({
-        type: FETCH_CAMPAIGN_REJECTED,
-        payload: error
+        type: FETCH_CAMPAIGN_REJECTED
       });
     }
   };
@@ -267,18 +320,9 @@ export function changeResearchFilter(payload) {
       type: RESEARCH_FILTER_CHANGE,
       payload
     });
-    const filters = getState().campaign.researchFilters;
+    const filters = getState().campaign.researchFilters.filters;
     const data = {
-      price: "1.0",
-      filters: {
-        gender: filters.male ? "M" : "F",
-        relationship_status: filters.relationship_status,
-        work_status: filters.work_status,
-        hobbies: filters.hobbies,
-        nationality: filters.nationality,
-        age_min: filters.age.min,
-        age_max: filters.age.max
-      },
+      ...filters
     };
     dispatch(estimateAuction(data));
   };
@@ -301,11 +345,7 @@ export function estimateAuction(payload) {
       });
     } catch (error) {
       dispatch({
-        type: AUCTION_ESTIMATE_FULFILLED,
-        payload: {
-          "price": "1.23",
-          "customer_count": 456
-        }
+        type: AUCTION_ESTIMATE_REJECTED
       });
     }
   };
@@ -319,12 +359,34 @@ export function toggleCreditCampaignModal() {
   };
 }
 
-export function changeCreditCampaignValue(payload) {
+export function creditCampaign(payload) {
   return async (dispatch, getState) => {
     dispatch({
-      type: CAMPAIGN_CREDIT_VALUE_CHANGE,
-      payload
+      type: CREDIT_CAMPAIGN
     });
+    try {
+      const action = (payload.amount > 0 ? "deposit" : "withdraw");
+      const amount = (payload.amount > 0 ? payload.amount : -payload.amount);
+      const response = await axiosInstance({
+        method: "post",
+        url: `/campaigns/${payload.campaignID}/${action}/`,
+        data: {
+          amount: Math.round(amount * 100) / 100
+        }
+      });
+      dispatch({
+        type: CREDIT_CAMPAIGN_FULFILLED,
+        payload: response.data
+      });
+      dispatch(fetchCampaign(payload.campaignID));
+      dispatch(fetchWallet());
+      dispatch(toggleCreditCampaignModal());
+    } catch (error) {
+      dispatch({
+        type: CREDIT_CAMPAIGN_REJECTED,
+        payload: error
+      });
+    }
   };
 }
 
@@ -334,14 +396,18 @@ export function createCampaign(payload) {
       type: CREATE_CAMPAIGN,
     });
     try {
+      const filters = { ...getState().campaign.researchFilters.filters
+      };
       const response = await axiosInstance({
         method: "post",
         url: "/campaigns/",
-        data: payload
+        data: { ...payload,
+          filters: filters
+        }
       });
       dispatch({
         type: CREATE_CAMPAIGN_FULFILLED,
-        payload: response.data
+        payload: response.data.id
       });
     } catch (error) {
       dispatch({
@@ -358,5 +424,112 @@ export function updateCampaignProperty(payload) {
       type: CAMPAIGN_PROPERTY_UPDATE,
       payload
     });
+  };
+}
+
+export function fetchAuction(campaignId) {
+  return async (dispatch, getState) => {
+    dispatch({
+      type: FETCH_AUCTION
+    });
+    try {
+      const response = await axiosInstance({
+        method: "get",
+        url: `/campaigns/${campaignId}/auction/`
+      });
+      dispatch({
+        type: FETCH_AUCTION_FULFILLED,
+        payload: response.data
+      });
+    } catch (error) {
+      dispatch({
+        type: FETCH_AUCTION_REJECTED
+      });
+    }
+  };
+}
+
+export function bidCampaign(payload) {
+  return async (dispatch, getState) => {
+    dispatch({
+      type: BID_CAMPAIGN
+    });
+    try {
+      const response = await axiosInstance({
+        method: "post",
+        url: `/campaigns/${payload.campaignId}/bid/`,
+        data: {
+          price: payload.price
+        }
+      });
+      dispatch({
+        type: BID_CAMPAIGN_FULFILLED,
+        payload: response.data
+      });
+      dispatch(fetchCampaign(payload.campaignId));
+      dispatch(fetchAuction(payload.campaignId));
+      dispatch(fetchBidHistory(payload.campaignId));
+    } catch (error) {
+      dispatch({
+        type: BID_CAMPAIGN_REJECTED,
+        payload: error
+      });
+    }
+  };
+}
+
+export function fetchBidHistory(campaignId) {
+  return async (dispatch, getState) => {
+    dispatch({
+      type: BID_HISTORY
+    });
+    try {
+      const response = await axiosInstance({
+        method: "get",
+        url: `/campaigns/${campaignId}/bid/`,
+      });
+      dispatch({
+        type: BID_HISTORY_FULFILLED,
+        payload: response.data.reverse()
+      });
+    } catch (error) {
+      dispatch({
+        type: BID_HISTORY_REJECTED
+      });
+    }
+  };
+}
+
+export function uploadVideo(payload) {
+  return async (dispatch, getState) => {
+    dispatch({
+      type: CAMPAIGN_UPLOAD_VIDEO
+    });
+    try {
+      const response = await axiosInstance({
+        method: "post",
+        url: "/campaigns/communications/videos/",
+        data: payload,
+        headers: {
+          "Content-Type": "multipart/form-data"
+        },
+        onUploadProgress: progressEvent => {
+          const progress = parseInt(Math.round((progressEvent.loaded * 100) / progressEvent.total), 10);
+          dispatch({
+            type: CAMPAIGN_UPLOAD_VIDEO_PROGRESS_CHANGE,
+            payload: progress
+          });
+        }
+      });
+      dispatch({
+        type: CAMPAIGN_UPLOAD_VIDEO_FULFILLED,
+        payload: response.data
+      });
+    } catch (error) {
+      dispatch({
+        type: CAMPAIGN_UPLOAD_VIDEO_REJECTED,
+        payload: error
+      });
+    }
   };
 }

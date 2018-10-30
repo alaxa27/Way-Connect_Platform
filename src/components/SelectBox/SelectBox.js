@@ -15,7 +15,7 @@ const selectStyles = {
     border: "none",
     backgroundColor: "white",
     borderRadius: "1.5rem",
-    minHeight: "28px",
+    minHeight: "28px"
   })
 };
 
@@ -35,7 +35,10 @@ class SelectBox extends Component {
   }
 
   render() {
-    return (<Select onChange={this.props.onChange} value={this.props.value} isDisabled={this.props.fixed} isMulti name={this.props.name} placeholder={this.props.placeholder} defaultValue={(this.props.fixed ? this.props.options : [])} options={(this.props.fixed ? [] : this.props.options)} classNamePrefix="select" components={{
+    return (<Select onChange={this.props.onChange} value={this.props.value} isDisabled={this.props.fixed} isMulti="isMulti" name={this.props.name} placeholder={this.props.placeholder} defaultValue={(
+        this.props.fixed
+        ? this.props.value
+        : [])} options={this.props.options} classNamePrefix="select" components={{
         DropdownIndicator
       }} styles={selectStyles}/>);
   }

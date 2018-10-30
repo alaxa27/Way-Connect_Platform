@@ -2,13 +2,12 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchCampaigns } from "../../../actions/listCampaignsActions";
-import ComingSoon from "../../../components/Modal/ComingSoon";
 import {translate} from "react-i18next";
 import ListCampaignItem from "./ListCampaignItem";
 import {Link} from "react-router-dom";
 import {Button} from "reactstrap";
 import {MdAddCircleOutline} from "react-icons/lib/md";
-import moment from "moment";
+import { Table } from "reactstrap";
 
 @connect((store) => {
   let listCampaignsStore = store.listCampaigns;
@@ -34,21 +33,27 @@ class ListCampaign extends Component {
 
     return (
       <div className="sub-page-wrapper animated fadeIn">
-        <table className="mybids-table">
+
+        <Table className="campaigns-table" hover={true}>
+          <thead>
+            <tr>
+              <th>Name of campaign</th>
+              <th>Company name</th>
+              <th>Price</th>
+              <th>Budget</th>
+              <th>Creation date</th>
+            </tr>
+          </thead>
           <tbody>
             {items}
           </tbody>
-        </table>
+        </Table>
         <Link to="/campaigns/create">
-          <Button className="add-btn"><MdAddCircleOutline/>
+          <Button color="primary">
+            <MdAddCircleOutline/>
             {t("campaigns.start.text")}
           </Button>
         </Link>
-        {(process.env.STAGE !== "production" ? null : <ComingSoon 
-          title={t("listCampaign.comingSoon.title")}
-          description={t("listCampaign.comingSoon.description")}
-          launchDate={moment("2018-09-28")}
-        />)}
       </div>
     );
   }

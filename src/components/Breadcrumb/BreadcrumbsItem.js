@@ -6,7 +6,10 @@ import {translate} from "react-i18next";
 import routes from "../../routes";
 import { camelCase } from "lodash";
 
-const findRouteName = url => routes[url];
+const findRouteName = url => {
+  const formattedUrl = url.replace(/\d+/g, ":id");
+  return routes[formattedUrl];
+};
 
 const BreadcrumbsItem = ({
   match,

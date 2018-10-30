@@ -35,7 +35,7 @@ class Countdown extends Component {
     };
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     // update every second
     this.interval = setInterval(() => {
       const date = this.calculateCountdown(moment(this.props.date).format());
@@ -43,11 +43,11 @@ class Countdown extends Component {
     }, 1000);
   }
 
-  componentWillUnmount = () => {
+  componentWillUnmount() {
     this.stop();
   }
 
-  calculateCountdown = (endDate) => {
+  calculateCountdown(endDate) {
     let diff = (Date.parse(new Date(endDate)) - Date.parse(new Date())) / 1000;
 
     // clear countdown when date is reached
@@ -83,7 +83,7 @@ class Countdown extends Component {
     return timeLeft;
   }
 
-  stop = () => {
+  stop() {
     clearInterval(this.interval);
     const {
       onEndCountdown
@@ -91,7 +91,7 @@ class Countdown extends Component {
     onEndCountdown(0);
   }
 
-  addLeadingZeros = (value, setDoubleZero) => {
+  addLeadingZeros(value, setDoubleZero) {
     value = String(value);
     if(setDoubleZero === true){
       while (value.length < 2) {

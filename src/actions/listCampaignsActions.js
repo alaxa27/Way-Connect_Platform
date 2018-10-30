@@ -18,18 +18,9 @@ export function fetchCampaigns(payload) {
         method: "GET",
         url: "/campaigns",
       });
-      const campaigns = response.data.map((item, key) => {
-        return { ...item,
-          name: "Optician",
-          view_price: "5",
-          viewed: "3500",
-          viewers: "12",
-          bought: "500",
-        };
-      });
       dispatch({
         type: FETCH_CAMPAIGNS_FULFILLED,
-        payload: campaigns
+        payload: response.data.reverse()
       });
     } catch (error) {
       dispatch({

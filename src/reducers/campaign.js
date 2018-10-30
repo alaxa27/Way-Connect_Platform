@@ -1,9 +1,16 @@
 import {
+  CLEAR_CAMPAIGN_CACHE,
+  CLEAR_RESEARCH_FILTER_CACHE,
+
   FETCH_FILTER_DATA,
   FETCH_FILTER_DATA_FULFILLED,
   FETCH_FILTER_DATA_REJECTED,
 
   RESEARCH_FILTER_CHANGE,
+
+  FETCH_AUCTION,
+  FETCH_AUCTION_FULFILLED,
+  FETCH_AUCTION_REJECTED,
 
   AUCTION_ESTIMATE,
   AUCTION_ESTIMATE_FULFILLED,
@@ -36,17 +43,44 @@ import {
 
   CAMPAIGN_CREDIT_MODAL_TOGGLE,
 
-  CAMPAIGN_CREDIT_VALUE_CHANGE,
-
   CAMPAIGN_PROPERTY_UPDATE,
+
+  BID_CAMPAIGN,
+  BID_CAMPAIGN_FULFILLED,
+  BID_CAMPAIGN_REJECTED,
+
+  BID_HISTORY,
+  BID_HISTORY_FULFILLED,
+  BID_HISTORY_REJECTED,
+
+  CAMPAIGN_UPLOAD_VIDEO,
+  CAMPAIGN_UPLOAD_VIDEO_FULFILLED,
+  CAMPAIGN_UPLOAD_VIDEO_REJECTED,
+
+  CAMPAIGN_UPLOAD_VIDEO_PROGRESS_CHANGE,
 } from "../constants/ActionTypes";
 import _ from "underscore";
 
 const campaignDefaults = {
   id: null,
+  name: "",
+  company_name: "",
+  description: "",
+  type: "",
+  created_at: "",
+  updated_at: "",
   filters: "",
-  owner: "",
-  status: "",
+  price: 0,
+  repetitions: 0,
+  budget: 0,
+  targeted_customers: 0,
+  spent_budget: 0,
+  views: 0,
+  communication: {
+    id: 0,
+    video: ""
+  },
+
   fetching: false,
   success: false,
   error: null,
@@ -105,35 +139,33 @@ const trafficDefaults = {
   ]
 };
 
+const filtersDefaults = {
+  gender: "",
+  age_min: 0,
+  age_max: 100,
+  work_status: [],
+  relationship_status: [],
+  country: [],
+  hobbies: []
+};
+
 const filterDataDefaults = {
   fetching: false,
   fetched: false,
-  workStatus: [],
-  relationshipStatus: [],
-  nationality: [],
-  hobbies: [],
-  gender: {
-    male: false,
-    female: false
-  },
-  age: {
-    min: 18,
-    max: 24
-  },
+  filters: filtersDefaults,
   recallMarketing: 0
 };
 
 const researchFilterDefaults = {
-  male: false,
-  female: false,
-  age: {
-    min: 18,
-    max: 24
+  filters: {
+    gender: "",
+    age_min: 0,
+    age_max: 100,
+    work_status__in: "",
+    relationship_status__in: "",
+    country__in: "",
+    hobbies: []
   },
-  workStatus: [],
-  relationshipStatus: [],
-  nationality: [],
-  hobbies: [],
   recallMarketing: 0,
   users: 0,
   price: 0
@@ -145,6 +177,7 @@ const initialState = {
   error: null,
 
   newCampaign: {
+    id: "",
     name: "",
     companyName: "",
     productDescription: "",
@@ -161,15 +194,42 @@ const initialState = {
   researchFilters: researchFilterDefaults,
 
   creditModalShown: false,
-  credit: {
-    min: 0,
-    max: 7500,
-    current: 750
+
+  bidAttempt: {
+    executing: false,
+    error: null,
+    success: false,
   },
+  bidHistory: {
+    error: null,
+    fetching: false,
+    items: []
+  },
+  auction: {
+    error: null,
+    fetching: true,
+    data: {}
+  },
+  videoUpload: {
+    executing: false,
+    error: null,
+    success: false,
+    progress: 0,
+  }
 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
+    case CLEAR_CAMPAIGN_CACHE:
+      return { ...initialState
+      };
+    case CLEAR_RESEARCH_FILTER_CACHE:
+      return { ...state,
+        researchFilters: {
+          ...researchFilterDefaults
+        }
+      };
+
     case FETCH_FILTER_DATA:
       return { ...state,
         filterData: {
@@ -181,9 +241,12 @@ export default function reducer(state = initialState, action) {
     case FETCH_FILTER_DATA_FULFILLED:
       return { ...state,
         filterData: { ...state.filterData,
-          ...action.payload,
           fetching: false,
-          fetched: true
+          fetched: true,
+          filters: {
+            ...state.filterData.filters,
+            ...action.payload
+          }
         }
       };
     case FETCH_FILTER_DATA_REJECTED:
@@ -203,13 +266,13 @@ export default function reducer(state = initialState, action) {
           fetching: true,
           success: false,
           error: null
+        },
+        videoUpload: {
+          ...state.videoUpload,
+          success: false,
         }
       };
     case FETCH_CAMPAIGN_FULFILLED:
-      let filters = {};
-      if(action.payload.filters !== "{}") {
-        filters = action.payload.filters;
-      }
       return {
         ...state,
         campaign: {
@@ -221,7 +284,10 @@ export default function reducer(state = initialState, action) {
         },
         researchFilters: {
           ...state.researchFilters,
-          ...filters,
+          filters: {
+            ...state.researchFilters.filters,
+            ...action.payload.filters
+          }
         }
       };
     case FETCH_CAMPAIGN_REJECTED:
@@ -300,7 +366,10 @@ export default function reducer(state = initialState, action) {
         ...state,
         researchFilters: {
           ...state.researchFilters,
-          [action.payload.name]: action.payload.value
+          filters: {
+            ...state.researchFilters.filters,
+            [action.payload.name]: action.payload.value
+          }
         }
       };
 
@@ -336,6 +405,7 @@ export default function reducer(state = initialState, action) {
         newCampaign: {
           ...state.newCampaign,
           created: true,
+          id: action.payload
         }
       };
     case CREATE_CAMPAIGN_REJECTED:
@@ -352,22 +422,6 @@ export default function reducer(state = initialState, action) {
         ...state,
         creditModalShown: !state.creditModalShown
       };
-    case CAMPAIGN_CREDIT_VALUE_CHANGE:
-      let value = action.payload;
-      const { max, min } = state.credit;
-      if(value > max) {
-        value = max;
-      }
-      if(value < min) {
-        value = min;
-      }
-      return {
-        ...state,
-        credit: {
-          ...state.credit,
-          current: value
-        }
-      };
     case CAMPAIGN_PROPERTY_UPDATE:
       return {
         ...state,
@@ -376,6 +430,143 @@ export default function reducer(state = initialState, action) {
           [action.payload.name]: action.payload.value
         }
       };
+
+    case FETCH_AUCTION:
+      return {
+        ...state,
+        auction: {
+          ...state.auction,
+          fetching: true,
+          error: null
+        }
+      };
+    case FETCH_AUCTION_FULFILLED:
+      return {
+        ...state,
+        auction: {
+          ...state.auction,
+          fetching: false,
+          error: null,
+          data: action.payload
+        },
+        campaign: {
+          ...state.campaign,
+          targeted_customers: action.payload.targeted_customers
+        }
+      };
+    case FETCH_AUCTION_REJECTED:
+      return {
+        ...state,
+        auction: {
+          ...state.auction,
+          fetching: false,
+          error: action.payload,
+          data: []
+        }
+      };
+
+    case BID_CAMPAIGN:
+      return {
+        ...state,
+        bidAttempt: {
+          ...state.bidAttempt,
+          executing: true,
+          error: null,
+          success: false
+        }
+      };
+    case BID_CAMPAIGN_FULFILLED:
+      return {
+        ...state,
+        bidAttempt: {
+          ...state.bidAttempt,
+          executing: false,
+          error: null,
+          success: true
+        }
+      };
+    case BID_CAMPAIGN_REJECTED:
+      return {
+        ...state,
+        bidAttempt: {
+          ...state.bidAttempt,
+          executing: false,
+          error: action.payload,
+          success: false
+        }
+      };
+
+    case BID_HISTORY:
+      return {
+        ...state,
+        bidHistory: {
+          ...state.bidHistory,
+          fetching: true,
+          error: null,
+        }
+      };
+    case BID_HISTORY_FULFILLED:
+      return {
+        ...state,
+        bidHistory: {
+          ...state.bidHistory,
+          fetching: false,
+          error: null,
+          items: action.payload
+        }
+      };
+    case BID_HISTORY_REJECTED:
+      return {
+        ...state,
+        bidHistory: {
+          ...state.bidHistory,
+          fetching: false,
+          error: action.payload,
+          items: []
+        }
+      };
+
+    case CAMPAIGN_UPLOAD_VIDEO:
+      return {
+        ...state,
+        videoUpload: {
+          ...state.videoUpload,
+          executing: true,
+          success: false,
+          error: null,
+          progress: 0,
+        }
+      };
+    case CAMPAIGN_UPLOAD_VIDEO_FULFILLED:
+      return {
+        ...state,
+        videoUpload: {
+          ...state.videoUpload,
+          executing: false,
+          success: true,
+          error: null,
+        }
+      };
+    case CAMPAIGN_UPLOAD_VIDEO_REJECTED:
+      return {
+        ...state,
+        videoUpload: {
+          ...state.videoUpload,
+          executing: false,
+          success: false,
+          error: action.payload,
+          progress: 0,
+        }
+      };
+    case CAMPAIGN_UPLOAD_VIDEO_PROGRESS_CHANGE:
+      return {
+        ...state,
+        videoUpload: {
+          ...state.videoUpload,
+          progress: action.payload,
+        }
+      };
+
     default:
       return { ...state
       };

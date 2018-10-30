@@ -33,7 +33,7 @@ class ConfigCampaign extends Component {
   }
 
   render() {
-    const { t } = this.props;
+    const { t, match } = this.props;
     const componentConfig = {
       iconFiletypes: [
         ".mp4", ".m4v", ".avi", ".flv"
@@ -74,16 +74,12 @@ class ConfigCampaign extends Component {
             </Nav>
             <TabContent activeTab={this.state.activeTab}>
               <TabPane tabId="1" className="p-0">
-                <ConfigVideo/>
+                <ConfigVideo campaignId={match.params.id} />
               </TabPane>
 
               <TabPane tabId="2" className="p-0">
                 <ConfigFormulary/>
-              </TabPane>
-
-              <Col className="text-right border-top">
-                <Button className="bid-btn">{t("configCampaign.tabs.submit.title")}</Button>
-              </Col>
+              </TabPane>              
 
             </TabContent>
           </div>
@@ -94,5 +90,6 @@ class ConfigCampaign extends Component {
 }
 ConfigCampaign.propTypes = {
   t: PropTypes.func,
+  match: PropTypes.object,
 };
 export default translate("translations")(ConfigCampaign);
