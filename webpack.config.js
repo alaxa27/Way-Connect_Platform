@@ -114,11 +114,10 @@ module.exports = (env = {}) => {
       }], {
         copyUnmodified: false
       }),
-
       new webpack.DefinePlugin({
         'process.env': {
-          NODE_ENV: JSON.stringify(env.NODE_ENV),
-          STAGE: JSON.stringify(process.env.STAGE),
+          STAGE: JSON.stringify(process.env.REACT_APP_STAGE),
+          NODE_ENV: JSON.stringify(process.env.NODE_ENV)
         }
       })
     ]
