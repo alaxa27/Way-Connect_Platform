@@ -159,8 +159,6 @@ const filterDataDefaults = {
 const researchFilterDefaults = {
   filters: {
     gender: "",
-    age_min: 0,
-    age_max: 100,
     work_status__in: "",
     relationship_status__in: "",
     country__in: "",

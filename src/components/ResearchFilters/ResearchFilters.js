@@ -45,12 +45,14 @@ class ResearchFilters extends Component {
     }
 
     if (prevProps.researchFilters !== this.props.researchFilters) {
-      this.setState({
-        age: {
-          min: this.props.researchFilters.filters.age_min,
-          max: this.props.researchFilters.filters.age_max
-        }
-      });
+      if (this.props.fixed) {
+        this.setState({
+          age: {
+            min: this.props.researchFilters.filters.age_min,
+            max: this.props.researchFilters.filters.age_max
+          }
+        });
+      }
     }
   }
 

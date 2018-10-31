@@ -37,7 +37,6 @@ if (hostname === "way-connect.com") {
   backendHost = "http://localhost:8000";
 }
 
-console.log(process.env);
 if (process.env.STAGE === "development") {
   backendHost = "https://wayconnect-staging-pr-5.herokuapp.com";
 } else if (process.env.STAGE === "staging") {

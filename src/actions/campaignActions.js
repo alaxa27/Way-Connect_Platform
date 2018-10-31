@@ -398,6 +398,7 @@ export function createCampaign(payload) {
     try {
       const filters = { ...getState().campaign.researchFilters.filters
       };
+
       const response = await axiosInstance({
         method: "post",
         url: "/campaigns/",
