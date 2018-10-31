@@ -174,7 +174,8 @@ const auctionDefaults = {
     fetching: true,
     data: {
       competitors: 0,
-      views: 0
+      views: 0,
+      top: []
     }
 };
 
