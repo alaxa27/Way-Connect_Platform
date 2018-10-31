@@ -27,7 +27,7 @@ class ListCampaignItem extends Component {
         <td>
           <div className="justify-content-center">
             <img src={Eye} alt="View"/>
-            <span>$</span>{item.budget}<span className="line-through">WC</span>
+            <span>$</span>{item.price}<span className="line-through">WC</span>
           </div>
         </td>
         <td>
