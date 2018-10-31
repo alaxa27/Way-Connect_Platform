@@ -5,7 +5,7 @@ import InputRange from "react-input-range";
 import _ from "underscore";
 import SelectBox from "../SelectBox/SelectBox";
 import {connect} from "react-redux";
-import {fetchFilterData, changeResearchFilter} from "../../actions/campaignActions";
+import {fetchFilterData, changeResearchFilter, estimateAuction} from "../../actions/campaignActions";
 import Map from "../Map";
 import Checkbox from "../Checkbox/";
 import ComingSoon from "../../components/Modal/ComingSoon";
@@ -17,7 +17,8 @@ const mapStateToProps = state => ({researchFilters: state.campaign.researchFilte
 
 const mapDispatchToProps = dispatch => ({
   fetchFilterData: () => dispatch(fetchFilterData()),
-  changeResearchFilter: payload => dispatch(changeResearchFilter(payload))
+  changeResearchFilter: payload => dispatch(changeResearchFilter(payload)),
+  estimateAuction: payload => dispatch(estimateAuction(payload))
 });
 
 class ResearchFilters extends Component {
@@ -37,6 +38,9 @@ class ResearchFilters extends Component {
       hobbies: []
     };
     props.fetchFilterData();
+    if (!props.fixed) {
+      props.estimateAuction(props.researchFilters.filters);
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -297,6 +301,7 @@ ResearchFilters.propTypes = {
   fixed: PropTypes.bool,
   fetchFilterData: PropTypes.func,
   changeResearchFilter: PropTypes.func,
+  estimateAuction: PropTypes.func,
   filterData: PropTypes.object,
   researchFilters: PropTypes.object
 };
