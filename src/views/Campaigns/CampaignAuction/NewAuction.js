@@ -17,6 +17,7 @@ import {connect} from "react-redux";
 import {compose} from "recompose";
 import ReduxBlockUi from "react-block-ui/redux";
 import {formatDate} from "../../../services/DateFormatterService";
+import NumberUp from "../../../components/NumberUp";
 import Forbidden from "./Forbidden";
 
 const mapStateToProps = store => ({campaign: store.campaign.campaign, bidHistory: store.campaign.bidHistory.items, minPrice: store.campaign.auction.data.min_price});
@@ -51,7 +52,7 @@ class NewAuction extends Component {
     if (parseFloat(this.props.campaign.budget) > 0) {
       return (null);
     } else {
-      return <Forbidden 
+      return <Forbidden
         toggleCreditCampaignModal={this.props.toggleCreditCampaignModal}
       />;
     }
@@ -67,7 +68,7 @@ class NewAuction extends Component {
     } = this.props;
     return (<Card className="bid">
       <CardBody className="p-0 d-flex flex-column">
-        {this._renderForbidden.bind(this)()}        
+        {this._renderForbidden.bind(this)()}
         <ReduxBlockUi tag="div" block="BID_HISTORY" unblock={["BID_HISTORY_FULFILLED", "BID_HISTORY_REJECTED"]}>
           <div className="bid__block bid__block--no-border d-flex flex-column p-3">
             <div className="bid__subtitle mb-3">
@@ -81,7 +82,9 @@ class NewAuction extends Component {
                       <div className="bid__box bid__box--bordered p-3">
                         <i className="fa fa-user"></i>
                         <span className="bid__box-title mr-2">{t("campaignAuction.bid.concurrents")}</span>
-                        <span className="font-weight-bold">{item.competitors}</span>
+                        <span className="font-weight-bold">
+                          <NumberUp value={item.competitors} />
+                        </span>
                       </div>
                       <div className="bid__box bid__box--bordered p-3">
                         <i className="fa fa-clock-o mr-2"></i>
@@ -112,7 +115,7 @@ class NewAuction extends Component {
                 <span className="mr-2">{t("campaignAuction.bid.targetUsers")}</span>
               </div>
               <span className="font-weight-bold">
-                {campaign.targeted_customers}
+                <NumberUp value={campaign.targeted_customers} />
               </span>
             </div>
             <div className="bid__box py-2">

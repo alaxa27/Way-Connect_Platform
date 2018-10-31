@@ -21,7 +21,11 @@ class AuctionTotal extends Component {
   }
   render() {
     const {data, campaign, bidAttempt, toggleCreditCampaignModal} = this.props;
-    const value = 100 * data.budget / (data.spent_budget + data.budget);
+    let value = 0;
+    if (data.spent_budget + data.budget > 0) {
+      value = 100 * data.budget / (data.spent_budget + data.budget);
+    }
+
     return (<Fragment>
       {
         bidAttempt.success

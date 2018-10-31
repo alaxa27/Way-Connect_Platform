@@ -169,6 +169,15 @@ const researchFilterDefaults = {
   price: 0
 };
 
+const auctionDefaults = {
+    error: null,
+    fetching: true,
+    data: {
+      competitors: 0,
+      views: 0
+    }
+};
+
 const initialState = {
   fetching: false,
   success: false,
@@ -203,11 +212,7 @@ const initialState = {
     fetching: false,
     items: []
   },
-  auction: {
-    error: null,
-    fetching: true,
-    data: {}
-  },
+  auction: auctionDefaults,
   videoUpload: {
     executing: false,
     error: null,
@@ -445,7 +450,10 @@ export default function reducer(state = initialState, action) {
           ...state.auction,
           fetching: false,
           error: null,
-          data: action.payload
+          data: {
+            ...action.payload,
+            views: action.payload.current.views
+          }
         },
         campaign: {
           ...state.campaign,

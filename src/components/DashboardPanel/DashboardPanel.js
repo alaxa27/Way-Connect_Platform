@@ -4,6 +4,8 @@ import {Card, CardBody} from "reactstrap";
 import CountUp from "react-countup";
 import {Bar, Line} from "react-chartjs-2";
 
+import NumberUp from "../NumberUp";
+
 const chartOpts = {
   maintainAspectRatio: false,
   legend: {
@@ -104,7 +106,7 @@ class DashboardPanel extends Component {
     return (<Card className={"text-white dashboard-panel dashboard-panel--" + id}>
       <CardBody className="pb-0">
         <h1 className="mb-0">
-          <CountUp start={0} end={value} duration={3}/>
+          <NumberUp value={value} />
         </h1>
         <p>{title}</p>
       </CardBody>

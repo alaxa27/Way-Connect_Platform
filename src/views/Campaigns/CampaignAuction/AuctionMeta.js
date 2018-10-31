@@ -6,17 +6,20 @@ import {compose} from "recompose";
 import moment from "moment";
 import { Link } from "react-router-dom";
 
+import NumberUp from "../../../components/NumberUp";
+
 const mapStateToProps = state => ({
   campaign: state.campaign.campaign,
   competitors: state.campaign.auction.data.competitors,
+  views: state.campaign.auction.data.views
 });
 
 class AuctionMeta extends Component {
   render() {
-    const { campaign, competitors, t } = this.props;
+    const { campaign, competitors, views, t } = this.props;
     const createdAt = moment(campaign.created_at);
     const now = moment();
-    
+
     const diff = moment.duration(now.diff(createdAt));
 
     const days = diff.days();
@@ -39,7 +42,7 @@ class AuctionMeta extends Component {
             Concurrents:
           </span>
           <span className="bid-meta__value">
-            {competitors}
+            <NumberUp value={competitors} />
           </span>
         </div>
         <div className="bid-meta__views mr-3 d-inline-block">
@@ -47,7 +50,7 @@ class AuctionMeta extends Component {
             Views:
           </span>
           <span className="bid-meta__value">
-            {campaign.views}
+            <NumberUp value={views} />
           </span>
         </div>
         <div className="bid-meta__analytics d-inline-block">
@@ -62,6 +65,7 @@ AuctionMeta.propTypes = {
   t: PropTypes.func,
   campaign: PropTypes.object,
   competitors: PropTypes.number,
+  views: PropTypes.number,
 };
 
 export default compose(connect(mapStateToProps, null), translate("translations"))(AuctionMeta);

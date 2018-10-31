@@ -8,6 +8,7 @@
 
   .progress {
     background-color: $g-light-grey-2;
+
     .progress-bar {
       background: $g-gradient !important;
     }
@@ -265,30 +266,20 @@
 }
 
 .bid-progress-bar {
-  width: 100%;
   display: flex;
   align-items: center;
+  width: 100%;
 
-  .input-range {
+  &__progress {
+    width: 100%;
+  }
+
+  .progress {
+    background-color: $g-light-grey-2;
     height: 0.5rem;
-  }
 
-  .input-range__track {
-    height: 0.5rem;
-    border-radius: 0;
-  }
-
-  .input-range__track--background {
-    margin-top: -0.25rem;
-  }
-
-  .input-range__slider {
-    display: none;
-  }
-
-  .input-range__label--max,
-  .input-range__label--min,
-  .input-range__label--value {
-    display: none;
+    .progress-bar {
+      background: $g-gradient !important;
+    }
   }
 }
