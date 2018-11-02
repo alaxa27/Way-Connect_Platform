@@ -240,7 +240,7 @@ class ResearchFilters extends Component {
             ? null
             : <Col md="6" xs="12">
               <div className="feature-coming-soon">
-                <ComingSoon title={t("createCampaign.comingSoon.title")} description={t("createCampaign.comingSoon.description")} launchDate={moment("2018-10-28")}/>
+                <ComingSoon title={t("createCampaign.comingSoon.title")} description={t("createCampaign.comingSoon.description")} launchDate={moment("2018-11-28")}/>
                 <div className="input-wrapper">
                   <label>Select establishments</label>
                   <div className="map-wrapper">
