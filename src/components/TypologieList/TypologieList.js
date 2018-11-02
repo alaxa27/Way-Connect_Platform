@@ -60,9 +60,6 @@ class TypologieList extends Component {
             <div className="input-wrapper">
               <label>Product description</label>
               <Input type="text" id="productDescription" className="typologie-list__input" name="productDescription" value={productDescription} onChange={(e) => updateCampaignProperty({ name: "productDescription", value: e.target.value}) }/>
-              {validator.message("productDescription", productDescription, "required", "text-danger", {
-                required: this.errorMessageService.generateErrorMessage("Product description", "required"),
-              })}
             </div>
           </Col>
         </Row>
