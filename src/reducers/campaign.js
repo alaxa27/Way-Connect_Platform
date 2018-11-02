@@ -468,7 +468,6 @@ export default function reducer(state = initialState, action) {
           ...state.auction,
           fetching: false,
           error: action.payload,
-          data: []
         }
       };
 
