@@ -188,10 +188,10 @@
       "title": "Discounts"
     },
     "module": {
-      "no": "Vous n'avez pas configuré ce module."
+      "no": "You haven't configured this module."
     },
     "customer": {
-      "title": "Connaissance Clients"
+      "title": "Customer Knowledge"
     }
   },
   "sidebar": {

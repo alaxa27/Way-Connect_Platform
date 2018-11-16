@@ -190,10 +190,10 @@
       "title": "Réductions"
     },
     "module": {
-      "no": "You haven't configured this module."
+      "no": "Vous n'avez pas configuré ce module."
     },
     "customer": {
-      "title": "Customer Knowledge"
+      "title": "Connaissance Clients"
     }
   },
   "sidebar": {
