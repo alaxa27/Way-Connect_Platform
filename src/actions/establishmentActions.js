@@ -93,6 +93,10 @@ function fetchMonthlyData(payload) {
         method: "get",
         url: `/establishments/${payload.establishmentID}/monthly_data`,
       });
+      const response1 = await axiosInstance({
+        method: "get",
+        url: `/establishments/${payload.establishmentID}/earned_money/`,
+      });
 
       const monthlyData = { ...response.data
       };
@@ -109,6 +113,8 @@ function fetchMonthlyData(payload) {
           currency: ""
         };
       }
+
+      monthlyData.earnings = response1.data;
 
       dispatch({
         type: MONTHLY_DATA_FULFILLED,

@@ -20,7 +20,6 @@ class AuctionList extends Component {
   render() {
     const { auction, bidHistory } = this.props;
     const { top, current } = auction;
-    console.log(auction);
     const isCampaignDeep = (top.length === 10 ? current.average_rank > top[top.length - 1].average_rank : false);
     return (
       <ReduxBlockUi tag="div" block="FETCH_AUCTION" unblock={["FETCH_AUCTION_FULFILLED", "FETCH_AUCTION_REJECTED"]}>
@@ -48,7 +47,7 @@ class AuctionList extends Component {
                 </Fragment>
               :
                 <Forbidden
-                  hideCredit
+                  hideCredit={true}
                 />
               }
 

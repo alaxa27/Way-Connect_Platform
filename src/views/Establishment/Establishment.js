@@ -114,7 +114,7 @@ export class Establishment extends Component {
             <Panel index={3} value={monthlyData.customer_average_visits} title={t("establishment.panel.revisitAverage.title")} />
           </Col>
           <Col xs="12" md="6" lg="3">
-            <Panel index={4} value={monthlyData.visits_change} title={t("establishment.panel.visitFluctuation.title")} />
+            <Panel index={4} value={monthlyData.earnings} title={t("establishment.panel.visitFluctuation.title")} />
           </Col>
         </Row>
 
