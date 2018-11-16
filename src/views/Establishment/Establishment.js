@@ -1,9 +1,11 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
+import _ from "underscore";
 import {Row, Col} from "reactstrap";
 import ReduxBlockUi from "react-block-ui/redux";
 
+import ComingSoon from "../../components/Modal/ComingSoon";
 import TypicalClient from "../../components/TypicalClient/TypicalClient";
 import Affluence from "../../components/Affluence/Affluence";
 import PromotionsList from "../../components/Promotions/PromotionsList";
@@ -13,6 +15,8 @@ import ExportExcelButton from "./ExportExcel/ExportExcelButton";
 import * as actions from "../../actions/establishmentActions";
 import {translate} from "react-i18next";
 import {compose} from "recompose";
+
+import establishmentsWithFidelity from "../../data/establishmentsWithFidelity";
 
 
 let trafficChartOptions = {
@@ -114,7 +118,7 @@ export class Establishment extends Component {
             <Panel index={3} value={monthlyData.customer_average_visits} title={t("establishment.panel.revisitAverage.title")} />
           </Col>
           <Col xs="12" md="6" lg="3">
-            <Panel index={4} value={monthlyData.earnings} title={t("establishment.panel.visitFluctuation.title")} />
+            <Panel index={4} value={monthlyData.earnings} title={t("establishment.panel.earnings.title")} />
           </Col>
         </Row>
 
@@ -125,13 +129,26 @@ export class Establishment extends Component {
         </Row>
 
         <Row>
-          <Col>
+          <Col lg="3">
             <h2 className="heading">{t("establishment.promotions.title")}</h2>
+          </Col>
+          <Col lg={{size: 3, offset: 1}}>
+            <ExportExcelButton
+              title={t("general.exportExcel.title")}
+              establishmentId={this.props.match.params.id}
+            />
           </Col>
         </Row>
         <Row>
           <Col lg="6">
-            <PromotionsList data={promotions.data} promotionsLimit={promotions.limit} promotionsPage={promotions.page} promotionsTotalCount={promotions.total_count} loadMore={this.loadMorePromotions}/>
+            {(
+            _.contains(establishmentsWithFidelity, "lkjlk") ?
+              <PromotionsList data={promotions.data} promotionsLimit={promotions.limit} promotionsPage={promotions.page} promotionsTotalCount={promotions.total_count} loadMore={this.loadMorePromotions}/>
+            :
+              <ComingSoon title="Blocked" description={t("establishment.module.no")}>
+                <PromotionsList data={promotions.data} promotionsLimit={promotions.limit} promotionsPage={promotions.page} promotionsTotalCount={promotions.total_count} loadMore={this.loadMorePromotions}/>
+              </ComingSoon>
+            )}
           </Col>
           <Col lg="6">
             <div className="d-flex flex-column mt-4">
@@ -144,13 +161,16 @@ export class Establishment extends Component {
             </div>
           </Col>
         </Row>
-
         <Row>
           <Col>
-            <ExportExcelButton
-                title={t("general.exportExcel.title")}
-                establishmentId={this.props.match.params.id}
-              />
+            <h2 className="heading">{t("establishment.customer.title")}</h2>
+          </Col>
+        </Row>
+        <Row>
+          <Col lg="12" style={{width: "100%", height: "500px"}}>
+            <ComingSoon title="Blocked" description={t("establishment.module.no")}>
+              <div></div>
+            </ComingSoon>
           </Col>
         </Row>
       </div>

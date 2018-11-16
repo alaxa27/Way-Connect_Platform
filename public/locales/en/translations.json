@@ -180,12 +180,18 @@
       "revisitAverage": {
         "title": "Average of Revisit"
       },
-      "visitFluctuation": {
+      "earnings": {
         "title": "Earnings"
       }
     },
     "promotions": {
       "title": "Discounts"
+    },
+    "module": {
+      "no": "Vous n'avez pas configuré ce module."
+    },
+    "customer": {
+      "title": "Connaissance Clients"
     }
   },
   "sidebar": {

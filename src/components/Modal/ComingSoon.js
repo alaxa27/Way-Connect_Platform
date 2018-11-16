@@ -35,15 +35,21 @@ const ComingSoon = ({ t, title, description, launchDate, minified, outlineClassN
             </Row>
           </div>
           <div className="modal-body__content my-4">
-            <Countdown
-              date={launchDate.toString()}
-              displayText={{
-                Days: t("campaigns.comingSoon.countDown.days"),
-                Hours: t("campaigns.comingSoon.countDown.hours"),
-                Min: t("campaigns.comingSoon.countDown.minutes"),
-                Sec: t("campaigns.comingSoon.countDown.seconds"),
-              }}
-            />
+            {
+              (launchDate ?
+                <Countdown
+                  date={launchDate.toString()}
+                  displayText={{
+                    Days: t("campaigns.comingSoon.countDown.days"),
+                    Hours: t("campaigns.comingSoon.countDown.hours"),
+                    Min: t("campaigns.comingSoon.countDown.minutes"),
+                    Sec: t("campaigns.comingSoon.countDown.seconds"),
+                  }}
+                />
+                :
+                null
+              )
+            }
           </div>
         </div>
       </div>    

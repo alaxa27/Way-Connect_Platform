@@ -182,12 +182,18 @@
       "revisitAverage": {
         "title": "Moyenne de Revisite"
       },
-      "visitFluctuation": {
+      "earnings": {
         "title": "Gains"
       }
     },
     "promotions": {
       "title": "Réductions"
+    },
+    "module": {
+      "no": "You haven't configured this module."
+    },
+    "customer": {
+      "title": "Customer Knowledge"
     }
   },
   "sidebar": {
