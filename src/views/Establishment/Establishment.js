@@ -112,13 +112,13 @@ export class Establishment extends Component {
             <Panel index={1} value={monthlyData.visits} title={t("establishment.panel.visits.title")} />
           </Col>
           <Col xs="12" md="6" lg="3">
-            <Panel index={2} value={monthlyData.total_rewards.value} currency={monthlyData.total_rewards.currency} title={t("establishment.panel.promotions.title")} />
+            <Panel locked={true} index={2} value={monthlyData.total_rewards.value} currency={monthlyData.total_rewards.currency} title={t("establishment.panel.promotions.title")} />
           </Col>
           <Col xs="12" md="6" lg="3">
             <Panel index={3} value={monthlyData.customer_average_visits} title={t("establishment.panel.revisitAverage.title")} />
           </Col>
           <Col xs="12" md="6" lg="3">
-            <Panel index={4} value={monthlyData.earnings} title={t("establishment.panel.earnings.title")} />
+            <Panel index={4} value={0.1 * monthlyData.earnings} title={t("establishment.panel.earnings.title")} currency="TND" />
           </Col>
         </Row>
 
@@ -145,7 +145,7 @@ export class Establishment extends Component {
             _.contains(establishmentsWithFidelity, "lkjlk") ?
               <PromotionsList data={promotions.data} promotionsLimit={promotions.limit} promotionsPage={promotions.page} promotionsTotalCount={promotions.total_count} loadMore={this.loadMorePromotions}/>
             :
-              <ComingSoon title="Blocked" description={t("establishment.module.no")}>
+              <ComingSoon image="../img/lock.png" title="Blocked" description={t("establishment.module.no")}>
                 <PromotionsList data={promotions.data} promotionsLimit={promotions.limit} promotionsPage={promotions.page} promotionsTotalCount={promotions.total_count} loadMore={this.loadMorePromotions}/>
               </ComingSoon>
             )}
@@ -168,7 +168,7 @@ export class Establishment extends Component {
         </Row>
         <Row>
           <Col lg="12" style={{width: "100%", height: "500px"}}>
-            <ComingSoon title="Blocked" description={t("establishment.module.no")}>
+            <ComingSoon image="../img/lock.png" title="Blocked" description={t("establishment.module.no")}>
               <div></div>
             </ComingSoon>
           </Col>

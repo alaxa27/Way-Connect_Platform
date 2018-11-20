@@ -4,7 +4,7 @@ import {translate} from "react-i18next";
 import Countdown from "../Countdown";
 import PropTypes from "prop-types";
 
-const ComingSoon = ({ t, title, description, launchDate, minified, outlineClassName }) => {
+const ComingSoon = ({ t, image, title, description, launchDate, minified, outlineClassName }) => {
   return (
     minified ?
       <div className={"modal-outline modal-outline--minified " + (outlineClassName ? outlineClassName : "")}>
@@ -20,7 +20,7 @@ const ComingSoon = ({ t, title, description, launchDate, minified, outlineClassN
       <div className={"modal-outline " + (outlineClassName ? outlineClassName : "")}>
         <div className="modal-body">
           <div className="modal-body__heading">
-            <img src="../img/shiba-01.png" alt="Logo" className="modal-body__img" />
+            <img src={image || "../img/shiba-01.png"} alt="Logo" className="modal-body__img" />
             <Row>
               <Col xs="12" sm={{size: 10, offset: 1}}>
                 <div className="modal-body__title modal-body__title--big mb-3">
@@ -63,6 +63,7 @@ ComingSoon.propTypes = {
   launchDate: PropTypes.object,
   minified: PropTypes.bool,
   outlineClassName: PropTypes.string,
+  image: PropTypes.string,
 };
 
 export default translate("translations")(ComingSoon);
