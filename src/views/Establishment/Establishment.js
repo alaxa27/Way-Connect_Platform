@@ -112,7 +112,7 @@ export class Establishment extends Component {
             <Panel index={1} value={monthlyData.visits} title={t("establishment.panel.visits.title")} />
           </Col>
           <Col xs="12" md="6" lg="3">
-            <Panel locked={true} index={2} value={monthlyData.total_rewards.value} currency={monthlyData.total_rewards.currency} title={t("establishment.panel.promotions.title")} />
+            <Panel locked={!_.contains(establishmentsWithFidelity, this.props.match.params.id)} index={2} value={monthlyData.total_rewards.value} currency={monthlyData.total_rewards.currency} title={t("establishment.panel.promotions.title")} />
           </Col>
           <Col xs="12" md="6" lg="3">
             <Panel index={3} value={monthlyData.customer_average_visits} title={t("establishment.panel.revisitAverage.title")} />
@@ -142,7 +142,7 @@ export class Establishment extends Component {
         <Row>
           <Col lg="6">
             {(
-            _.contains(establishmentsWithFidelity, "lkjlk") ?
+            !_.contains(establishmentsWithFidelity, this.props.match.params.id) ?
               <PromotionsList data={promotions.data} promotionsLimit={promotions.limit} promotionsPage={promotions.page} promotionsTotalCount={promotions.total_count} loadMore={this.loadMorePromotions}/>
             :
               <ComingSoon image="../img/lock.png" title="Blocked" description={t("establishment.module.no")}>

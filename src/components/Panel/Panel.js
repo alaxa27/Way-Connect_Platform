@@ -22,13 +22,13 @@ class Panel extends Component {
       <ReduxBlockUi tag="div" block="CAMPAIGN_ANALYTICS_KEY_DATA" unblock={["CAMPAIGN_ANALYTICS_KEY_DATA_FULFILLED", "CAMPAIGN_ANALYTICS_KEY_DATA_REJECTED"]}>
         <div className={"stats-panel stats-panel--" + index}>
           {!locked ? 
-          <h2 className="m-0">
-            <CountUp start={0} end={value} duration={3} decimals={decimals} />
-            <span className="currency">
-              {" " + currency}
-            </span>
-          </h2> : 
-          <img src="../img/lock.png" style={{width: "40px", height: "auto"}}/>
+            <h2 className="m-0">
+              <CountUp start={0} end={value} duration={3} decimals={decimals} />
+              <span className="currency">
+                {" " + currency}
+              </span>
+            </h2> : 
+            <img src="../img/lock.png" style={{width: "40px", height: "auto"}}/>
         }
           <div className="clearfix"></div>
           <span className="title">
