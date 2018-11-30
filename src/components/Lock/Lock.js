@@ -8,9 +8,9 @@ const Lock = ({ t, children }) => {
       <div className="lock__wrapper">
         {children}
       </div>
-      <div className="lock__text">
-        <img src="../img/lock.png" alt="Logo" style={{width: "100px"}} />
-        <div>
+      <div className="lock__info">
+        <img className="lock__icon" src="../img/lock.png" alt="Logo" style={{width: "100px"}} />
+        <div className="lock__text mt-3">
           {t("module.notConfigured")}
         </div>
       </div>

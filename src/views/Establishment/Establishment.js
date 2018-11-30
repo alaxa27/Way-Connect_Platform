@@ -190,9 +190,9 @@ export class Establishment extends Component {
         </Row>
         <Row>
           <Col lg="12" style={{width: "100%", height: "500px"}}>
-            <ComingSoon image="../img/lock.png" title="Blocked" description={t("module.notConfigured")}>
-              <div></div>
-            </ComingSoon>
+            <Lock>
+              <TrafficChart traffic={traffic} options={trafficChartOptions} trafficPeriodChange={trafficPeriodChange} title={t("general.trafficChart.title")}/>
+            </Lock>
           </Col>
         </Row>
       </div>
