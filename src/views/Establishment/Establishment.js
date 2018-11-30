@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import _ from "underscore";
 import {Row, Col} from "reactstrap";
 import ReduxBlockUi from "react-block-ui/redux";
-
+import moment from "moment";
 import ComingSoon from "../../components/Modal/ComingSoon";
 import TypicalClient from "../../components/TypicalClient/TypicalClient";
 import Affluence from "../../components/Affluence/Affluence";
@@ -15,6 +15,7 @@ import ExportExcelButton from "./ExportExcel/ExportExcelButton";
 import * as actions from "../../actions/establishmentActions";
 import {translate} from "react-i18next";
 import {compose} from "recompose";
+import Lock from "../../components/Lock/Lock";
 
 import establishmentsWithFidelity from "../../data/establishmentsWithFidelity";
 
@@ -67,10 +68,27 @@ const mapDispatchToProps = dispatch => ({
   fetchPromotions: payload => dispatch(actions.fetchPromotions(payload)),
 });
 
+const randomIntFromInterval = (min, max) =>{ 
+  return Math.floor(Math.random()*(max-min+1)+min);
+};
+
+const renderRandomPromotions = () => {
+  let promotions = [];
+  for(let i = 0; i < 6; i++) {
+    promotions.push({
+      reward: randomIntFromInterval(1, 50),
+      reward_currency: "WC",
+      code: "'" + randomIntFromInterval(1, 1000) + "'",
+      date: moment(),
+      views: randomIntFromInterval(0, 10)
+    });
+  }
+  return promotions;
+};
+
 export class Establishment extends Component {
   constructor(props) {
     super(props);
-
     this.fetchData(props);
     this.loadMorePromotions = this.loadMorePromotions.bind(this);
   }
@@ -145,9 +163,11 @@ export class Establishment extends Component {
           <Col lg="6">
             {(
             !_.contains(establishmentsWithFidelity, this.props.match.params.id) ?
-              <PromotionsList data={promotions.data} promotionsLimit={promotions.limit} promotionsPage={promotions.page} promotionsTotalCount={promotions.total_count} loadMore={this.loadMorePromotions}/>
+              <Lock>
+                <PromotionsList data={renderRandomPromotions()} promotionsLimit={promotions.limit} promotionsPage={promotions.page} promotionsTotalCount={promotions.total_count} loadMore={this.loadMorePromotions}/>
+              </Lock>
             :
-              <ComingSoon image="../img/lock.png" title="Blocked" description={t("establishment.module.no")}>
+              <ComingSoon image="../img/lock.png" title="Blocked" description={t("module.notConfigured")}>
                 <PromotionsList data={promotions.data} promotionsLimit={promotions.limit} promotionsPage={promotions.page} promotionsTotalCount={promotions.total_count} loadMore={this.loadMorePromotions}/>
               </ComingSoon>
             )}
@@ -170,7 +190,7 @@ export class Establishment extends Component {
         </Row>
         <Row>
           <Col lg="12" style={{width: "100%", height: "500px"}}>
-            <ComingSoon image="../img/lock.png" title="Blocked" description={t("establishment.module.no")}>
+            <ComingSoon image="../img/lock.png" title="Blocked" description={t("module.notConfigured")}>
               <div></div>
             </ComingSoon>
           </Col>

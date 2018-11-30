@@ -225,9 +225,6 @@
     "promotions": {
       "title": "Discounts"
     },
-    "module": {
-      "no": "You haven't configured this module."
-    },
     "customer": {
       "title": "Customer Knowledge"
     }
@@ -276,5 +273,8 @@
     "top": "Wallet Manager",
     "title": "Coming Soon",
     "subtitle": "You will soon be able to manage your wallet."
+  },
+  "module": {
+    "notConfigured": "You haven't configured this module"
   }
 }
