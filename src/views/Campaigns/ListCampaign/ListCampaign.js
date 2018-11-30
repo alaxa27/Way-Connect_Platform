@@ -38,19 +38,19 @@ class ListCampaign extends Component {
           <thead>
             <tr>
               <th>
-                {t('listCampaign.campaignName')}
+                {t("listCampaign.campaignName")}
               </th>
               <th>
-                {t('listCampaign.companyName')}
+                {t("listCampaign.companyName")}
               </th>
               <th>
-                {t('listCampaign.price')}
+                {t("listCampaign.price")}
               </th>
               <th>
-                {t('listCampaign.budget')}
+                {t("listCampaign.budget")}
               </th>
               <th>
-                {t('listCampaign.createdAt')}
+                {t("listCampaign.createdAt")}
               </th>
             </tr>
           </thead>

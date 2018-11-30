@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import {updateCampaignProperty} from "../../actions/campaignActions";
 import {connect} from "react-redux";
 import { translate } from "react-i18next";
-import { compose } from 'recompose';
+import { compose } from "recompose";
 
 const mapStateToProps = state => ({
   name: state.campaign.newCampaign.name,
@@ -32,7 +32,7 @@ class TypologieList extends Component {
           <Col md="6" xs="12">
             <div className="input-wrapper">
               <label>
-                {t('createCampaign.typologieList.campaignName')}
+                {t("createCampaign.typologieList.campaignName")}
               </label>
               <Input type="text" id="name" className="typologie-list__input" name="name" value={name} onChange={(e) => updateCampaignProperty({name: "name", value: e.target.value}) }/>
               {validator.message("name", name, "required", "text-danger", {
@@ -42,16 +42,16 @@ class TypologieList extends Component {
 
             <div className="input-wrapper">
               <label>
-                {t('createCampaign.typologieList.communicationType.title')}
+                {t("createCampaign.typologieList.communicationType.title")}
               </label>
               <div className="c-radio">
                 <Input type="radio" className="c-radio__item" id="brand" name="brand" value="BR" checked={communicationType === "BR"} onClick={e => { updateCampaignProperty({name: "communicationType", value: e.target.value}); }}/>
                 <label htmlFor="brand" className="c-radio__label">
-                  {t('createCampaign.typologieList.communicationType.brand')}
+                  {t("createCampaign.typologieList.communicationType.brand")}
                 </label>
                 <Input type="radio" className="c-radio__item" id="product" name="product" value="PR" checked={communicationType === "PR"} onClick={e => { updateCampaignProperty({name: "communicationType", value: e.target.value}); }}/>
                 <label htmlFor="product" className="c-radio__label">
-                  {t('createCampaign.typologieList.communicationType.product')}
+                  {t("createCampaign.typologieList.communicationType.product")}
                 </label>
               </div>
               {validator.message("communicationType", communicationType, "required|communicationType", "text-danger", {
@@ -61,7 +61,7 @@ class TypologieList extends Component {
 
             <div className="input-wrapper">
               <label>
-                {t('createCampaign.typologieList.companyName')}
+                {t("createCampaign.typologieList.companyName")}
               </label>
               <Input type="text" id="companyName" className="typologie-list__input" name="companyName" value={companyName} onChange={(e) => updateCampaignProperty({ name: "companyName", value: e.target.value}) }/>
               {validator.message("companyName", companyName, "required", "text-danger", {
@@ -71,7 +71,7 @@ class TypologieList extends Component {
 
             <div className="input-wrapper">
               <label>
-                {t('createCampaign.typologieList.productDescription')}
+                {t("createCampaign.typologieList.productDescription")}
               </label>
               <Input type="text" id="productDescription" className="typologie-list__input" name="productDescription" value={productDescription} onChange={(e) => updateCampaignProperty({ name: "productDescription", value: e.target.value}) }/>
               {validator.message("productDescription", productDescription, "required", "text-danger", {

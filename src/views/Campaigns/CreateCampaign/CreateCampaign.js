@@ -10,7 +10,7 @@ import ValidatorService from "../../../services/ValidatorService";
 import ReduxBlockUi from "react-block-ui/redux";
 import {Redirect} from "react-router-dom";
 import { translate } from "react-i18next";
-import { compose } from 'recompose';
+import { compose } from "recompose";
 
 const mapStateToProps = state => ({
   filterData: state.campaign.filterData,
@@ -60,7 +60,7 @@ class CreateCampaign extends Component {
               <div className="c-breadcrumbs__item">
                 <div className="c-breadcrumbs__label">
                   <FontAwesome.FaCircle className="orange-circle"/>
-                  {t('createCampaign.typologieList.title')}
+                  {t("createCampaign.typologieList.title")}
                 </div>
               </div>
             </div>
@@ -73,7 +73,7 @@ class CreateCampaign extends Component {
               <div className="c-breadcrumbs__item">
                 <div className="c-breadcrumbs__label">
                   <FontAwesome.FaCircle className="green-circle"/>
-                  {t('researchFilters.title')}
+                  {t("researchFilters.title")}
                 </div>
               </div>
             </div>

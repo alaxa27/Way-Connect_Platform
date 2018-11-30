@@ -130,7 +130,7 @@ class ResearchFilters extends Component {
 
           <div className="input-wrapper">
             <label>
-              {t('researchFilters.gender.title')}
+              {t("researchFilters.gender.title")}
             </label>
             <div className="c-radio">
               <Input type="radio" className="c-radio__item" id="male" name="gender_male" value="male" checked={(filters.gender === "M" || filters.gender === "")} onClick={() => {
@@ -140,7 +140,7 @@ class ResearchFilters extends Component {
                   });
                 }}/>
               <label htmlFor="male" className="c-radio__label">
-                {t('researchFilters.gender.male')}
+                {t("researchFilters.gender.male")}
               </label>
               <Input type="radio" className="c-radio__item" id="female" name="gender_female" value="female" checked={(filters.gender === "F" || filters.gender === "")} onClick={() => {
                   changeResearchFilter({
@@ -149,13 +149,13 @@ class ResearchFilters extends Component {
                   });
                 }}/>
               <label htmlFor="female" className="c-radio__label">
-                {t('researchFilters.gender.female')}
+                {t("researchFilters.gender.female")}
               </label>
             </div>
           </div>
           <div className="input-wrapper d-flex justify-content-between">
             <label>
-              {t('researchFilters.age')}
+              {t("researchFilters.age")}
             </label>
             <label className="research-filters__preview">{this.state.age.min}-{this.state.age.max}yo</label>
           </div>
@@ -173,7 +173,7 @@ class ResearchFilters extends Component {
 
           <div className="input-wrapper">
             <label>
-              {t('researchFilters.workStatus')}
+              {t("researchFilters.workStatus")}
             </label>
             <SelectBox name="work-status" placeholder="Every status" options={this.state.filterOpts.work_status} fixed={this.props.fixed} onChange={value => {
                 changeResearchFilter({name: "work_status__in", value: this._standardizeString(value)});
@@ -182,7 +182,7 @@ class ResearchFilters extends Component {
 
           <div className="input-wrapper">
             <label>
-              {t('researchFilters.relationshipStatus')}
+              {t("researchFilters.relationshipStatus")}
             </label>
             <SelectBox name="relationship-status" placeholder="Every status" options={this.state.filterOpts.relationship_status} fixed={this.props.fixed} onChange={value => {
                 changeResearchFilter({name: "relationship_status__in", value: this._standardizeString(value)});
@@ -191,7 +191,7 @@ class ResearchFilters extends Component {
 
           <div className="input-wrapper">
             <label>
-              {t('researchFilters.nationality')}
+              {t("researchFilters.nationality")}
             </label>
             <SelectBox name="nationality" placeholder="Every status" options={this.state.filterOpts.country} fixed={this.props.fixed} onChange={value => {
                 changeResearchFilter({name: "country__in", value: this._standardizeString(value)});
@@ -200,7 +200,7 @@ class ResearchFilters extends Component {
 
           <div className="input-wrapper">
             <label>
-              {t('researchFilters.hobbies')}
+              {t("researchFilters.hobbies")}
             </label>
             <SelectBox name="hobbies" placeholder="Every status" options={this.state.filterOpts.hobbies} fixed={this.props.fixed} onChange={value => {
                 changeResearchFilter({name: "hobbies", value: this._standardizeArray(value)});
@@ -212,7 +212,7 @@ class ResearchFilters extends Component {
               <ComingSoon title={t("createCampaign.comingSoon.title")} minified="minified"/>
               <div className="d-flex justify-content-between mt-4">
                 <label>
-                  {t('researchFilters.recallMarketing')}
+                  {t("researchFilters.recallMarketing")}
                 </label>
                 <label className="research-filters__preview">
                   {
@@ -234,7 +234,7 @@ class ResearchFilters extends Component {
             <div className="research-filters__users">
               <i className="fa fa-user mr-2"></i>
               <span className="mr-3">
-                {t('researchFilters.users')}
+                {t("researchFilters.users")}
               </span>
               <span className="font-weight-bold">
                 {researchFilters.users}
@@ -243,7 +243,7 @@ class ResearchFilters extends Component {
             <div className="research-filters__price">
               <i className="fa fa-usd mr-2"></i>
               <span className="mr-3">
-                {t('researchFilters.priceFrom')}
+                {t("researchFilters.priceFrom")}
               </span>
               <span className="font-weight-bold">
                 {researchFilters.price}
