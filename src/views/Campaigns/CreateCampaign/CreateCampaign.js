@@ -9,6 +9,8 @@ import {createCampaign, clearResearchFilterCache} from "../../../actions/campaig
 import ValidatorService from "../../../services/ValidatorService";
 import ReduxBlockUi from "react-block-ui/redux";
 import {Redirect} from "react-router-dom";
+import { translate } from "react-i18next";
+import { compose } from 'recompose';
 
 const mapStateToProps = state => ({
   filterData: state.campaign.filterData,
@@ -46,6 +48,7 @@ class CreateCampaign extends Component {
   }
 
   render() {
+    const { t } = this.props;
     if (this.props.newCampaign.created) {
       return <Redirect to={`/campaigns/${this.props.newCampaign.id}/config`}/>;
     }
@@ -57,7 +60,7 @@ class CreateCampaign extends Component {
               <div className="c-breadcrumbs__item">
                 <div className="c-breadcrumbs__label">
                   <FontAwesome.FaCircle className="orange-circle"/>
-                  Typologie list
+                  {t('createCampaign.typologieList.title')}
                 </div>
               </div>
             </div>
@@ -70,7 +73,7 @@ class CreateCampaign extends Component {
               <div className="c-breadcrumbs__item">
                 <div className="c-breadcrumbs__label">
                   <FontAwesome.FaCircle className="green-circle"/>
-                  Research Filters
+                  {t('researchFilters.title')}
                 </div>
               </div>
             </div>
@@ -89,6 +92,7 @@ class CreateCampaign extends Component {
 }
 
 CreateCampaign.propTypes = {
+  t: PropTypes.func,
   dispatch: PropTypes.func,
   filterData: PropTypes.object.isRequired,
   clearResearchFilterCache: PropTypes.func,
@@ -103,4 +107,4 @@ CreateCampaign.propTypes = {
   })
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateCampaign);
+export default compose(connect(mapStateToProps, mapDispatchToProps), translate("translations"))(CreateCampaign);

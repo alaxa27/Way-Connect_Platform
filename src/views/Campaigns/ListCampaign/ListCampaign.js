@@ -37,11 +37,21 @@ class ListCampaign extends Component {
         <Table className="campaigns-table" hover={true}>
           <thead>
             <tr>
-              <th>Name of campaign</th>
-              <th>Company name</th>
-              <th>Price</th>
-              <th>Budget</th>
-              <th>Creation date</th>
+              <th>
+                {t('listCampaign.campaignName')}
+              </th>
+              <th>
+                {t('listCampaign.companyName')}
+              </th>
+              <th>
+                {t('listCampaign.price')}
+              </th>
+              <th>
+                {t('listCampaign.budget')}
+              </th>
+              <th>
+                {t('listCampaign.createdAt')}
+              </th>
             </tr>
           </thead>
           <tbody>

@@ -132,11 +132,13 @@ export class Establishment extends Component {
           <Col lg="3">
             <h2 className="heading">{t("establishment.promotions.title")}</h2>
           </Col>
-          <Col lg={{size: 3, offset: 1}}>
-            <ExportExcelButton
-              title={t("general.exportExcel.title")}
-              establishmentId={this.props.match.params.id}
-            />
+          <Col lg="3">
+            <div className="d-flex justify-content-end">
+              <ExportExcelButton
+                title={t("general.exportExcel.title")}
+                establishmentId={this.props.match.params.id}
+              />
+            </div>
           </Col>
         </Row>
         <Row>
