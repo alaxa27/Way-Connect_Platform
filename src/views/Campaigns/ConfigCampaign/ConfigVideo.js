@@ -82,11 +82,15 @@ class ConfigVideo extends Component {
               }}>
                 <Form className="mt-3" encType="multipart/form-data">
                   <FormGroup>
-                    <Label for="phone">Phone number</Label>
+                    <Label for="phone">
+                      {t("configCampaign.video.phone")}
+                    </Label>
                     <Input type="text" name="phone" value={this.state.phone} onChange={this.handleInputChange} id="phone" placeholder="Enter your phone" />
                   </FormGroup>
                   <FormGroup>
-                    <Label for="exampleFile" sm={2}>File</Label>
+                    <Label for="exampleFile" sm={2}>
+                      {t("configCampaign.video.file")}
+                    </Label>
                     <Col sm={10}>
                       <Input type="file" name="file" id="exampleFile" onChange={this.handleVideoUpload} />
                       <FormText color="muted">
@@ -95,7 +99,9 @@ class ConfigVideo extends Component {
                     </Col>
                   </FormGroup>
                   <FormGroup>
-                    <Label>Upload progress</Label>
+                    <Label>
+                      {t("configCampaign.video.uploadProgress")}
+                    </Label>
                     <Progress animated value={videoUpload.progress} />
                   </FormGroup>
                 </Form>

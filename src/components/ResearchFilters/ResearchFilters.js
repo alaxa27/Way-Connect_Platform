@@ -129,7 +129,9 @@ class ResearchFilters extends Component {
         <Col md="6" xs="12">
 
           <div className="input-wrapper">
-            <label>Gender</label>
+            <label>
+              {t("researchFilters.gender.title")}
+            </label>
             <div className="c-radio">
               <Input type="radio" className="c-radio__item" id="male" name="gender_male" value="male" checked={(filters.gender === "M" || filters.gender === "")} onClick={() => {
                   changeResearchFilter({
@@ -137,18 +139,24 @@ class ResearchFilters extends Component {
                     value: this._changeGender("M", filters.gender)
                   });
                 }}/>
-              <label htmlFor="male" className="c-radio__label">Male</label>
+              <label htmlFor="male" className="c-radio__label">
+                {t("researchFilters.gender.male")}
+              </label>
               <Input type="radio" className="c-radio__item" id="female" name="gender_female" value="female" checked={(filters.gender === "F" || filters.gender === "")} onClick={() => {
                   changeResearchFilter({
                     name: "gender",
                     value: this._changeGender("F", filters.gender)
                   });
                 }}/>
-              <label htmlFor="female" className="c-radio__label">Female</label>
+              <label htmlFor="female" className="c-radio__label">
+                {t("researchFilters.gender.female")}
+              </label>
             </div>
           </div>
           <div className="input-wrapper d-flex justify-content-between">
-            <label>Age</label>
+            <label>
+              {t("researchFilters.age")}
+            </label>
             <label className="research-filters__preview">{this.state.age.min}-{this.state.age.max}yo</label>
           </div>
           <div className="input-wrapper">
@@ -164,28 +172,36 @@ class ResearchFilters extends Component {
           </div>
 
           <div className="input-wrapper">
-            <label>Work status</label>
+            <label>
+              {t("researchFilters.workStatus")}
+            </label>
             <SelectBox name="work-status" placeholder="Every status" options={this.state.filterOpts.work_status} fixed={this.props.fixed} onChange={value => {
                 changeResearchFilter({name: "work_status__in", value: this._standardizeString(value)});
               }} value={this._destandardizeString(filters.work_status__in, this.state.filterOpts.work_status)}/>
           </div>
 
           <div className="input-wrapper">
-            <label>Relationship status</label>
+            <label>
+              {t("researchFilters.relationshipStatus")}
+            </label>
             <SelectBox name="relationship-status" placeholder="Every status" options={this.state.filterOpts.relationship_status} fixed={this.props.fixed} onChange={value => {
                 changeResearchFilter({name: "relationship_status__in", value: this._standardizeString(value)});
               }} value={this._destandardizeString(filters.relationship_status__in, this.state.filterOpts.relationship_status)}/>
           </div>
 
           <div className="input-wrapper">
-            <label>Nationality</label>
+            <label>
+              {t("researchFilters.nationality")}
+            </label>
             <SelectBox name="nationality" placeholder="Every status" options={this.state.filterOpts.country} fixed={this.props.fixed} onChange={value => {
                 changeResearchFilter({name: "country__in", value: this._standardizeString(value)});
               }} value={this._destandardizeString(filters.country__in, this.state.filterOpts.country)}/>
           </div>
 
           <div className="input-wrapper">
-            <label>Hobbies</label>
+            <label>
+              {t("researchFilters.hobbies")}
+            </label>
             <SelectBox name="hobbies" placeholder="Every status" options={this.state.filterOpts.hobbies} fixed={this.props.fixed} onChange={value => {
                 changeResearchFilter({name: "hobbies", value: this._standardizeArray(value)});
               }} value={this._destandardizeArray(filters.hobbies, this.state.filterOpts.hobbies)}/>
@@ -195,7 +211,9 @@ class ResearchFilters extends Component {
             <div className="feature-coming-soon">
               <ComingSoon title={t("createCampaign.comingSoon.title")} minified="minified"/>
               <div className="d-flex justify-content-between mt-4">
-                <label>Recall marketing</label>
+                <label>
+                  {t("researchFilters.recallMarketing")}
+                </label>
                 <label className="research-filters__preview">
                   {
                     researchFilters.recallMarketing === 1
@@ -216,7 +234,7 @@ class ResearchFilters extends Component {
             <div className="research-filters__users">
               <i className="fa fa-user mr-2"></i>
               <span className="mr-3">
-                Users
+                {t("researchFilters.users")}
               </span>
               <span className="font-weight-bold">
                 {researchFilters.users}
@@ -225,7 +243,7 @@ class ResearchFilters extends Component {
             <div className="research-filters__price">
               <i className="fa fa-usd mr-2"></i>
               <span className="mr-3">
-                Price from
+                {t("researchFilters.priceFrom")}
               </span>
               <span className="font-weight-bold">
                 {researchFilters.price}

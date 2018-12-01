@@ -119,7 +119,7 @@ class NewAuction extends Component {
               </span>
             </div>
             <div className="bid__box py-2">
-              New price
+              {t("campaignAuction.bid.newPrice")}
             </div>
             <div className="bid__box bid__box--separated d-flex align-items-center justify-content-between">
               <div className="bid__box-wrapper">

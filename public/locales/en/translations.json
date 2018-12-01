@@ -95,11 +95,14 @@
       "creditCampaign": "Credit campaign",
       "bid": "Bid",
       "concurrents": "Concurrents",
+      "views": "Views",
+      "analytics": "Analytics",
       "from": "Bid from",
       "maxPrice": "Max price",
       "minPrice": "Min price",
       "targetUsers": "Target users",
       "historyTitle": "Auction History",
+      "newPrice": "New price",
       "boostAction": "Boost Auction",
       "timeElapsed": "Time elapsed",
       "timeRemaining": "Time remaining"
@@ -135,6 +138,9 @@
       }
     },
     "video": {
+      "phone": "Phone number",
+      "file": "File",
+      "uploadProgress": "Upload progress",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
       "upload": {
         "title": "Upload a file (mp4, m4v, avi, flv)"
@@ -158,12 +164,44 @@
     }
   },
   "createCampaign": {
+    "typologieList": {
+      "title": "Typologie list",
+      "campaignName": "Name of campaign",
+      "companyName": "Company name",
+      "communicationType": {
+        "title": "Communication type",
+        "brand": "brand",
+        "product": "product"
+      },
+      "productDescription": "Product description"
+    },
     "comingSoon": {
       "title": "Coming Soon",
       "description": "You will soon be able to add establishments to map."
     }
   },
+  "researchFilters": {
+    "title": "Research Filters",
+    "gender": {
+      "title": "Gender",
+      "male": "Male",
+      "female": "Female"
+    },
+    "age": "Age",
+    "workStatus": "Work status",
+    "relationshipStatus": "Relationship status",
+    "nationality": "Nationality",
+    "hobbies": "Hobbies",
+    "recallMarketing": "Recall marketing",
+    "users": "Users",
+    "priceFrom": "Price from"
+  },
   "listCampaign": {
+    "campaignName": "Name of campaign",
+    "companyName": "Company name",
+    "price": "Price",
+    "budget": "Budget",
+    "createdAt": "Creation date",
     "comingSoon": {
       "title": "Coming Soon",
       "description": "You will soon be able to create your own advertising campaign."
@@ -186,9 +224,6 @@
     },
     "promotions": {
       "title": "Discounts"
-    },
-    "module": {
-      "no": "You haven't configured this module."
     },
     "customer": {
       "title": "Customer Knowledge"
@@ -238,5 +273,8 @@
     "top": "Wallet Manager",
     "title": "Coming Soon",
     "subtitle": "You will soon be able to manage your wallet."
+  },
+  "module": {
+    "notConfigured": "You haven't configured this module"
   }
 }

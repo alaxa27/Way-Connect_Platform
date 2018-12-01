@@ -39,7 +39,7 @@ class AuctionMeta extends Component {
         </div>
         <div className="bid-meta__concurrents mr-3 d-inline-block">
           <span className="bid-meta__type mr-2">
-            Concurrents:
+            {t("campaignAuction.bid.concurrents")}:
           </span>
           <span className="bid-meta__value">
             <NumberUp value={competitors} />
@@ -47,14 +47,16 @@ class AuctionMeta extends Component {
         </div>
         <div className="bid-meta__views mr-3 d-inline-block">
           <span className="bid-meta__type mr-2">
-            Views:
+            {t("campaignAuction.bid.views")}:
           </span>
           <span className="bid-meta__value">
             <NumberUp value={views} />
           </span>
         </div>
         <div className="bid-meta__analytics d-inline-block">
-          <Link to={`/campaigns/${campaign.id}/analytics`} className="bid-btn bid-btn--orange d-block">Analytics</Link>
+          <Link to={`/campaigns/${campaign.id}/analytics`} className="bid-btn bid-btn--orange d-block">
+            {t("campaignAuction.bid.analytics")}
+          </Link>
         </div>
       </div>
     );
