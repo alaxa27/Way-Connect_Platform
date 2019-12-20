@@ -30,24 +30,34 @@ class ConfigVideo extends Component {
     super(props);
 
     this.state = {
-      phone: ""
+      phone: "",
+      file: null
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleVideoUpload = this.handleVideoUpload.bind(this);
+    this.onVideoChange = this.onVideoChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   handleInputChange(e) {
     this.setState({phone: e.target.value});
   }
 
-  handleVideoUpload(e) {
-    const { campaignId, uploadVideo } = this.props;
+  onVideoChange(e) {
     const file = e.target.files[0];
+    this.setState({
+      file
+    });
+  }
+
+  onSubmit() {
+    const { campaignId, uploadVideo } = this.props;
+    const { phone, file } = this.state;
+
     const formData = new FormData();
     formData.append("video", file);
     formData.append("campaign", campaignId);
-    formData.append("redirection", (this.state.phone.length > 0 ? `tel:${this.state.phone}` : ""));
+    formData.append("redirection", (phone.length > 0 ? `tel:${phone}` : ""));
     uploadVideo(formData);
   }
 
@@ -92,7 +102,7 @@ class ConfigVideo extends Component {
                       {t("configCampaign.video.file")}
                     </Label>
                     <Col sm={10}>
-                      <Input type="file" name="file" id="exampleFile" onChange={this.handleVideoUpload} />
+                      <Input type="file" name="file" id="exampleFile" onChange={this.onVideoChange} />
                       <FormText color="muted">
                         {"This is some placeholder block-level help text for the above input. It is a bit lighter and easily wraps to a new line."}
                       </FormText>
@@ -112,7 +122,7 @@ class ConfigVideo extends Component {
         <Row>
           <Col>
             <div className="border-top text-right px-3">
-              <Button className="bid-btn">{t("configCampaign.tabs.submit.title")}</Button>
+              <Button className="bid-btn" onClick={this.onSubmit}>{t("configCampaign.tabs.submit.title")}</Button>
             </div>
           </Col>
         </Row>
